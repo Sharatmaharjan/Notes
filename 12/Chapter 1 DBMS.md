@@ -49,7 +49,6 @@
 - **Flexibility**: Provides a flexible data model that can adapt to changing requirements and complex queries.
 - **Consistency**: Ensures consistent data through integrity constraints and transaction management.
 
-By understanding these concepts, one can appreciate the role and functionality of databases and DBMS in modern information systems, enabling efficient data management, access, and security.
 
 ### 1.2 Field, Record, Objects, Primary Key, Alternate Key, Candidate Key
 
