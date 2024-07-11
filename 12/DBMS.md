@@ -1,4 +1,4 @@
-Chapter 1: Database Management System (DBMS)
+### Chapter 1: Database Management System (DBMS)
 1.1 Introduction to Data, Database, Database System, DBMS
 Data: Raw facts and figures without context (e.g., numbers, dates, strings).
 Database: A structured collection of data, typically stored and accessed electronically from a computer system. Examples include SQL databases, NoSQL databases, etc.
