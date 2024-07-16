@@ -1,7 +1,8 @@
 
 ### Unit 7: Supporting Decision Making
 - Decision support in business  
-- Information, decisions, and management  Information quality
+- Information, decisions, and management
+- Information quality
 - Decision structure, decision support trends, decision support systems  
 - Online analytical processing: OLAP examples
 - Using decision support systems: what-if analysis, sensitivity analysis, goal-seeking analysis,
