@@ -1,4 +1,4 @@
-### Unit 10 Contemporary Technologies and Businesses
+## Unit 10 Contemporary Technologies and Businesses
 ### Artificial Intelligence (AI) and its Impact on Business and Society
 
 #### Artificial Intelligence (AI):
