@@ -708,7 +708,7 @@ ____________________________________
 
 #### 4.4.4 Call by Value and Call by Reference
 
-### Call by Value
+#### Call by Value
 
 In call by value, when a function is called, the actual value (data) of the argument is passed to the function. The function works with a copy of the data, and any modifications made to the parameters inside the function do not affect the original data in the calling function.
 
@@ -761,7 +761,7 @@ a = 5, b = 10
 
 In this example, even though `swapByValue` function swaps `x` and `y` inside, it doesn't affect the original variables `a` and `b` in `main()` because they are passed by value.
 
-### Call by Reference :
+#### Call by Reference :
 
 In call by reference, the memory address (reference) of the actual argument is passed to the function. This allows the function to directly access and modify the data stored at that memory address. Changes made inside the function using the references affect the original data in the calling function.
 
