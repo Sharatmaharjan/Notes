@@ -1,4 +1,4 @@
-#### CHAPTER 4: PROGRAMMING IN C
+## CHAPTER 4: PROGRAMMING IN C
 - 4.1 Review of C programming concept
 - 4.2 Functions
   - 4.2.1 Concept of library and user-defined functions and advantages
@@ -22,7 +22,9 @@
   - 4.5.2 Sequential and Random File
   - 4.5.3 File manipulation function: putw, getw, putc, getc, fscanf, fprintf
   - 4.5.4 Opening, Reading, Writing, and Appending data file
+____________________________________
 
+## 4.1 Review of C programming concept
 ### 1. Introduction to C Programming
 - C is a general-purpose programming language developed in 1972 by Dennis Ritchie at Bell Labs.
 - Known for its efficiency, flexibility, and direct access to system hardware, C is widely used in system software, embedded systems, and applications where performance is critical.
@@ -183,7 +185,7 @@
 - **Recursion**: Function calling itself.
 - **Command-line Arguments**: Arguments passed to `main()`.
 
-Certainly! Here are detailed notes on each sub-topic related to functions in C programming:
+____________________________________
 
 ### 4.2 Functions
 
@@ -301,7 +303,6 @@ Certainly! Here are detailed notes on each sub-topic related to functions in C p
       count++;  // Accessing external variable
   }
   ```
-Certainly! Here are detailed notes specifically focusing on the concept of recursion with examples of solving factorial and Fibonacci sequence problems in C programming:
 
 ### 4.2.5 Concept of Recursion: Factorial and Fibonacci Problems
 
@@ -406,7 +407,7 @@ Fibonacci sequence up to 6:
 - Recursion is useful for problems involving hierarchical structures, such as tree traversal (e.g., binary trees).
 - It simplifies solutions for problems inherently defined in terms of smaller instances of the same problem (e.g., factorial, Fibonacci).
 
-Here are detailed notes on structures and unions in C programming:
+____________________________________
 
 ### 4.3 Structures and Unions
 
@@ -640,3 +641,184 @@ Size of union Data: 20 bytes
 - In this example, `union Data` is defined with three members (`i`, `f`, `str`) sharing the same memory location.
 - Modifying one member (`data.i`, `data.f`, `data.str`) affects the others due to the shared memory.
 - The size of `union Data` is determined by the largest member (`str`, which is 20 bytes).
+
+____________________________________
+
+
+### 4.4 Pointers
+
+#### 4.4.1 Definition of Pointer
+
+- **Definition**: 
+  - A pointer in C is a variable that stores the memory address of another variable. 
+  - Pointers enable direct manipulation of memory and facilitate dynamic memory allocation.
+
+- **Example**:
+  ```c
+  int *ptr; // Declaration of a pointer variable 'ptr' that can point to an integer
+  float *ptr_float; // Declaration of a pointer variable 'ptr_float' that can point to a float
+  ```
+
+#### 4.4.2 Address (&) and Indirection (*) Operator
+
+- **Address Operator (`&`)**:
+  - The `&` operator is used to obtain the address of a variable.
+  - It returns the memory address where the variable is stored.
+
+- **Example**:
+  ```c
+  int num = 10;
+  int *ptr = &num; // Assigning the address of 'num' to 'ptr'
+  ```
+
+- **Indirection or Dereference Operator (`*`)**:
+  - The `*` operator is used to access the value stored at a pointer's address.
+  - It is also used in pointer declarations to declare a pointer variable.
+
+- **Example**:
+  ```c
+  int num = 10;
+  int *ptr = &num; // 'ptr' now holds the address of 'num'
+  printf("Value of num: %d\n", *ptr); // Output: Value of num: 10
+  ```
+
+#### 4.4.3 Pointer Expression and Assignment
+
+- **Pointer Expression**:
+  - A pointer expression combines pointer operators and operands to form valid C expressions.
+  - Examples include arithmetic operations on pointers (`ptr++`, `ptr--`) and accessing array elements using pointers (`*(ptr + i)`).
+
+- **Example**:
+  ```c
+  int arr[5] = {1, 2, 3, 4, 5};
+  int *ptr = arr; // 'ptr' points to the first element of 'arr'
+  printf("Third element of arr: %d\n", *(ptr + 2)); // Output: Third element of arr: 3
+  ```
+
+- **Pointer Assignment**:
+  - Pointers can be assigned values of the same type or `NULL`.
+  - Pointers can be reassigned to point to different variables or memory locations.
+
+- **Example**:
+  ```c
+  int num1 = 10, num2 = 20;
+  int *ptr = &num1; // 'ptr' points to 'num1'
+  ptr = &num2; // Now 'ptr' points to 'num2'
+  ```
+
+#### 4.4.4 Call by Value and Call by Reference
+
+### Call by Value
+
+In call by value, when a function is called, the actual value (data) of the argument is passed to the function. The function works with a copy of the data, and any modifications made to the parameters inside the function do not affect the original data in the calling function.
+
+**Key Points:**
+
+1. **Data Copying**: 
+   - When arguments are passed by value, the function parameters receive copies of the actual data passed from the calling function.
+   
+2. **No Impact on Original Data**: 
+   - Changes made to the parameters inside the function are local to that function and do not affect the original variables in the calling function.
+
+3. **Usage**: 
+   - Typically used for simple data types and situations where the function does not need to modify the original data but only needs to work with a local copy.
+
+ 
+
+```c
+#include <stdio.h>
+
+// Function to swap two integers using call by value
+void swapByValue(int x, int y) {
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+int main() {
+    int a = 5, b = 10;
+
+    printf("Before swapping (Call by Value):\n");
+    printf("a = %d, b = %d\n", a, b);
+
+    swapByValue(a, b); // Passing a and b by value
+
+    printf("After swapping (Call by Value):\n");
+    printf("a = %d, b = %d\n", a, b); // Values of a and b remain unchanged
+
+    return 0;
+}
+```
+
+**Output**:
+```
+Before swapping (Call by Value):
+a = 5, b = 10
+After swapping (Call by Value):
+a = 5, b = 10
+```
+
+In this example, even though `swapByValue` function swaps `x` and `y` inside, it doesn't affect the original variables `a` and `b` in `main()` because they are passed by value.
+
+### Call by Reference :
+
+In call by reference, the memory address (reference) of the actual argument is passed to the function. This allows the function to directly access and modify the data stored at that memory address. Changes made inside the function using the references affect the original data in the calling function.
+
+**Key Points:**
+
+1. **Passing Addresses**: 
+   - Instead of passing copies of data, call by reference passes the addresses (pointers) of the actual variables.
+
+2. **Direct Modification**: 
+   - Functions can modify the original data directly through the pointers, as they have access to the actual memory locations.
+
+3. **Usage**: 
+   - Useful when a function needs to modify the original data or when working with large data structures to avoid the overhead of copying.
+
+ 
+
+```c
+#include <stdio.h>
+
+// Function to swap two integers using call by reference
+void swapByReference(int *x, int *y) {
+    int temp;
+    temp = *x; // Dereference to access the value at address x
+    *x = *y;   // Dereference to assign the value at address y to x
+    *y = temp; // Dereference to assign temp to the value at address y
+}
+
+int main() {
+    int a = 5, b = 10;
+
+    printf("Before swapping (Call by Reference):\n");
+    printf("a = %d, b = %d\n", a, b);
+
+    swapByReference(&a, &b); // Passing addresses of a and b (call by reference)
+
+    printf("After swapping (Call by Reference):\n");
+    printf("a = %d, b = %d\n", a, b); // Values of a and b are swapped
+
+    return 0;
+}
+```
+
+**Output**:
+```
+Before swapping (Call by Reference):
+a = 5, b = 10
+After swapping (Call by Reference):
+a = 10, b = 5
+```
+
+In this example, `swapByReference` function receives addresses of `a` and `b` (`&a` and `&b`), allowing it to modify the values at those addresses directly. As a result, `a` and `b` are swapped successfully.
+
+ 
+
+### Summary:
+
+- **Pointers** in C are variables that store memory addresses.
+- **Operators** (`&` and `*`) are used for address-of and indirection operations.
+- **Expressions** and **assignment** involving pointers facilitate dynamic memory management and efficient data access.
+- **Call by Value** and **Call by Reference** determine how arguments are passed to functions, impacting whether changes made inside the function affect the original variables.
