@@ -71,7 +71,7 @@ Decision support systems (DSS) are crucial tools in business, aiding in complex 
 4. **Healthcare**:
    - Aids in patient diagnosis and treatment planning.
    - **Example**: Clinical decision support systems providing diagnostic suggestions based on patient data.
-   - 
+
 
 #### Benefits of DSS
 
@@ -131,7 +131,6 @@ In business, information plays a crucial role in decision-making and management 
    - Example: Restocking inventory, scheduling employee shifts.
 
 **Decision-Making Process**:
-*Decision-Making Process**:
 
 1. **Problem Identification**:
    - Recognizing and defining the problem.
