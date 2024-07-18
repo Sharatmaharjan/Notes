@@ -447,10 +447,10 @@ Understanding decision structures, keeping up with decision support trends, and 
 ______________________________________
 
 
-5. Online analytical processing: OLAP examples
+### 5. Online analytical processing: OLAP examples
 OLAP systems are designed to allow users to analyze multidimensional data interactively from multiple perspectives. They typically involve complex queries that aggregate data and allow slicing and dicing across various dimensions (e.g., time, geography, product lines) to uncover trends, patterns, and relationships that might not be apparent in traditional, flat-table data views.
 
-### Examples of OLAP Usage:
+#### Examples of OLAP Usage:
 
 1. **Sales Analysis by Region and Time**:
    - **Scenario**: A retail company wants to analyze sales performance across different regions and over time.
