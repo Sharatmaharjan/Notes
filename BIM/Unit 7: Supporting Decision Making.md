@@ -131,27 +131,35 @@ In business, information plays a crucial role in decision-making and management 
    - Example: Restocking inventory, scheduling employee shifts.
 
 **Decision-Making Process**:
-1. **Identify the Problem**:
-   - Recognize and define the issue to be resolved.
-   - Example: Declining customer satisfaction.
-2. **Gather Information**:
-   - Collect relevant data and information.
-   - Example: Customer feedback, sales reports.
-3. **Generate Alternatives**:
-   - Develop possible solutions.
-   - Example: Improving product quality, enhancing customer service.
-4. **Evaluate Alternatives**:
-   - Assess the pros and cons of each alternative.
-   - Example: Cost-benefit analysis of different solutions.
-5. **Choose an Alternative**:
-   - Select the best solution.
-   - Example: Deciding to implement a customer loyalty program.
-6. **Implement the Decision**:
-   - Put the chosen solution into action.
-   - Example: Launching the customer loyalty program.
-7. **Evaluate the Decision**:
-   - Monitor and assess the outcomes.
-   - Example: Measuring the impact on customer satisfaction and sales.
+*Decision-Making Process**:
+
+1. **Problem Identification**:
+   - Recognizing and defining the problem.
+   - Example: Identifying a decline in customer satisfaction.
+
+2. **Data Collection**:
+   - Gathering relevant information.
+   - Example: Collecting customer feedback and sales data.
+
+3. **Alternative Generation**:
+   - Developing possible solutions.
+   - Example: Proposing improvements in product quality or customer service.
+
+4. **Alternative Evaluation**:
+   - Assessing the pros and cons of each alternative.
+   - Example: Evaluating the cost and impact of each proposed solution.
+
+5. **Decision Making**:
+   - Selecting the best alternative.
+   - Example: Choosing to enhance customer service based on feedback analysis.
+
+6. **Implementation**:
+   - Putting the decision into action.
+   - Example: Training customer service staff and introducing new service protocols.
+
+7. **Evaluation**:
+   - Monitoring the results and making necessary adjustments.
+   - Example: Tracking customer satisfaction post-implementation and making further improvements.
 
 #### Management
 
@@ -297,24 +305,15 @@ Understanding decision structures, keeping up with decision support trends, and 
 **Decision structure** refers to the framework or process through which decisions are made within an organization. Decisions can be categorized based on their nature and impact on the organization.
 
 **Types of Decisions**:
-
-1. **Structured Decisions**:
-   - **Characteristics**: Routine, repetitive, and well-defined with clear procedures.
-   - **Examples**:
-     - Inventory reordering: Reordering stock when it falls below a certain level using a predefined formula.
-     - Payroll processing: Calculating employee salaries based on hours worked and predefined rates.
-
-2. **Semi-Structured Decisions**:
-   - **Characteristics**: Involves a combination of structured and unstructured elements, requiring judgment and evaluation.
-   - **Examples**:
-     - Marketing campaign development: Deciding on the budget and channels based on historical data and creative input.
-     - Budget forecasting: Using historical financial data and adjusting for predicted market trends.
-
-3. **Unstructured Decisions**:
-   - **Characteristics**: Unique, non-routine, and complex, requiring intuition, experience, and insight.
-   - **Examples**:
-     - New product development: Deciding on the features and market launch strategy for a new product.
-     - Corporate strategy formulation: Setting long-term goals and strategies based on market analysis and executive vision.
+1. **Strategic Decisions**:
+   - Long-term and affect the entire organization.
+   - Example: Entering a new market, mergers, and acquisitions.
+2. **Tactical Decisions**:
+   - Short-term and focus on specific departments or functions.
+   - Example: Budget allocation for a marketing campaign, hiring additional staff.
+3. **Operational Decisions**:
+   - Day-to-day decisions that support routine activities.
+   - Example: Restocking inventory, scheduling employee shifts.
 
 **Decision-Making Process**:
 
