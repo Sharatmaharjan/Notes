@@ -1,5 +1,14 @@
 ## Chapter 1: Database Management System (DBMS)
 
+- 1.1 Introduction to Data, Database, Database System, DBMS
+- 1.2 Field, Record, Objects, Primary Key, Alternate key, Candidate key
+- 1.3 Advantages of using DBMS
+- 1.4 DDL (Data Definition Language) and DML (Data Manipulation Language)
+- 1.5 Database Model: Network Model, Hierarchical Model, Relational database model
+- 1.6 Concept of Normalization: 1NF, 2NF, 3NF
+- 1.7 Centralized Vs. Distributed Database
+- 1.8 Database Security
+
 ### 1.1 Introduction to Data, Database, Database System, DBMS
 
 #### Data
