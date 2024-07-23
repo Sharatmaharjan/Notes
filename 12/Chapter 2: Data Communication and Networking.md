@@ -1,5 +1,14 @@
 ## Chapter 2: Data Communication and Networking
 
+- 2.1 Basic elements of Communication System:
+- 2.2 Concept of Communication System
+- 2.3 Block Diagram of Communication System /Model
+- 2.4 Elements of Data Communication/Transmission
+- 2.5 Simplex, Half duplex, and Full duplex communication mode
+- 2.6 Concept of LAN and WAN
+- 2.7 Transmission Medium: Guided and Unguided
+- 2.8 Transmission impairments terminology (Jitter, Singing, Echo, Crosstalk, Distortion, Noise, Bandwidth, Number of receivers)
+
 ### 2.1 Basic Elements of Communication System
 
 A communication system is designed to transmit information from one point to another reliably and efficiently. It consists of several essential elements that work together to facilitate this process:
