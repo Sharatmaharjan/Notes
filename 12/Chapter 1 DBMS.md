@@ -1,4 +1,4 @@
-## Chapter 1: Database Management System (DBMS)
+## Chapter 1: Database Management System (DBMS) [12-HRS]
 
 - 1.1 Introduction to Data, Database, Database System, DBMS
 - 1.2 Field, Record, Objects, Primary Key, Alternate key, Candidate key
