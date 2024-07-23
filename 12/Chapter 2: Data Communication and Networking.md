@@ -116,4 +116,4 @@ A **communication system** is a structured arrangement of hardware and software 
 
 ---
 
-These detailed notes cover the essential aspects of data communication and networking, providing a comprehensive understanding of the fundamental concepts and terminology involved.
+
