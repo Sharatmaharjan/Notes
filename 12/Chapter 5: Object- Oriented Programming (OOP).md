@@ -101,41 +101,39 @@ int main() {
 - **Overhead:** May involve more memory and processing overhead due to object management.
 
 **Example:**
-```java
+```php
+<?php
 class Animal {
-    String name;
-    
+    protected $name;
+
     // Constructor
-    Animal(String name) {
-        this.name = name;
+    public function __construct($name) {
+        $this->name = $name;
     }
 
     // Method
-    void makeSound() {
-        System.out.println("Animal makes a sound");
+    public function makeSound() {
+        echo "Animal makes a sound<br>";
     }
 }
 
 class Dog extends Animal {
-    
+
     // Constructor
-    Dog(String name) {
-        super(name);
+    public function __construct($name) {
+        parent::__construct($name);
     }
 
     // Method overriding
-    @Override
-    void makeSound() {
-        System.out.println(name + " barks");
+    public function makeSound() {
+        echo $this->name . " barks<br>";
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        Dog dog = new Dog("Buddy");
-        dog.makeSound();
-    }
-}
+// Main
+$dog = new Dog("Buddy");
+$dog->makeSound(); // Output: Buddy barks
+?>
 ```
 
 ### Summary of Programming Paradigms
