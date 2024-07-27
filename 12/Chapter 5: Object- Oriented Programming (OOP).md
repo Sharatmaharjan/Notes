@@ -146,16 +146,10 @@ $dog->makeSound(); // Output: Buddy barks
 
 ____________________________________________________________________________________________________________________________________________________________
 
-### 5.2 Features of Object-Oriented Programming (OOP)
-
-Certainly! Here’s a rewrite of the OOP features using PHP examples:
-
----
 
 ### 5.2 Features of Object-Oriented Programming (OOP)
 
-Object-Oriented Programming (OOP) is a paradigm centered around objects and classes, which help organize and structure code. Here are the core features of OOP with PHP examples:
-
+Object-Oriented Programming (OOP) is a paradigm centered around objects and classes, which help organize and structure code.
 ### 1. Class
 
 **Definition:**
