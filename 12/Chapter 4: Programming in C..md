@@ -1,4 +1,4 @@
-## CHAPTER 4: PROGRAMMING IN C
+## CHAPTER 4: PROGRAMMING IN C [12-HRS]
 - 4.1 Review of C programming concept
 - 4.2 Functions
   - 4.2.1 Concept of library and user-defined functions and advantages
