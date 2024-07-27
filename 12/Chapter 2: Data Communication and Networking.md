@@ -1,4 +1,4 @@
-## Chapter 2: Data Communication and Networking [15-LHRS]
+## Chapter 2: Data Communication and Networking [15-HRS]
 
 - 2.1 Basic elements of Communication System:
 - 2.2 Concept of Communication System
