@@ -80,11 +80,12 @@ Because nonlinear equations can be more complex, we often use special methods to
 6. **Piecewise Equations**
    - These are defined by different expressions in different intervals.
    - **Example:** 
-     \[
-     f(x) = 
-     \begin{cases} 
-     x^2 & \text{if } x \leq 0 \\
-     \sqrt{x} & \text{if } x > 0 
-     \end{cases}
-     \]
+     $$
+f(x) = 
+\begin{cases} 
+x^2 & \text{if } x \leq 0 \\
+\sqrt{x} & \text{if } x > 0 
+\end{cases}
+$$
+
    - Solutions depend on the piecewise definition and might require different approaches for each piece.
