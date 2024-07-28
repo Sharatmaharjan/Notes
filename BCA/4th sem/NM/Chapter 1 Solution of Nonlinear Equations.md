@@ -161,7 +161,19 @@ The Bisection Method is a numerical technique for finding the root of a continuo
    - Choose initial guesses \( a \) and \( b \) such that \( f(a) \) and \( f(b) \) have opposite signs. This implies \( f(a) \cdot f(b) < 0 \), indicating a root lies between \( a \) and \( b \).
 
 2. **Iteration:**
-   - Calculate the midpoint  \( c =  frac{a + b}{2} \) . 
+   - Calculate the midpoint  \( c =  frac{a + b}{2} \) .
+   - Calculate the midpoint 
+𝑐
+=
+𝑎
++
+𝑏
+2
+c= 
+2
+a+b
+​
+ .
    - Evaluate the function at the midpoint: \( f(c) \).
    - Determine the subinterval \([a, c]\) or \([c, b]\) where the function changes sign.
    - Replace \( a \) or \( b \) with \( c \) based on where the sign change occurs.
