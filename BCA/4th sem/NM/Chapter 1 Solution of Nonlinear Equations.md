@@ -8,8 +8,6 @@
 - Solution of System of Nonlinear Equation
 - Fixed Point Iteration and Convergence
 
-  #### Introduction
-  ### Solution of Nonlinear Equations
 
 #### Introduction
 
