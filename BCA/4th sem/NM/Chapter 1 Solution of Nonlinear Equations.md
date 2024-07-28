@@ -54,7 +54,7 @@ Because nonlinear equations can be more complex, we often use special methods to
 
 1. **Algebraic Equations**
    - These are equations involving polynomial expressions.
-   - **Example:** $$ \( x^3 - 6x^2 + 11x - 6 = 0 \) $$
+   - **Example:**  \[ x^3 - 6x^2 + 11x - 6 = 0 \] 
    - They can be solved using various algebraic methods or numerical techniques.
 
 2. **Transcendental Equations**
