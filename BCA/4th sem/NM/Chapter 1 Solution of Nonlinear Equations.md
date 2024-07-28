@@ -107,7 +107,7 @@ Round-off errors occur because computers can only represent numbers with a finit
 
 **Example:**
 
-Consider the number \( \pi = 3.141592653589793 \). A computer might represent it as \( 3.14159 \) or \( 3.1415927 \), depending on the precision. Calculations using these rounded values introduce round-off errors.
+Consider the number \( pi = 3.141592653589793 \). A computer might represent it as \( 3.14159 \) or \( 3.1415927 \), depending on the precision. Calculations using these rounded values introduce round-off errors.
 
 #### 2. Truncation Error
 
@@ -117,7 +117,7 @@ Truncation errors occur when an infinite process is approximated by a finite one
 
 The exponential function \( e^x \) can be represented as a Taylor series:
 
-\[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \]
+$$ \[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \] $$
 
 If we truncate this series after the first three terms, we get:
 
