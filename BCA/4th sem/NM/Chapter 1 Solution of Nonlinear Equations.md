@@ -121,7 +121,7 @@ $$ \[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \] $$
 
 If we truncate this series after the first three terms, we get:
 
-\[ e^x \approx 1 + x + \frac{x^2}{2!} \]
+$$ \[ e^x \approx 1 + x + \frac{x^2}{2!} \] $$
 
 This approximation introduces truncation error.
 
@@ -133,7 +133,7 @@ Algorithmic errors arise from the inherent limitations or inaccuracies in the al
 
 Using the Newton-Raphson method to solve \( x^3 - 6x^2 + 11x - 6 = 0 \), the iteration formula is:
 
-\[ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \]
+$$ \[ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \] $$
 
 If the initial guess \( x_0 \) is far from the actual root, the algorithm might converge slowly or even diverge, leading to significant errors.
 
