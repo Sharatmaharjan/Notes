@@ -80,7 +80,11 @@ Because nonlinear equations can be more complex, we often use special methods to
 6. **Piecewise Equations**
    - These are defined by different expressions in different intervals.
    - **Example:** 
-     $$
+## Piecewise Function
+
+The piecewise function is defined as follows:
+
+$$
 f(x) = 
 \begin{cases} 
 x^2 & \text{if } x \leq 0 \\
