@@ -29,7 +29,7 @@ Nonlinear equations are equations in which the unknown variable(s) appear to a p
 
 3. **Trigonometric Equations**
    - These involve trigonometric functions.
-   - **Example:** \( \sin(x) = x^2 \)
+   - **Example:** \( sin(x) = x^2 \)
    - Trigonometric identities and numerical methods are often used to solve these.
 
 4. **Exponential Equations**
@@ -39,7 +39,7 @@ Nonlinear equations are equations in which the unknown variable(s) appear to a p
 
 5. **Logarithmic Equations**
    - These involve logarithmic functions.
-   - **Example:** \( \log(x) = 2 - x \)
+   - **Example:** \( log(x) = 2 - x \)
    - Solved using properties of logarithms and numerical techniques.
 
 6. **Piecewise Equations**
