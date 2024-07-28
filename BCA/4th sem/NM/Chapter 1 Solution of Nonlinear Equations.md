@@ -101,7 +101,7 @@ When solving nonlinear equations, errors can arise due to various factors. Under
 2. **Truncation Error**
 3. **Algorithmic Error**
 
-##### 1. Round-off Error
+#### 1. Round-off Error
 
 Round-off errors occur because computers can only represent numbers with a finite number of digits. This limitation leads to small discrepancies when numbers are rounded to fit the available precision.
 
@@ -109,7 +109,7 @@ Round-off errors occur because computers can only represent numbers with a finit
 
 Consider the number \( \pi = 3.141592653589793 \). A computer might represent it as \( 3.14159 \) or \( 3.1415927 \), depending on the precision. Calculations using these rounded values introduce round-off errors.
 
-##### 2. Truncation Error
+#### 2. Truncation Error
 
 Truncation errors occur when an infinite process is approximated by a finite one. This is common in numerical methods where an infinite series is truncated to a finite number of terms.
 
@@ -125,7 +125,7 @@ If we truncate this series after the first three terms, we get:
 
 This approximation introduces truncation error.
 
-##### 3. Algorithmic Error
+#### 3. Algorithmic Error
 
 Algorithmic errors arise from the inherent limitations or inaccuracies in the algorithm used to solve a problem. These errors can be due to poor algorithm design, incorrect implementation, or the algorithm's inability to handle specific cases.
 
@@ -137,7 +137,7 @@ Using the Newton-Raphson method to solve \( x^3 - 6x^2 + 11x - 6 = 0 \), the ite
 
 If the initial guess \( x_0 \) is far from the actual root, the algorithm might converge slowly or even diverge, leading to significant errors.
 
-##### Mitigating Errors
+#### Mitigating Errors
 
 To minimize these errors, the following strategies can be employed:
 
