@@ -54,13 +54,7 @@ Because nonlinear equations can be more complex, we often use special methods to
 
 1. **Algebraic Equations**
    - These are equations involving polynomial expressions.
-   - **Example:**  \[ x^3 - 6x^2 + 11x - 6 = 0 \]
-   - ## Cubic Equation
-
-The cubic equation we need to solve is:
-
-\[ x^3 - 6x^2 + 11x - 6 = 0 \]
-
+   - **Example:**  \( x^3 - 6x^2 + 11x - 6 = 0 \)
    - They can be solved using various algebraic methods or numerical techniques.
 
 2. **Transcendental Equations**
@@ -96,3 +90,62 @@ x^2 & \text{if } x \leq 0 \\
 $$
 
    - Solutions depend on the piecewise definition and might require different approaches for each piece.
+
+
+
+### 1.3 Errors in Computing
+
+When solving nonlinear equations, errors can arise due to various factors. Understanding these errors is crucial for ensuring the accuracy and reliability of computational results. There are three main types of errors in computing:
+
+1. **Round-off Error**
+2. **Truncation Error**
+3. **Algorithmic Error**
+
+##### 1. Round-off Error
+
+Round-off errors occur because computers can only represent numbers with a finite number of digits. This limitation leads to small discrepancies when numbers are rounded to fit the available precision.
+
+**Example:**
+
+Consider the number \( \pi = 3.141592653589793 \). A computer might represent it as \( 3.14159 \) or \( 3.1415927 \), depending on the precision. Calculations using these rounded values introduce round-off errors.
+
+##### 2. Truncation Error
+
+Truncation errors occur when an infinite process is approximated by a finite one. This is common in numerical methods where an infinite series is truncated to a finite number of terms.
+
+**Example:**
+
+The exponential function \( e^x \) can be represented as a Taylor series:
+
+\[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \]
+
+If we truncate this series after the first three terms, we get:
+
+\[ e^x \approx 1 + x + \frac{x^2}{2!} \]
+
+This approximation introduces truncation error.
+
+##### 3. Algorithmic Error
+
+Algorithmic errors arise from the inherent limitations or inaccuracies in the algorithm used to solve a problem. These errors can be due to poor algorithm design, incorrect implementation, or the algorithm's inability to handle specific cases.
+
+**Example:**
+
+Using the Newton-Raphson method to solve \( x^3 - 6x^2 + 11x - 6 = 0 \), the iteration formula is:
+
+\[ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \]
+
+If the initial guess \( x_0 \) is far from the actual root, the algorithm might converge slowly or even diverge, leading to significant errors.
+
+##### Mitigating Errors
+
+To minimize these errors, the following strategies can be employed:
+
+1. **Increase Precision:** Use higher precision arithmetic to reduce round-off errors.
+2. **Refine Approximations:** Use more terms in series expansions to decrease truncation errors.
+3. **Improve Algorithms:** Choose robust algorithms and provide good initial guesses to reduce algorithmic errors.
+
+**Example:**
+
+For the equation \( x^3 - 6x^2 + 11x - 6 = 0 \), using a more precise initial guess in the Newton-Raphson method can significantly improve convergence and reduce errors.
+
