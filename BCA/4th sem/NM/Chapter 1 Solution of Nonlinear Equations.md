@@ -135,7 +135,7 @@ Using the Newton-Raphson method to solve \( x^3 - 6x^2 + 11x - 6 = 0 \), the ite
 
 $$ \[ x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \] $$
 
-If the initial guess  \( x_0 \)  is far from the actual root, the algorithm might converge slowly or even diverge, leading to significant errors.
+If the initial guess  \( x<sub>0</sub> \)  is far from the actual root, the algorithm might converge slowly or even diverge, leading to significant errors.
 
 #### Mitigating Errors
 
