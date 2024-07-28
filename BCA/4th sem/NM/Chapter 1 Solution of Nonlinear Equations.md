@@ -177,7 +177,7 @@ The Bisection Method is a numerical technique for finding the root of a continuo
 
 ### Iterations in a Table:
 
-| Iteration | \(a\)  | \(b\)  | \(c\) (a+b)/2 | \(f(a)\) | \(f(b)\) | \(f(c)\)  | Interval \([a, b]\) |
+| Iteration | \(a\)  | \(b\)  | \(c\) = (a+b)/2 | \(f(a)\) | f(b) | \(f(c)\)  | Interval \([a, b]\) |
 |-----------|--------|--------|------------------|----------|----------|-----------|---------------------|
 | 1         | 0.00   | 2.00   | 1.00             | 1.00     | -3.00    | -2.00     | [0.00, 1.00]        |
 | 2         | 0.00   | 1.00   | 0.50             | 1.00     | -2.00    | -0.875    | [0.00, 0.50]        |
