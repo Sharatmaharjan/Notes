@@ -149,3 +149,21 @@ To minimize these errors, the following strategies can be employed:
 
 For the equation \( x^3 - 6x^2 + 11x - 6 = 0 \), using a more precise initial guess in the Newton-Raphson method can significantly improve convergence and reduce errors.
 
+Sure! Here’s a detailed explanation of the Bisection Method with an example, and the calculation part presented in a table.
+
+### 1.4 The Bisection Method
+
+The Bisection Method is a numerical technique for finding the root of a continuous function that changes sign over an interval. It is a straightforward and robust method, often used when an initial bracketing interval \([a, b]\) is known, within which the function changes sign, indicating the presence of at least one root.
+
+#### Algorithm
+
+1. **Initialization:**
+   - Choose initial guesses \( a \) and \( b \) such that \( f(a) \) and \( f(b) \) have opposite signs. This implies \( f(a) \cdot f(b) < 0 \), indicating a root lies between \( a \) and \( b \).
+
+2. **Iteration:**
+   - Calculate the midpoint \( c = \frac{a + b}{2} \).
+   - Evaluate the function at the midpoint: \( f(c) \).
+   - Determine the subinterval \([a, c]\) or \([c, b]\) where the function changes sign.
+   - Replace \( a \) or \( b \) with \( c \) based on where the sign change occurs.
+   - Repeat the process until the interval \([a, b]\) is sufficiently small or until \( |f(c)| \) is within a desired tolerance.
+
