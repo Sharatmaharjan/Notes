@@ -173,7 +173,7 @@ The Bisection Method is a numerical technique for finding the root of a continuo
 - Choose \( a = 0 \) and \( b = 2 \).
 - \( f(a) = f(0) = 1 \)
 - \( f(b) = f(2) = -3 \)
-- Since \( f(a) \cdot f(b) < 0 \), there is at least one root between \( a \) and \( b \).
+- Since  f(a).f(b) < 0 , there is at least one root between \( a \) and \( b \).
 
 ### Iterations in a Table:
 
