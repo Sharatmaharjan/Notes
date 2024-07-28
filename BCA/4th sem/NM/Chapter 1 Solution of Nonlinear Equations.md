@@ -16,7 +16,7 @@
 Nonlinear equations involve variables that are not just to the first power. These equations can include terms like \(x^2\), \(e^x\), \(\sin(x)\), and other more complex expressions. Because of this, the solutions to nonlinear equations can be more complicated and interesting compared to linear equations.
 
 
-### Solution of Nonlinear Equations in IT
+#### Solution of Nonlinear Equations in IT
 
 Nonlinear equations are prevalent in Information Technology (IT) to model and solve various complex problems.
 
@@ -50,7 +50,7 @@ Because nonlinear equations can be more complex, we often use special methods to
 
 
 
-#### 1.2 Types of Equations
+### 1.2 Types of Equations
 
 1. **Algebraic Equations**
    - These are equations involving polynomial expressions.
