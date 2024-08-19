@@ -1,5 +1,5 @@
 ## Chapter 3:  Web technology II [12 HRS]
----
+
 - 3.1  Introduction
 - 3.2  Server side and Client Side Scripting
 - 3.3  Introduction of internet technology
