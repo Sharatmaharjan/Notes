@@ -8,6 +8,13 @@
 - 2.6 Concept of LAN and WAN
 - 2.7 Transmission Medium: Guided and Unguided
 - 2.8 Transmission impairments terminology (Jitter, Singing, Echo, Crosstalk, Distortion, Noise, Bandwidth, Number of receivers)
+- 2.9 Basic concept of Networks Architecture: Client- Server and Peer-to-peer
+- 2.10 Some Basic Terms and Tool Used in Computer Network: IP Address, Sub Net Mask and Gateway, MAC address, Internet, Intranet and Extranet
+- 2.11 Network Tool: Packet tracer, Remote Login
+- 2.12 Network Connecting Devices: NIC, Modem, router, switch
+- 2.13 Network Topologies: Bus, Ring and star topology
+- 2.14 Basic Concept OSI Reference Model
+- 2.15 Internet Protocol Addressing
 
 ___________________________________________________________________________________________________________________________________________________
 ### 2.1 Basic Elements of Communication System
