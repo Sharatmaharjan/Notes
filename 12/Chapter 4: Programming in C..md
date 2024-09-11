@@ -823,11 +823,11 @@ In this example, `swapByReference` function receives addresses of `a` and `b` (`
 - **Expressions** and **assignment** involving pointers facilitate dynamic memory management and efficient data access.
 - **Call by Value** and **Call by Reference** determine how arguments are passed to functions, impacting whether changes made inside the function affect the original variables.
 
-  ---
+---
 
-  ## 4.5 Working with Files
+### 4.5 Working with Files
 
-### 4.5.1 Concept of Data File
+### 4.5.1 Concept of Data File and 4.5.4 Opening, Reading, Writing and Appending data file
 
 **1. Introduction to Data Files:**
 A data file is a storage unit on a disk that contains data. In programming, files are used to store data permanently, allowing it to be retrieved, updated, or processed later. Files serve as an interface between the program and the underlying storage device.
@@ -893,6 +893,44 @@ int main() {
 **Explanation:**
    - **Creating and Writing:** The file `example.txt` is created using `fopen()` in write mode (`"w"`). If the file already exists, it will be truncated. The `fprintf()` function writes formatted data to the file, and `fclose()` closes the file.
    - **Reading:** The file is then reopened in read mode (`"r"`). The `fgets()` function reads lines from the file, and the content is printed to the console. Finally, the file is closed again.
+
+C program that demonstrates how to append text to an existing file:
+
+```c
+#include <stdio.h>
+
+int main() {
+    FILE *filePtr;
+
+    // Open the file in append mode
+    filePtr = fopen("example.txt", "a");
+    if (filePtr == NULL) {
+        printf("Error opening file!\n");
+        return 1;
+    }
+
+    // Append text to the file
+    fprintf(filePtr, "This text is appended to the file.\n");
+    fprintf(filePtr, "Appending another line to the file.\n");
+
+    // Close the file
+    fclose(filePtr);
+
+    return 0;
+}
+```
+
+### Explanation:
+1. **Open the File in Append Mode:**
+   - `fopen("example.txt", "a")` opens the file for appending. If the file does not exist, it will be created. If it exists, new content will be added to the end without modifying existing content.
+
+2. **Append Text:**
+   - `fprintf(filePtr, "This text is appended to the file.\n");` writes a new line of text to the file.
+   - `fprintf(filePtr, "Appending another line to the file.\n");` writes another line of text.
+
+3. **Close the File:**
+   - `fclose(filePtr);` closes the file to ensure all changes are saved and resources are released.
+
 
 **6. Importance of Data Files:**
 Data files are crucial for programs that require persistent data storage. Without files, all data would be lost once the program terminates. Files allow for long-term storage and management of data, making them essential for most real-world applications, such as databases, word processors, and spreadsheets.
@@ -1021,5 +1059,249 @@ int main() {
   - Use random access when you need to retrieve, modify, or append specific records in a file, such as in databases or indexed files.
 
 ---
+
+### 4.5.3 File Manipulation Functions: `putw`, `getw`, `putc`, `getc`, `fscanf`, `fprintf`
+
+In C programming, various file manipulation functions enable reading and writing data to and from files. These functions are essential for handling files in both text and binary modes. Below are explanations and examples for each of the mentioned functions.
+
+---
+
+**1. `putw`**
+
+- **Description:**
+  - `putw` is used to write an integer to a file in binary mode. It writes the integer value in its binary form.
+  - This function is suitable for storing integers when the exact binary representation is needed.
+
+- **Syntax:**
+  ```c
+  int putw(int value, FILE *stream);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      int num = 1234;
+
+      // Open a file in binary write mode
+      filePtr = fopen("binaryfile.dat", "wb");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Write the integer to the file
+      putw(num, filePtr);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example writes the integer `1234` to a binary file. The file will contain the binary representation of the integer.
+
+---
+
+**2. `getw`**
+
+- **Description:**
+  - `getw` is used to read an integer from a file in binary mode. It reads the binary representation of an integer and converts it back to an integer.
+  
+- **Syntax:**
+  ```c
+  int getw(FILE *stream);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      int num;
+
+      // Open a file in binary read mode
+      filePtr = fopen("binaryfile.dat", "rb");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Read the integer from the file
+      num = getw(filePtr);
+
+      printf("Read integer: %d\n", num);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example reads the integer stored in `binaryfile.dat` and prints it. The file must contain an integer written in binary mode, as with `putw`.
+
+---
+
+**3. `putc`**
+
+- **Description:**
+  - `putc` is used to write a single character to a file in text mode.
+  - It writes the character as it appears, making it suitable for text files.
+
+- **Syntax:**
+  ```c
+  int putc(int char, FILE *stream);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      char ch = 'A';
+
+      // Open a file in write mode
+      filePtr = fopen("textfile.txt", "w");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Write the character to the file
+      putc(ch, filePtr);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example writes the character `A` to a text file. The file will contain the character as it appears.
+
+---
+
+**4. `getc`**
+
+- **Description:**
+  - `getc` is used to read a single character from a file in text mode.
+  - It reads the next character in the file, returning it as an integer.
+
+- **Syntax:**
+  ```c
+  int getc(FILE *stream);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      char ch;
+
+      // Open a file in read mode
+      filePtr = fopen("textfile.txt", "r");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Read the character from the file
+      ch = getc(filePtr);
+
+      printf("Read character: %c\n", ch);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example reads the first character from `textfile.txt` and prints it. The file must contain a character written in text mode, as with `putc`.
+
+---
+
+**5. `fscanf`**
+
+- **Description:**
+  - `fscanf` is used to read formatted data from a file in text mode.
+  - It works similarly to `scanf`, but reads data from a file instead of standard input.
+
+- **Syntax:**
+  ```c
+  int fscanf(FILE *stream, const char *format, ...);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      int num;
+      char str[50];
+
+      // Open a file in read mode
+      filePtr = fopen("datafile.txt", "r");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Read an integer and a string from the file
+      fscanf(filePtr, "%d %s", &num, str);
+
+      printf("Read integer: %d\n", num);
+      printf("Read string: %s\n", str);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example reads an integer and a string from `datafile.txt`. The file must contain data in the format specified by `fscanf`.
+
+---
+
+**6. `fprintf`**
+
+- **Description:**
+  - `fprintf` is used to write formatted data to a file in text mode.
+  - It works similarly to `printf`, but writes data to a file instead of standard output.
+
+- **Syntax:**
+  ```c
+  int fprintf(FILE *stream, const char *format, ...);
+  ```
+
+- **Example:**
+  ```c
+  #include <stdio.h>
+
+  int main() {
+      FILE *filePtr;
+      int num = 1234;
+      char str[] = "Hello";
+
+      // Open a file in write mode
+      filePtr = fopen("datafile.txt", "w");
+      if (filePtr == NULL) {
+          printf("Error opening file!\n");
+          return 1;
+      }
+
+      // Write an integer and a string to the file
+      fprintf(filePtr, "%d %s", num, str);
+
+      fclose(filePtr);
+      return 0;
+  }
+  ```
+
+**Explanation:** The example writes an integer and a string to `datafile.txt`. The file will contain the data formatted as specified in the `fprintf` statement.
+
+---
+
+
 
 
