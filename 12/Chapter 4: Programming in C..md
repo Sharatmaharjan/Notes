@@ -968,12 +968,10 @@ Files can be accessed in different ways, depending on how the data is organized 
   - `fseek(FILE *stream, long int offset, int whence)`: Moves the file pointer to a specified location.
   - `ftell(FILE *stream)`: Returns the current position of the file pointer.
   - `rewind(FILE *stream)`: Resets the file pointer to the beginning of the file.
+ 
+Program that demonstrates random access in a file:
 
-- **Example:**
-  Program that demonstrates random access in a file:
-
-  ```c
-  
+```c
 #include <stdio.h>
 
 int main() {
@@ -1005,12 +1003,10 @@ int main() {
 
     return 0;
 }
+```
 
-
-
-  **Explanation:**
-  - The file `random.dat` is opened in binary write mode, and an array of integers is written to the file using `fwrite()`.
-  - The file is then reopened in binary read mode. The `fseek()` function moves the file pointer to the position of the third integer in the file, and `fread()` reads that specific integer.
+**Explanation:**
+- In the example, `fseek()` is used to skip the first 7 characters, directly jumping to the start of "Line 2" in a text file.
 
 ---
 
