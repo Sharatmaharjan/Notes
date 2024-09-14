@@ -18,7 +18,7 @@
    a) A unique identifier for a table  
    **b) A unique field that identifies a record**  
    c) A foreign key  
-   d) A key that cannot be duplicated  
+   d) A key that can be duplicated  
 
 4. **What is a candidate key?**  
    a) A key that can be made primary  
