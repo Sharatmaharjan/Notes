@@ -1,5 +1,3 @@
-
-
 ### 3.1 Introduction
 
 1. **What is the main purpose of client-side scripting?**  
@@ -57,10 +55,10 @@
 ### 3.7 Variables and Operators
 
 8. **How do you declare a variable in JavaScript?**  
-   **a) var**  
+   a) var
    b) let  
    c) const  
-   d) All of the above  
+   **d) All of the above**
 
 9. **Which operator is used for strict equality comparison in JavaScript?**  
    a) `=`  
