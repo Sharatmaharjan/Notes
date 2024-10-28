@@ -1,7 +1,3 @@
-Here’s the updated outline with the additional sections, closely following the sample booklet format. You can copy this directly into your document editor and apply any specific formatting as in the sample booklet:
-
----
-
 ### **Course Booklet: C Programming**
 
 ---
