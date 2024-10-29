@@ -582,9 +582,7 @@ JavaScript is a powerful and versatile programming language essential for creati
   try {
       let result = x / y;
   } catch (err) {
-      console.log("
-
-Error: " + err.message);
+      console.log("Error: " + err.message);
   } finally {
       console.log("Execution completed.");
   }
