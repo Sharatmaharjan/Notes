@@ -1149,4 +1149,910 @@ Form validation is a crucial part of web development to ensure that user input i
 
 ---
 
+### 3.12 Server-Side Scripting Using PHP
+
+**Overview of Server-Side Scripting**
+
+Server-side scripting is a web server technology in which a user's request is processed by a web server that generates dynamic content based on that request. PHP (Hypertext Preprocessor) is one of the most popular server-side scripting languages, allowing developers to create dynamic and interactive web applications.
+
+#### Key Features of PHP:
+1. **Open Source:** PHP is free to use, which makes it accessible for developers.
+2. **Cross-Platform:** PHP can run on various operating systems, including Windows, Linux, and macOS.
+3. **Database Integration:** PHP can easily connect to different databases like MySQL, PostgreSQL, and SQLite.
+4. **Rich Libraries and Frameworks:** PHP has a vast collection of libraries and frameworks like Laravel, Symfony, and CodeIgniter that speed up development.
+
+#### Example of PHP Usage:
+Here's a simple example of embedding PHP in HTML to display dynamic content:
+
+```php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First PHP Page</title>
+</head>
+<body>
+
+<?php
+echo "Hello, World! This is my first PHP script.";
+?>
+
+</body>
+</html>
+```
+
+---
+
+### 3.13 Introduction to PHP: Hardware and Software Requirements
+
+#### Hardware Requirements:
+1. **Server**: A web server that supports PHP (e.g., Apache, Nginx).
+2. **Client**: Any computer capable of running a web browser.
+
+#### Software Requirements:
+1. **Web Server Software**: 
+   - **Apache**: Widely used and free.
+   - **Nginx**: Known for high performance.
+2. **PHP**: Version 7.x or 8.x (latest version recommended).
+3. **Database Management System (optional)**:
+   - **MySQL**: Commonly used with PHP.
+   - **MariaDB**: A drop-in replacement for MySQL.
+4. **Operating System**: 
+   - Linux, Windows, or macOS.
+5. **IDE/Text Editor**: Software for writing PHP code, such as:
+   - **Visual Studio Code**
+   - **PHPStorm**
+   - **Sublime Text**
+
+#### Example Setup:
+You can use **XAMPP** or **MAMP** to create a local server environment, which includes Apache, MySQL, and PHP pre-installed.
+
+---
+
+### 3.14 Object-Oriented Programming with Server-Side Scripting
+
+#### Introduction to OOP in PHP:
+Object-Oriented Programming (OOP) allows developers to create reusable code in the form of objects. PHP supports OOP features such as classes, objects, inheritance, and polymorphism.
+
+#### Key Concepts of OOP in PHP:
+
+1. **Classes and Objects**:
+   - A class is a blueprint for creating objects. An object is an instance of a class.
+   
+   ```php
+   class Car {
+       public $color;
+       public $model;
+
+       function __construct($color, $model) {
+           $this->color = $color;
+           $this->model = $model;
+       }
+
+       function getDetails() {
+           return "Model: $this->model, Color: $this->color";
+       }
+   }
+
+   $myCar = new Car("Red", "Toyota");
+   echo $myCar->getDetails(); // Output: Model: Toyota, Color: Red
+   ```
+
+2. **Inheritance**:
+   - Allows a class to inherit properties and methods from another class.
+   
+   ```php
+   class Vehicle {
+       public $wheels;
+
+       function __construct($wheels) {
+           $this->wheels = $wheels;
+       }
+   }
+
+   class Bike extends Vehicle {
+       function __construct() {
+           parent::__construct(2);
+       }
+   }
+
+   $myBike = new Bike();
+   echo $myBike->wheels; // Output: 2
+   ```
+
+3. **Encapsulation**:
+   - Bundling data and methods that operate on the data within one unit (class). Access can be controlled via visibility (public, private, protected).
+
+   ```php
+   class BankAccount {
+       private $balance;
+
+       function __construct($initial_balance) {
+           $this->balance = $initial_balance;
+       }
+
+       public function getBalance() {
+           return $this->balance;
+       }
+   }
+
+   $account = new BankAccount(1000);
+   echo $account->getBalance(); // Output: 1000
+   ```
+
+4. **Polymorphism**:
+   - The ability to use a shared interface for different data types.
+   
+   ```php
+   class Animal {
+       public function sound() {
+           return "Some sound";
+       }
+   }
+
+   class Dog extends Animal {
+       public function sound() {
+           return "Bark";
+       }
+   }
+
+   class Cat extends Animal {
+       public function sound() {
+           return "Meow";
+       }
+   }
+
+   function makeSound(Animal $animal) {
+       echo $animal->sound();
+   }
+
+   makeSound(new Dog()); // Output: Bark
+   makeSound(new Cat()); // Output: Meow
+   ```
+
+---
+
+### 3.15 Basic PHP Syntax
+
+#### PHP Tags:
+- PHP code is written between `<?php ... ?>`. If short tags are enabled, `<? ... ?>` can also be used.
+
+#### Echo and Print:
+- Both `echo` and `print` are used to output data, with `echo` being slightly faster.
+
+```php
+<?php
+echo "Hello, World!";
+print "Hello, again!";
+?>
+```
+
+#### Comments:
+- Single-line comment: `// Comment`
+- Multi-line comment: `/* Comment */`
+
+#### Variables:
+- Variables start with a dollar sign (`$`) and can store different types of data.
+
+```php
+<?php
+$name = "Alice"; // String
+$age = 25; // Integer
+$height = 5.5; // Float
+?>
+```
+
+#### Control Structures:
+- Conditional statements, loops, and switch cases control the flow of the program.
+
+```php
+<?php
+if ($age > 18) {
+    echo "Adult";
+} else {
+    echo "Minor";
+}
+
+for ($i = 0; $i < 5; $i++) {
+    echo $i;
+}
+?>
+```
+
+---
+
+### 3.16 PHP Data Types
+
+PHP supports several data types that can be categorized into four main types:
+
+1. **Scalar Data Types**:
+   - **String**: A sequence of characters.
+   - **Integer**: Whole numbers, both positive and negative.
+   - **Float (double)**: Numbers with decimal points.
+   - **Boolean**: Represents two possible values: `true` or `false`.
+
+   ```php
+   <?php
+   $string = "Hello, World!";
+   $integer = 42;
+   $float = 3.14;
+   $boolean = true;
+   ?>
+   ```
+
+2. **Compound Data Types**:
+   - **Array**: A collection of values.
+   - **Object**: An instance of a class.
+
+   ```php
+   <?php
+   // Array
+   $colors = array("Red", "Green", "Blue");
+   // Object
+   class Person {
+       public $name;
+       public $age;
+   }
+   $person = new Person();
+   $person->name = "John";
+   $person->age = 30;
+   ?>
+   ```
+
+3. **Special Data Types**:
+   - **NULL**: Represents a variable with no value.
+
+   ```php
+   <?php
+   $var = NULL; // No value
+   ?>
+   ```
+
+4. **Type Juggling**:
+   - PHP is dynamically typed, meaning variable types can change at runtime. For example, a variable can be a string in one context and an integer in another.
+
+```php
+<?php
+$var = "10"; // String
+$var += 5; // Now an integer (15)
+echo $var; // Output: 15
+?>
+```
+
+---
+
+### 3.17 Basic Programming in PHP
+
+**Introduction to Basic Programming Concepts in PHP**
+
+Basic programming in PHP involves understanding the core concepts such as variables, control structures, data types, functions, and error handling. Here are some essential programming concepts in PHP:
+
+1. **Variables**: Used to store data values. PHP variables are prefixed with a dollar sign (`$`).
+
+   ```php
+   <?php
+   $name = "Alice";
+   $age = 25;
+   ?>
+   ```
+
+2. **Control Structures**: Help to control the flow of execution. Common structures include `if`, `else`, `switch`, `for`, `while`, and `foreach`.
+
+   ```php
+   <?php
+   if ($age >= 18) {
+       echo "Adult";
+   } else {
+       echo "Minor";
+   }
+
+   for ($i = 0; $i < 5; $i++) {
+       echo $i;
+   }
+   ?>
+   ```
+
+3. **Functions**: Blocks of code that can be reused. They can take parameters and return values.
+
+   ```php
+   <?php
+   function greet($name) {
+       return "Hello, " . $name;
+   }
+
+   echo greet("Bob"); // Output: Hello, Bob
+   ?>
+   ```
+
+4. **Error Handling**: Use `try`, `catch`, and custom error handling functions to manage errors.
+
+   ```php
+   <?php
+   try {
+       // Some code that may throw an exception
+       throw new Exception("An error occurred!");
+   } catch (Exception $e) {
+       echo "Caught exception: " . $e->getMessage();
+   }
+   ?>
+   ```
+
+---
+
+### 3.18 Operators (Arithmetic, Logical, Comparison, Operator Precedence)
+
+**1. Arithmetic Operators**
+- Used to perform mathematical operations.
+
+| Operator | Description            | Example        |
+|----------|------------------------|-----------------|
+| `+`      | Addition               | `$a + $b`      |
+| `-`      | Subtraction            | `$a - $b`      |
+| `*`      | Multiplication         | `$a * $b`      |
+| `/`      | Division               | `$a / $b`      |
+| `%`      | Modulus (Remainder)    | `$a % $b`      |
+
+**Example:**
+```php
+<?php
+$a = 10;
+$b = 3;
+echo $a + $b; // Output: 13
+echo $a % $b; // Output: 1
+?>
+```
+
+**2. Logical Operators**
+- Used to combine conditional statements.
+
+| Operator | Description            | Example          |
+|----------|------------------------|-------------------|
+| `&&`     | Logical AND            | `($a && $b)`     |
+| `||`     | Logical OR             | `($a || $b)`     |
+| `!`      | Logical NOT            | `(!$a)`          |
+
+**Example:**
+```php
+<?php
+$a = true;
+$b = false;
+var_dump($a && $b); // Output: false
+?>
+```
+
+**3. Comparison Operators**
+- Used to compare two values.
+
+| Operator | Description            | Example          |
+|----------|------------------------|-------------------|
+| `==`     | Equal                  | `$a == $b`      |
+| `===`    | Identical              | `$a === $b`     |
+| `!=`     | Not equal              | `$a != $b`      |
+| `!==`    | Not identical          | `$a !== $b`     |
+| `>`      | Greater than           | `$a > $b`       |
+| `<`      | Less than              | `$a < $b`       |
+| `>=`     | Greater than or equal  | `$a >= $b`      |
+| `<=`     | Less than or equal     | `$a <= $b`      |
+
+**Example:**
+```php
+<?php
+$a = 5;
+$b = 3;
+var_dump($a > $b); // Output: true
+?>
+```
+
+**4. Operator Precedence**
+- The order in which operators are evaluated in expressions.
+
+| Operator Type   | Operators       |
+|------------------|-----------------|
+| Highest          | `()`            |
+|                  | `**` (exponentiation) |
+|                  | `*`, `/`, `%`   |
+|                  | `+`, `-`        |
+|                  | `.` (concatenation) |
+|                  | `==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=` |
+|                  | `&&`            |
+|                  | `||`            |
+
+**Example:**
+```php
+<?php
+$a = 10;
+$b = 5;
+$c = 2;
+$result = $a + $b * $c; // Multiplication before addition
+echo $result; // Output: 20
+?>
+```
+
+---
+
+### 3.19 Variables Manipulation
+
+**Variable manipulation in PHP** refers to changing the values of variables or modifying them. Here are some common ways to manipulate variables:
+
+1. **Assignment**: Assigning a value to a variable.
+
+   ```php
+   <?php
+   $x = 10;
+   $y = 5;
+   $z = $x + $y; // $z is now 15
+   ?>
+   ```
+
+2. **Increment and Decrement Operators**: Increase or decrease the value of a variable by one.
+
+   ```php
+   <?php
+   $count = 0;
+   $count++; // Increment
+   $count--; // Decrement
+   ?>
+   ```
+
+3. **String Manipulation**: Changing string values or concatenating strings.
+
+   ```php
+   <?php
+   $firstName = "Alice";
+   $lastName = "Smith";
+   $fullName = $firstName . " " . $lastName; // Concatenation
+   echo $fullName; // Output: Alice Smith
+   ?>
+   ```
+
+4. **Variable Variables**: Use one variable as the name of another variable.
+
+   ```php
+   <?php
+   $name = "Alice";
+   $varName = "name";
+   echo $$varName; // Output: Alice
+   ?>
+   ```
+
+5. **Array Manipulation**: Adding, removing, or modifying elements in an array.
+
+   ```php
+   <?php
+   $fruits = array("Apple", "Banana");
+   $fruits[] = "Cherry"; // Adding an element
+   unset($fruits[1]); // Removing "Banana"
+   ?>
+   ```
+
+---
+
+### 3.20 Database Connectivity
+
+**Database Connectivity** in PHP involves connecting to a database to store, retrieve, and manipulate data. The most common database used with PHP is MySQL. 
+
+**Steps for Database Connectivity:**
+
+1. **Install MySQL**: Ensure that you have MySQL installed on your server or local development environment.
+
+2. **Create a Database**: Use SQL commands to create a database and tables.
+
+   ```sql
+   CREATE DATABASE my_database;
+   USE my_database;
+
+   CREATE TABLE users (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(100),
+       email VARCHAR(100)
+   );
+   ```
+
+3. **Connect to the Database**: Use PHP to connect to the database using `mysqli` or `PDO`.
+
+#### Example Using `mysqli`:
+
+```php
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "my_database";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+```
+
+---
+
+### 3.21 Connecting Server-Side Script to Database
+
+After establishing a database connection, you can execute SQL queries to manipulate data.
+
+**1. Inserting Data:**
+
+```php
+<?php
+$name = "John Doe";
+$email = "john@example.com";
+
+$sql = "INSERT INTO users (name, email) VALUES ('$name', '$email')";
+
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+?>
+```
+
+**2. Retrieving Data:**
+
+```php
+<?php
+$sql = "SELECT id, name, email FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"]. " - Name: " . $row["name"]. " - Email: " . $row["email"]. "<br>";
+    }
+} else {
+    echo "0 results";
+}
+?>
+```
+
+**3. Updating Data:**
+
+```php
+<?php
+$sql = "UPDATE users SET email='newemail@example.com' WHERE name='John Doe'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+?>
+```
+
+**4. Deleting Data:**
+
+```php
+<?php
+$sql = "DELETE FROM users WHERE name='John Doe'";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record:
+
+ " . $conn->error;
+}
+?>
+```
+
+---
+
+### 3.22 Making SQL Queries
+
+**SQL Queries** are used to perform operations on databases. Common SQL commands include `SELECT`, `INSERT`, `UPDATE`, and `DELETE`. In PHP, these queries are executed using a database connection.
+
+#### 1. **SELECT Queries**: Used to retrieve data from a database.
+
+```php
+<?php
+$sql = "SELECT * FROM users"; // Fetch all columns from the users table
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["id"] . " - Name: " . $row["name"] . "<br>";
+    }
+} else {
+    echo "0 results";
+}
+?>
+```
+
+#### 2. **INSERT Queries**: Used to add new records to a database.
+
+```php
+<?php
+$sql = "INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com')";
+if ($conn->query($sql) === TRUE) {
+    echo "New record created successfully";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+?>
+```
+
+#### 3. **UPDATE Queries**: Used to modify existing records.
+
+```php
+<?php
+$sql = "UPDATE users SET email='alice.new@example.com' WHERE name='Alice'";
+if ($conn->query($sql) === TRUE) {
+    echo "Record updated successfully";
+} else {
+    echo "Error updating record: " . $conn->error;
+}
+?>
+```
+
+#### 4. **DELETE Queries**: Used to remove records from a database.
+
+```php
+<?php
+$sql = "DELETE FROM users WHERE name='Alice'";
+if ($conn->query($sql) === TRUE) {
+    echo "Record deleted successfully";
+} else {
+    echo "Error deleting record: " . $conn->error;
+}
+?>
+```
+
+---
+
+### 3.23 Fetching Data Sets - Getting Data About Data
+
+**Fetching Data Sets** refers to the process of retrieving data from a database. This can include fetching all records, fetching specific records based on criteria, and handling the retrieved data efficiently.
+
+#### 1. **Fetching All Records**
+
+```php
+<?php
+$sql = "SELECT * FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "ID: " . $row["id"] . " - Name: " . $row["name"] . " - Email: " . $row["email"] . "<br>";
+    }
+} else {
+    echo "No records found.";
+}
+?>
+```
+
+#### 2. **Fetching Specific Records**
+
+You can fetch specific records by using a `WHERE` clause in your SQL query.
+
+```php
+<?php
+$sql = "SELECT * FROM users WHERE email='john@example.com'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    echo "ID: " . $row["id"] . " - Name: " . $row["name"];
+} else {
+    echo "No record found.";
+}
+?>
+```
+
+#### 3. **Fetching Data About Data (Metadata)**
+
+You can retrieve information about the database structure, such as table names, column names, and data types.
+
+```php
+<?php
+$sql = "SHOW TABLES";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_array()) {
+        echo "Table: " . $row[0] . "<br>";
+    }
+} else {
+    echo "No tables found.";
+}
+?>
+```
+
+You can also fetch metadata about columns:
+
+```php
+<?php
+$sql = "DESCRIBE users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+        echo "Field: " . $row["Field"] . " - Type: " . $row["Type"] . "<br>";
+    }
+} else {
+    echo "No columns found.";
+}
+?>
+```
+
+---
+
+### 3.24 Creating SQL Database with Server-Side Scripting
+
+**Creating an SQL Database** using PHP can be done through SQL commands executed via a connection to the MySQL server. This typically involves creating the database and then defining the structure using tables.
+
+#### 1. **Create Database**
+
+```php
+<?php
+$sql = "CREATE DATABASE my_database";
+if ($conn->query($sql) === TRUE) {
+    echo "Database created successfully";
+} else {
+    echo "Error creating database: " . $conn->error;
+}
+?>
+```
+
+#### 2. **Create Table**
+
+Once the database is created, you can create tables within it.
+
+```php
+<?php
+$conn->select_db("my_database"); // Select the newly created database
+
+$sql = "CREATE TABLE users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+
+if ($conn->query($sql) === TRUE) {
+    echo "Table users created successfully";
+} else {
+    echo "Error creating table: " . $conn->error;
+}
+?>
+```
+
+#### 3. **Create Sample Data**
+
+You can insert sample data into the newly created table.
+
+```php
+<?php
+$sql = "INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com'), ('Jane Doe', 'jane@example.com')";
+if ($conn->query($sql) === TRUE) {
+    echo "Sample data inserted successfully";
+} else {
+    echo "Error inserting data: " . $conn->error;
+}
+?>
+```
+
+---
+
+### 3.25 Displaying Queries in Tables
+
+**Displaying Data in HTML Tables** involves fetching data from the database and formatting it in an HTML table for better visualization.
+
+#### 1. **HTML Table Structure**
+
+You can create a simple HTML table structure in PHP to display your data.
+
+```php
+<?php
+$sql = "SELECT id, name, email FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>";
+
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+            <td>" . $row["id"] . "</td>
+            <td>" . $row["name"] . "</td>
+            <td>" . $row["email"] . "</td>
+        </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+?>
+```
+
+#### 2. **Styling the Table**
+
+You can add CSS to style the table for better presentation.
+
+```html
+<style>
+    table {
+        width: 50%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+</style>
+```
+
+### Complete Example
+
+Here’s a complete example that ties everything together.
+
+```php
+<?php
+// Database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "my_database";
+
+$conn = new mysqli($servername, $username, $password);
+
+// Create database if not exists
+$sql = "CREATE DATABASE IF NOT EXISTS my_database";
+$conn->query($sql);
+
+// Use the database
+$conn->select_db("my_database");
+
+// Create users table if not exists
+$sql = "CREATE TABLE IF NOT EXISTS users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+$conn->query($sql);
+
+// Insert sample data
+$sql = "INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com'), ('Jane Doe', 'jane@example.com')";
+$conn->query($sql);
+
+// Fetch and display data
+$sql = "SELECT id, name, email FROM users";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<table border='1'>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>";
+
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>
+            <td>" . $row["id"] . "</td>
+            <td>" . $row["name"] . "</td>
+            <td>" . $row["email"] . "</td>
+        </tr>";
+    }
+    echo "</table>";
+} else {
+    echo "0 results";
+}
+
+$conn->close();
+?>
+```
 
