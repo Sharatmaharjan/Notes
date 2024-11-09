@@ -1,3 +1,15 @@
+### **Unit 1: An Overview of Ethics**
+---
+#### **Topics Covered**:
+- **Ethics**
+- **Ethics in the Business World**
+- **Corporate Social Responsibility**
+- **Fostering Corporate Social Responsibility and Good Business Ethics**
+- **Improving Business Ethics**
+- **Ethical Considerations in Decision Making**
+- **Ethics in Information Technology**
+
+---
 ### 1. **Ethics**
 
 **Definition**: Ethics refers to a set of moral principles or rules that govern the behavior of individuals or groups. It involves determining what is right and wrong and guiding decision-making based on those principles.
