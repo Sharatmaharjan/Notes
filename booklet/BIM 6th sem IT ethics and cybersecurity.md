@@ -129,7 +129,7 @@ This course is delivered through a combination of lectures, practical lab sessio
 
 - **Required Textbooks**:
   - *Ethics in Information Technology* by George W. Reynolds.
-  - *Cybersecurity All-in-One for Dummies* by Joseph Steinberg et al.
+  - *Cybersecurity All-in-One for Dummies* by Joseph Steinberg.
 - **Suggested Readings**:
   - *Ethics and Technology* by Herman T. Tavani.
   - Nepal’s *Electronic Transaction Act* and *Electronic Transaction Rules*.
