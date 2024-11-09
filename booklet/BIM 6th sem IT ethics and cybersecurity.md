@@ -3,7 +3,7 @@
 - **Title**: IT Ethics and Cybersecurity
 - **Credits**: 3
 - **Program Name**: Bachelor of Information Management (BIM)
-- **School**: Institute of Management and IT
+- **College**: Prime College, Nayabazaar, Kathmandu
 - **Year**: 3
 - **Semester**: 6
 - **Course Leader**: Er. Sharat Maharjan
