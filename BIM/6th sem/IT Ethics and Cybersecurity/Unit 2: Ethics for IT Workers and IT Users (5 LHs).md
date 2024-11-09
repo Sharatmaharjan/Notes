@@ -1,16 +1,16 @@
 # **Unit 2: Ethics for IT Workers and IT Users (5 LHs)**
-
+---
 ### **Topics Covered:**
-- **Managing IT Worker Relationship**
-- **Encouraging Professionalism of IT Workers**
-- **Encouraging Ethical Use of IT Resources among Users**
-- **Key Privacy and Anonymity Issues**
-- **Social Networking Ethical Issues**
+1. **Managing IT Worker Relationship**  
+2. **Encouraging Professionalism of IT Workers**  
+3. **Encouraging Ethical Use of IT Resources among Users**  
+4. **Key Privacy and Anonymity Issues**  
+5. **Social Networking Ethical Issues**
 ---
 
 ### 1. **Managing IT Worker Relationship**
    - **Definition**: Managing IT worker relationships involves creating a professional and ethical work environment where communication is clear, collaboration is encouraged, and conflict is resolved constructively. The goal is to foster mutual respect and support among team members.
-  
+   
    **Key Concepts**:
    - **Clear Communication**: The process of exchanging information clearly and effectively between IT workers and management to ensure everyone is on the same page.
    - **Respect and Trust**: A professional relationship where IT workers acknowledge each other’s skills and value, fostering an environment of trust.
