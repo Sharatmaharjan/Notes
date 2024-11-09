@@ -1,12 +1,12 @@
 # **Unit 1: An Overview of Ethics**
 ### **Topics Covered**:
-**1.** **Ethics**  
-**2.** **Ethics in the Business World**  
-**3.** **Corporate Social Responsibility**  
-**4.** **Fostering Corporate Social Responsibility and Good Business Ethics**  
-**5.** **Improving Business Ethics**  
-**6.** **Ethical Considerations in Decision Making**  
-**7.** **Ethics in Information Technology**
+1. **Ethics**  
+2. **Ethics in the Business World**  
+3. **Corporate Social Responsibility**  
+4. **Fostering Corporate Social Responsibility and Good Business Ethics**  
+5. **Improving Business Ethics**  
+6. **Ethical Considerations in Decision Making**  
+7. **Ethics in Information Technology**
 
 ---
 ### 1. **Ethics**
