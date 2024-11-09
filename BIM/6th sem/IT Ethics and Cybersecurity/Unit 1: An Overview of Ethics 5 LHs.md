@@ -1,4 +1,4 @@
-### **Unit 1: An Overview of Ethics**
+# **Unit 1: An Overview of Ethics**
 ---
 #### **Topics Covered**:
 - **Ethics**
