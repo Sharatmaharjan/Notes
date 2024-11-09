@@ -1,4 +1,5 @@
 # **Unit 1: An Overview of Ethics**
+---
 ### **Topics Covered**:
 1. **Ethics**  
 2. **Ethics in the Business World**  
