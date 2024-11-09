@@ -1,4 +1,4 @@
-#### 1. Course Detail
+#### 1. Course Details
 - **Course Code**: IT 246
 - **Title**: IT Ethics and Cybersecurity
 - **Credits**: 3
