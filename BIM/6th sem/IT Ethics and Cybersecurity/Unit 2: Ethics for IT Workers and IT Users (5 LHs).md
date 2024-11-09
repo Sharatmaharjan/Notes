@@ -1,5 +1,5 @@
 ## **Unit 2: Ethics for IT Workers and IT Users (5 LHs)**
----
+
 ### **Topics Covered:**
 - **Managing IT Worker Relationship**
 - **Encouraging Professionalism of IT Workers**
