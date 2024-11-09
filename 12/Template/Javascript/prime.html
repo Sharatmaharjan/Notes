@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px; /* Reduced the gap between divs */
+            width: 100%; /* Full width of the page */
+        }
+        .container {
+            width: 30%; /* Make each container wider (you can adjust this percentage) */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            position: relative;
+            box-sizing: border-box;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        /* Numbering the divs */
+        .container::before {
+            content: counter(div-counter);
+            counter-increment: div-counter;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #333;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Initiating the counter */
+        body {
+            counter-reset: div-counter;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <!-- Rectangle Area Calculator -->
+        <div class="container">
+            <h2>Rectangle Area Calculator</h2>
+            <label for="length">Length:</label>
+            <input type="number" id="length" placeholder="Enter length" required>
+
+            <label for="width">Width:</label>
+            <input type="number" id="width" placeholder="Enter width" required>
+
+            <button onclick="calculateAreaOfRectangle()">Calculate Area</button>
+
+            <div class="result" id="rectangle-result"></div>
+        </div>
+
+        <!-- Simple Interest Calculator -->
+        <div class="container">
+            <h2>Simple Interest Calculator</h2>
+            <label for="principal">Principal (P):</label>
+            <input type="number" id="principal" placeholder="Enter principal amount" required>
+
+            <label for="rate">Rate of Interest (R):</label>
+            <input type="number" id="rate" placeholder="Enter rate of interest" required>
+
+            <label for="time">Time (T in years):</label>
+            <input type="number" id="time" placeholder="Enter time period" required>
+
+            <button onclick="calculateSimpleInterest()">Calculate Interest</button>
+
+            <div class="result" id="interest-result"></div>
+        </div>
+
+        <!-- Circle Area Calculator -->
+        <div class="container">
+            <h2>Circle Area Calculator</h2>
+            <label for="radius">Radius:</label>
+            <input type="number" id="radius" placeholder="Enter radius" required>
+
+            <button onclick="calculateAreaOfCircle()">Calculate Area</button>
+
+            <div class="result" id="circle-result"></div>
+        </div>
+
+        <!-- BMI Calculator -->
+        <div class="container">
+            <h2>BMI Calculator</h2>
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" placeholder="Enter weight" required>
+
+            <label for="height">Height (m):</label>
+            <input type="number" id="height" placeholder="Enter height" required>
+
+            <button onclick="calculateBMI()">Calculate BMI</button>
+
+            <div class="result" id="bmi-result"></div>
+        </div>
+
+         <!-- Celsius to Fahrenheit Converter -->
+         <div class="container">
+            <h2>Celsius to Fahrenheit Converter</h2>
+            <label for="celsius">Enter Temperature (°C):</label>
+            <input type="number" id="celsius" placeholder="Enter Celsius temperature" required>
+
+            <button onclick="convertToFahrenheit()">Convert</button>
+
+            <div class="result" id="temperature-result"></div>
+        </div>
+    </div>
+
+    <!-- Link to the external JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>
