@@ -4,7 +4,7 @@
 // Function to load tasks from local storage on page load
 window.onload = function() {
     // Check if tasks are stored in localStorage
-    
+    if () {
         // If tasks are found, retrieve them and parse from JSON format into a JavaScript array
         
         
