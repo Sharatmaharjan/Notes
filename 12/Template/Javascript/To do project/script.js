@@ -1,5 +1,3 @@
-// script.js
-
 // Initialize an empty array to hold the tasks
 let tasks = [];
 
