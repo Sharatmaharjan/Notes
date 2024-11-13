@@ -81,7 +81,7 @@
 
 3. **Write a C program to implement a `for` loop that calculates the factorial of a number recursively and iteratively. Compare the two methods in terms of performance and output.**
 
-4. **Write a C program that uses `nested loops` and `if-else` to print a pyramid pattern with asterisks (`*`). The program should take an integer input from the user to determine the height of the pyramid. Example output for height.
+4. **Write a C program that uses `nested loops` and `if-else` to print a pyramid pattern with asterisks (`*`). The program should take an integer input from the user to determine the height of the pyramid. Example output for height.**
 
    ```
       *
@@ -90,7 +90,7 @@
    *******
 
    
-``
+
 
 5. **Write a C program that simulates a simple banking system using `switch-case`. The program should allow the user to create an account, deposit money, withdraw money, check balance, and exit. The program should also handle error checking for invalid amounts and negative balances.**
 
