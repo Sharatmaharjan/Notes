@@ -88,8 +88,6 @@
      ***
     *****
    *******
-  *********
-```
 ```
 
 5. **Write a C program that simulates a simple banking system using `switch-case`. The program should allow the user to create an account, deposit money, withdraw money, check balance, and exit. The program should also handle error checking for invalid amounts and negative balances.**
