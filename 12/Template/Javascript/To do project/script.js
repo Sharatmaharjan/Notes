@@ -23,9 +23,9 @@ function addTask() {
     
 
     // Check if the task text is empty (if the user hasn't entered anything)
-    
-        // If input is empty, show an alert to the user
     if () {
+        // If input is empty, show an alert to the user
+    
         // Stop the function and do not proceed further
     
     }
