@@ -16,7 +16,7 @@
 
    - **Clear Communication**: The process of exchanging information clearly and effectively between IT workers and management to ensure everyone is on the same page.
    - **Respect and Trust**: A professional relationship where IT workers acknowledge each other’s skills and value, fostering an environment of trust.
-   - **Conflict Resolution**: The process of resolving disagreements or disputes among team members in a peaceful and constructive manner, ensuring that all voices are heard and 
+   - **Conflict Resolution**: The process of resolving disagreements or disputes among team members in a peaceful and constructive manner, ensuring that all voices are heard. 
 
 **Practical Application**:
    - **Regular Team Meetings**: Organized sessions where IT workers can discuss progress, address challenges, and share feedback.
@@ -25,7 +25,7 @@
 
 ### 2. **Encouraging Professionalism of IT Workers**
 
-**Definition**: Encouraging professionalism refers to promoting behavior that reflects high standards of ethics, integrity, and accountability within the IT 
+**Definition**: Encouraging professionalism refers to promoting behavior that reflects high standards of ethics, integrity, and accountability. 
  
 **Key Concepts**:
    - **Code of Conduct**: A set of rules or principles outlining expected behaviors and values that IT workers should follow in their professional capacity.
