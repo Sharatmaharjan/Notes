@@ -36,6 +36,7 @@ This document offers key details about your course, including objectives, conten
 
 ---
 
+
 ### 1. **Learning Outcomes of the C Programming Course**  
 After completing the course, students will demonstrate the following learning outcomes:  
 
@@ -54,6 +55,7 @@ After completing the course, students will demonstrate the following learning ou
 | **D. Logical Analysis**    | IV. Control Structures and Functions        |  
 | **E. Creativity and Innovation** | V. File Handling and Dynamic Memory Concepts  |  
 | **F. Problem-Solving**     | VI. Pointers, Arrays, and Advanced Topics   |  
+
 ---
 ### 3.**Course Lesson Delivery Plan for C Programming**
 
@@ -207,6 +209,7 @@ Exact dates will be communicated by the Examination Department closer to the dea
 | **Expected Student Engagement** | Active participation in all sessions is expected. Students should regularly attend classes, prepare beforehand, and actively engage in discussions and coding exercises. |  
 | **Online Resources and Platforms** | Access to digital materials, lecture slides, tutorials, and discussion forums to support learning outside the classroom. Platforms used include:  |  
 |                           | **• MS Teams:** To share classroom materials, announcements, and assignments.                                                                            |  
+
 ---
 ### 6. **Internal Assessment and Evaluation for C Programming**
 
