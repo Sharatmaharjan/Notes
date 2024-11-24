@@ -444,6 +444,43 @@ Globally, trade secrets are protected under the **Agreement on Trade-Related Asp
 
 ---
 
+Detailed comparison between **trademarks** and **trade secrets**, highlighting their differences:
+
+---
+
+### **Trademark vs. Trade Secrets**
+
+| **Aspect**               | **Trademark**                                                                                 | **Trade Secret**                                                                                      |
+|--------------------------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| **Definition**            | A trademark is a recognizable sign, design, or expression that identifies products or services. | A trade secret is confidential information that provides a business with a competitive advantage.      |
+| **Purpose**               | To identify and distinguish a business's goods or services from others in the market.         | To protect proprietary information that offers a competitive edge.                                    |
+| **Legal Framework**       | Governed by laws such as Nepal’s **Patent, Design, and Trademark Act, 2022 B.S.**.            | Protected through contracts, labor laws, and competition laws; no specific trade secrets law in Nepal.|
+| **Registration**          | Requires formal registration with the relevant authority (e.g., Department of Industry in Nepal). | No registration is required; protection is based on maintaining secrecy.                              |
+| **Duration of Protection**| Valid for 7 years in Nepal and renewable indefinitely.                                         | Protected indefinitely as long as the information remains confidential.                               |
+| **Disclosure**            | The trademark is publicly visible and must be disclosed during registration.                  | Trade secrets must remain confidential and undisclosed to retain protection.                          |
+| **Examples**              | Brand names (e.g., Coca-Cola), logos, slogans, product designs.                              | Formulas (e.g., Coca-Cola recipe), manufacturing processes, client lists, marketing strategies.       |
+| **Enforcement**           | Legal action can be taken for trademark infringement or misuse.                              | Legal remedies exist for misappropriation or breach of confidentiality agreements.                    |
+| **Geographical Scope**    | Requires separate registration for protection in each country unless under treaties like Madrid Protocol. | No territorial limits but protection varies based on applicable local laws and measures.              |
+| **Cost**                  | Involves registration fees, renewal fees, and potential legal costs for enforcement.         | Low cost; primarily involves safeguarding the information through NDAs and internal measures.         |
+| **Loss of Protection**    | Protection is lost if not renewed or if it becomes generic (e.g., "Aspirin").                | Lost if the secret becomes public knowledge through disclosure or reverse engineering.                |
+
+---
+
+### **Key Differences**
+1. **Public vs. Private**: Trademarks are public symbols visible to all, while trade secrets remain confidential.
+2. **Duration**: Trademarks can be renewed indefinitely; trade secrets last as long as secrecy is maintained.
+3. **Legal Mechanism**: Trademarks rely on formal registration; trade secrets depend on confidentiality agreements and internal measures.
+4. **Protection Costs**: Trademark protection is formalized with fees, whereas trade secrets require minimal legal expenses but need stringent safeguards.
+
+---
+
+### **When to Use Trademark vs. Trade Secret**
+- Use **trademarks** when you want to publicly identify and differentiate your brand in the market.
+- Use **trade secrets** to protect proprietary methods, formulas, or business strategies that give you a competitive edge.
+
+
+---
+
 ### **5. Intellectual Property Issues**
 
 #### **a. Plagiarism**  
