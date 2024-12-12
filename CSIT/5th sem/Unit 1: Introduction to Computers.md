@@ -72,6 +72,9 @@ A multimedia system is a combination of different forms of content such as text,
 
 Multimedia systems are broadly categorized into **Device Domain**, **System Domain**, **Application Domain**, and **Cross-Domain**. These domains collectively define the functional structure and enable multimedia technologies to operate seamlessly.
 
+### **Diagram: Global Structure of Multimedia**  
+![Global Structure](https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/5th%20sem/bg3.png)
+
 ---
 
 ### **1. Device Domain**  
@@ -136,24 +139,4 @@ The cross-domain connects different domains, ensuring interoperability and integ
 
 ---
 
-### **Diagram: Global Structure of Multimedia**  
-![Global Structure](https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/5th%20sem/bg3.png)
-
-```
-                      +----------------------+
-                      |    Cross Domain      |
-                      +----------------------+
-                               /\
-                              /  \
-            +----------------+    +----------------+
-            |  Device Domain |    |  System Domain |
-            +----------------+    +----------------+
-                   /\                        /\
-                  /  \                      /  \
-         +----------------+        +----------------+
-         | Application    |        | Application    |
-         | Domain (e.g.,  |        | Domain (e.g.,  |
-         | Games, AR/VR)  |        | e-Learning)    |
-         +----------------+        +----------------+
-```
 
