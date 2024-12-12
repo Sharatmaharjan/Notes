@@ -137,7 +137,7 @@ The cross-domain connects different domains, ensuring interoperability and integ
 ---
 
 ### **Diagram: Global Structure of Multimedia**  
-Here is a textual representation of the diagram structure:  
+![Global Structure](https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/5th%20sem/bg3.png)
 
 ```
                       +----------------------+
@@ -157,4 +157,3 @@ Here is a textual representation of the diagram structure:
          +----------------+        +----------------+
 ```
 
-Would you like a visual image or further clarification?
