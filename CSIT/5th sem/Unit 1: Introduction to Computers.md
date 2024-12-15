@@ -1,7 +1,7 @@
 ### Unit 1: Introduction to Computers  
 **Teaching Hours: 3**  
 
-#### ** 1.1 Introduction to Multimedia System**  
+#### **1.1 Introduction to Multimedia System**  
 A multimedia system is a combination of different forms of content such as text, audio, video, images, and animations, integrated to deliver a comprehensive and interactive user experience.  
 
 **Key Components of a Multimedia System:**  
