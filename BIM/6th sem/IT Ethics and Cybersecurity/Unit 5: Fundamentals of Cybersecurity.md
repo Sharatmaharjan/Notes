@@ -866,13 +866,13 @@ This attack involves manipulating or faking SSL/TLS certificates to intercept en
 
 ---
 
-### **Technical Attack Techniques in Cybersecurity**
+### **7. Technical Attack Techniques in Cybersecurity**
 
 Technical attack techniques are methods used by attackers to exploit vulnerabilities in systems, networks, or software for unauthorized access, data theft, service disruption, or malicious activities. These techniques often rely on manipulating protocols, injecting malicious code, or leveraging system weaknesses.
 
 ---
 
-### **7. Types of Technical Attack Techniques**
+### **Types of Technical Attack Techniques**
 
 #### **A. Network-Based Attacks**  
 These attacks target the underlying network infrastructure to manipulate, intercept, or disrupt communications.
