@@ -915,135 +915,189 @@ void deleteFromPosition(int position) {
 ---
 
 ### **Complete Example with Basic Operations**  
+
 ```java
+package SinglyLinkedList;
+
+// Node class to represent a node in the linked list
 class Node {
     int data;
     Node next;
 
-    Node(int data) {
+    // Constructor to initialize a node with data
+    public Node(int data) {
         this.data = data;
         this.next = null;
     }
 }
 
+package SinglyLinkedList;
+
+// LinkedList class to manage operations on the linked list
 class LinkedList {
-    Node head;
+    Node head; // Head of the linked list
+    Node tail; // Tail of the linked list
 
-    void insertAtBeginning(int value) {
-        Node newNode = new Node(value);
-        newNode.next = head;
-        head = newNode;
+    // Constructor to initialize an empty linked list
+    public LinkedList() {
+        this.head = null;
+        this.tail = null;
     }
 
-    void insertAtEnd(int value) {
-        Node newNode = new Node(value);
-        if (head == null) {
+    // Method to add a node at the beginning of the linked list
+    public void addNodeAtBeginning(int newData) {
+        Node newNode = new Node(newData); // Create a new node with the given data
+        newNode.next = head; // Link the new node to the rest of the list
+        head = newNode; // Update the head to point to the new node
+        if (tail == null) { // Update tail if the list was empty
+            tail = newNode;
+        }
+    }
+
+    // Method to add a node at the end of the linked list
+    public void addNodeAtEnd(int newData) {
+        Node newNode = new Node(newData); // Create a new node with the given data
+        if (head == null) { // Check if the list is empty
             head = newNode;
+            tail = newNode;
             return;
         }
-        Node temp = head;
-        while (temp.next != null) {
-            temp = temp.next;
-        }
-        temp.next = newNode;
+        tail.next = newNode; // Link the last node to the new node
+        tail = newNode; // Update the tail to be the new node
     }
 
-    void insertAtPosition(int value, int position) {
-        Node newNode = new Node(value);
-        if (position == 0) {
-            newNode.next = head;
-            head = newNode;
+    // Method to add a node at a specified position in the linked list
+    public void addNodeAtPosition(int newData, int position) {
+        if (head == null) { // Check for an empty list
+            System.out.println("List is empty. Adding node at the beginning.");
+            addNodeAtBeginning(newData);
             return;
         }
-        Node temp = head;
-        for (int i = 0; i < position - 1; i++) {
-            if (temp == null) throw new IndexOutOfBoundsException("Invalid Position");
-            temp = temp.next;
+        if (position == 0) { // If position is 0, add node at the beginning
+            addNodeAtBeginning(newData);
+            return;
         }
-        newNode.next = temp.next;
-        temp.next = newNode;
+        Node newNode = new Node(newData); // Create a new node with the given data
+        Node current = head;
+
+        // Traverse the list to find the node at position-1
+        for (int i = 1; i < position && current != null; i++) {
+            current = current.next;
+        }
+
+        if (current == null) { // If position exceeds the length of the list
+            System.out.println("Position exceeds the length of the list. Adding at the end.");
+            addNodeAtEnd(newData);
+            return;
+        }
+        newNode.next = current.next; // Link the new node to the rest of the list
+        current.next = newNode;
+
+        if (newNode.next == null) { // Update tail if the new node is added at the end
+            tail = newNode;
+        }
     }
 
-    void deleteFromBeginning() {
-        if (head == null) {
-            System.out.println("List is empty.");
+    // Method to remove a node from the beginning of the linked list
+    public void removeNodeFromBeginning() {
+        if (head == null) { // Check if the list is empty
+            System.out.println("List is empty. Cannot remove from the beginning.");
             return;
         }
-        head = head.next;
-    }
-
-    void deleteFromEnd() {
-        if (head == null) {
-            System.out.println("List is empty.");
-            return;
-        }
-        if (head.next == null) {
+        if (head.next == null) { // If there is only one node
             head = null;
+            tail = null;
             return;
         }
-        Node temp = head;
-        while (temp.next.next != null) {
-            temp = temp.next;
-        }
-        temp.next = null;
+        head = head.next; // Update the head to the next node
     }
 
-    void deleteFromPosition(int position) {
-        if (head == null) {
-            System.out.println("List is empty.");
+    // Method to remove a node from the end of the linked list
+    public void removeNodeFromEnd() {
+        if (head == null) { // Check if the list is empty
+            System.out.println("List is empty. Cannot remove from the end.");
             return;
         }
-        if (position == 0) {
-            head = head.next;
+        if (head.next == null) { // If there is only one node
+            head = null;
+            tail = null;
             return;
         }
-        Node temp = head;
-        for (int i = 0; i < position - 1; i++) {
-            if (temp.next == null) throw new IndexOutOfBoundsException("Invalid Position");
-            temp = temp.next;
+        Node current = head;
+        while (current.next.next != null) { // Traverse the list to find the second-to-last node
+            current = current.next;
         }
-        if (temp.next == null) throw new IndexOutOfBoundsException("Invalid Position");
-        temp.next = temp.next.next;
+        current.next = null; // Remove the last node
+        tail = current; // Update tail
     }
 
-    void display() {
-        Node temp = head;
-        while (temp != null) {
-            System.out.print(temp.data + " -> ");
-            temp = temp.next;
+    // Method to remove a node from a specified position in the linked list
+    public void removeNodeFromPosition(int position) {
+        if (head == null) { // Check for an empty list
+            System.out.println("List is empty. Cannot remove from a specified position.");
+            return;
+        }
+        if (position == 0) { // If position is 0, remove node from the beginning
+            removeNodeFromBeginning();
+            return;
+        }
+        Node current = head;
+        Node previous = null;
+
+        for (int i = 0; i < position && current != null; i++) { // Traverse the list to find the node at position-1
+            previous = current;
+            current = current.next;
+        }
+
+        if (current == null) { // If position exceeds the length of the list
+            System.out.println("Position exceeds the length of the list. Cannot remove.");
+            return;
+        }
+        previous.next = current.next; // Remove the node at the specified position
+
+        if (current.next == null) { // Update tail if the last node is removed
+            tail = previous;
+        }
+    }
+
+    // Method to search for a given data
+    public boolean isInList(int data) {
+        Node current = head;
+        while (current != null) {
+            if (current.data == data) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    // Method to print the linked list
+    public void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " -> ");
+            current = current.next;
         }
         System.out.println("null");
     }
 }
 
+package SinglyLinkedList;
+
+// Main class to demonstrate linked list operations
 public class Main {
     public static void main(String[] args) {
-        LinkedList list = new LinkedList();
-        list.insertAtBeginning(10);
-        list.insertAtEnd(20);
-        list.insertAtPosition(15, 1);
-        list.display();
+        LinkedList linkedList = new LinkedList(); // Create a linked list
 
-        list.deleteFromBeginning();
-        list.display();
+        linkedList.addNodeAtBeginning(3); // Add nodes at the beginning
+        linkedList.addNodeAtBeginning(2);
+        linkedList.addNodeAtBeginning(1);
 
-        list.deleteFromEnd();
-        list.display();
-
-        list.deleteFromPosition(0);
-        list.display();
+        System.out.println("Linked List after adding nodes at the beginning:");
+        linkedList.printList();
     }
 }
-```
-
----
-
-### **Output**
-```
-10 -> 15 -> 20 -> null
-15 -> 20 -> null
-15 -> null
-List is empty.
 ```
 
 ---
