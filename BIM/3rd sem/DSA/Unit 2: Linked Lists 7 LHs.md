@@ -318,14 +318,25 @@ A **Linked List** implements lists dynamically using nodes. Each node contains:
 
 ---
 
-### **1. Linked List Representation**  
+Here’s a detailed explanation of basic operations in a **Singly Linked List** using both **head** and **tail** concepts:
 
-#### **Node Structure**  
+### 1. **Linked List Representation**  
+
+In a **Singly Linked List**, each node contains two fields:
+- **data**: Stores the value of the node.
+- **next**: Points to the next node in the list.
+
+Additionally, the list maintains:
+- **head**: Points to the first node in the list.
+- **tail**: Points to the last node in the list.
+
+### 2. **Node Structure**
 ```java
 class Node {
     int data;
     Node next;
 
+    // Constructor to initialize a node with data
     Node(int data) {
         this.data = data;
         this.next = null;
@@ -333,127 +344,169 @@ class Node {
 }
 ```
 
-#### **Linked List Class**  
+### 3. **Linked List Class**
 ```java
 class LinkedList {
-    Node head; // Head node of the list
+    Node head; // Points to the first node
+    Node tail; // Points to the last node
 }
 ```
 
+### 4. **Basic Operations in Linked List**  
+
+#### a. **Insertion**
+
+1. **At the Beginning**  
+   To insert a node at the beginning, create a new node, link it to the current head, and update the head. If the list is empty, update the tail to point to the new node as well.
+
+   **Time Complexity**: \(O(1)\).
+
+   ```java
+   public void addNodeAtBeginning(int newData) {
+       Node newNode = new Node(newData);
+       newNode.next = head;  // Link the new node to the current head
+       head = newNode;       // Update head to point to the new node
+
+       // If the list was empty, update tail as well
+       if (tail == null) {
+           tail = newNode;
+       }
+   }
+   ```
+
+2. **At the End**  
+   To insert a node at the end, create a new node, check if the list is empty (in which case both head and tail will point to it), or traverse to the last node and link it to the new node.
+
+   **Time Complexity**: \(O(1)\) (when using tail reference), otherwise \(O(n)\).
+
+   ```java
+   public void addNodeAtEnd(int newData) {
+       Node newNode = new Node(newData);
+       if (tail == null) {
+           // List is empty, new node becomes both head and tail
+           head = newNode;
+           tail = newNode;
+       } else {
+           // Link the current tail to the new node
+           tail.next = newNode;
+           tail = newNode; // Update the tail to the new node
+       }
+   }
+   ```
+
+3. **At a Specific Position**  
+   To insert a node at a specific position, traverse to the desired position and insert the new node.
+
+   **Time Complexity**: \(O(n)\).
+
+   ```java
+   public void addNodeAtPosition(int newData, int position) {
+       if (position == 0) {
+           addNodeAtBeginning(newData);  // Insert at the beginning
+           return;
+       }
+
+       Node newNode = new Node(newData);
+       Node temp = head;
+       for (int i = 0; i < position - 1 && temp != null; i++) {
+           temp = temp.next;
+       }
+
+       if (temp != null) {
+           newNode.next = temp.next;
+           temp.next = newNode;
+
+           // If inserting at the end, update tail
+           if (temp == tail) {
+               tail = newNode;
+           }
+       }
+   }
+   ```
+
 ---
 
-### **2. Operations in Linked List Implementation**  
+#### b. **Deletion**
 
-#### **a. Insertion**  
-1. **At the beginning**:  
-   - Create a new node, set its `next` to the current head, and update the head.  
-   **Time Complexity**: \(O(1)\).  
+1. **From the Beginning**  
+   To remove the first node, update the head to point to the next node. If the list becomes empty, update tail to `null`.
 
-   ```java
-   void insertAtBeginning(int value) {
-       Node newNode = new Node(value);
-       newNode.next = head;
-       head = newNode;
-   }
-   ```
-
-2. **At the end**:  
-   - Traverse to the last node and update its `next`.  
-   **Time Complexity**: \(O(n)\).  
+   **Time Complexity**: \(O(1)\).
 
    ```java
-   void insertAtEnd(int value) {
-       Node newNode = new Node(value);
-       if (head == null) {
-           head = newNode;
-           return;
-       }
-       Node temp = head;
-       while (temp.next != null) {
-           temp = temp.next;
-       }
-       temp.next = newNode;
-   }
-   ```
-
-3. **At a specific position**:  
-   - Traverse to the desired position and update pointers.  
-   **Time Complexity**: \(O(n)\).  
-
-   ```java
-   void insertAtPosition(int value, int position) {
-       Node newNode = new Node(value);
-       if (position == 0) {
-           newNode.next = head;
-           head = newNode;
-           return;
-       }
-       Node temp = head;
-       for (int i = 0; i < position - 1; i++) {
-           temp = temp.next;
-       }
-       newNode.next = temp.next;
-       temp.next = newNode;
-   }
-   ```
-
-#### **b. Deletion**  
-1. **From the beginning**:  
-   - Update the head to point to the next node.  
-   **Time Complexity**: \(O(1)\).  
-
-   ```java
-   void deleteAtBeginning() {
+   public void removeNodeFromBeginning() {
        if (head != null) {
-           head = head.next;
+           head = head.next;  // Move head to the next node
+           if (head == null) { // If the list is empty, reset tail
+               tail = null;
+           }
        }
    }
    ```
 
-2. **From the end**:  
-   - Traverse to the second-last node and set its `next` to null.  
-   **Time Complexity**: \(O(n)\).  
+2. **From the End**  
+   To remove the last node, traverse to the second-last node and update its next pointer to `null`. Update tail to point to the second-last node.
+
+   **Time Complexity**: \(O(n)\).
 
    ```java
-   void deleteAtEnd() {
-       if (head == null || head.next == null) {
-           head = null;
+   public void removeNodeFromEnd() {
+       if (head == null) {
+           return; // List is empty
+       }
+       if (head.next == null) {
+           head = null;  // List has only one node
+           tail = null;
            return;
        }
+
        Node temp = head;
-       while (temp.next.next != null) {
+       while (temp.next != tail) {
            temp = temp.next;
        }
-       temp.next = null;
+       temp.next = null;  // Remove the last node
+       tail = temp;  // Update the tail to the second-last node
    }
    ```
 
-3. **From a specific position**:  
-   - Traverse to the node before the target node and update its `next`.  
-   **Time Complexity**: \(O(n)\).  
+3. **From a Specific Position**  
+   To remove a node at a specific position, traverse to the node before the target node, and update its next pointer.
+
+   **Time Complexity**: \(O(n)\).
 
    ```java
-   void deleteAtPosition(int position) {
-       if (position == 0 && head != null) {
-           head = head.next;
+   public void removeNodeFromPosition(int position) {
+       if (position == 0) {
+           removeNodeFromBeginning();  // Remove from the beginning
            return;
        }
+
        Node temp = head;
-       for (int i = 0; i < position - 1; i++) {
+       for (int i = 0; i < position - 1 && temp != null; i++) {
            temp = temp.next;
        }
+
        if (temp != null && temp.next != null) {
-           temp.next = temp.next.next;
+           temp.next = temp.next.next;  // Remove the target node
+
+           // If the node removed was the tail, update the tail
+           if (temp.next == null) {
+               tail = temp;
+           }
        }
    }
    ```
 
-#### **c. Traversal**  
-- Visit each node sequentially.  
-- **Time Complexity**: \(O(n)\).  
+---
+
+#### c. **Traversal**
+
+To traverse the list, start from the head and visit each node until reaching the end (where `next` is `null`).
+
+**Time Complexity**: \(O(n)\).
 
 ```java
-void traverse() {
+public void printList() {
     Node temp = head;
     while (temp != null) {
         System.out.print(temp.data + " -> ");
