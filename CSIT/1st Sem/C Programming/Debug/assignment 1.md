@@ -5,13 +5,12 @@
 
 2. **Pattern Printing:**  
    Write a program to print the following pattern using nested `for` loops:  
-   ```
     *
    ***
   *****
  *******
 *********
-``
+
 
 ### 1-D Arrays:
 3. **Maximum and Minimum Finder:**  
