@@ -161,40 +161,6 @@ int main() {
     return 0;
 }
 ```
-**Question**: What is the output of the program? Explain the use of `continue`.
-
----
-
-### **11. Logical Error in Nested Loops**
-```c
-#include <stdio.h>
-int main() {
-    for (int i = 1; i <= 3; i++) {
-        for (int j = 1; j <= 3; j++)
-            printf("%d ", i * j);
-        printf("\n");
-    }
-    return 0;
-}
-```
-**Question**: What will be the output of this program? Modify it to format the output into a multiplication table.
-
----
-
-### **12. `goto` Misuse**
-```c
-#include <stdio.h>
-int main() {
-    int x = 10;
-    if (x > 5)
-        goto label;
-    printf("This line will never execute\n");
-label:
-    printf("Jumped to label\n");
-    return 0;
-}
-```
-**Question**: Why does the program skip the second `printf`? What are the risks of using `goto`?
 
 ---
 
