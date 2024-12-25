@@ -4,12 +4,26 @@
    Write a program where the computer selects a random number between 1 and 50, and the user has to guess it. Provide hints like "Too High" or "Too Low" using `if-else`.
 
 2. **Pattern Printing:**  
-   Write a program to print the following pattern using nested `for` loops:  
+Write a C program to print a **diamond-shaped pyramid pattern** using nested `for` loops. The program should take an integer `n` as input, which represents the number of rows in the upper half of the diamond. Your task is to create a diamond shape where:
+- The top part is a pyramid of stars (`*`).
+- The bottom part is an inverted pyramid of stars (`*`).
+  
+#### Example:
+For `n = 5`, the output should be:
+
+```
     *
    ***
   *****
  *******
 *********
+ *******
+  *****
+   ***
+    *
+```
+
+---
 
 
 ### 1-D Arrays:
