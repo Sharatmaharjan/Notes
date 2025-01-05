@@ -1250,19 +1250,21 @@ class LinkedList {
         this.tail = null;
     }
 
-    // Method to add a node at the beginning of the doubly linked list
-    public void addNodeAtBeginning(int newData) {
-        Node newNode = new Node(newData);
-        newNode.next = head;
 
-        if (head != null) {
-            head.prev = newNode;
-        } else {
-            tail = newNode; // If the list was empty, update tail
-        }
+// Method to add a node at the beginning of the doubly linked list
+public void addNodeAtBeginning(int newData) {
+    Node newNode = new Node(newData); // Create a new node with the given data
 
+    if (head == null) { // Check if the list is empty
         head = newNode;
+        tail = newNode;
+        return;
     }
+
+    newNode.next = head; // Link the new node to the current head
+    head.prev = newNode; // Update the current head's previous link to the new node
+    head = newNode; // Update the head to the new node
+}
 
     // Method to add a node at the end of the doubly linked list
     public void addNodeAtEnd(int newData) {
