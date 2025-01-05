@@ -1218,6 +1218,244 @@ Is 3 in the list? false
 
 ---
 
+### Doubly Linked List Code Complete Code
+
+```java
+package DoublyLinkedList;
+
+// Node class to represent a node in the doubly linked list
+class Node {
+    int data;
+    Node next;
+    Node prev;
+
+    // Constructor to initialize a node with data
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.prev = null;
+    }
+}
+
+package DoublyLinkedList;
+
+// LinkedList class to manage operations on the doubly linked list
+class LinkedList {
+    Node head; // Head of the linked list
+    Node tail; // Tail of the linked list
+
+    // Constructor to initialize an empty linked list
+    public LinkedList() {
+        this.head = null;
+        this.tail = null;
+    }
+
+    // Method to add a node at the beginning of the doubly linked list
+    public void addNodeAtBeginning(int newData) {
+        Node newNode = new Node(newData);
+        newNode.next = head;
+
+        if (head != null) {
+            head.prev = newNode;
+        } else {
+            tail = newNode; // If the list was empty, update tail
+        }
+
+        head = newNode;
+    }
+
+    // Method to add a node at the end of the doubly linked list
+    public void addNodeAtEnd(int newData) {
+        Node newNode = new Node(newData);
+
+        if (head == null) { // If the list is empty
+            head = newNode;
+            tail = newNode;
+            return;
+        }
+
+        tail.next = newNode;
+        newNode.prev = tail;
+        tail = newNode;
+    }
+
+    // Method to add a node at a specified position in the doubly linked list
+    public void addNodeAtPosition(int newData, int position) {
+        if (position == 0) {
+            addNodeAtBeginning(newData);
+            return;
+        }
+
+        Node newNode = new Node(newData);
+        Node current = head;
+
+        for (int i = 0; i < position - 1 && current != null; i++) {
+            current = current.next;
+        }
+
+        if (current == null) {
+            System.out.println("Position exceeds the length of the list. Adding at the end.");
+            addNodeAtEnd(newData);
+            return;
+        }
+
+        newNode.next = current.next;
+        if (current.next != null) {
+            current.next.prev = newNode;
+        } else {
+            tail = newNode; // If added at the end, update tail
+        }
+
+        current.next = newNode;
+        newNode.prev = current;
+    }
+
+    // Method to remove a node from the beginning of the doubly linked list
+    public void removeNodeFromBeginning() {
+        if (head == null) {
+            System.out.println("List is empty. Cannot remove from the beginning.");
+            return;
+        }
+
+        head = head.next;
+
+        if (head != null) {
+            head.prev = null;
+        } else {
+            tail = null; // If the list becomes empty, update tail
+        }
+    }
+
+    // Method to remove a node from the end of the doubly linked list
+    public void removeNodeFromEnd() {
+        if (head == null) {
+            System.out.println("List is empty. Cannot remove from the end.");
+            return;
+        }
+
+        if (head.next == null) {
+            head = null;
+            tail = null;
+            return;
+        }
+
+        tail = tail.prev;
+        tail.next = null;
+    }
+
+    // Method to remove a node from a specified position in the doubly linked list
+    public void removeNodeFromPosition(int position) {
+        if (head == null) {
+            System.out.println("List is empty. Cannot remove from a specified position.");
+            return;
+        }
+
+        if (position == 0) {
+            removeNodeFromBeginning();
+            return;
+        }
+
+        Node current = head;
+
+        for (int i = 0; i < position && current != null; i++) {
+            current = current.next;
+        }
+
+        if (current == null) {
+            System.out.println("Position exceeds the length of the list. Cannot remove.");
+            return;
+        }
+
+        if (current.next != null) {
+            current.next.prev = current.prev;
+        } else {
+            tail = current.prev; // Update tail if the last node is removed
+        }
+
+        if (current.prev != null) {
+            current.prev.next = current.next;
+        }
+    }
+
+    // Method to search for a given data
+    public boolean isInList(int data) {
+        Node current = head;
+        while (current != null) {
+            if (current.data == data) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    // Method to print the doubly linked list
+    public void printList() {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.data + " <-> ");
+            current = current.next;
+        }
+        System.out.println("null");
+    }
+}
+
+package DoublyLinkedList;
+// Main class to demonstrate doubly linked list operations
+public class Main {
+    public static void main(String[] args) {
+        // Create a doubly linked list
+        LinkedList linkedList = new LinkedList();
+
+        // Add nodes at the beginning of the linked list
+        linkedList.addNodeAtBeginning(3);
+        linkedList.addNodeAtBeginning(2);
+        linkedList.addNodeAtBeginning(1);
+
+        // Print the linked list
+        System.out.println("Doubly Linked List after adding nodes at the beginning:");
+        linkedList.printList();
+
+        // Add a node at the end of the linked list
+        linkedList.addNodeAtEnd(4);
+        linkedList.addNodeAtEnd(5);
+
+        // Print the linked list
+        System.out.println("\nDoubly Linked List after adding nodes at the end:");
+        linkedList.printList();
+
+        // Add a node at a specified position in the linked list
+        linkedList.addNodeAtPosition(10, 2);
+
+        // Print the linked list
+        System.out.println("\nDoubly Linked List after adding a node at position 2:");
+        linkedList.printList();
+
+        // Remove a node from the beginning of the linked list
+        linkedList.removeNodeFromBeginning();
+        System.out.println("\nDoubly Linked List after removing a node from the beginning:");
+        linkedList.printList();
+
+        // Remove a node from the end of the linked list
+        linkedList.removeNodeFromEnd();
+        System.out.println("\nDoubly Linked List after removing a node from the end:");
+        linkedList.printList();
+
+        // Remove a node from a specified position in the linked list
+        linkedList.removeNodeFromPosition(2);
+        System.out.println("\nDoubly Linked List after removing a node at position 2:");
+        linkedList.printList();
+
+        // Check if a value exists in the list
+        System.out.println("\nIs 10 in the list? " + linkedList.isInList(10));
+        System.out.println("Is 3 in the list? " + linkedList.isInList(3));
+    }
+}
+```
+
+--- 
+
+
 ### **Skip List**  
 
 #### **Definition**  
