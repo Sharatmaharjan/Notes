@@ -1,6 +1,6 @@
 
 
-### Unit 3: Stack
+### Unit 3: Stack 4LHs
 
 #### 3.1. **Basic Concept of Stack**
 A stack is a linear data structure that follows the **LIFO (Last In, First Out)** principle, where the last element added to the stack is the first one to be removed.
