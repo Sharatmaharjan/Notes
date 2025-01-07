@@ -191,7 +191,8 @@ public class Main {
         // Push more elements
         stack.push(50);
         stack.push(60);
-        stack.push(70); // This will cause a stack overflow
+        stack.push(70);
+        stack.push(80);   // This will cause a stack overflow
 
         // Display final stack elements
         stack.display();
