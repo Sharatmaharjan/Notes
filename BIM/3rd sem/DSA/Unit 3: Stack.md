@@ -64,10 +64,10 @@ Stacks can be implemented using:
 
 **Algorithm for Array-Based Stack:**
 ```plaintext
-Initialize an array `stack` of size `N` and set `top = -1`.
+Initialize an array `stack` of size `size` and set `top = -1`.
 
 Push(x):
-  if top == N-1:
+  if top == size-1:
     print "Stack Overflow"
   else:
     top = top + 1
@@ -103,17 +103,18 @@ Java implementation for a **stack using an array**.
 class ArrayStack {
     private int[] stack; // Array to store stack elements
     private int top;     // Points to the top of the stack
-    private int capacity; // Maximum capacity of the stack
+    private int size; // Maximum capacity/size of the stack
 
     // Constructor to initialize the stack
     ArrayStack(int size) {
         stack = new int[size];
-        capacity = size;
-        top = -1; // Indicates an empty stack, if the capacity of the stack is 4, the maximum value of top will indeed be 3 from 0 to 3
+        this.size = size;
+        top = -1; // Indicates an empty stack, if the capacity/size of the stack is 4, the maximum value of top will indeed be 3 from 0 to 3
     }
 
     // Push operation: Add an element to the top of the stack
     public void push(int x) {
+      //if(top==size-1)
         if (isFull()) {
             System.out.println("Stack Overflow! Cannot push " + x);
             return;
@@ -124,6 +125,7 @@ class ArrayStack {
 
     // Pop operation: Remove and return the top element from the stack
     public int pop() {
+      //if(top==-1)
         if (isEmpty()) {
             System.out.println("Stack Underflow! Cannot pop");
             return -1; // Return -1 to indicate underflow
@@ -147,7 +149,7 @@ class ArrayStack {
 
     // Check if the stack is full
     public boolean isFull() {
-        return top == capacity - 1;
+        return top == size - 1;
     }
 
     // Display the stack elements
