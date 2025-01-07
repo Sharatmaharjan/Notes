@@ -109,7 +109,7 @@ class ArrayStack {
     ArrayStack(int size) {
         stack = new int[size];
         capacity = size;
-        top = -1; // Indicates an empty stack
+        top = -1; // Indicates an empty stack, if the capacity of the stack is 4, the maximum value of top will indeed be 3 from 0 to 3
     }
 
     // Push operation: Add an element to the top of the stack
