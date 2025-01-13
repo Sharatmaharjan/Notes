@@ -173,3 +173,150 @@ Digital evidence refers to information or data of probative value that is stored
 
 ---
 
+### 8.5 Methods and Lab, Collecting, Seizing, and Protecting Evidence**  
+
+Digital forensics involves systematically recovering, analyzing, and preserving electronic data to ensure its admissibility in court. This process requires strict adherence to established methods, protocols, and laboratory practices.
+
+---
+
+### **1. Digital Forensic Methods**
+
+Digital forensic investigations rely on structured methodologies to ensure accuracy and legal compliance. Key methods include:
+
+#### **a. Manual Analysis**
+- Inspecting digital data directly without automated tools.
+- Examples: Reading log files, reviewing folder structures, or manually searching emails.
+- Suitable for small-scale investigations or cases requiring detailed inspection.
+
+#### **b. Automated Forensics**
+- Utilizes specialized tools to speed up evidence collection and analysis.
+- Tools like EnCase, Autopsy, and FTK automate tasks such as data recovery, keyword searches, and report generation.
+- Reduces human error and increases efficiency.
+
+#### **c. Live Forensics**
+- Analyzing a system while it is still powered on and operational.
+- Captures volatile data such as:
+  - Running processes.
+  - Active network connections.
+  - Data in RAM.
+- Often used in incident response or when immediate shutdown isn’t feasible.
+
+#### **d. Network Forensics**
+- Focuses on capturing and analyzing network traffic to detect intrusions or unauthorized activities.
+- Tools like Wireshark or tcpdump are commonly used.
+- Helps in tracing attack origins, malware propagation, or data exfiltration.
+
+#### **e. Cloud Forensics**
+- Investigates evidence stored in cloud environments.
+- Challenges include accessing multi-tenant data and dealing with jurisdictional laws.
+- Tools like Magnet AXIOM Cloud assist in analyzing cloud-based data.
+
+#### **f. Mobile Forensics**
+- Focuses on extracting data from smartphones, tablets, and IoT devices.
+- Involves recovering call logs, SMS, app data, GPS locations, and deleted files.
+- Tools: Cellebrite, MOBILedit Forensic.
+
+#### **g. Data Carving**
+- Recovers fragmented files or data from unallocated spaces in storage media.
+- Relies on file signatures to reconstruct lost or deleted files.
+
+---
+
+### **2. Digital Forensic Labs**
+
+#### **a. Purpose of Forensic Labs**
+- Securely process and analyze digital evidence.
+- Maintain the chain of custody to ensure evidence integrity.
+
+#### **b. Lab Requirements**
+- **Secure Environment:**
+  - Physical security measures (e.g., restricted access, CCTV).
+  - Digital security (e.g., air-gapped systems to prevent network tampering).
+- **Forensic Workstations:**
+  - High-performance computers with write blockers and forensic tools.
+- **Specialized Tools:**
+  - Imaging devices for creating bit-by-bit copies.
+  - Software like FTK, EnCase, and Autopsy for analysis.
+- **Documentation Facilities:**
+  - Tools for recording findings and generating reports.
+- **Network Monitoring Tools:**
+  - For capturing and analyzing real-time network traffic.
+
+#### **c. Standard Operating Procedures (SOPs)**
+- Document every step of evidence handling.
+- Ensure compliance with local laws and international standards (e.g., ISO/IEC 27037).
+
+---
+
+### **8.6 Collecting Digital Evidence**
+
+Collecting digital evidence requires precision and legal compliance to ensure its admissibility in court.
+
+#### **a. Identify Evidence Sources**
+- Potential sources include:
+  - Computers, laptops, and servers.
+  - Mobile devices and IoT gadgets.
+  - Cloud storage and online accounts.
+  - External drives and USB devices.
+
+#### **b. Capture Volatile Data**
+- Prioritize volatile data as it is lost when a device is powered off.
+- Tools like Volatility and FTK Imager can capture:
+  - Running processes.
+  - Open network connections.
+  - Logged-in users and session data.
+
+#### **c. Create Forensic Images**
+- Use bit-by-bit imaging tools to create exact replicas of the original data.
+- Examples: dd command (Linux), FTK Imager.
+- Ensure write blockers are used to prevent accidental modifications.
+
+#### **d. Record Metadata**
+- Capture timestamps, file permissions, and access logs to establish timelines.
+
+---
+
+### **8.7 Seizing Digital Evidence**
+
+#### **a. Legal Considerations**
+- Obtain proper legal authorization (e.g., search warrants).
+- Follow jurisdiction-specific regulations regarding digital evidence.
+
+#### **b. Securing the Scene**
+- Isolate the area to prevent unauthorized access or tampering.
+- Document the physical condition of the scene:
+  - Photograph devices in their original state.
+  - Note the connection of cables, external peripherals, and network setups.
+
+#### **c. Handling Devices**
+- Handle devices carefully to avoid damage or data loss.
+- Use anti-static bags for storage media.
+- Disconnect devices from power sources only after capturing volatile data, if required.
+
+#### **d. Chain of Custody**
+- Maintain a detailed log of evidence handling:
+  - Who accessed it, when, and for what purpose.
+  - Prevents disputes over evidence integrity.
+
+---
+
+### **8.8. Protecting Digital Evidence**
+
+#### **a. Preventing Data Tampering**
+- Use write blockers when accessing storage devices.
+- Avoid opening files on the original device to prevent modifications.
+
+#### **b. Ensuring Physical Security**
+- Store evidence in a locked, access-controlled environment.
+- Use tamper-evident bags or seals for transporting evidence.
+
+#### **c. Data Integrity Verification**
+- Use hash functions (e.g., MD5, SHA-256) to generate hash values for the original and imaged data.
+- Recalculate hashes periodically to ensure data integrity remains unchanged.
+
+#### **d. Preventing Contamination**
+- Isolate devices from networks or external connections to avoid malware infections or remote tampering.
+- Use clean workstations free from previous case data.
+
+---
+
