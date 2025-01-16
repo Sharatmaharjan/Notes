@@ -320,3 +320,112 @@ Collecting digital evidence requires precision and legal compliance to ensure it
 
 ---
 
+### **8.9. Recovering Data**
+
+Data recovery is a key aspect of digital forensics, focused on retrieving lost, deleted, or corrupted data from storage devices.  
+
+#### **Key Steps in Data Recovery**  
+1. **Identify Data Loss Cause:**
+   - Identify the type of data loss (accidental deletion, hardware failure, or malware attack).  
+2. **Use Write Blockers:**
+   - Prevent further changes to the device by using hardware or software write blockers.  
+3. **Create a Forensic Image:**
+   - Perform bit-by-bit imaging of the device using tools like FTK Imager or dd.  
+4. **Recovery Techniques:**
+   - **Deleted File Recovery:** Retrieve files from unallocated space or recycle bins.  
+   - **Partition Recovery:** Recover lost partitions using tools like TestDisk.  
+   - **File System Repair:** Fix corrupted file systems to regain access to stored data.  
+   - **Data Carving:** Extract files based on their signatures, ignoring file systems.  
+5. **Data Validation:**
+   - Use hash values to confirm the integrity of recovered data.  
+
+#### **Tools for Data Recovery**
+- **FTK Imager:** Creates forensic disk images and recovers deleted files.  
+- **Recuva:** A simple tool for recovering lost files.  
+- **R-Studio:** A professional data recovery tool for multiple file systems.  
+
+---
+
+### **8.10. Mobile Forensics**
+
+Mobile forensics involves extracting, recovering, and analyzing data from mobile devices like smartphones, tablets, and IoT devices.  
+
+#### **Unique Challenges**
+- Encryption and secure storage mechanisms (e.g., iOS and Android security).  
+- Rapid changes in mobile operating systems and hardware.  
+- Recovery of app data (e.g., chats, photos, call logs).  
+
+#### **Steps in Mobile Forensics**  
+1. **Seize the Device:**
+   - Secure the device and prevent remote wiping by isolating it from networks.  
+2. **Examine the Device:**
+   - Analyze the mobile's physical and logical structure using forensic tools.  
+3. **Extract Data:**
+   - **Physical Extraction:** Recover data directly from the storage chip.  
+   - **Logical Extraction:** Extract files and metadata using APIs.  
+   - **Cloud Data Extraction:** Access synchronized data stored in cloud services.  
+4. **Analyze Evidence:**
+   - Review call logs, SMS, social media apps, GPS data, and deleted files.  
+5. **Generate Reports:**
+   - Compile findings in legally admissible formats.  
+
+#### **Tools for Mobile Forensics**
+- **Cellebrite:** Industry-standard tool for comprehensive mobile data extraction.  
+- **MOBILedit Forensic:** Recovers data from various phone models.  
+- **XRY:** Specialized software for recovering deleted data.  
+
+---
+
+### **8.11. Legal Aspects of Digital Forensics**
+
+Legal considerations in digital forensics ensure that evidence is admissible in court while maintaining the rights of all parties.  
+
+#### **Key Legal Principles**
+1. **Search Warrants:**
+   - Obtain proper authorization before accessing digital devices.  
+2. **Chain of Custody:**
+   - Maintain a detailed record of evidence handling to prove its integrity.  
+3. **Data Privacy Laws:**
+   - Comply with regulations like GDPR (Europe) or local data protection laws.  
+4. **Evidence Admissibility:**
+   - Ensure evidence is collected and analyzed following forensic standards.  
+5. **Expert Testimony:**
+   - Forensic experts must explain technical findings in understandable terms during trials.  
+
+#### **Key International Laws**
+- **Computer Fraud and Abuse Act (CFAA):** U.S. legislation addressing computer crimes.  
+- **GDPR:** Protects data privacy and mandates responsible handling of personal data.  
+
+---
+
+### **8.12. Cyber Forensics in Nepal**
+
+Cyber forensics in Nepal is an evolving field, focusing on combating cybercrime and enhancing digital investigations.
+
+#### **Current Landscape**
+- Nepal is witnessing a rise in cybercrimes such as hacking, identity theft, and online fraud.  
+- The government has introduced legal frameworks like the **Electronic Transactions Act (ETA), 2008** to address cyber issues.  
+
+#### **Cybercrime Investigations**
+1. **Cyber Bureau of Nepal Police:**
+   - Specialized unit handling cybercrime cases, including digital forensics.  
+2. **Common Cases:**
+   - Social media abuse, financial fraud, hacking, and ransomware attacks.  
+
+#### **Challenges**
+- **Lack of Skilled Professionals:**
+  - Limited forensic experts and training opportunities.  
+- **Limited Resources:**
+  - Absence of advanced forensic tools and labs.  
+- **Legal Gaps:**
+  - Outdated laws insufficient to address modern cyber threats.  
+
+#### **Initiatives**
+- Capacity-building programs to train law enforcement in digital forensics.  
+- Collaborations with international organizations for resource sharing.  
+
+#### **Future Prospects**
+- Improved legal frameworks to address emerging technologies.  
+- Establishment of state-of-the-art forensic labs for handling complex cases.  
+
+---
