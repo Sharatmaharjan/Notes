@@ -143,7 +143,7 @@ int factorial(int n) {
 
 
 ---
-![Alt text]([https://www.example.com/image.jpg](https://github.com/Sharatmaharjan/Notes/blob/main/BIM/3rd%20sem/DSA/images/tailrecursion.png))
+![Alt text](https://github.com/Sharatmaharjan/Notes/blob/main/BIM/3rd%20sem/DSA/images/tailrecursion.png)
 
 ### **Example Walkthrough:**
 
