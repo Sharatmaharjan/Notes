@@ -14,7 +14,7 @@ A **recursive definition** defines an entity in terms of itself. In the context 
 
 The factorial of a number \(n\) is defined as:
 - \(n! = 1\) if \(n = 0\)
-- \(n! = n \times (n-1)!\) if \(n > 0\)
+- \(n! = n * (n-1)!\) if \(n > 0\)
 
 This can be recursively defined in a function like this:
 
