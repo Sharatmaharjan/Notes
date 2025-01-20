@@ -66,7 +66,7 @@ Queues can be implemented using two main techniques:
 
 - **Algorithm for Array-Based Implementation**:  
   **Enqueue**:  
-  1. Check if the queue is full (`rear == maxsize`).  
+  1. Check if the queue is full (`rear == maxSize`).  
   2. If not full, increment `rear` and insert the element at `queue[rear]`.  
 
   **Dequeue**:  
