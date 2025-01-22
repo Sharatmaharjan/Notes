@@ -43,7 +43,7 @@ Long Integer: 10000000000
 ```java
 public class FloatExample {
     public static void main(String[] args) {
-        float pi = 3.14f;  // 'f' denotes float
+        float pi = 3.14F;  // 'F' denotes float
         double e = 2.71828;  // Default is double
         System.out.println("Float: " + pi);  // Output: Float: 3.14
         System.out.println("Double: " + e);  // Output: Double: 2.71828
