@@ -15,14 +15,19 @@ Java has built-in data types that represent basic values.
 public class IntegerExample {
     public static void main(String[] args) {
         int num = 10;
-        System.out.println("Integer: " + num); // Output: Integer: 10
+        long bigNum = 10000000000L; // 'L' suffix to denote long type
+
+        System.out.println("Integer: " + num);   // Output: Integer: 10
+        System.out.println("Long Integer: " + bigNum);  // Output: Long Integer: 10000000000
     }
 }
+
 ```
 
 **Output:**
 ```
-Integer: 10
+Integer: 10  
+Long Integer: 10000000000
 ```
 
 ---
