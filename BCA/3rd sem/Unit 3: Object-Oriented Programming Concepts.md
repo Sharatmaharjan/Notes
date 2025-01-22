@@ -1,6 +1,6 @@
 ### Unit 3: Object-Oriented Programming Concepts (OOP) (9 Hours)
 
-### 3.1 Fundamentals of Classes 
+### Fundamentals of Classes 
 
 Object-Oriented Programming (OOP) is a programming paradigm that is based on the concept of **objects**, which can contain data and methods. In Java, a **class** is the blueprint from which objects are created. This unit focuses on the **fundamentals of classes**, including creating simple classes, creating class instances (objects), adding methods to classes, and calling functions/methods.
 
