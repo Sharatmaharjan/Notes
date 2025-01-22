@@ -262,12 +262,341 @@ Name: Alice
 
 ---
 
-### Conclusion:
-In this unit, we covered the fundamentals of **Classes** in Java. The key concepts include:
+### 7. **Abstraction**
 
-1. **Defining a Class**: A class defines the blueprint for objects, containing attributes and methods.
-2. **Creating Objects**: Objects are instances of a class, created using the `new` keyword.
-3. **Adding Methods**: Methods define the behavior of a class and operate on its attributes.
-4. **Calling Methods**: Methods can be called using object references (instance methods) or class names (static methods).
-5. **Access Modifiers**: Control the visibility and accessibility of class members (fields, methods).
+**Abstraction** is the concept of hiding the implementation details and showing only the essential features of an object. In Java, abstraction is achieved using **abstract classes** and **interfaces**.
+
+- **Abstract Class**: A class that cannot be instantiated and may have abstract methods (methods without implementation).
+- **Interface**: A collection of abstract methods. A class that implements an interface must provide implementations for all its methods.
+
+#### Example:
+```java
+// Abstract class
+abstract class Animal {
+    abstract void sound();  // Abstract method
+
+    public void sleep() {
+        System.out.println("Animal is sleeping.");
+    }
+}
+
+// Concrete class
+class Dog extends Animal {
+    @Override
+    void sound() {
+        System.out.println("Dog barks.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal myDog = new Dog();
+        myDog.sound();  // Output: Dog barks.
+        myDog.sleep();  // Output: Animal is sleeping.
+    }
+}
+```
+
+---
+
+### 8. **Encapsulation**
+
+**Encapsulation** is the concept of wrapping data (variables) and methods that operate on the data into a single unit known as a class. It restricts direct access to some of the object's components and can prevent unintended interference and misuse of the data.
+
+- **Private Variables**: Used to hide the data.
+- **Public Methods**: Used to access and update the data (getters and setters).
+
+#### Example:
+```java
+public class Person {
+    // Private variables
+    private String name;
+    private int age;
+
+    // Getter method
+    public String getName() {
+        return name;
+    }
+
+    // Setter method
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    // Getter method
+    public int getAge() {
+        return age;
+    }
+
+    // Setter method
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setName("Alice");
+        p.setAge(25);
+
+        System.out.println("Name: " + p.getName());  // Output: Name: Alice
+        System.out.println("Age: " + p.getAge());    // Output: Age: 25
+    }
+}
+```
+
+---
+
+### 9. **Using `this` Keyword**
+
+The **`this` keyword** is used within an instance method or constructor to refer to the current object. It is commonly used to refer to instance variables when they are shadowed by method parameters.
+
+#### Example:
+```java
+public class Person {
+    String name;
+
+    public Person(String name) {
+        this.name = name;  // 'this' refers to the current object's instance variable
+    }
+
+    public void printName() {
+        System.out.println("Name: " + this.name);
+    }
+
+    public static void main(String[] args) {
+        Person p = new Person("Alice");
+        p.printName();  // Output: Name: Alice
+    }
+}
+```
+
+---
+
+### 10. **Constructors: Default and Parameterized**
+
+- **Default Constructor**: A constructor provided by Java when no constructors are defined in the class. It initializes object members with default values (e.g., `null` for objects, `0` for integers).
+  
+- **Parameterized Constructor**: A constructor that allows the initialization of object members with specific values when an object is created.
+
+#### Example:
+```java
+public class Car {
+    String model;
+    int year;
+
+    // Default Constructor
+    public Car() {
+        this.model = "Unknown";
+        this.year = 2020;
+    }
+
+    // Parameterized Constructor
+    public Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+
+    public void display() {
+        System.out.println("Model: " + model + ", Year: " + year);
+    }
+
+    public static void main(String[] args) {
+        Car car1 = new Car();  // Calls default constructor
+        Car car2 = new Car("Tesla", 2022);  // Calls parameterized constructor
+        
+        car1.display();  // Output: Model: Unknown, Year: 2020
+        car2.display();  // Output: Model: Tesla, Year: 2022
+    }
+}
+```
+
+---
+
+### 11. **Methods: Passing by Value and by Reference**
+
+- **Passing by Value**: In Java, primitive data types are passed by value. This means that a copy of the variable is passed to the method.
+  
+- **Passing by Reference**: For objects, Java passes the reference to the object (not the actual object), meaning that modifications made to the object in the method affect the original object.
+
+#### Example:
+```java
+// Passing by value (Primitive type)
+public class Example {
+    public static void changeValue(int num) {
+        num = 50;
+    }
+
+    public static void main(String[] args) {
+        int number = 10;
+        changeValue(number);
+        System.out.println("Value after method call: " + number);  // Output: 10 (value not changed)
+    }
+}
+
+// Passing by reference (Object)
+public class Example {
+    static class Person {
+        String name;
+        Person(String name) {
+            this.name = name;
+        }
+    }
+
+    public static void changeName(Person p) {
+        p.name = "John";
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person("Alice");
+        changeName(person);
+        System.out.println("Name after method call: " + person.name);  // Output: Name after method call: John
+    }
+}
+```
+
+---
+
+
+### 12. **Methods that Return Values**
+
+A method in Java can return a value. The return type is specified in the method declaration.
+
+#### Example:
+```java
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        int sum = calc.add(5, 3);
+        System.out.println("Sum: " + sum);  // Output: Sum: 8
+    }
+}
+```
+
+---
+
+### 13. **Polymorphism and Method Overloading**
+
+- **Polymorphism**: The ability to take many forms. In Java, polymorphism allows us to use the same method name with different implementations.
+
+- **Method Overloading**: The ability to define multiple methods with the same name but different parameter types or number of parameters.
+
+#### Example (Method Overloading):
+```java
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+
+    public double add(double a, double b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        Calculator calc = new Calculator();
+        System.out.println(calc.add(5, 3));      // Output: 8
+        System.out.println(calc.add(5.5, 3.5));  // Output: 9.0
+    }
+}
+```
+
+---
+
+### 14. **Recursion**
+
+**Recursion** occurs when a method calls itself in order to solve a problem. A base case is used to stop the recursion.
+
+#### Example (Factorial):
+```java
+public class Factorial {
+    public static int factorial(int n) {
+        if (n == 0) {
+            return 1;  // Base case
+        } else {
+            return n * factorial(n - 1);  // Recursive case
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Factorial of 5: " + factorial(5));  // Output: 120
+    }
+}
+```
+
+---
+
+### 15. **Nested and Inner Classes**
+
+- **Nested Class**: A class defined within another class.
+- **Inner Class**: A nested class that has access to the instance variables and methods of the outer class.
+
+#### Example:
+```java
+public class OuterClass {
+    private String outerVar = "Outer class variable";
+
+    // Inner class
+    class InnerClass {
+        public void printOuterVar() {
+            System.out.println(outerVar);  // Accesses outer class variable
+        }
+    }
+
+    public static void main(String[] args) {
+        OuterClass outer = new OuterClass();
+        OuterClass.InnerClass inner = outer.new InnerClass();  // Create inner class object
+        inner.printOuterVar();  // Output: Outer class variable
+    }
+}
+```
+
+---
+
+### Conclusion: What Students Have Learned
+
+After completing this unit on **Fundamentals of Classes** and other Object-Oriented Programming (OOP) concepts, students will have gained a thorough understanding of key OOP principles and Java programming techniques. Specifically, students will be able to:
+
+1. **Understand the Fundamentals of Classes:**
+   - Define and create **simple classes** in Java.
+   - Instantiate **objects** of a class and work with them.
+   - Add **methods** to a class and call them effectively, demonstrating the practical use of functions in object-oriented design.
+
+2. **Apply Abstraction and Encapsulation:**
+   - Implement **abstraction** to hide unnecessary details and expose only essential features through abstract classes or interfaces.
+   - Use **encapsulation** to bundle data (variables) and methods that operate on the data within a class, restricting direct access to certain fields for better data integrity and security.
+
+3. **Utilize the `this` Keyword:**
+   - Understand how to use the `this` keyword to refer to the current instance of a class, especially in constructors and methods where variable names may conflict.
+
+4. **Work with Constructors:**
+   - Define and use **default constructors** that provide initial values for an object's attributes.
+   - Create **parameterized constructors** to initialize objects with specific values at the time of creation.
+
+5. **Understand Method Parameters and Value Passing:**
+   - Learn how Java handles **pass-by-value** for primitive types and **pass-by-reference** for objects, enabling students to manipulate data within methods appropriately.
+
+6. **Implement Access Control:**
+   - Use **access modifiers** (public, private, protected) to control access to class members, ensuring proper encapsulation and security in the application.
+
+7. **Work with Methods that Return Values:**
+   - Develop the ability to create methods that perform calculations or operations and return values to the caller for further processing.
+
+8. **Explore Polymorphism and Method Overloading:**
+   - Grasp the concept of **polymorphism**, allowing methods to behave differently based on the object type.
+   - Implement **method overloading** to define multiple methods with the same name but different parameter types or counts, enhancing flexibility and reusability of code.
+
+9. **Master Recursion:**
+   - Understand **recursion** as a problem-solving technique, where methods call themselves to solve smaller instances of a problem, and apply it effectively in various scenarios like calculating factorials.
+
+10. **Use Nested and Inner Classes:**
+    - Implement **nested** and **inner classes** to group related classes together, enabling better organization and encapsulation of functionality within a larger class.
+
+By the end of this unit, students will have a strong foundation in object-oriented programming in Java, and they will be equipped to design and implement well-structured, maintainable, and reusable Java applications.
 
