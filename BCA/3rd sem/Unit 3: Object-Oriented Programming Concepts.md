@@ -154,6 +154,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         double length = scanner.nextDouble();
         double breadth = scanner.nextDouble();
+
+        scanner.close();    ->> close scanner object at the end.
          */
     }
 }
