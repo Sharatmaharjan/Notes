@@ -183,7 +183,7 @@ Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)*
    V = length * breadth * height
 
 2. **Total Surface Area (TSA) of the cuboid**:
-   TSA=2*(length * breadth + breadth *height + height *length)
+   TSA=2*(length * breadth + breadth * height + height * length)
 
    ### Sample Output:
 
@@ -197,8 +197,10 @@ Total Surface Area (TSA) of the cuboid: 94
 ```
 
 Explanation:
-- **Volume** is calculated as: \( 5 \times 4 \times 3 = 60 \)
-- **Total Surface Area** is calculated as: \( 2 \times (5 \times 4 + 4 \times 3 + 3 \times 5) = 2 \times (20 + 12 + 15) = 2 \times 47 = 94 \)
+- **Volume** is calculated as: 5 * 4 * 3 = 60
+- **Total Surface Area** is calculated as: 2 * ( 5 * 4 + 4 * 3 + 3 * 5 ) = 94
+
+  
 ### 5. **Calling Functions/Methods**
 To **call a method** in Java, you use the object reference for instance methods or the class name for static methods.
 
