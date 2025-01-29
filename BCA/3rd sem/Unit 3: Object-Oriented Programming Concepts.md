@@ -43,6 +43,13 @@ public class Person {
     int age;
 
     // Constructor to initialize the attributes
+    /*
+   Features of a Constructor:
+    1. Same Name as Class – The constructor name must match the class name.
+    2. No Return Type – Constructors do not have a return type, not even void.
+    3. Automatic Invocation – It is called automatically when an object is created.
+    4. Used for Initialization – It initializes object properties.
+    */
     public Person(String name, int age) {
         this.name = name;
         this.age = age;
