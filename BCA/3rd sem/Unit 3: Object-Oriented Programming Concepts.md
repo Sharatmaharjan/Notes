@@ -180,10 +180,10 @@ Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)*
 ### Formulae:
 
 1. **Volume of the cuboid (V)**:
-   V = length*breadth*height
+   V = length * breadth * height
 
 2. **Total Surface Area (TSA) of the cuboid**:
-   TSA=2*(length*breadth+breadth*height+height*length)
+   TSA=2*(length * breadth + breadth *height + height *length)
 
    ### Sample Output:
 
