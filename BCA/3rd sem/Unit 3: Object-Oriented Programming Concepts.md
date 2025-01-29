@@ -139,6 +139,7 @@ public class Rectangle {
 ```java
 public class Main {
     public static void main(String[] args) {
+        
         // Creating an object of Rectangle class
         Rectangle rect = new Rectangle(5.0, 4.0);
         
@@ -147,6 +148,13 @@ public class Main {
         
         // Printing the area
         System.out.println("The area of the rectangle is: " + area);
+
+        /*
+        Use of Scanner to input from user:
+        Scanner scanner = new Scanner(System.in);
+        double length = scanner.nextDouble();
+        double breadth = scanner.nextDouble();
+         */
     }
 }
 ```
@@ -160,7 +168,41 @@ public class Main {
 ```
 The area of the rectangle is: 20.0
 ```
+### Question:
 
+Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)** of a cuboid using functions. The program should:
+
+1. Accept the **length**, **breadth**, and **height** of the cuboid as input from the user.
+2. Use a function to calculate the **Volume**.
+3. Use another function to calculate the **Total Surface Area (TSA)**.
+4. Display the results.
+
+### Formulae:
+
+1. **Volume of the cuboid (V)**:
+   \[
+   V = \text{length} \times \text{breadth} \times \text{height}
+   \]
+
+2. **Total Surface Area (TSA) of the cuboid**:
+   \[
+   TSA = 2 \times (\text{length} \times \text{breadth} + \text{breadth} \times \text{height} + \text{height} \times \text{length})
+   \]
+
+   ### Sample Output:
+
+```
+Enter the length of the cuboid: 5
+Enter the breadth of the cuboid: 4
+Enter the height of the cuboid: 3
+
+Volume of the cuboid: 60
+Total Surface Area (TSA) of the cuboid: 94
+```
+
+Explanation:
+- **Volume** is calculated as: \( 5 \times 4 \times 3 = 60 \)
+- **Total Surface Area** is calculated as: \( 2 \times (5 \times 4 + 4 \times 3 + 3 \times 5) = 2 \times (20 + 12 + 15) = 2 \times 47 = 94 \)
 ### 5. **Calling Functions/Methods**
 To **call a method** in Java, you use the object reference for instance methods or the class name for static methods.
 
