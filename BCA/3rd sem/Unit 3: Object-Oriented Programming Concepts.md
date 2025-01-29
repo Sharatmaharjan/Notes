@@ -170,7 +170,7 @@ public class Main {
 ```
 The area of the rectangle is: 20.0
 ```
-### Question:
+#### Question:
 
 Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)** of a cuboid using functions. The program should:
 
@@ -179,7 +179,7 @@ Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)*
 3. Use another function to calculate the **Total Surface Area (TSA)**.
 4. Display the results.
 
-### Formulae:
+#### Formulae:
 
 1. **Volume of the cuboid (V)**:
    V = length * breadth * height
@@ -187,7 +187,7 @@ Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)*
 2. **Total Surface Area (TSA) of the cuboid**:
    TSA=2*(length * breadth + breadth * height + height * length)
 
-   ### Sample Output:
+#### Sample Output:
 
 ```
 Enter the length of the cuboid: 5
@@ -198,7 +198,7 @@ Volume of the cuboid: 60
 Total Surface Area (TSA) of the cuboid: 94
 ```
 
-Explanation:
+#### Explanation:
 - **Volume** is calculated as: 5 * 4 * 3 = 60
 - **Total Surface Area** is calculated as: 2 * ( 5 * 4 + 4 * 3 + 3 * 5 ) = 94
 
