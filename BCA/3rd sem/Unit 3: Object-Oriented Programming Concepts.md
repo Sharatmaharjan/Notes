@@ -35,7 +35,7 @@ public class ClassName {
 ### 2. **A Simple Class Example**
 Let’s start by creating a simple class called `Person`. This class will have attributes such as `name` and `age`, and a method `greet()` that prints a greeting message.
 
-#### **Example Program:**
+#### **Lab 1: A Simple Class Example**
 ```java
 public class Person {
     // Attributes (fields)
@@ -72,7 +72,7 @@ public class Person {
 ### 3. **Creating Class Instances (Objects)**
 An **instance** of a class is an object that is created based on the class template. In Java, objects are created using the `new` keyword.
 
-#### **Example of Creating an Instance:**
+#### **Lab 1: Creating Class Instances (Objects)**
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -106,7 +106,7 @@ public returnType methodName(parameters) {
 }
 ```
 
-#### **Example: Adding Methods for Calculations**
+#### **Lab 2: Adding Methods for Calculations**
 Let’s add a method to calculate the area of a rectangle in the `Rectangle` class.
 
 ```java
@@ -135,7 +135,7 @@ public class Rectangle {
   
 - **Method**: The `calculateArea()` method computes and returns the area of the rectangle (i.e., `length * width`).
 
-#### **Using the Rectangle Class:**
+#### **Lab 2: Using the Rectangle Class:**
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -170,7 +170,7 @@ public class Main {
 ```
 The area of the rectangle is: 20.0
 ```
-#### Question:
+#### Question: Lab 3:
 
 Write a Java program to calculate the **Volume** and **Total Surface Area (TSA)** of a cuboid using functions. The program should:
 
@@ -213,7 +213,7 @@ An instance method belongs to an object. You must create an object to call the i
 objectReference.methodName();
 ```
 
-#### **Example:**
+#### **Lab 4: Calling Instance Methods**
 ```java
 public class Person {
     String name;
@@ -245,7 +245,7 @@ A **static method** belongs to the class itself and can be called without creati
 ClassName.methodName();
 ```
 
-#### **Example with Static Method:**
+#### **Lab 5: Calling Static Methods**
 ```java
 public class Calculator {
     // Static method for addition
@@ -273,7 +273,7 @@ Java provides **access modifiers** to control the visibility of classes, methods
 - `protected`: Accessible within the same package and by subclasses.
 - Default (no modifier): Accessible within the same package.
 
-#### **Example with Access Modifiers:**
+#### **Lab 6: Access Modifiers in Java**
 ```java
 public class Person {
     private String name;  // Private field
@@ -318,7 +318,7 @@ Name: Alice
 - **Abstract Class**: A class that cannot be instantiated and may have abstract methods (methods without implementation).
 - **Interface**: A collection of abstract methods. A class that implements an interface must provide implementations for all its methods.
 
-#### Example:
+#### Lab 7: Abstraction
 ```java
 // Abstract class
 abstract class Animal {
@@ -355,7 +355,7 @@ public class Main {
 - **Private Variables**: Used to hide the data.
 - **Public Methods**: Used to access and update the data (getters and setters).
 
-#### Example:
+#### Lab 8: Encapsulation
 ```java
 public class Person {
     // Private variables
@@ -403,7 +403,7 @@ public class Main {
 
 The **`this` keyword** is used within an instance method or constructor to refer to the current object. It is commonly used to refer to instance variables when they are shadowed by method parameters.
 
-#### Example:
+#### Lab 9: Using `this` Keyword
 ```java
 public class Person {
     String name;
@@ -431,7 +431,7 @@ public class Person {
   
 - **Parameterized Constructor**: A constructor that allows the initialization of object members with specific values when an object is created.
 
-#### Example:
+#### Lab 10: Constructors: Default and Parameterized
 ```java
 public class Car {
     String model;
@@ -471,7 +471,7 @@ public class Car {
   
 - **Passing by Reference**: For objects, Java passes the reference to the object (not the actual object), meaning that modifications made to the object in the method affect the original object.
 
-#### Example:
+#### Lab 11: Methods: Passing by Value and by Reference
 ```java
 // Passing by value (Primitive type)
 public class Example {
@@ -514,7 +514,7 @@ public class Example {
 
 A method in Java can return a value. The return type is specified in the method declaration.
 
-#### Example:
+#### Lab 12: Methods that Return Values
 ```java
 public class Calculator {
     public int add(int a, int b) {
@@ -537,7 +537,7 @@ public class Calculator {
 
 - **Method Overloading**: The ability to define multiple methods with the same name but different parameter types or number of parameters.
 
-#### Example (Method Overloading):
+#### Lab 13: Polymorphism and Method Overloading
 ```java
 public class Calculator {
     public int add(int a, int b) {
@@ -562,7 +562,7 @@ public class Calculator {
 
 **Recursion** occurs when a method calls itself in order to solve a problem. A base case is used to stop the recursion.
 
-#### Example (Factorial):
+#### Lab 14: Factorial
 ```java
 public class Factorial {
     public static int factorial(int n) {
@@ -586,7 +586,7 @@ public class Factorial {
 - **Nested Class**: A class defined within another class.
 - **Inner Class**: A nested class that has access to the instance variables and methods of the outer class.
 
-#### Example:
+#### Lab 15: Nested and Inner Classes
 ```java
 public class OuterClass {
     private String outerVar = "Outer class variable";
