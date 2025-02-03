@@ -10,7 +10,7 @@ Java has built-in data types that represent basic values.
 - `int` is commonly used to store integer values, while `long` is used for larger numbers.
 - Example: `int x = 10;`
 
-**Code Example:**
+**Lab 1:**
 ```java
 public class IntegerExample {
     public static void main(String[] args) {
@@ -39,7 +39,7 @@ Long Integer: 10000000000
 **Explanation:**
 - `float` is used when lower precision is enough. `double` provides more precision for calculations involving decimals.
 
-**Code Example:**
+**Lab 2:**
 ```java
 public class FloatExample {
     public static void main(String[] args) {
@@ -65,7 +65,7 @@ Double: 2.71828
 **Explanation:**
 - `char` is used to store individual characters enclosed in single quotes.
 
-**Code Example:**
+**Lab 3:**
 ```java
 public class CharExample {
     public static void main(String[] args) {
@@ -88,7 +88,7 @@ Character: A
 **Explanation:**
 - `boolean` is used for conditional statements and logical operations.
 
-**Code Example:**
+**Lab 4:**
 ```java
 public class BooleanExample {
     public static void main(String[] args) {
@@ -112,7 +112,7 @@ Is Java fun? true
 **Explanation:**
 - Variables are defined with a specific type, and constants are defined with `final` keyword to prevent reassignment.
 
-**Code Example:**
+**Lab 5:**
 ```java
 public class VariableExample {
     public static void main(String[] args) {
@@ -140,7 +140,7 @@ Max Age: 100
 - **Implicit**: Happens automatically when assigning a smaller type to a larger type.
 - **Explicit**: Requires casting (e.g., from `double` to `int`).
 
-**Code Example:**
+**Lab 6:**
 ```java
 public class TypeConversionExample {
     public static void main(String[] args) {
@@ -170,7 +170,7 @@ An array allows you to store multiple values of the same type.
 - Arrays are fixed in size and store values of a single type.
 - Example: `int[] arr = {1, 2, 3, 4, 5};`
 
-**Code Example:**
+**Lab 7:**
 ```java
 public class ArrayExample {
     public static void main(String[] args) {
@@ -202,7 +202,7 @@ public class ArrayExample {
 **Explanation:**
 - **if** is used for single conditions, while **switch** is used when there are multiple options.
 
-**Code Example (if):**
+**Lab 8 (if):**
 ```java
 public class IfExample {
     public static void main(String[] args) {
@@ -214,7 +214,7 @@ public class IfExample {
 }
 ```
 
-**Code Example (switch):**
+**Lab 9 (switch):**
 ```java
 public class SwitchExample {
     public static void main(String[] args) {
@@ -251,7 +251,7 @@ Invalid day
 - **do-while** guarantees at least one execution.
 - **for** is used when the number of iterations is known in advance.
 
-**Code Example (while):**
+**Lab 10 (while):**
 ```java
 public class WhileExample {
     public static void main(String[] args) {
@@ -264,7 +264,7 @@ public class WhileExample {
 }
 ```
 
-**Code Example (do-while):**
+**Lab 11 (do-while):**
 ```java
 public class DoWhileExample {
     public static void main(String[] args) {
@@ -277,7 +277,7 @@ public class DoWhileExample {
 }
 ```
 
-**Code Example (for):**
+**Lab 12 (for):**
 ```java
 public class ForExample {
     public static void main(String[] args) {
@@ -310,7 +310,7 @@ public class ForExample {
 - **continue** skips the current loop iteration.
 - **return** ends method execution and optionally returns a value.
 
-**Code Example (break):**
+**Lab 13 (break):**
 ```java
 public class BreakExample {
     public static void main(String[] args) {
@@ -322,7 +322,7 @@ public class BreakExample {
 }
 ```
 
-**Code Example (continue):**
+**Lab 14 (continue):**
 ```java
 public class ContinueExample {
     public static void main(String[] args) {
@@ -334,7 +334,7 @@ public class ContinueExample {
 }
 ```
 
-**Code Example (return):**
+**Lab 15 (return):**
 ```java
 public class ReturnExample {
     public static void main(String[] args) {
@@ -375,7 +375,7 @@ In Java, user-defined data types are types created by the programmer to suit spe
 - **Interface**: A contract that specifies a set of methods that a class must implement.
 - **Enum**: A special class that represents a group of constants.
 
-**Code Example:**
+**Lab 16:**
 ```java
 // Defining a class
 class Person {
@@ -412,7 +412,7 @@ Name: Alice, Age: 30
 - **Identifiers**: Names given to variables, methods, classes, etc. Identifiers must start with a letter, underscore, or dollar sign.
 - **Literals**: Constant values directly represented in the code (e.g., numbers, strings).
 
-**Code Example:**
+**Lab 17:**
 ```java
 public class IdentifierLiteralExample {
     public static void main(String[] args) {
@@ -436,7 +436,7 @@ Java initializes instance variables to default values if not explicitly initiali
 - **boolean**: false
 - **Object references**: null
 
-**Code Example:**
+**Lab 18:**
 ```java
 public class DefaultInitializationExample {
     int num;  // Default value is 0
@@ -463,7 +463,7 @@ Command-line arguments are values passed to the program when it is run from the 
 
 **Syntax**: `java ClassName arg1 arg2`
 
-**Code Example:**
+**Lab 19:**
 ```java
 public class CommandLineExample {
     public static void main(String[] args) {
@@ -491,7 +491,7 @@ Java supports both single-line and multi-line comments.
 - **Single-line comment**: `// comment`
 - **Multi-line comment**: `/* comment */`
 
-**Code Example:**
+**Lab 20:**
 ```java
 public class CommentExample {
     public static void main(String[] args) {
@@ -516,7 +516,7 @@ Garbage Collection (GC) is a process of automatically reclaiming memory from obj
 - **Garbage Collector**: Java automatically manages memory. The garbage collector reclaims memory by deleting unused objects.
 - You cannot directly control the garbage collection process in Java, but you can suggest it using `System.gc()`.
 
-**Code Example:**
+**Lab 21:**
 ```java
 public class GarbageCollectionExample {
     public static void main(String[] args) {
@@ -540,7 +540,7 @@ An expression in Java is a combination of variables, operators, and method calls
 
 **Example Expression**: `(x + y) * z`
 
-**Code Example:**
+**Lab 22:**
 ```java
 public class ExpressionExample {
     public static void main(String[] args) {
@@ -570,7 +570,7 @@ Java provides several operators that perform different operations:
 #### **Shift Operators**: `<<`, `>>`, `>>>`
 #### **Auto-Increment and Auto-Decrement**: `++`, `--`
 
-**Code Example (Arithmetic and Ternary Operator):**
+**Lab 23 (Arithmetic and Ternary Operator):**
 ```java
 public class OperatorsExample {
     public static void main(String[] args) {
