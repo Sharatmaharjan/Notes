@@ -77,7 +77,7 @@ An **instance** of a class is an object that is created based on the class templ
 public class Main {
     public static void main(String[] args) {
         // Creating an object of the Person class
-        Person person1 = new Person("Alice", 25);
+        Person person1 = new Person("Sharat", 25);
         
         // Calling the greet() method on person1
         person1.greet();
@@ -86,13 +86,13 @@ public class Main {
 ```
 
 #### **Explanation of the Example:**
-- **Creating an Object**: `Person person1 = new Person("Alice", 25);` creates an object `person1` of the class `Person` and initializes it with the values `"Alice"` for the name and `25` for the age.
+- **Creating an Object**: `Person person1 = new Person("Sharat", 25);` creates an object `person1` of the class `Person` and initializes it with the values `"Sharat"` for the name and `25` for the age.
   
 - **Calling a Method**: `person1.greet();` calls the `greet()` method of the `person1` object, which prints the greeting message.
 
 #### **Sample Output:**
 ```
-Hello, my name is Alice and I am 25 years old.
+Hello, my name is Sharat and I am 25 years old.
 ```
 
 ### 4. **Adding Methods to a Class**
@@ -292,7 +292,7 @@ public class Person {
 
 public class Main {
     public static void main(String[] args) {
-        Person person = new Person("Alice", 30);
+        Person person = new Person("Sharat", 30);
         
         // Accessing public field directly
         System.out.println("Age: " + person.age);
@@ -306,7 +306,7 @@ public class Main {
 #### **Sample Output:**
 ```
 Age: 30
-Name: Alice
+Name: Sharat
 ```
 
 ---
@@ -388,10 +388,10 @@ public class Person {
 public class Main {
     public static void main(String[] args) {
         Person p = new Person();
-        p.setName("Alice");
+        p.setName("Sharat");
         p.setAge(25);
 
-        System.out.println("Name: " + p.getName());  // Output: Name: Alice
+        System.out.println("Name: " + p.getName());  // Output: Name: Sharat
         System.out.println("Age: " + p.getAge());    // Output: Age: 25
     }
 }
@@ -417,8 +417,8 @@ public class Person {
     }
 
     public static void main(String[] args) {
-        Person p = new Person("Alice");
-        p.printName();  // Output: Name: Alice
+        Person p = new Person("Sharat");
+        p.printName();  // Output: Name: Sharat
     }
 }
 ```
@@ -500,7 +500,7 @@ public class Example {
     }
 
     public static void main(String[] args) {
-        Person person = new Person("Alice");
+        Person person = new Person("Sharat");
         changeName(person);
         System.out.println("Name after method call: " + person.name);  // Output: Name after method call: John
     }
