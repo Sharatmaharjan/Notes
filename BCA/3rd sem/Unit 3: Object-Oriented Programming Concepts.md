@@ -230,10 +230,10 @@ public class Person {
 public class Main {
     public static void main(String[] args) {
         // Create an object of Person class
-        Person person1 = new Person("John");
+        Person person1 = new Person("Sharat");
         
         // Call the greet method
-        person1.greet();  // Output: Hello, my name is John
+        person1.greet();  // Output: Hello, my name is Sharat
     }
 }
 ```
@@ -496,13 +496,13 @@ public class Example {
     }
 
     public static void changeName(Person p) {
-        p.name = "John";
+        p.name = "Sharat";
     }
 
     public static void main(String[] args) {
         Person person = new Person("Sharat");
         changeName(person);
-        System.out.println("Name after method call: " + person.name);  // Output: Name after method call: John
+        System.out.println("Name after method call: " + person.name);  // Output: Name after method call: Sharat
     }
 }
 ```
