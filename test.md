@@ -1,3 +1,5 @@
+**6. Answer:**
+```c
 #include <stdio.h>
 
 // Define the derivative function dy/dx = 3x^2 + 1
@@ -28,9 +30,11 @@ int main() {
     return 0;
 }
 
-
+```
 
 ------------------------------------
+
+**10. Answer**
 
 /* Algorithm for Lagrange Interpolation Polynomial */
 
@@ -47,7 +51,7 @@ int main() {
     c. Add term to yp
 7. Output yp as the interpolated value.
 8. End
-
+```c
 /* C Program for Lagrange Interpolation Polynomial */
 
 #include <stdio.h>
@@ -89,3 +93,4 @@ int main() {
 
     return 0;
 }
+```
