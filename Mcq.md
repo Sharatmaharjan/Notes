@@ -1,3 +1,5 @@
+
+```c
 MCQ answers
 
  i. **b) Roundoff error**
@@ -10,3 +12,4 @@ vii.**b) 3.0**
 viii.**b) Second order**
 ix. **a) To find largest eigenvalue and corresponding eigenvector**
 x. **a) Uniform grid**
+```
