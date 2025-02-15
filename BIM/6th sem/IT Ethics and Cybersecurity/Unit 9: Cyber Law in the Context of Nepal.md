@@ -1,7 +1,6 @@
-### Unit 9: Cyber Law in the Context of Nepal  
-**Lecture Hours: 4**  
+## **Unit 9: Cyber Law in the Context of Nepal  [Lecture Hours: 4]**
 
-#### 9.1. **Cyber Law in the Context of Nepal**  
+### **9.1 Cyber Law in the Context of Nepal**  
 - **Definition of Cyber Law**:  
   Cyber law refers to the legal framework governing internet usage, electronic transactions, and cybercrimes. In Nepal, it aims to address the challenges posed by the digital environment.  
 - **Purpose**:  
@@ -14,7 +13,7 @@
   - Data privacy and protection.  
   - Digital intellectual property rights.  
 
-#### 9.2. **Legal Perspective of Cybercrime**  
+### **9.2 Legal Perspective of Cybercrime**  
 - **Cybercrime Definition**:  
   Crimes committed using computers, networks, or the internet, including theft, fraud, defamation, and data breaches.  
 - **Types of Cybercrimes**:  
@@ -26,7 +25,7 @@
   - Cybercrimes are addressed under the **Electronic Transaction Act (ETA) 2063**.  
   - Prosecution and penalties for cyber offenses are clearly defined.  
 
-#### 9.3. **Electronic Transaction Act (ETA) 2063**  
+### **9.3 Electronic Transaction Act (ETA) 2063**  
 - **Overview**:  
   The ETA 2063 is the cornerstone of Nepal's cyber law framework, enacted to regulate electronic transactions and prevent cybercrimes.  
 - **Key Features**:  
@@ -41,7 +40,7 @@
 - **Penalties**:  
   - Monetary fines and imprisonment for violators, depending on the severity of the crime.  
 
-#### 9.4. **Electronic Transaction Rules (ETR)**  
+### **9.4 Electronic Transaction Rules (ETR)**  
 - **Purpose**:  
   Complement the ETA by defining the operational and procedural aspects of electronic transactions.  
 - **Key Provisions**:  
@@ -49,7 +48,7 @@
   - Standards for maintaining the confidentiality and integrity of electronic records.  
   - Procedures for filing complaints related to cybercrimes.  
 
-#### 9.5. **IT Policy of Nepal**  
+### **9.5 IT Policy of Nepal**  
 - **Objectives**:  
   - Promote the use of information technology in development.  
   - Enhance digital literacy and IT infrastructure.  
@@ -59,7 +58,7 @@
   - Incentives for private sector investment in IT.  
   - Policies for protecting intellectual property in digital formats.  
 
-#### 9.6. **Information Security and Policies**  
+### **9.6 Information Security and Policies**  
 - **Importance of Information Security**:  
   - Prevent unauthorized access, misuse, or destruction of information.  
   - Ensure confidentiality, integrity, and availability of data.  
@@ -72,6 +71,3 @@
   - Development of national standards for cybersecurity.  
   - Encouraging businesses to adopt information security policies.  
   - Building awareness of data protection and secure practices among citizens.  
-
-#### 7. **Conclusion**  
-Cyber law in Nepal is evolving to address the growing challenges of the digital age. The ETA, supported by rules and policies, ensures a legal framework for protecting individuals, businesses, and the government from cyber threats while fostering a safe digital ecosystem.
