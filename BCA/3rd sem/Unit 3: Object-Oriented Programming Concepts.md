@@ -496,13 +496,13 @@ public class Example {
     }
 
     public static void changeName(Person p) {
-        p.name = "Sharat";
+        p.name = "Sujan";
     }
 
     public static void main(String[] args) {
         Person person = new Person("Sharat");
         changeName(person);
-        System.out.println("Name after method call: " + person.name);  // Output: Name after method call: Sharat
+        System.out.println("Name after method call: " + person.name);  // Output: Name after method call: Sujan
     }
 }
 ```
@@ -610,7 +610,8 @@ public class OuterClass {
 
 ### Conclusion: What Students Have Learned
 
-After completing this unit on **Fundamentals of Classes** and other Object-Oriented Programming (OOP) concepts, students will have gained a thorough understanding of key OOP principles and Java programming techniques. Specifically, students will be able to:
+After completing this unit on **Fundamentals of Classes** and other Object-Oriented Programming (OOP) concepts, students will have gained a thorough understanding of key OOP principles and Java programming techniques. 
+Specifically, students will be able to:
 
 1. **Understand the Fundamentals of Classes:**
    - Define and create **simple classes** in Java.
@@ -647,5 +648,4 @@ After completing this unit on **Fundamentals of Classes** and other Object-Orien
 10. **Use Nested and Inner Classes:**
     - Implement **nested** and **inner classes** to group related classes together, enabling better organization and encapsulation of functionality within a larger class.
 
-By the end of this unit, students will have a strong foundation in object-oriented programming in Java, and they will be equipped to design and implement well-structured, maintainable, and reusable Java applications.
 
