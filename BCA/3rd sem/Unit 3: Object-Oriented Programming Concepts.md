@@ -31,6 +31,7 @@ public class ClassName {
     }
 }
 ```
+---
 
 ### 2. **A Simple Class Example**
 Let’s start by creating a simple class called `Person`. This class will have attributes such as `name` and `age`, and a method `greet()` that prints a greeting message.
@@ -69,6 +70,8 @@ public class Person {
   
 - **Method**: The `greet()` method prints a greeting message using the `name` and `age` attributes.
 
+---
+
 ### 3. **Creating Class Instances (Objects)**
 An **instance** of a class is an object that is created based on the class template. In Java, objects are created using the `new` keyword.
 
@@ -94,6 +97,8 @@ public class Main {
 ```
 Hello, my name is Sharat and I am 25 years old.
 ```
+
+---
 
 ### 4. **Adding Methods to a Class**
 Methods in Java define the behavior of the objects created from a class. They can accept parameters, perform operations, and return values.
@@ -202,7 +207,8 @@ Total Surface Area (TSA) of the cuboid: 94
 - **Volume** is calculated as: 5 * 4 * 3 = 60
 - **Total Surface Area** is calculated as: 2 * ( 5 * 4 + 4 * 3 + 3 * 5 ) = 94
 
-  
+---
+
 ### 5. **Calling Functions/Methods**
 To **call a method** in Java, you use the object reference for instance methods or the class name for static methods.
 
@@ -264,6 +270,7 @@ public class Main {
     }
 }
 ```
+---
 
 ### 6. **Access Modifiers in Java**
 Java provides **access modifiers** to control the visibility of classes, methods, and variables.
