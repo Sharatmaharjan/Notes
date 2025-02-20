@@ -1,3 +1,4 @@
+## Unit 2: Linked Lists
 ### Lab 1: Singly LinkedList Implementation
 ```java
 package SinglyLinkedList;
@@ -507,7 +508,398 @@ Is 3 in the list? false
 ```
 
 ---
+## Unit 3: Stack
 
+### Lab 3: Java implementation for a stack using an array.
 
+```java
+// Stack implementation using an array
+class ArrayStack {
+    private int[] stack; // Array to store stack elements
+    private int top;     // Points to the top of the stack
+    private int size; // Maximum capacity/size of the stack
+
+    // Constructor to initialize the stack
+    ArrayStack(int size) {
+        stack = new int[size];
+        this.size = size;
+        top = -1; // Indicates an empty stack, if the capacity/size of the stack is 4, the maximum value of top will indeed be 3 from 0 to 3
+    }
+
+    // Push operation: Add an element to the top of the stack
+    public void push(int x) {
+      //if(top==size-1)
+        if (isFull()) {
+            System.out.println("Stack Overflow! Cannot push " + x);
+            return;
+        }
+        stack[++top] = x; // Increment top and add the element
+        System.out.println(x + " pushed into stack");
+    }
+
+    // Pop operation: Remove and return the top element from the stack
+    public int pop() {
+      //if(top==-1)
+        if (isEmpty()) {
+            System.out.println("Stack Underflow! Cannot pop");
+            return -1; // Return -1 to indicate underflow
+        }
+        return stack[top--]; // Return the top element and decrement top
+    }
+
+    // Peek operation: Return the top element without removing it
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return -1; // Return -1 to indicate empty stack
+        }
+        return stack[top];
+    }
+
+    // Check if the stack is empty
+    public boolean isEmpty() {
+        return top == -1;
+    }
+
+    // Check if the stack is full
+    public boolean isFull() {
+        return top == size - 1;
+    }
+
+    // Display the stack elements
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Stack is Empty");
+            return;
+        }
+        System.out.print("Stack elements: ");
+        for (int i = 0; i <= top; i++) {
+            System.out.print(stack[i] + " ");
+        }
+        System.out.println();
+    }
+}
+
+// Main class to test the array-based stack implementation
+public class Main {
+    public static void main(String[] args) {
+        ArrayStack stack = new ArrayStack(5); // Create a stack with capacity 5
+
+        // Push elements into the stack
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+
+        // Display stack elements
+        stack.display();
+
+        // Peek the top element
+        System.out.println("Top element is: " + stack.peek());
+
+        // Pop elements from the stack
+        System.out.println("Popped element: " + stack.pop());
+        System.out.println("Popped element: " + stack.pop());
+
+        // Display stack elements after pops
+        stack.display();
+
+        // Push more elements
+        stack.push(50);
+        stack.push(60);
+        stack.push(70);
+        stack.push(80);   // This will cause a stack overflow
+
+        // Display final stack elements
+        stack.display();
+
+        // Peek the top element after pushes
+        System.out.println("Top element is: " + stack.peek());
+    }
+}
+```
+
+**Sample Output**
+
+```java
+10 pushed into stack
+20 pushed into stack
+30 pushed into stack
+40 pushed into stack
+Stack elements: 10 20 30 40 
+Top element is: 40
+Popped element: 40
+Popped element: 30
+Stack elements: 10 20 
+50 pushed into stack
+60 pushed into stack
+Stack Overflow! Cannot push 70
+Stack elements: 10 20 50 60 
+Top element is: 60
+```
+
+---
+
+## Unit 4: Queues
+
+### Lab 4: Java implementation for a queue using array.
+
+```java
+public class ArrayQueue {
+    private int maxSize;
+    private int front;
+    private int rear;
+    private int[] queueArray;
+
+    // Constructor to initialize the queue with a given size
+    public ArrayQueue(int size) {
+        maxSize = size;
+        queueArray = new int[maxSize];
+        front = 0;
+        rear = 0;
+    }
+
+    // Check if the queue is empty
+    public boolean isEmpty() {
+        return front == rear;
+    }
+
+    // Check if the queue is full
+    public boolean isFull() {
+        return rear == maxSize;
+    }
+
+    // Enqueue (insert) an element into the queue
+    public void enqueue(int value) {
+        if (isFull()) {
+            System.out.println("Queue is full. Cannot enqueue " + value);
+            return;
+        }
+        queueArray[rear++] = value; // Increment rear after inserting
+        System.out.println("Enqueued " + value + " into the queue");
+    }
+
+    // Dequeue (remove) an element from the queue
+    public int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Cannot dequeue");
+            return -1; // Return a sentinel value indicating failure
+        }
+        int dequeuedValue = queueArray[front++]; // Increment front after removing
+        System.out.println("Dequeued " + dequeuedValue + " from the queue");
+        return dequeuedValue;
+    }
+
+    // Peek at the front element of the queue without removing it
+    public int peek() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty. Nothing to peek");
+            return -1; // Return a sentinel value indicating failure
+        }
+        return queueArray[front];
+    }
+
+    // Display the elements of the queue
+    public void display() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty");
+            return;
+        }
+        System.out.print("Queue: ");
+        for (int i = front; i < rear; i++) {
+            System.out.print(queueArray[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        ArrayQueue queue = new ArrayQueue(3); // Queue size of 3
+
+        // Test enqueue operation
+        queue.enqueue(1);
+        queue.enqueue(2);
+        queue.enqueue(3); // Should indicate full
+        queue.display();
+
+        // Test peek operation
+        System.out.println("Peek: " + queue.peek());
+
+        // Test dequeue operation
+        queue.dequeue();
+        queue.display();
+
+        // Test enqueue after dequeue
+        queue.enqueue(4); // Should indicate full since linear queue does not reuse space
+        queue.display();
+
+        // Check empty and full states
+        System.out.println("Is queue empty? " + queue.isEmpty());
+        System.out.println("Is queue full? " + queue.isFull());
+    }
+}
+```
+
+**Sample Output**
+```java
+Enqueued 1 into the queue
+Enqueued 2 into the queue
+Enqueued 3 into the queue
+Queue: 1 2 3
+Peek: 1
+Dequeued 1 from the queue
+Queue: 2 3
+Queue is full. Cannot enqueue 4
+Queue: 2 3
+Is queue empty? false
+Is queue full? true
+
+```
+
+---
+
+## Unit 5: Recursion
+
+### Lab 5: Write a java program to find factorial of a number using recursion.
+
+```java
+public class Factorial {
+    // Recursive function to calculate factorial
+    public static int factorial(int n) {
+        if (n == 0 || n == 1) { // Base case
+            return 1;
+        } else {
+            return n * factorial(n - 1); // Recursive call
+        }
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+        int number = 5; // Example number
+        int result = factorial(number);
+        
+        System.out.println("Factorial of " + number + " is: " + result);
+    }
+}
+```
+
+**Sample Output**
+```java
+Factorial of 5 is: 120
+```
+
+---
+
+### Lab 6: Wrtie a java program to find fibonacci sequence using recursion.
+
+```java
+public class Fibonacci {
+
+    // Recursive function to find the nth Fibonacci number
+    public static int fibonacci(int n) {
+        if (n <= 1) {  // Base cases
+            return n;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);  // Recursive call
+        }
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+        int number = 10; // Example for the first 10 Fibonacci numbers
+        System.out.println("Fibonacci Sequence up to " + number + "th term:");
+
+        // Printing Fibonacci sequence
+        for (int i = 0; i < number; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+    }
+}
+```
+**Sample Output**
+```java
+Fibonacci Sequence up to 10th term:
+0 1 1 2 3 5 8 13 21 34 
+```
+---
+
+### Lab 7: Write a java program to find Greatest Common Divisor (GCD) of two numbers using recursion.
+
+```java
+public class GCD {
+
+    // Recursive function to find GCD of two numbers
+    public static int gcd(int a, int b) {
+        if (b == 0) {  // Base case
+            return a;
+        } else {
+            return gcd(b, a % b);  // Recursive call with remainder
+        }
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+        int num1 = 12;  // Example number 1
+        int num2 = 8;  // Example number 2
+        int result = gcd(num1, num2);
+
+        System.out.println("The GCD of " + num1 + " and " + num2 + " is: " + result);
+    }
+}
+```
+
+**Sample Output**
+
+```java
+The GCD of 12 and 8 is: 4
+```
+
+---
+
+### Lab 8: Write a java program to implement Tower of Hanoi using recursion.
+
+```java
+public class TowerOfHanoi {
+
+    // Recursive function to solve the Tower of Hanoi problem
+    public static void towerOfHanoi(int n, char source, char destination, char auxiliary) {
+        if (n == 1) {  // Base case: Only one disk to move
+            System.out.println("Move disk 1 from " + source + " to " + destination);
+            return;
+        }
+        
+        // Step 1: Move n-1 disks from source to auxiliary peg
+        towerOfHanoi(n - 1, source, auxiliary, destination);
+        
+        // Step 2: Move the nth disk from source to destination peg
+        System.out.println("Move disk " + n + " from " + source + " to " + destination);
+        
+        // Step 3: Move n-1 disks from auxiliary to destination peg
+        towerOfHanoi(n - 1, auxiliary, destination, source);
+    }
+
+    // Driver method
+    public static void main(String[] args) {
+        int n = 3;  // Example: Number of disks
+        char source = 'A';  // Source peg
+        char destination = 'C';  // Destination peg
+        char auxiliary = 'B';  // Auxiliary peg
+        
+        System.out.println("Solution for Tower of Hanoi with " + n + " disks:");
+        towerOfHanoi(n, source, destination, auxiliary);
+    }
+}
+```
+
+**Sample Output**
+```java
+Solution for Tower of Hanoi with 3 disks:
+Move disk 1 from A to C
+Move disk 2 from A to B
+Move disk 1 from C to B
+Move disk 3 from A to C
+Move disk 1 from B to A
+Move disk 2 from B to C
+Move disk 1 from A to C
+```
 
 
