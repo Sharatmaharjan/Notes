@@ -1,3 +1,4 @@
+**10-mark questions** for each unit of **Multimedia Computing (CSC319):*
 ### **Unit 1: Introduction to Multimedia Systems**  
 **Question:**  
 Multimedia systems integrate different types of media and have various applications across industries.  
@@ -83,5 +84,81 @@ Multimedia applications have transformed various industries through their use in
 (b) Discuss the **role of multimedia editors and authoring tools** in creating interactive applications. (3 Marks)  
 (c) Explain the **importance of telemedicine and e-learning** as multimedia applications. Provide real-world examples. (2 Marks)  
 (d) How have **video conferencing and video-on-demand** revolutionized multimedia communication? (2 Marks)  
+
+---
+
+**5-mark questions** for each unit of **Multimedia Computing (CSC319):**  
+
+---
+
+### **Unit 1: Introduction to Multimedia Systems**  
+1. Explain the **basic applications of multimedia systems** in different sectors.  
+2. What are the **different types of media** in multimedia? Explain with examples.  
+3. Discuss the **key characteristics of a multimedia system**.  
+4. What are the **challenges in multimedia systems**, such as **synchronization, sequencing, and distributed networks**?  
+5. List and explain the **main components of a multimedia system**.  
+
+---
+
+### **Unit 2: Sound / Audio System**  
+1. Explain **frequency, amplitude, sampling rate, and quantization** in sound processing.  
+2. What is **MIDI**? Explain its **components and working mechanism**.  
+3. Discuss the **basic concepts of speech generation** in multimedia applications.  
+4. What are the **main research areas in speech analysis**? Explain briefly.  
+5. Explain the **process of speech transmission and coding techniques**.  
+
+---
+
+### **Unit 3: Images and Graphics**  
+1. Explain **digital image representation** and its importance in multimedia.  
+2. What are the **different image formats and their applications**?  
+3. Discuss the **role of dithering in image processing**.  
+4. Explain the **steps involved in image recognition**.  
+5. How does **image transmission** work in multimedia systems?  
+
+---
+
+### **Unit 4: Video and Animation**  
+1. Explain the **concept of video signal representation**.  
+2. What are the **various stages of computer-based animation**?  
+3. Discuss **different methods of controlling animation** in multimedia.  
+4. Explain **animation display and transmission techniques**.  
+5. How does **computer video format** impact multimedia applications?  
+
+---
+
+### **Unit 5: Data Compression**  
+1. Why is **data compression important** in multimedia?  
+2. Explain **Huffman coding** with an example.  
+3. What are the **steps involved in JPEG image compression**?  
+4. Differentiate between **lossy and lossless compression**.  
+5. Compare **JPEG and MPEG compression techniques**.  
+
+---
+
+### **Unit 6: User Interfaces**  
+1. What are the **basic design issues in multimedia user interfaces**?  
+2. How do **video and audio** enhance the multimedia user experience?  
+3. Explain the **importance of user-friendliness in multimedia applications**.  
+4. What are **dialogue boxes**, and how do they contribute to UI design?  
+5. Explain **architectural issues in multimedia interfaces**.  
+
+---
+
+### **Unit 7: Abstractions for Programming**  
+1. What are **the different levels of abstraction** in multimedia programming?  
+2. Explain the **role of multimedia libraries and toolkits**.  
+3. How do **higher programming languages** manage multimedia files and processes?  
+4. Discuss the **object-oriented approach in multimedia programming**.  
+5. What is the **importance of interprocess communication** in multimedia?  
+
+---
+
+### **Unit 8: Multimedia Applications**  
+1. Explain the **role of media preparation and composition** in multimedia.  
+2. What are **multimedia editors**? Explain their significance.  
+3. Discuss the **applications of multimedia in e-learning**.  
+4. How does **telemedicine benefit from multimedia technologies**?  
+5. Explain the **concept of video conferencing and video-on-demand**.  
 
 ---
