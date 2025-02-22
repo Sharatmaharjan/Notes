@@ -245,7 +245,19 @@ Animal makes a sound.
 Dog barks.
 Cat meows.
 ```
+### Explanation of Dynamic Method Dispatch:
+1. `myAnimal.sound()`:
+   - The reference type is `Animal`, and the object type is `Animal`. So, it calls the `sound()` method in the `Animal` class.
 
+2. `myDog.sound()`:
+   - The reference type is `Animal`, but the object type is `Dog`. Because the `Dog` class overrides the `sound()` method, it calls the `sound()` method in the `Dog` class.
+
+3. `myCat.sound()`:
+   - The reference type is `Animal`, but the object type is `Cat`. Since the `Cat` class overrides the `sound()` method, it calls the `sound()` method in the `Cat` class.
+
+### Key Point:
+- Even though the reference variables (`myAnimal`, `myDog`, `myCat`) are all of type `Animal`, the actual method that gets called is determined at runtime based on the object's class. This is what makes dynamic method dispatch possible in Java.
+---
 #### 1.6 The `Object` Class
 The `Object` class is the root of the class hierarchy in Java. Every class in Java is directly or indirectly derived from the `Object` class.
 
