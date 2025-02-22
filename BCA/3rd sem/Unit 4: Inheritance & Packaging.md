@@ -74,7 +74,8 @@ Car is accelerating.
 - The `super` keyword is used to refer to the parent class or superclass. It can be used in various ways:
 
 1. **Accessing Parent Class Methods**
-   - If a subclass overrides a method, we can use `super` to call the method from the superclass.
+- If a subclass overrides a method, we can use `super` to call the method from the superclass.
+  
    ```java
    class Animal {
        void sound() {
@@ -97,7 +98,9 @@ Car is accelerating.
        }
    }
    ```
-   **Output:**
+   
+   **Sample Output:**
+  
    ```
    Animal makes a sound
    Dog barks
@@ -105,6 +108,7 @@ Car is accelerating.
 
 2. **Accessing Parent Class Constructor**
 - We can use `super()` to call the constructor of the superclass. This must be the first statement in the subclass constructor.
+  
    ```java
    class Animal {
        Animal() {
@@ -125,7 +129,8 @@ Car is accelerating.
        }
    }
    ```
-   **Output:**
+   **Sample Output:**
+  
    ```
    Animal Constructor
    Dog Constructor
@@ -133,6 +138,7 @@ Car is accelerating.
 
 4. **Accessing Parent Class Fields**
 - We can use `super` to access fields of the parent class, especially if they are hidden by the subclass.
+  
    ```java
    class Animal {
        String name = "Animal";
@@ -154,7 +160,9 @@ Car is accelerating.
        }
    }
    ```
-   **Output:**
+   
+   **Sample Output:**
+  
    ```
    Dog
    Animal
