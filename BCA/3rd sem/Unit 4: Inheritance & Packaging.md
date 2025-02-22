@@ -201,8 +201,13 @@ public class Main {
 Dog barks.
 ```
 
-#### 1.5 Dynamic Method Dispatch
+#### 1.5 Dynamic Method Dispatch (also known as **runtime polymorphism**)
 Dynamic method dispatch is a mechanism by which a call to an overridden method is resolved at runtime rather than compile time.
+
+### Code Explanation:
+- **Animal class** has a method `sound()`.
+- **Dog class** and **Cat class** both extend `Animal` and override the `sound()` method to provide their specific implementations.
+- **Dynamic Method Dispatch** occurs when you assign instances of `Dog` and `Cat` to `Animal` references. At runtime, the actual method to be executed is determined by the object type (either `Dog` or `Cat`), not by the reference type (`Animal`).
 
 **Example:**
 ```java
