@@ -71,40 +71,96 @@ Car is accelerating.
 ```
 
 #### 1.3 `super` Keyword Usage
-The `super` keyword is used to refer to the superclass's properties (fields, methods, and constructors).
+The `super` keyword is used to refer to the parent class or superclass. It can be used in various ways:
 
-**Example:**
-```java
-class Animal {
-    String name = "Animal";
+1. **Accessing Parent Class Methods**
+   - If a subclass overrides a method, you can use `super` to call the method from the superclass.
+   ```java
+   class Animal {
+       void sound() {
+           System.out.println("Animal makes a sound");
+       }
+   }
 
-    void display() {
-        System.out.println("Name: " + name);
-    }
-}
+   class Dog extends Animal {
+       @Override
+       void sound() {
+           super.sound();  // Calling the superclass method
+           System.out.println("Dog barks");
+       }
+   }
 
-class Dog extends Animal {
-    String name = "Dog";
+   public class Main {
+       public static void main(String[] args) {
+           Dog dog = new Dog();
+           dog.sound();
+       }
+   }
+   ```
+   **Output:**
+   ```
+   Animal makes a sound
+   Dog barks
+   ```
 
-    void display() {
-        super.display(); // Calls the superclass method
-        System.out.println("Name: " + name);
-    }
-}
+2. **Accessing Parent Class Constructor**
+   - You can use `super()` to call the constructor of the superclass. This must be the first statement in the subclass constructor.
+   ```java
+   class Animal {
+       Animal() {
+           System.out.println("Animal Constructor");
+       }
+   }
 
-public class Main {
-    public static void main(String[] args) {
-        Dog myDog = new Dog();
-        myDog.display();
-    }
-}
-```
+   class Dog extends Animal {
+       Dog() {
+           super();  // Calling the parent class constructor
+           System.out.println("Dog Constructor");
+       }
+   }
 
-**Sample Output:**
-```
-Name: Animal
-Name: Dog
-```
+   public class Main {
+       public static void main(String[] args) {
+           Dog dog = new Dog();
+       }
+   }
+   ```
+   **Output:**
+   ```
+   Animal Constructor
+   Dog Constructor
+   ```
+
+3. **Accessing Parent Class Fields**
+   - You can use `super` to access fields of the parent class, especially if they are hidden by the subclass.
+   ```java
+   class Animal {
+       String name = "Animal";
+   }
+
+   class Dog extends Animal {
+       String name = "Dog";
+
+       void printNames() {
+           System.out.println(name);         // Prints the subclass field
+           System.out.println(super.name);   // Prints the superclass field
+       }
+   }
+
+   public class Main {
+       public static void main(String[] args) {
+           Dog dog = new Dog();
+           dog.printNames();
+       }
+   }
+   ```
+   **Output:**
+   ```
+   Dog
+   Animal
+   ```
+
+---
 
 #### 1.4 Overriding Methods
 Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
