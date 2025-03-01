@@ -42,7 +42,7 @@ String 2: Hello, Java!
 | **Performance**      | More memory-efficient                       | Less memory-efficient                      |
 | **Use Case**         | Preferred for fixed strings                 | Used when dynamic string creation is needed|
 
-### Lab 2: Creation of a String
+#### Lab 2: Creation of a String
 ```java
 public class StringCreationExample {
     public static void main(String[] args) {
