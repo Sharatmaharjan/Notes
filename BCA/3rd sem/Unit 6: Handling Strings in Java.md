@@ -25,15 +25,54 @@ public class StringCreation {
 ```
 
 #### Explanation:
-- **String Literal**: When you create a string using double quotes (`" "`), Java checks the **String Pool** to see if the string already exists. If it does, it returns the reference to the existing string. Otherwise, it creates a new string in the pool.
-- **`new` Keyword**: This creates a new string object in the heap memory, regardless of whether the string already exists in the pool.
+- **String Literal**: When you create a string using double quotes (" "), Java automatically creates a String object and stores it in the String Pool (a special memory area for strings). If the string already exists in the pool, Java reuses it instead of creating a new object.
+- **`new` Keyword**: When you create a string using the new keyword, Java creates a new String object in the heap memory, even if the same string already exists in the String Pool.
 
 #### Output:
 ```
 String 1: Hello, World!
 String 2: Hello, Java!
 ```
+### **Key Differences Between String Literal and `new` Keyword**
 
+| **Aspect**          | **String Literal**                          | **`new` Keyword**                          |
+|----------------------|---------------------------------------------|--------------------------------------------|
+| **Memory Allocation** | Stored in the **String Pool**              | Stored in the **Heap Memory**              |
+| **Object Reuse**     | Reuses existing objects in the String Pool  | Always creates a new object                |
+| **Performance**      | More memory-efficient                       | Less memory-efficient                      |
+| **Use Case**         | Preferred for fixed strings                 | Used when dynamic string creation is needed|
+
+### Extra:
+```java
+public class StringCreationExample {
+    public static void main(String[] args) {
+        // Using String Literal
+        String str1 = "Hello, World!";
+        String str2 = "Hello, World!"; // Reuses the same object from the String Pool
+        
+        // Using new Keyword
+        String str3 = new String("Hello, World!"); // Creates a new object in heap memory
+        
+        System.out.println("String 1: " + str1);
+        System.out.println("String 2: " + str2);
+        System.out.println("String 3: " + str3);
+        
+        // Check if str1 and str2 point to the same object
+        System.out.println("Are str1 and str2 the same object? " + (str1 == str2));
+        
+        // Check if str1 and str3 point to the same object
+        System.out.println("Are str1 and str3 the same object? " + (str1 == str3));
+    }
+}
+```
+Output:
+```
+String 1: Hello, World!
+String 2: Hello, World!
+String 3: Hello, World!
+Are str1 and str2 the same object? true
+Are str1 and str3 the same object? false
+```
 ---
 
 ### 2. **Concatenation of Strings**
