@@ -13,7 +13,7 @@ In Java, **exceptions** are events that disrupt the normal flow of a program. Th
 2. **Unchecked Exceptions**:
    - These are exceptions that are checked at **runtime**.
    - Examples: `ArithmeticException`, `NullPointerException`, `ArrayIndexOutOfBoundsException`.
-   - Unchecked exceptions are not required to be explicitly declared using throws or manually thrown using throw. The Java runtime automatically detects and throws these exceptions when specific    conditions occur (e.g., division by zero).
+   - Unchecked exceptions are not required to be explicitly handled using `try-catch`, declared with `throws`, or manually thrown using `throw`. The Java runtime automatically detects and throws these exceptions when specific conditions occur, such as division by zero. However, it is considered good practice to use `try-catch` to handle them gracefully and prevent unexpected program crashes.
 ```java
 import java.io.*;
 
