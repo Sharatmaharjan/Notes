@@ -75,6 +75,7 @@ Car is accelerating.
 
 1. **Accessing Parent Class Methods**
 - If a subclass overrides a method, we can use `super` to call the method from the superclass.
+  
   **Lab 3: Accessing Parent Class Methods**
    ```java
    class Animal {
@@ -108,6 +109,7 @@ Car is accelerating.
 
 2. **Accessing Parent Class Constructor**
 - We can use `super()` to call the constructor of the superclass. This must be the first statement in the subclass constructor.
+  
   **Lab 4: Accessing Parent Class Constructor**
    ```java
    class Animal {
@@ -138,6 +140,7 @@ Car is accelerating.
 
 3. **Accessing Parent Class Fields**
 - We can use `super` to access fields of the parent class, especially if they are hidden by the subclass.
+  
   **Lab 5: Accessing Parent Class Fields**
    ```java
    class Animal {
