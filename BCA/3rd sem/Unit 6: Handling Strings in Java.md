@@ -413,7 +413,7 @@ After reverse: !dlroW ,avaJ olleH
   - **Arguments**: `start` - The starting index, `end` - The ending index (exclusive).
 ---
 
-**What students have learned**
+### **What students have learned**
 
 1. **Creation, Concatenation, and Conversion of Strings**: Students learned how to create strings, combine them using concatenation, and convert data types (e.g., numbers to strings or vice versa).
 
