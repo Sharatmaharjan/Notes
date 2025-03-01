@@ -212,7 +212,9 @@ public class CharacterExtraction {
         char[] charArray = str.toCharArray();
         
         System.out.println("Character at index 2: " + ch1);
-        System.out.println("Character Array: " + Arrays.toString(charArray));
+        System.out.println("Character Array: " + Arrays.toString(charArray)); //Character Array: [J, a, v, a]
+        //String str = new String(charArray);
+        //System.out.println(str);  // Output: Hello
     }
 }
 ```
