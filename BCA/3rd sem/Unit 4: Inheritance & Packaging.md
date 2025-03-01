@@ -206,7 +206,7 @@ Dynamic method dispatch is a mechanism by which a call to an overridden method i
 
 - **Animal class** has a method `sound()`.
 - **Dog class** and **Cat class** both extend `Animal` and override the `sound()` method to provide their specific implementations.
-- **Dynamic Method Dispatch** occurs when you assign instances of `Dog` and `Cat` to `Animal` references. At runtime, the actual method to be executed is determined by the object type (either `Dog` or `Cat`), not by the reference type (`Animal`).
+- **Dynamic Method Dispatch** occurs when we assign instances of `Dog` and `Cat` to `Animal` references. At runtime, the actual method to be executed is determined by the object type (either `Dog` or `Cat`), not by the reference type (`Animal`).
 
 **Lab 7: Dynamic Method Dispatch**
 ```java
