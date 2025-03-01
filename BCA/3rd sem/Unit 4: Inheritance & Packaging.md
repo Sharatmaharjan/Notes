@@ -6,7 +6,7 @@ Inheritance is a mechanism in Java that allows one class to inherit the properti
 #### 1.1 Using the `extends` Keyword
 The `extends` keyword is used to create a subclass(child) that inherits from a superclass(parent).
 
-**Example:**
+**Lab 1: Using the `extends` Keyword**
 ```java
 // Superclass
 class Animal {
@@ -41,7 +41,7 @@ The dog barks.
 - **Superclass**: The class whose properties are inherited.
 - **Subclass**: The class that inherits the properties of the superclass.
 
-**Example:**
+**Lab 2: Subclasses and Superclasses**
 ```java
 class Vehicle {
     void run() {
@@ -75,7 +75,7 @@ Car is accelerating.
 
 1. **Accessing Parent Class Methods**
 - If a subclass overrides a method, we can use `super` to call the method from the superclass.
-  
+  **Lab 3: Accessing Parent Class Methods**
    ```java
    class Animal {
        void sound() {
@@ -108,7 +108,7 @@ Car is accelerating.
 
 2. **Accessing Parent Class Constructor**
 - We can use `super()` to call the constructor of the superclass. This must be the first statement in the subclass constructor.
-  
+  **Lab 4: Accessing Parent Class Constructor**
    ```java
    class Animal {
        Animal() {
@@ -136,9 +136,9 @@ Car is accelerating.
    Dog Constructor
    ```
 
-4. **Accessing Parent Class Fields**
+3. **Accessing Parent Class Fields**
 - We can use `super` to access fields of the parent class, especially if they are hidden by the subclass.
-  
+  **Lab 5: Accessing Parent Class Fields**
    ```java
    class Animal {
        String name = "Animal";
@@ -173,7 +173,7 @@ Car is accelerating.
 #### 1.4 Overriding Methods
 Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass.
 
-**Example:**
+**Lab 6: Overriding Methods**
 ```java
 class Animal {
     void sound() {
@@ -204,12 +204,11 @@ Dog barks.
 #### 1.5 Dynamic Method Dispatch (also known as **runtime polymorphism**)
 Dynamic method dispatch is a mechanism by which a call to an overridden method is resolved at runtime rather than compile time.
 
-### Code Explanation:
 - **Animal class** has a method `sound()`.
 - **Dog class** and **Cat class** both extend `Animal` and override the `sound()` method to provide their specific implementations.
 - **Dynamic Method Dispatch** occurs when you assign instances of `Dog` and `Cat` to `Animal` references. At runtime, the actual method to be executed is determined by the object type (either `Dog` or `Cat`), not by the reference type (`Animal`).
 
-**Example:**
+**Lab 7: Dynamic Method Dispatch**
 ```java
 class Animal {
     void sound() {
@@ -260,13 +259,12 @@ Cat meows.
 3. `myCat.sound()`:
    - The reference type is `Animal`, but the object type is `Cat`. Since the `Cat` class overrides the `sound()` method, it calls the `sound()` method in the `Cat` class.
 
-### Key Point:
 - Even though the reference variables (`myAnimal`, `myDog`, `myCat`) are all of type `Animal`, the actual method that gets called is determined at runtime based on the object's class. This is what makes dynamic method dispatch possible in Java.
 ---
 #### 1.6 The `Object` Class
 The `Object` class is the root of the class hierarchy in Java. Every class in Java is directly or indirectly derived from the `Object` class.
 
-**Example:**
+**Lab 8: The `Object` Class**
 ```java
 class MyClass {
     // This class implicitly extends Object
@@ -289,7 +287,7 @@ MyClass@1b6d3586
 - **Abstract Class**: A class that cannot be instantiated and is meant to be subclassed. It can contain abstract methods (methods without a body).
 - **Final Class**: A class that cannot be subclassed.
 
-**Example:**
+**Lab 9: Abstract and Final Classes**
 ```java
 abstract class Shape {
     abstract void draw();
@@ -331,7 +329,7 @@ Packages are used to organize classes and interfaces into namespaces.
 #### 2.1 Defining a Package
 A package is defined using the `package` keyword at the top of a Java file.
 
-**Example:**
+**Lab 10: Defining a Package**
 ```java
 package com.example;
 
@@ -345,7 +343,7 @@ public class MyClass {
 #### 2.2 Importing a Package
 The `import` keyword is used to import classes and interfaces from other packages.
 
-**Example:**
+**Lab 10: Importing a Package**
 ```java
 import com.example.MyClass;
 
@@ -370,7 +368,7 @@ Java provides access modifiers to control the visibility of classes, methods, an
 - **default (no modifier)**: Accessible within the same package.
 - **private**: Accessible only within the same class.
 
-**Example:**
+**Lab 11: Access Control**
 ```java
 package com.example;
 
@@ -413,7 +411,7 @@ interface Animal {
 #### 3.2 Implementing and Applying Interfaces
 A class implements an interface using the `implements` keyword.
 
-**Example:**
+**Lab 12: Implementing and Applying Interfaces**
 ```java
 interface Animal {
     void sound();
@@ -442,7 +440,7 @@ Dog barks.
 #### 3.3 Default and Static Methods in Interfaces
 Java 8 introduced default and static methods in interfaces.
 
-**Example:**
+**Lab 13: Default and Static Methods in Interfaces**
 ```java
 interface Animal {
     void sound(); // Abstract method
