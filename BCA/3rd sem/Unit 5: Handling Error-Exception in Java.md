@@ -1,9 +1,9 @@
-# Unit 5: Handling Error/Exception in Java
+## Unit 5: Handling Error/Exception in Java
 
-## 1. Basic Exceptions
+### 1. Basic Exceptions
 In Java, **exceptions** are events that disrupt the normal flow of a program. They occur during the execution of a program when something unexpected happens, such as dividing by zero, accessing an invalid index in an array, or trying to open a file that doesn't exist. Java provides a robust mechanism to handle exceptions using **try-catch blocks**, **throw**, and **throws** keywords.
 
-### **Types of Exceptions**
+#### **Types of Exceptions**
 
 1. **Checked Exceptions**:
    - These are exceptions that are checked at **compile-time**.
@@ -19,9 +19,8 @@ In Java, **exceptions** are events that disrupt the normal flow of a program. Th
    - These are severe issues that are not meant to be handled by the program.
    - Examples: `OutOfMemoryError`, `StackOverflowError`.
 
----
 
-### **Exception Handling Mechanism**
+#### **Exception Handling Mechanism**
 
 Java provides five keywords for exception handling:
 1. **`try`**: A block of code where exceptions might occur.
@@ -30,7 +29,7 @@ Java provides five keywords for exception handling:
 4. **`throw`**: Used to explicitly throw an exception.
 5. **`throws`**: Used to declare exceptions that a method might throw.
 
-### **Common Exceptions in Java**
+#### **Common Exceptions in Java**
 
 1. **ArithmeticException**: Occurs when dividing by zero.
 2. **NullPointerException**: Occurs when trying to access a null object.
@@ -39,7 +38,7 @@ Java provides five keywords for exception handling:
 5. **NumberFormatException**: Occurs when converting a string to a numeric type fails.
 
 
-### Lab 1: Basic Exception
+#### Lab 1: Basic Exception
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -65,10 +64,10 @@ Cannot divide by zero!
 
 ---
 
-## 2. Proper Use of Exceptions
+### 2. Proper Use of Exceptions
 Exceptions should be used for exceptional conditions only, not for regular control flow. They are costly in terms of performance and should not be used to handle predictable conditions that can be checked with simple if-else statements.
 
-### Example: Proper Use of Exceptions
+#### Lab 2: Proper Use of Exceptions
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -90,10 +89,10 @@ Index out of bounds!
 - Instead of using a try-catch block to handle an `ArrayIndexOutOfBoundsException`, we use an if-else statement to check the index bounds.
 - This is more efficient and clearer for predictable conditions.
 
-## 3. User-Defined Exceptions
-Java allows you to create your own exceptions by extending the `Exception` class. This is useful for creating specific exception types for your application.
+### 3. User-Defined Exceptions
+Java allows us to create our own exceptions by extending the `Exception` class. This is useful for creating specific exception types for our application.
 
-### Example: User-Defined Exception
+#### Lab 3: User-Defined Exception
 ```java
 class InvalidAgeException extends Exception {
     public InvalidAgeException(String message) {
