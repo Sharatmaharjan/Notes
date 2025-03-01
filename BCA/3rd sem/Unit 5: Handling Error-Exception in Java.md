@@ -101,20 +101,20 @@ class InvalidAgeException extends Exception {
 }
 
 public class Main {
-    static void validateAge(int age) throws InvalidAgeException {
-        if (age < 18) {
-            throw new InvalidAgeException("Age must be 18 or above.");
-        } else {
-            System.out.println("Age is valid.");
+    static void validateAge(int age) {
+        try {
+            if (age < 18) {
+                throw new InvalidAgeException("Age must be 18 or above.");//set message
+            } else {
+                System.out.println("Age is valid.");
+            }
+        } catch (InvalidAgeException e) {
+            System.out.println("Caught an exception: " + e.getMessage());//get message
         }
     }
 
     public static void main(String[] args) {
-        try {
-            validateAge(15); // This will throw an InvalidAgeException
-        } catch (InvalidAgeException e) {
-            System.out.println("Caught an exception: " + e.getMessage());
-        }
+        validateAge(15); // This will internally handle the exception
     }
 }
 ```
