@@ -479,3 +479,38 @@ This is an Animal interface.
 ```
 
 ---
+### **What students have learned**
+
+In this unit, students learned key **object-oriented programming (OOP)** concepts in Java, focusing on **inheritance**, **packages**, and **interfaces**.
+
+
+### **1. Inheritance: Promotes code reusability and establishes relationships between classes.** 
+- **Purpose**: Allows a class (subclass) to inherit properties (fields and methods) from another class (superclass).
+- **Key Concepts**:
+  - `extends` keyword: Used to create a subclass.
+  - `super` keyword: Refers to the superclass's methods, constructors, or variables.
+  - **Method Overriding**: Subclass provides a specific implementation of a superclass method.
+  - **Dynamic Method Dispatch**: Runtime polymorphism for overridden methods.
+  - **Object Class**: All classes implicitly inherit from the `Object` class.
+  - **Abstract Classes**: Cannot be instantiated; may contain abstract methods.
+  - **Final Classes**: Cannot be subclassed.
+
+---
+
+### **2. Packages: Organize code and manage access control.**
+- **Purpose**: Organize classes and interfaces into namespaces to avoid naming conflicts.
+- **Key Concepts**:
+  - **Defining a Package**: Use the `package` keyword.
+  - **Importing a Package**: Use the `import` keyword to access classes from other packages.
+  - **Access Control**: Use access modifiers (`public`, `protected`, `private`, default) to control visibility.
+
+---
+
+### **3. Interfaces: Enable abstraction, polymorphism, and multiple inheritance.**
+- **Purpose**: Define a contract (set of methods) that classes must implement.
+- **Key Concepts**:
+  - **Defining an Interface**: Use the `interface` keyword.
+  - **Implementing Interfaces**: Use the `implements` keyword to provide method implementations.
+  - **Applying Interfaces**: Enable abstraction and multiple inheritance.
+
+---
