@@ -232,7 +232,8 @@ Character Array: [J, a, v, a]
 Strings can be compared using:
 - `equals()`: Compares the content of two strings.
 - `equalsIgnoreCase()`: Compares strings ignoring case.
-- `compareTo()`: Compares strings lexicographically.
+- `compareTo()`: Compares strings lexicographically(based on the Unicode value of each character in the string). The Unicode value for 'H' is 72 and for 'h' is 104.
+Since 'H' (72) is lexicographically smaller than 'h' (104), the compareTo() method will return a negative integer (specifically, -32, which is the difference in Unicode values between 'H' and 'h').
 
 #### Example:
 ```java
