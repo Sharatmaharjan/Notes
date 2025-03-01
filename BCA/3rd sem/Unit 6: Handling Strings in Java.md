@@ -41,12 +41,16 @@ String 2: Hello, Java!
 | **Object Reuse**     | Reuses existing objects in the String Pool  | Always creates a new object                |
 | **Performance**      | More memory-efficient                       | Less memory-efficient                      |
 | **Use Case**         | Preferred for fixed strings                 | Used when dynamic string creation is needed|
-
+```
+Notes:
 The String Pool is a special memory region in the Java Virtual Machine (JVM) that is used to store string literals and immutable string objects. It is part of the JVM's heap memory but is managed separately to optimize memory usage and improve performance when working with strings.
 
 Why is the String Pool Important?
+
 Strings are one of the most commonly used data types in programming, and they are often created repeatedly in applications. To avoid creating multiple copies of the same string in memory, Java uses the String Pool as a mechanism to reuse existing string objects whenever possible. This approach saves memory and enhances efficiency.
 
+Heap memory is a region of the computer's memory used for dynamic memory allocation during program execution. It is one of the key components of memory management in programming languages like Java, C++, Python, and others. Unlike stack memory (which is used for static memory allocation), heap memory is flexible and allows programs to allocate and deallocate memory dynamically as needed.
+```
 
 
 #### Lab 2: Creation of a String
