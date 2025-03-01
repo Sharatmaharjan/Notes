@@ -65,6 +65,7 @@ Object Creation :
 - "Hello" is stored in the heap .
 - s (the reference to "Hello") is stored in the stack .
 
+---
 
 #### Lab 2: Creation of a String
 ```java
