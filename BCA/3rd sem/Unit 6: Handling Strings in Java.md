@@ -285,6 +285,15 @@ Contains 'World': true
 - `indexOf()` returns the index of the first occurrence of a character or substring.
 - `contains()` returns `true` if the substring is found.
 
+### **Summary of String Searching Methods:**
+
+- **`indexOf()`**: Finds the first occurrence of a character or substring within a string.
+- **`lastIndexOf()`**: Finds the last occurrence of a character or substring within a string.
+- **`contains()`**: Checks if a specific substring exists within the string.
+- **`startsWith()`**: Checks if the string starts with a given substring.
+- **`endsWith()`**: Checks if the string ends with a specified substring.
+- **`matches()`**: Checks if the string matches a given regular expression.
+
 ---
 
 ## 8. **Modifying Strings**
