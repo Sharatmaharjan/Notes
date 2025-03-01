@@ -157,13 +157,13 @@ public class Main {
             } else {
                 System.out.println("Age is valid.");
             }
-        } catch (InvalidAgeException e) {
+        } catch (InvalidAgeException e) {//exception won't propagate to the caller(main method) since we didn't rethrow
             System.out.println("Caught an exception: " + e.getMessage());//get message
         }
     }
 
     public static void main(String[] args) {
-        validateAge(15); // This will internally handle the exception
+        validateAge(15); // This will internally handle the exception->does not have access to the exception e
     }
 }
 ```
@@ -212,20 +212,25 @@ Array index is out of bounds!
 
 ### Example: Throwing and Rethrowing
 ```java
-public class Main {
-    static void checkAge(int age) throws ArithmeticException {
-        if (age < 18) {
-            throw new ArithmeticException("Access denied - You must be at least 18 years old.");
-        } else {
-            System.out.println("Access granted - You are old enough!");
+public class RethrowExample {
+    public static void checkAge(int age) {
+        try {
+            if (age < 18) {
+                throw new ArithmeticException("Access denied - You must be at least 18 years old.");
+            } else {
+                System.out.println("Access granted - You are old enough!");
+            }
+        } catch (ArithmeticException e) {
+            System.out.println("Initial exception caught: " + e.getMessage());
+            throw e;// Rethrow the exception to propagate it further->the exception is rethrown to propagate it to the caller (main method).
         }
     }
 
     public static void main(String[] args) {
         try {
-            checkAge(15); // This will throw an ArithmeticException
-        } catch (ArithmeticException e) {
-            System.out.println("Caught an exception: " + e.getMessage());
+            checkAge(15); // This will throw and rethrow an ArithmeticException
+        } catch (ArithmeticException e) {// Catch the rethrown exception in the main method
+            System.out.println("Final exception caught in main: " + e.getMessage());
         }
     }
 }
