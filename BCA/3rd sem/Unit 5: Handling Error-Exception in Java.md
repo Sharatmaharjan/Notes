@@ -1,12 +1,45 @@
 # Unit 5: Handling Error/Exception in Java
 
 ## 1. Basic Exceptions
-Exceptions are events that occur during the execution of a program that disrupt the normal flow of instructions. In Java, exceptions are objects that wrap an error event that occurred within a method and contain:
-- Information about the error including its type.
-- The state of the program when the error occurred.
-- Optionally, other custom information.
+In Java, **exceptions** are events that disrupt the normal flow of a program. They occur during the execution of a program when something unexpected happens, such as dividing by zero, accessing an invalid index in an array, or trying to open a file that doesn't exist. Java provides a robust mechanism to handle exceptions using **try-catch blocks**, **throw**, and **throws** keywords.
 
-### Example: Basic Exception
+### **Types of Exceptions**
+
+1. **Checked Exceptions**:
+   - These are exceptions that are checked at **compile-time**.
+   - Examples: `IOException`, `SQLException`, `ClassNotFoundException`.
+   - The programmer must handle these exceptions using `try-catch` blocks or declare them using the `throws` keyword.
+
+2. **Unchecked Exceptions**:
+   - These are exceptions that are checked at **runtime**.
+   - Examples: `ArithmeticException`, `NullPointerException`, `ArrayIndexOutOfBoundsException`.
+   - These are not required to be handled explicitly.
+
+3. **Errors**:
+   - These are severe issues that are not meant to be handled by the program.
+   - Examples: `OutOfMemoryError`, `StackOverflowError`.
+
+---
+
+### **Exception Handling Mechanism**
+
+Java provides five keywords for exception handling:
+1. **`try`**: A block of code where exceptions might occur.
+2. **`catch`**: A block that handles the exception.
+3. **`finally`**: A block that executes regardless of whether an exception occurs.
+4. **`throw`**: Used to explicitly throw an exception.
+5. **`throws`**: Used to declare exceptions that a method might throw.
+
+### **Common Exceptions in Java**
+
+1. **ArithmeticException**: Occurs when dividing by zero.
+2. **NullPointerException**: Occurs when trying to access a null object.
+3. **ArrayIndexOutOfBoundsException**: Occurs when accessing an invalid array index.
+4. **IOException**: Occurs during input/output operations.
+5. **NumberFormatException**: Occurs when converting a string to a numeric type fails.
+
+
+### Lab 1: Basic Exception
 ```java
 public class Main {
     public static void main(String[] args) {
@@ -29,6 +62,8 @@ Cannot divide by zero!
 - The code attempts to divide `a` by `b`, which is zero, leading to an `ArithmeticException`.
 - The `try` block contains the code that might throw an exception.
 - The `catch` block catches the exception and handles it by printing an error message.
+
+---
 
 ## 2. Proper Use of Exceptions
 Exceptions should be used for exceptional conditions only, not for regular control flow. They are costly in terms of performance and should not be used to handle predictable conditions that can be checked with simple if-else statements.
