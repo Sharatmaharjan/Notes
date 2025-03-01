@@ -60,6 +60,11 @@ Object Creation :
 - Storing references to objects (the actual objects are stored in the heap).
 - Managing method calls and local variables.
 
+**In String s = new String("Hello");:**
+- "Hello" is stored in the heap .
+- s (the reference to "Hello") is stored in the stack .
+
+
 #### Lab 2: Creation of a String
 ```java
 public class StringCreationExample {
