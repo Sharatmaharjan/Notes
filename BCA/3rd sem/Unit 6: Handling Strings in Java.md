@@ -264,14 +264,14 @@ You can search for characters or substrings within a string using methods like `
 ```java
 public class Main {
     public static void main(String[] args) {
-        String str = "Hello, World!";
+        String str = "Hello, World!";//main string
 
         // Search for a character
         int index = str.indexOf('W');
         System.out.println("Index of 'W': " + index);
 
         // Search for a substring
-        boolean contains = str.contains("World");
+        boolean contains = str.contains("World");//sub-string
         System.out.println("Contains 'World': " + contains);
     }
 }
