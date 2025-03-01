@@ -141,6 +141,28 @@ public class StringConversion {
 String to int: 123
 int to String: 456
 ```
+### **Summary Table of String Conversion**  
+
+| **Conversion Type**       | **Method Used**                  |  
+|--------------------------|--------------------------------|  
+| **String → int**         | `Integer.parseInt(str)`       |  
+| **int → String**         | `Integer.toString(num)`, `String.valueOf(num)` |  
+| **String → double**      | `Double.parseDouble(str)`     |  
+| **double → String**      | `Double.toString(num)`        |  
+| **String → boolean**     | `Boolean.parseBoolean(str)`  |  
+| **boolean → String**     | `Boolean.toString(boolValue)` |  
+| **String → char array**  | `toCharArray()`               |  
+| **char array → String**  | `new String(charArray)`      |  
+| **String → byte array**  | `getBytes()`                  |  
+| **byte array → String**  | `new String(byteArray)`      |  
+| **String → long**        | `Long.parseLong(str)`        |  
+| **long → String**        | `Long.toString(num)`         |  
+| **String → float**       | `Float.parseFloat(str)`      |  
+| **float → String**       | `Float.toString(num)`        |  
+| **String → BigInteger**  | `new BigInteger(str)`        |  
+| **BigInteger → String**  | `bigInteger.toString()`      |  
+| **String → BigDecimal**  | `new BigDecimal(str)`        |  
+| **BigDecimal → String**  | `bigDecimal.toString()`      |  
 
 ---
 
