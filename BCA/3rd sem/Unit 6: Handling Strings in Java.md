@@ -48,6 +48,7 @@ The **String Pool** is a special memory region in the Java Virtual Machine (JVM)
 **Why is the String Pool Important?**
 
 Strings are one of the most commonly used data types in programming, and they are often created repeatedly in applications. **To avoid creating multiple copies of the same string in memory, Java uses the String Pool as a mechanism to reuse existing string objects whenever possible.** This approach saves memory and enhances efficiency.
+
 ---
 **Heap memory** is a region of the computer's memory used for dynamic memory allocation during program execution. It is one of the key components of memory management in programming languages like Java, C++, Python, and others. Unlike stack memory (which is used for static memory allocation), heap memory is flexible and allows programs to allocate and deallocate memory dynamically as needed.
 **How Heap Memory Works**
