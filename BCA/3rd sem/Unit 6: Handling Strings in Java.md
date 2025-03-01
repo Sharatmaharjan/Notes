@@ -297,7 +297,7 @@ Contains 'World': true
 ---
 
 ## 8. **Modifying Strings**
-Since strings are immutable, you cannot change them directly. However, you can create new strings with modifications using methods like `replace()`, `substring()`, and `trim()`.
+Strings in Java are immutable, which means once a string is created, it cannot be changed. However, you can create new strings with modifications using methods like `replace()`, `substring()`, and `trim()`.
 
 ### Example: Modifying Strings
 ```java
@@ -306,7 +306,7 @@ public class Main {
         String str = "  Hello, World!  ";
 
         // Replace characters
-        String replacedStr = str.replace('o', 'x');
+        String replacedStr = str.replace('o', 'x');// immutable: The original string 'str' remains unchanged but returns a new string with the modified value.
         System.out.println("Replaced: " + replacedStr);
 
         // Extract substring
@@ -325,11 +325,22 @@ Replaced:  Hellx, Wxrld!
 Substring: World
 Trimmed: Hello, World!
 ```
+
 **Explanation:**
 - `replace()` replaces all occurrences of a character.
 - `substring()` extracts a portion of the string.
 - `trim()` removes leading and trailing whitespace.
 
+### **Summary of String Modification Methods**:
+
+- **`concat()`**: Concatenate two strings.
+- **`replace()`**: Replace characters or substrings.
+- **`toUpperCase()` and `toLowerCase()`**: Convert to uppercase or lowercase.
+- **`trim()`**: Remove leading and trailing whitespace.
+- **`substring()`**: Extract a portion of the string.
+- **`replaceAll()` and `replaceFirst()`**: Replace based on regular expressions.
+- **`split()`**: Split the string into an array of substrings.
+- **`StringBuilder` and `StringBuffer`**: Use mutable strings for efficient modifications.
 ---
 
 ## 9. **String Buffer**
