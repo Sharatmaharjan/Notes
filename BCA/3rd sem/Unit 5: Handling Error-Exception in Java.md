@@ -306,20 +306,10 @@ public class TextInputExample {
 
 ### **Sample Output**
 
-#### Case 1: Normal Execution
-If the user enters `"Hello, World!"`, the output will look like this:
 ```
 Enter some text:
 Hello, World!
 You entered: Hello, World!
-Scanner closed successfully.
-```
-
-#### Case 2: Exception Occurs
-If an unexpected exception occurs (e.g., due to a bug), the output will look like this:
-```
-Enter some text:
-An error occurred: <error message>
 Scanner closed successfully.
 ```
 
