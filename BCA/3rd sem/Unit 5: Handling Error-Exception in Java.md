@@ -178,7 +178,7 @@ a. **Custom Exception**:
 b. **Local Handling in `validateAge`**:
    - The `validateAge` method throws `InvalidAgeException` if the age is less than 18, it catches and handles the exception locally using a `try-catch` block.
 
-3. **`main`**:
+c. **`main`**:
    - The `main` method calls `validateAge(15)` without needing to handle the exception, as it is already managed inside the method. 
 
 
