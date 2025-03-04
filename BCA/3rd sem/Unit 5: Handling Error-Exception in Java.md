@@ -176,7 +176,7 @@ Caught an exception: Age must be 18 or above.
 - The exception is caught within the `validateAge` method itself, and the message is printed using `e.getMessage()`. Since the exception is not rethrown, it does not propagate to the caller (`main` method).
 - In the `main` method, the `validateAge(15)` call executes, but the `main` method has no direct access to the exception because it is fully handled inside `validateAge`.
 ---
-**Using throws**
+#### Lab 4: User-Defined Exception using throws
 ```java
 class InvalidAgeException extends Exception {
     public InvalidAgeException(String message) {
@@ -213,12 +213,12 @@ Caught an exception: Age must be 18 or above.
 ## 4. Catching Exception: try, catch
 The `try` block contains code that might throw an exception. The `catch` block contains code that handles the exception.
 
-#### Lab 4: Catching Exception
+#### Lab 5: Catching Exception
 ```java
 public class Main {
     public static void main(String[] args) {
         try {
-            int[] numbers = {1, 2, 3};
+            int[] numbers = {1, 2, 3};//lower bound=0 and upperbound=2 so 0,1 and 2 are in bounds/boundaries
             System.out.println(numbers[5]); // This will cause an ArrayIndexOutOfBoundsException
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Array index is out of bounds!");
@@ -236,9 +236,9 @@ Array index is out of bounds!
 
 ## 5. Throwing and Rethrowing: throw, throws
 - `throw`: Used to explicitly throw an exception.
-- `throws`: Used in method signatures to declare that a method might throw one or more exceptions.
+- `throws`: Used in method signatures to declare that a method might throw one or more exceptions.(Lab 4)
 
-#### Lab 5: Throwing and Rethrowing
+#### Lab 6: Throwing and Rethrowing
 ```java
 public class RethrowExample {
     public static void checkAge(int age) {
@@ -277,94 +277,58 @@ Final exception caught in main: Access denied - You must be at least 18 years ol
 ### 6. Cleaning Up Using the finally Clause
 The `finally` block is used to execute important code such as closing resources, regardless of whether an exception is thrown or not.
 
-#### Lab 6: finally Clause
+#### Lab 7: finally Clause
 ```java
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Scanner;
 
-public class FileReaderExample {
+public class TextInputExample {
     public static void main(String[] args) {
-        FileReader fileReader = null;// Declare the FileReader object outside the try block
+        Scanner scanner = null; // Declare Scanner outside the try block
 
         try {
-            fileReader = new FileReader("example.txt");// Initialize the FileReader with the file path
+            scanner = new Scanner(System.in); // Initialize Scanner to read from keyboard
+            System.out.println("Enter some text:");
 
-            // Read characters one by one and print them
-            int character;
-            System.out.println("Contents of the file:");
-            while ((character = fileReader.read()) != -1) { // read() returns -1 at EOF
-                System.out.print((char) character); // Convert integer to character
-            }
-        } catch (FileNotFoundException e) {// Handle the case where the file does not exist
-            System.out.println("File not found: " + e.getMessage());
-        } catch (IOException e) {// Handle other I/O errors (e.g., reading the file)
-            System.out.println("Error reading the file: " + e.getMessage());
+            String input = scanner.nextLine(); // Read a single line of input
+            System.out.println("You entered: " + input); // Display the input
+        } catch (Exception e) { // Catch any unexpected exceptions
+            System.out.println("An error occurred: " + e.getMessage());
         } finally {
-            // Ensure the file is closed in the finally block
-            if (fileReader != null) {
-                try {
-                    fileReader.close(); // Close the file to release resources
-                    System.out.println("\nFile closed successfully.");
-                } catch (IOException e) {
-                    System.out.println("Error closing the file: " + e.getMessage());
-                }
+            // Ensure the Scanner is closed in the finally block
+            if (scanner != null) {
+                scanner.close(); // Close the Scanner to release resources
+                System.out.println("Scanner closed successfully.");
             }
         }
     }
 }
 ```
 
-### **Explanation of the Code**
-
-1. **Import Statements**:
-   - `java.io.FileReader`: Used to read characters from a file.
-   - `java.io.IOException`: Handles input/output exceptions.
-
-2. **FileReader Initialization**:
-   - The `FileReader` object is initialized with the file name `"example.txt"`. Replace this with the actual path to your file.
-
-3. **Reading the File**:
-   - The `read()` method reads one character at a time from the file. It returns `-1` when the end of the file (EOF) is reached.
-   - Each character is converted from an integer to a character using `(char)` and printed to the console.
-
-4. **Exception Handling**:
-   - `FileNotFoundException`: Catches errors if the file does not exist or cannot be found.
-   - `IOException`: Catches general input/output errors, such as issues while reading the file.
-
-5. **Resource Cleanup in `finally`**:
-   - The `finally` block ensures that the `FileReader` is closed, even if an exception occurs.
-   - Closing the file releases system resources and prevents potential memory leaks.
-
 ### **Sample Output**
 
-#### Case 1: File Exists and Contains Data
-If `example.txt` contains the text `Hello, World!`, the output will be:
+#### Case 1: Normal Execution
+If the user enters `"Hello, World!"`, the output will look like this:
 ```
-Contents of the file:
+Enter some text:
 Hello, World!
-File closed successfully.
+You entered: Hello, World!
+Scanner closed successfully.
 ```
 
-#### Case 2: File Does Not Exist
-If `example.txt` does not exist, the output will be:
+#### Case 2: Exception Occurs
+If an unexpected exception occurs (e.g., due to a bug), the output will look like this:
 ```
-File not found: example.txt (No such file or directory)
-File closed successfully.
-```
-
-#### Case 3: Error While Reading the File
-If there is an issue reading the file (e.g., permission denied), the output will be:
-```
-Error reading the file: Permission denied
-File closed successfully.
+Enter some text:
+An error occurred: <error message>
+Scanner closed successfully.
 ```
 
 ---
 
 #### **Best Practices**
-1. **Use Try-With-Resources (Optional)**:
+1. **Use Try-With-Resources**:
    - Starting from Java 7, we can use the **try-with-resources** syntax to automatically close resources like `FileReader`. This eliminates the need for an explicit `finally` block.
-   #### Lab 7: Try-With-Resources
+   #### Lab 8: Try-With-Resources
      ```java
      import java.io.FileReader;
      import java.io.IOException;
