@@ -171,16 +171,17 @@ public class Main {
 ```
 Caught an exception: Age must be 18 or above.
 ```
-#### **Explanation**
-a. **Custom Exception**:
-   - We define `InvalidAgeException` by extending the `Exception` class for handling invalid age errors.
+**Explanation:**
+- The `validateAge` method checks if the age is less than 18 and throws a custom checked exception, `InvalidAgeException`, with the message `"Age must be 18 or above."`.
+- The exception is caught within the `validateAge` method itself, and the message is printed using `e.getMessage()`. Since the exception is not rethrown, it does not propagate to the caller (`main` method).
+- In the `main` method, the `validateAge(15)` call executes, but the `main` method has no direct access to the exception because it is fully handled inside `validateAge`.
+---
 
-b. **Local Handling in `validateAge`**:
-   - The `validateAge` method throws `InvalidAgeException` if the age is less than 18, it catches and handles the exception locally using a `try-catch` block.
-
-c. **`main`**:
-   - The `main` method calls `validateAge(15)` without needing to handle the exception, as it is already managed inside the method. 
-
+**Sample Output:**
+```
+Caught an exception: Age must be 18 or above.
+```
+---
 
 ## 4. Catching Exception: try, catch
 The `try` block contains code that might throw an exception. The `catch` block contains code that handles the exception.
