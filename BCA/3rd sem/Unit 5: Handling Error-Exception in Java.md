@@ -176,6 +176,33 @@ Caught an exception: Age must be 18 or above.
 - The exception is caught within the `validateAge` method itself, and the message is printed using `e.getMessage()`. Since the exception is not rethrown, it does not propagate to the caller (`main` method).
 - In the `main` method, the `validateAge(15)` call executes, but the `main` method has no direct access to the exception because it is fully handled inside `validateAge`.
 ---
+**Using throws**
+```java
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class Main {
+    // Declare that this method may throw an InvalidAgeException
+    static void validateAge(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Age must be 18 or above."); // Throw the exception
+        } else {
+            System.out.println("Age is valid.");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            validateAge(15); // Call the method that may throw an exception
+        } catch (InvalidAgeException e) { // Catch the propagated exception
+            System.out.println("Caught an exception: " + e.getMessage()); // Handle the exception
+        }
+    }
+}
+```
 
 **Sample Output:**
 ```
