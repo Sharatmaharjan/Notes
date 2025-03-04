@@ -66,28 +66,42 @@
 ---
 
 ### 4. **Heap Sort**
-**Example Array**: `[5, 3, 8, 4, 6]`
 
-**Passes**:
-1. **Build Max-Heap**:
-   - Convert the array into a max-heap → `[8, 6, 5, 4, 3]`
+### Example Array: [7, 3, 9, 2, 5]
 
-2. **First Pass**:
-   - Swap the root (8) with the last element (3) → `[3, 6, 5, 4, 8]`
-   - Rebuild the max-heap for the remaining array → `[6, 4, 5, 3]`
+### Passes:
 
-3. **Second Pass**:
-   - Swap the root (6) with the last element (3) → `[3, 4, 5, 6, 8]`
-   - Rebuild the max-heap for the remaining array → `[5, 4, 3]`
+#### 1. Build Max-Heap:
+Convert the array into a max-heap. The max-heap property ensures that the root is the largest element in the heap.
 
-4. **Third Pass**:
-   - Swap the root (5) with the last element (3) → `[3, 4, 5, 6, 8]`
-   - Rebuild the max-heap for the remaining array → `[4, 3]`
+- Original array: [7, 3, 9, 2, 5]
+- After building max-heap: [9, 5, 7, 2, 3]
 
-5. **Fourth Pass**:
-   - Swap the root (4) with the last element (3) → `[3, 4, 5, 6, 8]`
+---
 
-**Final Sorted Array**: `[3, 4, 5, 6, 8]`
+#### 2. First Pass:
+- Swap the root (9) with the last element (3) → [3, 5, 7, 2, 9]
+- Rebuild the max-heap for the remaining array → [7, 5, 3, 2]
+
+---
+
+#### 3. Second Pass:
+- Swap the root (7) with the last element (2) → [2, 5, 3, 7, 9]
+- Rebuild the max-heap for the remaining array → [5, 2, 3]
+
+---
+
+#### 4. Third Pass:
+- Swap the root (5) with the last element (3) → [3, 2, 5, 7, 9]
+- Rebuild the max-heap for the remaining array → [3, 2]
+
+---
+
+#### 5. Fourth Pass:
+- Swap the root (3) with the last element (2) → [2, 3, 5, 7, 9]
+- No need to rebuild the heap as only one element remains.
+
+### Final Sorted Array: [2, 3, 5, 7, 9]
 
 ---
 
