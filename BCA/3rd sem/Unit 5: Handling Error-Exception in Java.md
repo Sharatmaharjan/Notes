@@ -237,12 +237,14 @@ public class RethrowExample {
 ```
 **Output:**
 ```
-Caught an exception: Access denied - You must be at least 18 years old.
+Initial exception caught: Access denied - You must be at least 18 years old.
+Final exception caught in main: Access denied - You must be at least 18 years old.
 ```
 **Explanation:**
 - The `checkAge` method throws an `ArithmeticException` if the age is less than 18.
-- The `throws` keyword in the method signature indicates that this method might throw an `ArithmeticException`.
-- In the `main` method, we catch and handle the exception.
+- The exception is caught in the `checkAge` method, logged with an initial message, and then rethrown using `throw e;` to propagate it further.
+- In the `main` method, the rethrown exception is caught and handled, printing a final error message. 
+---
 
 ### 6. Cleaning Up Using the finally Clause
 The `finally` block is used to execute important code such as closing resources, regardless of whether an exception is thrown or not.
