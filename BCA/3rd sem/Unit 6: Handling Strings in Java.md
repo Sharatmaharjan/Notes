@@ -73,7 +73,7 @@ public class StringCreationExample {
     public static void main(String[] args) {
         // Using String Literal
         String str1 = "Hello, World!";
-        String str2 = "Hello, World!"; // Reuses the same object from the String Pool
+        String str2 = "Hello, World!"; // str1 and str2 will reference/point the same object -> Reuses the same object(Hello, World!) from the String Pool
         
         // Using new Keyword
         String str3 = new String("Hello, World!"); // Creates a new object in heap memory
