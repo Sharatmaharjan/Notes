@@ -1,4 +1,4 @@
-### Unit 7: Threads [3 Hrs.]
+## Unit 7: Threads [3 Hrs.]
 
 Threads in Java allow concurrent execution of tasks, enabling efficient utilization of CPU resources. This unit covers the creation, instantiation, and starting of threads, as well as advanced concepts like thread priorities, synchronization, inter-thread communication, and deadlock.
 
@@ -13,13 +13,18 @@ There are two ways to create and start threads in Java:
 - Override the `run()` method to define the task the thread will perform.
 - Create an instance of the class and call the `start()` method to begin execution.
 
-**Program Example:**
+**Lab 1: Creating, instantiating and starting new threads**
 ```java
 class MyThread extends Thread {
     @Override
     public void run() {
         for (int i = 1; i <= 5; i++) {
             System.out.println(Thread.currentThread().getName() + " - Count: " + i);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 }
