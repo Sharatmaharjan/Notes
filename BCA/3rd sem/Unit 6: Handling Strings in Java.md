@@ -83,7 +83,7 @@ public class StringCreationExample {
         System.out.println("String 3: " + str3);
         
         // Check if str1 and str2 point to the same object
-        System.out.println("Are str1 and str2 the same object? " + (str1 == str2));
+        System.out.println("Are str1 and str2 the same object? " + (str1 == str2)); //(str1 == str2) compares the reference (memory address) of the two String objects, not their content
         
         // Check if str1 and str3 point to the same object
         System.out.println("Are str1 and str3 the same object? " + (str1 == str3));
