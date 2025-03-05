@@ -14,55 +14,6 @@ In Java, **exceptions** are events that disrupt the normal flow of a program. Th
    - These are exceptions that are checked at **runtime**.
    - Examples: `ArithmeticException`, `NullPointerException`, `ArrayIndexOutOfBoundsException`.
    - Unchecked exceptions are not required to be explicitly handled using `try-catch`, declared with `throws`, or manually thrown using `throw`. The Java runtime automatically detects and throws these exceptions when specific conditions occur, such as division by zero. However, it is considered good practice to use `try-catch` to handle them gracefully and prevent unexpected program crashes.
-```java
-import java.io.*;
-
-public class ExceptionExample {
-
-    // Method demonstrating a checked exception (FileNotFoundException)
-    public static void readFile(String fileName) throws FileNotFoundException {//this is checking which exception might occur-> checked-> manual throw or throws
-        FileReader file = new FileReader(fileName); // This may throw a FileNotFoundException
-        System.out.println("File opened successfully.");
-    }
-
-    // Method demonstrating an unchecked exception (ArithmeticException)
-    public static void divide(int a, int b) {//no checking for exception-> unchecked -> auto throw or throws
-        int result = a / b; // This may throw an ArithmeticException if b == 0
-        System.out.println("Result of division: " + result);
-    }
-
-    public static void main(String[] args) {
-        // Handling Checked Exception (FileNotFoundException)
-        try {
-            readFile("nonexistent.txt"); // This will throw a FileNotFoundException
-        } catch (FileNotFoundException e) {
-            System.out.println("Checked Exception: File not found - " + e.getMessage());
-        }
-
-        // Handling Unchecked Exception (ArithmeticException)
-        try {
-            divide(10, 0); // This will throw an ArithmeticException
-        } catch (ArithmeticException e) {
-            System.out.println("Unchecked Exception: Cannot divide by zero - " + e.getMessage());
-        }
-
-        // Demonstrating NullPointerException (Unchecked Exception)
-        try {
-            String text = null;
-            System.out.println(text.length()); // This will throw a NullPointerException
-        } catch (NullPointerException e) {
-            System.out.println("Unchecked Exception: Null pointer encountered - " + e.getMessage());
-        }
-    }
-}
-```
-
-**Sample Output**
-```
-Checked Exception: File not found - nonexistent.txt (No such file or directory)
-Unchecked Exception: Cannot divide by zero - / by zero
-Unchecked Exception: Null pointer encountered - Cannot invoke "String.length()" because "text" is null
-```
 
 3. **Errors**:
    - These are severe issues that are not meant to be handled by the program.
@@ -250,7 +201,7 @@ public class RethrowExample {
             }
         } catch (ArithmeticException e) {
             System.out.println("Initial exception caught: " + e.getMessage());
-            throw e;// Rethrow the exception to propagate it further->the exception is rethrown to propagate it to the caller (main method).
+            throw e;// Rethrow the exception in catch block to propagate it further->the exception is rethrown to propagate it to the caller (main method).
         }
     }
 
@@ -317,28 +268,32 @@ Scanner closed successfully.
 
 #### **Best Practices**
 1. **Use Try-With-Resources**:
-   - Starting from Java 7, we can use the **try-with-resources** syntax to automatically close resources like `FileReader`. This eliminates the need for an explicit `finally` block.
+   - Starting from Java 7, we can use the **try-with-resources** syntax to automatically close resources like `Scanner`. This eliminates the need for an explicit `finally` block.
    #### Lab 8: Try-With-Resources
      ```java
-     import java.io.FileReader;
-     import java.io.IOException;
-
-     public class FileReaderExample {
-         public static void main(String[] args) {
-             try (FileReader fileReader = new FileReader("example.txt")) { // Auto-closeable
-                 int character;
-                 System.out.println("Contents of the file:");
-                 while ((character = fileReader.read()) != -1) {
-                     System.out.print((char) character);
-                 }
-             } catch (FileNotFoundException e) {
-                 System.out.println("File not found: " + e.getMessage());
-             } catch (IOException e) {
-                 System.out.println("Error reading the file: " + e.getMessage());
-             }
-         }
+     import java.util.Scanner;
+     public class TextInputExample {
+          public static void main(String[] args) {
+              try (Scanner scanner = new Scanner(System.in)) { // Initialize Scanner within try-with-resources
+                  System.out.println("Enter some text:");
+                  String input = scanner.nextLine(); // Read a single line of input
+                  System.out.println("You entered: " + input); // Display the input
+              } catch (Exception e) { // Catch any unexpected exceptions
+                  System.out.println("An error occurred: " + e.getMessage());
+              }finally {
+                  System.out.println("Scanner closed successfully."); // This message will still be printed
+               }
+          }
      }
-     ```
+   ```
+### **Sample Output**
+
+```
+Enter some text:
+Hello, World!
+You entered: Hello, World!
+Scanner closed successfully.
+```
 
 2. **Always Close Resources**:
    - Whether using `finally` or try-with-resources, ensure that all resources are properly closed to avoid memory leaks.
