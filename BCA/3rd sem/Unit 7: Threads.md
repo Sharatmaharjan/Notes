@@ -23,7 +23,7 @@ class MyThread extends Thread {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+                System.err.println("Thread interrupted: " + e.getMessage());
             }
         }
     }
@@ -36,6 +36,7 @@ public class Main {
 
         thread1.start(); // Starts the first thread
         thread2.start(); // Starts the second thread
+        //thread1.interrupt();  -> to simulate interrupt
     }
 }
 ```
