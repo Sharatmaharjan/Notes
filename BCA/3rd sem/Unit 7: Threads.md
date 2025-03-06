@@ -270,10 +270,22 @@ public class Main {
 Count: 2000
 ```
 
-**Without synchronized, the final value of count could be less than 2000 due to overlapping operations. The output might look like** 
+**Sample Output: Without synchronized, the final value of count could be less than 2000 due to overlapping operations. The output might look like** 
 ```
 Count: 1997
 ```
+**Sample Output when the `join()` method is not used**
+
+```
+Count: 1250
+```
+The value printed will always be **less than or equal to 2000**.
+
+The `join()` method ensures that the main thread waits for `t1` and `t2` to complete their execution before proceeding.
+- When `t1.join()` is called, the main thread(psvm) pauses until `t1` finishes its execution.
+- Similarly, when `t2.join()` is called, the main thread waits until `t2` completes its execution.
+- Only after both threads have finished does the main thread proceed to print the value of `count`.
+- This ensures that all increments are completed before the final value of `count` is printed.
 ---
 
 ### 5. **Inter-Thread Communication**
