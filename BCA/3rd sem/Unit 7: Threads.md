@@ -278,7 +278,7 @@ Count: 1997
 
 ```
 Count: 1250
-//The value printed will always be **less than or equal to 2000**.
+//The value printed will always be less than or equal to 2000.
 ```
 
 
