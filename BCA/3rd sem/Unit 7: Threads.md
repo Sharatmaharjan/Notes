@@ -233,14 +233,14 @@ public class Main {
         Counter counter = new Counter();
 
         // Thread t1: Increments the counter 1000 times
-        Thread t1 = new Thread(() -> {
+        Thread t1 = new Thread(() -> {    //equivalent to implementing the Runnable interface and its run() method
             for (int i = 0; i < 1000; i++) {
                 counter.increment(); // Safely increment the shared 'count' variable
             }
         });
 
         // Thread t2: Also increments the counter 1000 times
-        Thread t2 = new Thread(() -> {
+        Thread t2 = new Thread(() -> {    equivalent to implementing the Runnable interface and its run() method
             for (int i = 0; i < 1000; i++) {
                 counter.increment(); // Safely increment the shared 'count' variable
             }
