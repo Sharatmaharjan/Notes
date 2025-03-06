@@ -165,11 +165,12 @@ Thread-2 is running.
 - The default priority is `5`.
 - Use `setPriority(int priority)` to set a thread's priority and `getPriority()` to retrieve it.
 
-**Program Example:**
+**Lab 4:Thread Priorities**
 ```java
 class Task implements Runnable {
     @Override
     public void run() {
+        // It prints the name of the currently executing thread and its priority
         System.out.println(Thread.currentThread().getName() + " - Priority: " + Thread.currentThread().getPriority());
     }
 }
@@ -177,13 +178,22 @@ class Task implements Runnable {
 public class Main {
     public static void main(String[] args) {
         Task task = new Task();
-        Thread thread1 = new Thread(task, "Thread-1");
+        
+        Thread thread1 = new Thread(task, "Thread-1");// The second argument in the Thread constructor sets the thread's name
         Thread thread2 = new Thread(task, "Thread-2");
 
+        // Set the priority of thread1 to the minimum priority (1)
+        // Lower priority threads are given less preference by the thread scheduler
         thread1.setPriority(Thread.MIN_PRIORITY); // Priority 1
+
+        // Set the priority of thread2 to the maximum priority (10)
+        // Higher priority threads are given more preference by the thread scheduler
         thread2.setPriority(Thread.MAX_PRIORITY); // Priority 10
 
+        // Start the first thread
         thread1.start();
+
+        // Start the second thread
         thread2.start();
     }
 }
