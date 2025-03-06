@@ -280,13 +280,21 @@ Count: 1997
 Count: 1250
 //The value printed will always be less than or equal to 2000.
 ```
+---
 
+**Using a Lambda Expression**
+The lambda expression `() -> { ... }` defines the task that the thread will execute.  
+It is equivalent to implementing the `Runnable` interface and its `run()` method.  
+Instead of explicitly creating a class that implements `Runnable`, the lambda offers a concise way to define the task directly.
+
+---
 
 The `join()` method ensures that the main thread waits for `t1` and `t2` to complete their execution before proceeding.
 - When `t1.join()` is called, the main thread(psvm) pauses until `t1` finishes its execution.
 - Similarly, when `t2.join()` is called, the main thread waits until `t2` completes its execution.
 - Only after both threads have finished does the main thread proceed to print the value of `count`.
 - This ensures that all increments are completed before the final value of `count` is printed.
+  
 ---
 
 ### 5. **Inter-Thread Communication**
