@@ -165,7 +165,7 @@ Thread-2 is running.
 - The default priority is `5`.
 - Use `setPriority(int priority)` to set a thread's priority and `getPriority()` to retrieve it.
 
-**Lab 4:Thread Priorities**
+**Lab 4: Thread Priorities**
 ```java
 class Task implements Runnable {
     @Override
@@ -283,9 +283,10 @@ Count: 1250
 ---
 
 **Using a Lambda Expression**
-The lambda expression `() -> { ... }` defines the task that the thread will execute.  
-It is equivalent to implementing the `Runnable` interface and its `run()` method.  
-Instead of explicitly creating a class that implements `Runnable`, the lambda offers a concise way to define the task directly.
+
+- The lambda expression `() -> { ... }` defines the task that the thread will execute.  
+- It is equivalent to implementing the `Runnable` interface and its `run()` method.  
+- Instead of explicitly creating a class that implements `Runnable`, the lambda offers a concise way to define the task directly.
 
 ---
 
