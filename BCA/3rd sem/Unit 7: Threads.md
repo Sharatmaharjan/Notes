@@ -125,11 +125,13 @@ Thread-1 - Count: 5
 - When a thread is started using the `start()` method, the JVM calls the `run()` method.
 - Threads run concurrently, meaning multiple threads can execute simultaneously (depending on the number of CPU cores).
 
-**Program Example:**
+**Lab 3: Thread Execution**
 ```java
 class Task implements Runnable {
     @Override
     public void run() {
+        // This code will be executed when the thread starts
+        // It prints the name of the currently executing thread
         System.out.println(Thread.currentThread().getName() + " is running.");
     }
 }
@@ -137,10 +139,14 @@ class Task implements Runnable {
 public class Main {
     public static void main(String[] args) {
         Task task = new Task();
-        Thread thread1 = new Thread(task, "Thread-1");
+
+        Thread thread1 = new Thread(task, "Thread-1");// The second argument in the Thread constructor sets the thread's name
         Thread thread2 = new Thread(task, "Thread-2");
 
+        // Start the first thread
         thread1.start();
+
+        // Start the second thread
         thread2.start();
     }
 }
