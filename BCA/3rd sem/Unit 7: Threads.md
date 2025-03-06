@@ -285,7 +285,7 @@ Count: 1250
 **Using a Lambda Expression**
 
 - The lambda expression `() -> { ... }` defines the task that the thread will execute.  
-- It is equivalent to implementing the `Runnable` interface and its `run()` method.  
+- It is equivalent to implementing the `Runnable` interface and its `run()` method->The lambda expression `() -> { ... }` creates an instance of `Runnable`.
 - Instead of explicitly creating a class that implements `Runnable`, the lambda offers a concise way to define the task directly.
 
 ---
