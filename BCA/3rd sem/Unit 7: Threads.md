@@ -13,7 +13,7 @@ There are two ways to create and start threads in Java:
 - Override the `run()` method to define the task the thread will perform.
 - Create an instance of the class and call the `start()` method to begin execution.
 
-**Lab 1: Creating, instantiating and starting new threads**
+**Lab 1: Creating, instantiating and starting new threads extending `java.lang.Thread` class**
 ```java
 class MyThread extends Thread {
     @Override
@@ -34,7 +34,7 @@ public class Main {
         MyThread thread1 = new MyThread();
         MyThread thread2 = new MyThread();
 
-        thread1.start(); // Starts the first thread
+        thread1.start(); // Starts the first thread -> calls parent(Thread) method
         thread2.start(); // Starts the second thread
         //thread1.interrupt();  -> to simulate interrupt
     }
@@ -67,7 +67,7 @@ Thread-1 - Count: 5
 - Override the `run()` method to define the task.
 - Pass an instance of the class to a `Thread` object and call `start()`.
 
-**Program Example:**
+**Lab 2: Creating, instantiating and starting new threads implementing `java.lang.Runnable` interface**
 ```java
 class MyRunnable implements Runnable {
     @Override
