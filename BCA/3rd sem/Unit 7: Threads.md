@@ -211,7 +211,7 @@ Thread-1 - Priority: 1
 - Synchronization ensures that only one thread can access a shared resource at a time.
 - Use the `synchronized` keyword to create synchronized methods or blocks.
 
-**Program Example:**
+**Lab 5: Synchronization**
 ```java
 class Counter {
     private int count = 0; // Instance variable to store the count (shared between threads)
@@ -270,7 +270,7 @@ public class Main {
 Count: 2000
 ```
 
-**Sample Output: Without synchronized, the final value of count could be less than 2000 due to overlapping operations. The output might look like** 
+**Sample Output without synchronized, the final value of count could be less than 2000 due to overlapping operations. The output might look like** 
 ```
 Count: 1997
 ```
@@ -278,8 +278,9 @@ Count: 1997
 
 ```
 Count: 1250
+//The value printed will always be **less than or equal to 2000**.
 ```
-The value printed will always be **less than or equal to 2000**.
+
 
 The `join()` method ensures that the main thread waits for `t1` and `t2` to complete their execution before proceeding.
 - When `t1.join()` is called, the main thread(psvm) pauses until `t1` finishes its execution.
