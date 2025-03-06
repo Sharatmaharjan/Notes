@@ -214,12 +214,14 @@ Thread-1 - Priority: 1
 **Program Example:**
 ```java
 class Counter {
-    private int count = 0;
+    private int count = 0; // Instance variable to store the count (shared between threads)
 
+    // Synchronized method to increment the count safely->Ensures only one thread can execute this method at a time
     public synchronized void increment() {
-        count++;
+        count++; // Increment the shared 'count' variable
     }
 
+    // Method to retrieve the current value of 'count'
     public int getCount() {
         return count;
     }
@@ -227,30 +229,37 @@ class Counter {
 
 public class Main {
     public static void main(String[] args) {
+        // Create a single instance of the Counter class->This instance will be shared between multiple threads
         Counter counter = new Counter();
 
+        // Thread t1: Increments the counter 1000 times
         Thread t1 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                counter.increment();
+                counter.increment(); // Safely increment the shared 'count' variable
             }
         });
 
+        // Thread t2: Also increments the counter 1000 times
         Thread t2 = new Thread(() -> {
             for (int i = 0; i < 1000; i++) {
-                counter.increment();
+                counter.increment(); // Safely increment the shared 'count' variable
             }
         });
 
+        // Start both threads->Each thread will execute its task concurrently
         t1.start();
         t2.start();
 
         try {
+            // The join() method ensures the main thread waits for t1 and t2 to complete
             t1.join();
             t2.join();
         } catch (InterruptedException e) {
+            // Handle any interruption during thread execution
             e.printStackTrace();
         }
 
+        // Print the final value of 'count'->Since the increment() method is synchronized, the final value will always be 2000
         System.out.println("Count: " + counter.getCount());
     }
 }
@@ -261,6 +270,10 @@ public class Main {
 Count: 2000
 ```
 
+**Without synchronized, the final value of count could be less than 2000 due to overlapping operations. The output might look like** 
+```
+Count: 1997
+```
 ---
 
 ### 5. **Inter-Thread Communication**
