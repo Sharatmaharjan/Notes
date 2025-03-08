@@ -218,7 +218,7 @@ class Counter {
 
     // Synchronized method to increment the count safely->Ensures only one thread can execute this method at a time
     public synchronized void increment() {
-        count++; // Increment the shared 'count' variable
+        count++; // Increment the shared 'count' variable -> single object of Counter accessing this method using two threads(shared resources-count variable)
     }
 
     // Method to retrieve the current value of 'count'
@@ -232,8 +232,8 @@ public class Main {
         // Create a single instance of the Counter class->This instance will be shared between multiple threads
         Counter counter = new Counter();
 
-        // Thread t1: Increments the counter 1000 times
-        Thread t1 = new Thread(() -> {    //equivalent to implementing the Runnable interface and its run() method
+        // Does not guarantee which thread will execute immediately after t1 -> the order of execution between threads is non-deterministic unless explicitly controlled
+        Thread t1 = new Thread(() -> {    //Thread t1: Increments the counter 1000 times->equivalent to implementing the Runnable interface and its run() method
             for (int i = 0; i < 1000; i++) {
                 counter.increment(); // Safely increment the shared 'count' variable
             }
@@ -302,72 +302,71 @@ The `join()` method ensures that the main thread waits for `t1` and `t2` to comp
 - Threads can communicate using `wait()`, `notify()`, and `notifyAll()`.
 - These methods are used in synchronized contexts to coordinate thread execution.
 
-**Program Example:**
+**Lab 6: Inter-Thread Communication**
 ```java
-class SharedResource {
-    private boolean flag = false;
+class NumberPrinter {
+    private int currentNumber = 100; // Start from 100
 
-    public synchronized void produce() {
-        while (flag) {
+    // Synchronized method to print even numbers
+    public synchronized void printEvenNumbers() {
+        while (currentNumber <= 200) {
+            if (currentNumber % 2 == 0) {
+                System.out.println("Even Thread: " + currentNumber);
+                currentNumber++;
+            }
+            notify(); // Notify the other thread
             try {
-                wait(); // Wait for the consumer to consume
+                wait(); // Wait for the other thread
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
-        System.out.println("Produced...");
-        flag = true;
-        notify(); // Notify the consumer
     }
 
-    public synchronized void consume() {
-        while (!flag) {
+    // Synchronized method to print odd numbers
+    public synchronized void printOddNumbers() {
+        while (currentNumber <= 200) {
+            if (currentNumber % 2 != 0) {
+                System.out.println("Odd Thread: " + currentNumber);
+                currentNumber++;
+            }
+            notify(); // Notify the other thread
             try {
-                wait(); // Wait for the producer to produce
+                wait(); // Wait for the other thread
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
-        System.out.println("Consumed...");
-        flag = false;
-        notify(); // Notify the producer
     }
 }
 
-public class Main {
+public class EvenOddThreads {
     public static void main(String[] args) {
-        SharedResource resource = new SharedResource();
+        NumberPrinter printer = new NumberPrinter();
 
-        Thread producer = new Thread(() -> {
-            for (int i = 0; i < 5; i++) {
-                resource.produce();
-            }
-        });
+        // Thread to print even numbers
+        Thread evenThread = new Thread(() -> printer.printEvenNumbers(), "EvenThread");
 
-        Thread consumer = new Thread(() -> {
-            for (int i = 0; i < 5; i++) {
-                resource.consume();
-            }
-        });
+        // Thread to print odd numbers
+        Thread oddThread = new Thread(() -> printer.printOddNumbers(), "OddThread");
 
-        producer.start();
-        consumer.start();
+        // Start both threads
+        evenThread.start();
+        oddThread.start();
     }
 }
 ```
 
 **Sample Output:**
 ```
-Produced...
-Consumed...
-Produced...
-Consumed...
-Produced...
-Consumed...
-Produced...
-Consumed...
-Produced...
-Consumed...
+Even Thread: 100
+Odd Thread: 101
+Even Thread: 102
+Odd Thread: 103
+Even Thread: 104
+Odd Thread: 105
+...
+Even Thread: 200
 ```
 
 ---
