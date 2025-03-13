@@ -117,7 +117,7 @@ Thread-1 - Count: 5
 | **Inheritance**          | Uses up the single inheritance option. | Does not use inheritance; allows extending other classes. |
 | **Reusability**          | Less reusable.                        | More reusable; same `Runnable` instance can be passed to multiple threads. |
 | **Thread Creation**      | Directly creates a `Thread` object.   | Requires a `Thread` object to wrap the `Runnable`. |
-| **Best Use Case**        | When you need to override `Thread` methods. | When you want to separate thread logic from task logic. |
+| **Best Use Case**        | When we need to override `Thread` methods. | When we want to separate thread logic from task logic. |
 
 ---
 
@@ -314,9 +314,9 @@ class NumberPrinter {
                 System.out.println("Even Thread: " + currentNumber);
                 currentNumber++;
             }
-            notify(); // Notify the other thread
+            notify(); // Notify the other thread waiting on the same object's monitor(lock)
             try {
-                wait(); // Wait for the other thread
+                wait(); // Wait for the other thread->The thread enters a waiting state until another thread calls notify() or notifyAll() on the same object, or until it is interrupted.
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
@@ -342,10 +342,10 @@ class NumberPrinter {
 
 public class EvenOddThreads {
     public static void main(String[] args) {
-        NumberPrinter printer = new NumberPrinter();
+        NumberPrinter printer = new NumberPrinter();//Both threads share the same printer object->shared resource
 
         // Thread to print even numbers
-        Thread evenThread = new Thread(() -> printer.printEvenNumbers(), "EvenThread");
+        Thread evenThread = new Thread(() -> printer.printEvenNumbers(), "EvenThread");//Thread thread = new Thread(Runnable target, String name);
 
         // Thread to print odd numbers
         Thread oddThread = new Thread(() -> printer.printOddNumbers(), "OddThread");
@@ -385,7 +385,7 @@ Deadlock occurs when two or more threads are blocked forever, waiting for each o
 
 ---
 
-### Simple Example of Deadlock in Java
+**Lab 7: Deadlock**
 
 ```java
 public class DeadlockExample {
@@ -398,7 +398,7 @@ public class DeadlockExample {
             synchronized (resource1) {
                 System.out.println("Thread 1: Locked Resource 1");
                 try {
-                    Thread.sleep(100); // Simulate some work
+                    Thread.sleep(100); 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -442,7 +442,7 @@ Thread 2: Locked Resource 2
 
 
 #### How to Avoid Deadlock?
-To avoid deadlock, you can:
+To avoid deadlock, we can:
 1. **Lock Resources in the Same Order**: Ensure all threads request resources in the same sequence.
 2. **Avoid Nested Locks**: Minimize locking multiple resources at once.
 
@@ -492,4 +492,3 @@ Now, both threads lock `resource1` first, so no deadlock occurs.
 - Inter-thread communication allows threads to coordinate.
 - Deadlock occurs when threads are stuck waiting for each other indefinitely.
 
-This unit provides a foundation for understanding and working with threads in Java.
