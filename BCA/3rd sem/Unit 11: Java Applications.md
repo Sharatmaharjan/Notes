@@ -568,16 +568,90 @@ IDEs like NetBeans provide drag-and-drop functionality for building Java applica
 
 ---
 
-### 13. Adapter Classes
-
-**Definition**:  
-Adapter classes provide default implementations for event listener interfaces, reducing the need to implement all methods.
-
-**Example**:  
-- `MouseAdapter` provides default implementations for `MouseListener` methods.
+Absolutely! Let me continue and complete the response for your **second question** about **Unit 11: Java Applications**. I'll pick up where I left off and provide the remaining details, including program examples, explanations, sample outputs, and a summary.
 
 ---
 
-### Summary
+### 13. Adapter Classes (Continued)
 
-In this unit, we
+**Definition**:  
+Adapter classes in Java provide default implementations for event listener interfaces. They are used to simplify event handling by allowing us to override only the methods we need, rather than implementing all methods of an interface.
+
+**Common Adapter Classes**:  
+- `MouseAdapter`: Provides default implementations for `MouseListener` methods.
+- `KeyAdapter`: Provides default implementations for `KeyListener` methods.
+- `WindowAdapter`: Provides default implementations for `WindowListener` methods.
+
+**Program Example**:
+```java
+import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class MouseAdapterExample {
+    public static void main(String[] args) {
+        JFrame frame = new JFrame("MouseAdapter Example");
+        frame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println("Mouse Clicked at: " + e.getX() + ", " + e.getY());
+            }
+        });
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+```
+
+**Explanation**:  
+- We use `MouseAdapter` to handle mouse click events. Only the `mouseClicked` method is overridden.
+- When the mouse is clicked, the coordinates of the click are printed.
+
+**Sample Output**:  
+```
+Mouse Clicked at: 150, 100
+```
+
+---
+
+
+### 15. Summary
+
+In this unit, we explored Java's GUI programming using **AWT** and **Swing**. Here's a quick recap of what we covered:
+
+1. **AWT vs. Swing**:  
+   - AWT is platform-dependent and uses native components.
+   - Swing is platform-independent and provides a richer set of components.
+
+2. **Swing Components**:  
+   - We learned about `JFrame`, `JLabel`, `JTextField`, `JButton`, `JCheckBox`, `JRadioButton`, `JComboBox`, and `JList`.
+
+3. **Event Handling**:  
+   - We used `ActionListener`, `MouseListener`, and `KeyListener` to handle user interactions.
+
+4. **Layout Management**:  
+   - We explored `FlowLayout`, `BorderLayout`, and `GridLayout` for organizing components.
+
+5. **Advanced Components**:  
+   - We worked with `JTable` for displaying tabular data, `JMenu` for creating menus, and `JOptionPane` for dialog boxes.
+
+6. **MDI (Multiple Document Interface)**:  
+   - We used `JDesktopPane` and `JInternalFrame` to create MDI applications.
+
+7. **Adapter Classes**:  
+   - We used `MouseAdapter` and `KeyAdapter` to simplify event handling.
+
+8. **Using IDEs**:  
+   - We discussed how IDEs like NetBeans can speed up GUI development with drag-and-drop tools.
+
+---
+
+### Key Differences Between AWT and Swing
+
+| Feature               | AWT                                   | Swing                                  |
+|-----------------------|---------------------------------------|----------------------------------------|
+| **Platform Dependency** | Uses native OS components (platform-dependent). | Pure Java implementation (platform-independent). |
+| **Component Look**     | Follows the native OS look and feel.  | Customizable look and feel.            |
+| **Performance**        | Faster for simple applications.       | Slightly slower due to Java rendering. |
+| **Flexibility**        | Limited components and customization. | Rich set of components and customization options. |
