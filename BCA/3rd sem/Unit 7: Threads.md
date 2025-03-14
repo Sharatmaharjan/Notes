@@ -442,7 +442,7 @@ To avoid deadlock, we can:
 2. **Avoid Nested Locks**: Minimize locking multiple resources at once.
 
 
-**Simplified Fix for lab 7**
+**Simplified Fix for Lab 7**
 
 Lock resources in the same order:
 
