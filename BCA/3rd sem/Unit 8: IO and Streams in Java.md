@@ -238,6 +238,7 @@ Student{name='Sharat', age=20}
 
 
 **Purpose of Serialization**
+
 Serialization in Java is the process of converting an object into a byte stream so that it can be:
 1. **Persisted**: Saved to a file or database for future use.
 2. **Transmitted**: Sent over a network to another system.
