@@ -1,4 +1,4 @@
-## Unit 8: I/O and Streams in Java
+## Unit 8: I/O and Streams in Java [LH - 2Hrs]
 
 ### 1. **java.io Package**
 The `java.io` package provides classes for system input and output through data streams, serialization, and the file system. It is one of the core packages in Java for handling I/O operations.
