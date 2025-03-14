@@ -442,7 +442,8 @@ To avoid deadlock, we can:
 2. **Avoid Nested Locks**: Minimize locking multiple resources at once.
 
 
-**Simplified Fix for the Example**
+**Simplified Fix for lab 7**
+
 Lock resources in the same order:
 
 ```java
