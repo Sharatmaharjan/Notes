@@ -132,8 +132,8 @@ public class ConsoleIOExample {
 
 **Sample Output:**
 ```
-Enter your name: John
-Hello, John
+Enter your name: Sharat
+Hello, Sharat
 ```
 
 **Explanation:**
@@ -199,7 +199,7 @@ class Student implements Serializable {
 
 public class SerializationExample {
     public static void main(String[] args) {
-        Student student = new Student("John", 20);
+        Student student = new Student("Sharat", 20);
 
         // Serialization
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("student.ser"))) {
@@ -221,7 +221,7 @@ public class SerializationExample {
 
 **Sample Output:**
 ```
-Student{name='John', age=20}
+Student{name='Sharat', age=20}
 ```
 
 **Explanation:**
