@@ -372,18 +372,13 @@ Even Thread: 200
 ---
 
 ### 6. **Deadlock**
-Understanding deadlock in Java can be challenging because it involves multiple threads and resources, and the conditions for deadlock are subtle. Let me simplify it with a simple example and explanation.
 
----
-
-### What is Deadlock?
 Deadlock occurs when two or more threads are blocked forever, waiting for each other to release resources. It happens when:
 1. **Mutual Exclusion**: Resources are held by one thread at a time.
 2. **Hold and Wait**: A thread holds a resource and waits for another.
 3. **No Preemption**: Resources cannot be forcibly taken from a thread.
 4. **Circular Wait**: Threads form a circular chain, each waiting for a resource held by the next.
 
----
 
 **Lab 7: Deadlock**
 
@@ -435,19 +430,19 @@ Thread 1: Locked Resource 1
 Thread 2: Locked Resource 2
 ```
 
-#### Explanation
+**Explanation**
 1. **Thread 1** locks `resource1` and waits for `resource2`.
 2. **Thread 2** locks `resource2` and waits for `resource1`.
 3. Both threads are stuck waiting for each other, causing a **deadlock**.
 
 
-#### How to Avoid Deadlock?
+**How to Avoid Deadlock?**
 To avoid deadlock, we can:
 1. **Lock Resources in the Same Order**: Ensure all threads request resources in the same sequence.
 2. **Avoid Nested Locks**: Minimize locking multiple resources at once.
 
 
-#### Simplified Fix for the Example
+**Simplified Fix for the Example**
 Lock resources in the same order:
 
 ```java
