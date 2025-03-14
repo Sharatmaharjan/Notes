@@ -187,7 +187,7 @@ Stack after pop: [Red, Green]
 
 ---
 
-**Lab 5: Hashtable and Enumerations:**
+**Lab 4: Hashtable and Enumerations:**
 ```java
 import java.util.Hashtable;
 import java.util.Enumeration;
@@ -242,7 +242,7 @@ In modern Java, the `Iterator` interface is preferred over `Enumeration` because
 
 --- 
 
-**Lab 6: Random Number Generation:**
+**Lab 5: Random Number Generation:**
 ```java
 import java.util.Random;
 
