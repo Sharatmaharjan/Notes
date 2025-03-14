@@ -233,11 +233,11 @@ Student{name='Sharat', age=20}
 - **Serialization**: Converts an object into a byte stream.
 - **Deserialization**: Converts a byte stream back into an object.
 
-**Difference Between Serialization and Deserialization:**
+**a. Difference Between Serialization and Deserialization:**
 - Serialization is the process of converting an object to a byte stream, while deserialization is the process of converting a byte stream back to an object.
 
 
-**Purpose of Serialization**
+**b. Purpose of Serialization**
 
 Serialization in Java is the process of converting an object into a byte stream so that it can be:
 1. **Persisted**: Saved to a file or database for future use.
@@ -246,7 +246,7 @@ Serialization in Java is the process of converting an object into a byte stream 
 4. **Cached**: Stored temporarily to improve performance.
 
 
-**Advantages of Serialization**
+**c. Advantages of Serialization**
 
 1. **Simplicity**: Easy to implement with minimal code (just implement `Serializable`).
 2. **Persistence**: Allows objects to be saved and restored later.
@@ -255,7 +255,7 @@ Serialization in Java is the process of converting an object into a byte stream 
 5. **Portability**: Serialized data can be transferred between different platforms (Java-to-Java).
 
 
-**Limitations of Serialization**
+**d. Limitations of Serialization**
 
 1. **Performance**: Slower and more memory-intensive compared to custom binary formats.
 2. **Versioning Issues**: Changes to the class structure (e.g., adding/removing fields) can break deserialization unless managed with `serialVersionUID`.
@@ -266,12 +266,12 @@ Serialization in Java is the process of converting an object into a byte stream 
 5. **Large File Size**: Serialized files can be larger than equivalent data in other formats like JSON or Protobuf.
 
 
-**Alternatives to Java Serialization**
+**e. Alternatives to Java Serialization**
 
 1. **JSON (JavaScript Object Notation)**:
 2. **XML (eXtensible Markup Language)**:
 
-**How Serialization Enables Object Transfer**
+**f. How Serialization Enables Object Transfer**
 
 Serialization converts an object into a **byte stream**, making it possible to transfer or store the object in various ways:
 
