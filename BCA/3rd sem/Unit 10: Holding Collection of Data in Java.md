@@ -1,9 +1,9 @@
 ## Unit 10: Holding Collection of Data in Java
 
-#### 1. **Arrays**
+### 1. **Arrays**
 Arrays are fixed-size data structures that store elements of the same type. They provide indexed access to elements.
 
-**Example:**
+**Lab 1: Arrays**
 ```java
 public class ArrayExample {
     public static void main(String[] args) {
@@ -30,58 +30,32 @@ Element at index 4: 50
 - Elements are accessed using an index.
 - The `length` property gives the size of the array.
 
-#### 2. **Collection Classes/Interfaces**
+### 2. **Collection Classes/Interfaces**
 The Java Collections Framework provides interfaces and classes to store and manipulate groups of objects. The main interfaces are `Collection`, `List`, `Set`, and `Map`.
 
-##### **Map Interface**
-The `Map` interface stores key-value pairs. Each key is unique, and it maps to a single value.
+**a. List Interface**
+The `List` interface stores an ordered collection(sequence or arrangement of elements is preserved) of elements. It allows duplicate elements.
 
-**Example:**
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class MapExample {
-    public static void main(String[] args) {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("Apple", 10);
-        map.put("Banana", 20);
-        map.put("Cherry", 30);
-
-        System.out.println("Map: " + map);
-        System.out.println("Value for key 'Banana': " + map.get("Banana"));
-    }
-}
-```
-
-**Sample Output:**
-```
-Map: {Apple=10, Banana=20, Cherry=30}
-Value for key 'Banana': 20
-```
-
-**Explanation:**
-- `Map` stores key-value pairs.
-- `put()` adds a key-value pair to the map.
-- `get()` retrieves the value associated with a key.
-
-##### **List Interface**
-The `List` interface stores an ordered collection of elements. It allows duplicate elements.
-
-**Example:**
+**Lab 2: List Interface**
 ```java
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListExample {
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>();
-        list.add("Apple");
-        list.add("Banana");
-        list.add("Cherry");
+        List<String> list = new ArrayList<>();    // List is an interface, so we declare the variable as type List and ArrayList is a class that implements the List interface.
 
-        System.out.println("List: " + list);
-        System.out.println("Element at index 1: " + list.get(1));
+        // Add elements to the list (maintains insertion order)
+        list.add("Apple");   // Adds "Apple" to the list
+        list.add("Banana");  // Adds "Banana" to the list
+        list.add("Cherry");  // Adds "Cherry" to the list
+
+        // Print the entire list (List maintains the order of elements)
+        System.out.println("List: " + list); // Output: [Apple, Banana, Cherry]
+
+        // Access an element by index using the get() method
+        // Note: Indexing starts from 0, so index 1 refers to the second element
+        System.out.println("Element at index 1: " + list.get(1)); // Output: Banana
     }
 }
 ```
@@ -97,23 +71,44 @@ Element at index 1: Banana
 - `add()` adds an element to the list.
 - `get()` retrieves an element by its index.
 
-##### **Set Interface**
+**Iterating through a `List`:**
+```java
+    // Using Iterator
+    Iterator<String> iterator = list.iterator();
+    while (iterator.hasNext()) {
+        System.out.println(iterator.next());
+    }
+    
+    // Using For-Each Loop
+    for (String element : list) {
+        System.out.println(element);
+    }
+```
+
+**b. Set Interface**
 The `Set` interface stores a collection of unique elements. It does not allow duplicates.
 
-**Example:**
+**Lab 3: Set Interface**
 ```java
 import java.util.HashSet;
 import java.util.Set;
 
 public class SetExample {
     public static void main(String[] args) {
-        Set<String> set = new HashSet<>();
-        set.add("Apple");
-        set.add("Banana");
-        set.add("Cherry");
-        set.add("Apple"); // Duplicate, will not be added
+        Set<String> set = new HashSet<>();     // Set is an interface, so we declare the variable as type Set and HashSet is a class that implements the Set interface
 
-        System.out.println("Set: " + set);
+        // Add elements to the set
+        set.add("Apple");   // Adds "Apple" to the set
+        set.add("Banana");  // Adds "Banana" to the set
+        set.add("Cherry");  // Adds "Cherry" to the set
+
+        // Attempt to add a duplicate element ("Apple")
+        // Since Set does not allow duplicates, this will not be added
+        set.add("Apple");
+
+        // Print the entire set
+        // Note: HashSet does not guarantee any specific order of elements
+        System.out.println("Set: " + set); // Output may vary, e.g., [Apple, Banana, Cherry] or [Banana, Cherry, Apple]
     }
 }
 ```
@@ -126,6 +121,106 @@ Set: [Apple, Banana, Cherry]
 **Explanation:**
 - `Set` stores unique elements.
 - `add()` adds an element to the set if it is not already present.
+
+**Iterating through a `Set`:**
+```java
+    // Using Iterator
+    Iterator<String> iterator = set.iterator();
+    while (iterator.hasNext()) {
+        System.out.println(iterator.next());
+    }
+    
+    // Using For-Each Loop
+    for (String element : set) {
+        System.out.println(element);
+    }
+```
+
+**c. Map Interface**
+The `Map` interface stores key-value pairs. Each key is unique, and it maps to a single value.
+
+**Lab 4: Map Interface**
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();    // Map is an interface, so we declare the variable as type Map and HashMap is a class that implements the Map interface
+
+        // Add key-value pairs to the map using the put() method
+        map.put("Apple", 10);   // Associates "Apple" with the value 10
+        map.put("Banana", 20);  // Associates "Banana" with the value 20
+        map.put("Cherry", 30);  // Associates "Cherry" with the value 30
+
+        // Print the entire map
+        // Note: HashMap does not guarantee any specific order of entries
+        System.out.println("Map: " + map); // Output may vary, e.g., {Apple=10, Banana=20, Cherry=30} or {Banana=20, Cherry=30, Apple=10}
+
+        // Retrieve the value associated with a specific key using the get() method
+        System.out.println("Value for key 'Banana': " + map.get("Banana")); // Output: 20
+    }
+}
+```
+
+**Sample Output:**
+```
+Map: {Apple=10, Banana=20, Cherry=30}
+Value for key 'Banana': 20
+```
+
+**Explanation:**
+- `Map` stores key-value pairs.
+- `put()` adds a key-value pair to the map.
+- `get()` retrieves the value associated with a key.
+
+**Iterating through `Map`:**
+
+Must decide whether to iterate over:
+    - Keys : Use keySet()
+    - Values : Use values().
+    - Entries (Key-Value Pairs) : Use entrySet()
+
+```java
+
+    // Using For-Each Loop on keySet()
+    for (String key : map.keySet()) {
+        System.out.println("Key: " + key + ", Value: " + map.get(key));
+    }
+
+    // Using For-Each Loop on values()
+    for (Integer value : map.values()) {
+        System.out.println("Value: " + value);    //cannot directly retrieve keys using the values() method. The Map interface is designed for efficient forward lookups (key → value), not reverse lookups (value → key).
+
+    }
+
+    // Using Iterator on entrySet()
+    Iterator<Map.Entry<String, Integer>> iterator = map.entrySet().iterator();
+    while (iterator.hasNext()) {
+        Map.Entry<String, Integer> entry = iterator.next();
+        System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+    }
+    
+    // Using For-Each Loop on entrySet()
+    for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        System.out.println("Key: " + entry.getKey() + ", Value: " + entry.getValue());
+    }
+    
+```
+
+
+**Comparison of `List`, `Set`, and `Map`**
+
+| **Feature**               | **List**                                      | **Set**                                       | **Map**                                       |
+|---------------------------|-----------------------------------------------|-----------------------------------------------|-----------------------------------------------|
+| **Ordering**              | Maintains **insertion order**.                | May or may not maintain order (depends on implementation). | No inherent order (except in `LinkedHashMap` or `TreeMap`). |
+| **Duplicates**            | Allows **duplicate elements**.                | Does **not allow duplicates**.                | Keys are unique; values can be duplicated.    |
+| **Access by Index/Key**   | Accessed by **index** (`get(index)`).         | No index-based access.                        | Accessed by **key** (`get(key)`).             |
+| **Null Elements**         | Allows multiple `null` values.                | Allows at most one `null` value.              | Allows one `null` key (except in `Hashtable`) and multiple `null` values. |
+| **Use Case**              | Ordered storage with duplicates (e.g., lists of items). | Unique elements (e.g., removing duplicates). | Key-value associations (e.g., dictionaries, caches). |
+
+
+
 
 #### 3. **Collection Classes**
 ##### **ArrayList**
