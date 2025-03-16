@@ -30,10 +30,13 @@ Element at index 4: 50
 - Elements are accessed using an index.
 - The `length` property gives the size of the array.
 
+---
+
 ### 2. **Collection Classes/Interfaces**
 The Java Collections Framework provides interfaces and classes to store and manipulate groups of objects. The main interfaces are `Collection`, `List`, `Set`, and `Map`.
 
 **a. List Interface**
+
 The `List` interface stores an ordered collection(sequence or arrangement of elements is preserved) of elements. It allows duplicate elements.
 
 **Lab 2: List Interface**
@@ -74,10 +77,10 @@ Element at index 1: Banana
 **Iterating through a `List`:**
 ```java
     // Using Iterator
-    Iterator<String> iterator = list.iterator();
-    while (iterator.hasNext()) {
-        System.out.println(iterator.next());
-    }
+Iterator<String> iterator = list.iterator(); // Step 1: Obtain an Iterator for the list->The Iterator object created by list.iterator() holds a reference to the original list
+while (iterator.hasNext()) {                 // Step 2: Check if there are more elements
+    System.out.println(iterator.next());    // Step 3: Retrieve and process the next element
+}
     
     // Using For-Each Loop
     for (String element : list) {
@@ -86,6 +89,7 @@ Element at index 1: Banana
 ```
 
 **b. Set Interface**
+
 The `Set` interface stores a collection of unique elements. It does not allow duplicates.
 
 **Lab 3: Set Interface**
@@ -137,6 +141,7 @@ Set: [Apple, Banana, Cherry]
 ```
 
 **c. Map Interface**
+
 The `Map` interface stores key-value pairs. Each key is unique, and it maps to a single value.
 
 **Lab 4: Map Interface**
@@ -220,13 +225,15 @@ Must decide whether to iterate over:
 | **Use Case**              | Ordered storage with duplicates (e.g., lists of items). | Unique elements (e.g., removing duplicates). | Key-value associations (e.g., dictionaries, caches). |
 
 
+---
 
+### 3. **Collection Classes**
 
-#### 3. **Collection Classes**
-##### **ArrayList**
+**a. ArrayList**
+
 `ArrayList` is a resizable array implementation of the `List` interface.
 
-**Example:**
+**Lab 5: ArrayList**
 ```java
 import java.util.ArrayList;
 
@@ -251,10 +258,11 @@ ArrayList: [Apple, Banana, Cherry]
 - `ArrayList` dynamically resizes itself as elements are added.
 - It provides fast access to elements using an index.
 
-##### **LinkedList**
+**b. LinkedList**
+
 `LinkedList` is a doubly-linked list implementation of the `List` interface.
 
-**Example:**
+**Lab 6: LinkedList**
 ```java
 import java.util.LinkedList;
 
@@ -279,10 +287,11 @@ LinkedList: [Apple, Banana, Cherry]
 - `LinkedList` stores elements as nodes, each pointing to the next and previous nodes.
 - It is efficient for adding and removing elements at both ends.
 
-##### **HashSet**
-`HashSet` is a hash table implementation of the `Set` interface.
+**c. HashSet**
 
-**Example:**
+`HashSet` is a hash table implementation of the `Set` interface.    (The Hashtable is synchronized, while HashSet and HashMap are not.)
+
+**Lab 7: HashSet**
 ```java
 import java.util.HashSet;
 
@@ -308,18 +317,19 @@ HashSet: [Apple, Banana, Cherry]
 - `HashSet` stores unique elements using a hash table.
 - It provides constant-time performance for basic operations.
 
-##### **TreeSet**
+**d. TreeSet**
+
 `TreeSet` is a red-black tree implementation of the `Set` interface. It stores elements in sorted order.
 
-**Example:**
+**Lab 8: TreeSet**
 ```java
 import java.util.TreeSet;
 
 public class TreeSetExample {
     public static void main(String[] args) {
         TreeSet<String> set = new TreeSet<>();
-        set.add("Apple");
         set.add("Banana");
+        set.add("Apple");
         set.add("Cherry");
 
         System.out.println("TreeSet: " + set);
@@ -336,10 +346,13 @@ TreeSet: [Apple, Banana, Cherry]
 - `TreeSet` stores elements in sorted order.
 - It provides logarithmic-time performance for basic operations.
 
-#### 4. **Accessing Collections/Use of an Iterator**
+---
+
+### 4. **Accessing Collections/Use of an Iterator**
+
 An `Iterator` is used to traverse through a collection.
 
-**Example:**
+**Lab 9: Accessing Collections/Use of an Iterator**
 ```java
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -371,16 +384,17 @@ Cherry
 - `hasNext()` checks if there are more elements.
 - `next()` retrieves the next element.
 
-#### 5. **Comparator**
+### 5. **Comparator**
+
 The `Comparator` interface is used to define custom sorting logic for objects.
 
-**Example:**
+**Lab 10: Comparator**
 ```java
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class ComparatorExample {
+public class ListExample {
     public static void main(String[] args) {
         ArrayList<String> list = new ArrayList<>();
         list.add("Apple");
@@ -388,10 +402,10 @@ public class ComparatorExample {
         list.add("Cherry");
 
         // Sort in reverse order
-        Collections.sort(list, new Comparator<String>() {
+        list.sort(new Comparator<String>() {
             @Override
             public int compare(String s1, String s2) {
-                return s2.compareTo(s1);
+                return s2.compareTo(s1);    //return s1.compareTo(s2); -> sort alphabetical order
             }
         });
 
@@ -409,16 +423,12 @@ Sorted List: [Cherry, Banana, Apple]
 - `Comparator` defines custom sorting logic.
 - `compare()` compares two objects for ordering.
 
-#### Difference Between `List`, `Set`, and `Map`
-- **List**: Ordered collection that allows duplicates.
-- **Set**: Unordered collection that does not allow duplicates.
-- **Map**: Stores key-value pairs. Keys are unique.
+---
 
-#### Summary
+### Summary
 - Arrays are fixed-size data structures for storing elements of the same type.
 - The Java Collections Framework provides interfaces like `List`, `Set`, and `Map` for storing collections of objects.
 - `ArrayList` and `LinkedList` are implementations of the `List` interface.
 - `HashSet` and `TreeSet` are implementations of the `Set` interface.
 - `Iterator` is used to traverse through collections.
 - `Comparator` is used to define custom sorting logic.
-- Understanding these concepts is essential for effective data management in Java.
