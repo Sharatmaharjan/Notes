@@ -638,7 +638,7 @@
         }
     }
     ```  
-    a) A random number between 0 and 9  
+    a) A random number between 0 and 10  
     b) **A random number between 0 and 9**  
     c) Compilation error  
     d) Runtime error  
