@@ -32,6 +32,21 @@ To work with JDBC, we follow these steps:
 **Definition**:  
 The `Connection` interface represents a connection to the database. It is used to create `Statement` objects and manage transactions.
 
+1. **Download the MySQL Connector/J (JDBC Driver):**
+   We need to download the MySQL JDBC driver (`mysql-connector-java`).
+   - Visit the official MySQL website to download the JDBC driver: [MySQL Connector/J](https://dev.mysql.com/downloads/connector/j/)
+
+2. **Add the JDBC Driver to Project Classpath:**
+   - After downloading the `.jar` file (for example, `mysql-connector-java-x.x.x.jar`), copy it to project directory.
+   - In IDE (such as IntelliJ IDEA), add the `.jar` file to the project’s classpath:
+     - Right-click on the project in IDE.
+     - Go to **Module Settings** (for IntelliJ IDEA, it's under `File` -> `Project Structure` -> `Modules`).
+     - In the **Dependencies** tab, click the **+** button and add the `.jar` file.
+
+3. **Rebuild Your Project:**
+   After adding the JDBC driver, rebuild project. In IntelliJ IDEA, click on `Build` -> `Rebuild Project`.
+
+
 **Lab 1: Connection Interface**:
 ```java
 import java.sql.Connection;
