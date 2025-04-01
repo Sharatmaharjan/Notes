@@ -1,8 +1,4 @@
-### Unit 12: Introduction to Java Applets [1 Hr.]
-
-In this unit, we will explore **Java Applets**, which are small Java programs designed to be embedded within web pages. We will learn about the definition of applets, their lifecycle methods, how to build a simple applet, and how to use the **Applet Viewer** for testing. Additionally, we will discuss adding controls and basic animation concepts in applets.
-
----
+## Unit 12: Introduction to Java Applets [1 Hr.]
 
 ### 1. Definition of Java Applets
 
@@ -44,7 +40,7 @@ An applet has a well-defined lifecycle, controlled by the following methods:
 
 ### 3. Building a Simple Applet
 
-**Program Example**:
+**Lab 1: Building a Simple Applet**:
 ```java
 import java.applet.Applet;
 import java.awt.Graphics;
@@ -67,9 +63,6 @@ public class SimpleApplet extends Applet {
 - The `init()` method sets the background color of the applet.
 - The `paint()` method is overridden to display the text "Hello, Applet!" at coordinates (50, 50).
 
-**Sample Output**:  
-When the applet is run, it displays a cyan background with the text "Hello, Applet!" at the specified location.
-
 ---
 
 ### 4. Using Applet Viewer
@@ -84,10 +77,16 @@ The **Applet Viewer** is a tool provided by the JDK to test and run applets with
    javac SimpleApplet.java
    ```
 3. Create an HTML file to embed the applet (e.g., `SimpleApplet.html`):
+   **Lab 1 continue**
    ```html
-   <applet code="SimpleApplet.class" width="300" height="200"></applet>
+   <html>
+     <body>
+    <applet code="SimpleApplet.class" width="300" height="200"></applet>
+     </body>
+   </html>
+
    ```
-4. Run the applet using the Applet Viewer:
+5. Run the applet using the Applet Viewer:
    ```
    appletviewer SimpleApplet.html
    ```
@@ -102,7 +101,7 @@ The Applet Viewer opens a window displaying the applet with the text "Hello, App
 **Definition**:  
 We can add GUI components like buttons, text fields, and labels to applets to make them interactive.
 
-**Program Example**:
+**Lab 2: Adding Controls to Applets**:
 ```java
 import java.applet.Applet;
 import java.awt.*;
@@ -143,7 +142,7 @@ The applet displays a button and a text field. When the button is clicked, the t
 **Definition**:  
 Animation in applets involves displaying a sequence of images or shapes in rapid succession to create the illusion of movement.
 
-**Program Example**:
+**Lab 3: Animation Concepts in Applets**:
 ```java
 import java.applet.Applet;
 import java.awt.*;
@@ -213,5 +212,3 @@ The applet displays a red circle that moves from left to right across the screen
 In this unit, we explored **Java Applets**, which are small programs designed to run within web browsers. We learned about the applet lifecycle methods (`init()`, `start()`, `paint()`, `stop()`, and `destroy()`), built a simple applet, and used the **Applet Viewer** for testing. We also added controls like buttons and text fields to make applets interactive and implemented basic animation concepts.
 
 By understanding applets, we can create dynamic and interactive content for web pages. However, it's important to note that modern web technologies like HTML5 and JavaScript have largely replaced applets for web-based interactivity. Nonetheless, applets remain a valuable part of Java's history and provide a foundation for understanding GUI programming in Java.
-
-Let me know if you'd like further clarification or additional examples! 😊
