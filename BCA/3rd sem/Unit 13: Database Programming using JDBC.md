@@ -1,8 +1,5 @@
-### Unit 13: Database Programming using JDBC [2 Hrs.]
+## Unit 13: Database Programming using JDBC [2 Hrs.]
 
-In this unit, we will explore **Java Database Connectivity (JDBC)**, which is a standard API for connecting Java applications to relational databases. We will learn how to use the `Connection`, `Statement`, and `ResultSet` interfaces to interact with databases, manipulate data, and retrieve results. By the end of this unit, we will be able to perform basic database operations like inserting, updating, deleting, and querying data.
-
----
 
 ### 1. Definition of JDBC
 
@@ -35,7 +32,7 @@ To work with JDBC, we follow these steps:
 **Definition**:  
 The `Connection` interface represents a connection to the database. It is used to create `Statement` objects and manage transactions.
 
-**Program Example**:
+**Lab 1: Connection Interface**:
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -48,21 +45,33 @@ public class ConnectionExample {
             // Step 1: Load the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Step 2: Establish a connection
+            // Step 2: Define the database URL, username, and password
             String url = "jdbc:mysql://localhost:3306/mydatabase";
             String username = "root";
             String password = "password";
+
+            // Step 3: Establish a connection to the database
             connection = DriverManager.getConnection(url, username, password);
 
-            System.out.println("Connected to the database!");
-        } catch (ClassNotFoundException | SQLException e) {
+            // Step 4: Confirm successful connection
+            System.out.println("Successfully connected to the database!");
+
+        } catch (ClassNotFoundException e) {
+            // Handle JDBC driver loading errors
+            System.out.println("JDBC driver not found.");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // Handle database connection errors
+            System.out.println("Failed to connect to the database.");
             e.printStackTrace();
         } finally {
-            // Step 6: Close the connection
+            // Step 5: Close the connection if it was established
             if (connection != null) {
                 try {
                     connection.close();
+                    System.out.println("Connection closed.");
                 } catch (SQLException e) {
+                    System.out.println("Failed to close the connection.");
                     e.printStackTrace();
                 }
             }
@@ -87,7 +96,7 @@ Connected to the database!
 **Definition**:  
 The `Statement` interface is used to execute SQL queries (e.g., `SELECT`, `INSERT`, `UPDATE`, `DELETE`).
 
-**Program Example**:
+**Lab 2: Statement Interface**:
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -102,27 +111,41 @@ public class StatementExample {
             // Step 1: Load the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Step 2: Establish a connection
+            // Step 2: Establish a connection to the database
             String url = "jdbc:mysql://localhost:3306/mydatabase";
             String username = "root";
             String password = "password";
             connection = DriverManager.getConnection(url, username, password);
 
-            // Step 3: Create a Statement
+            // Step 3: Create a Statement object
             statement = connection.createStatement();
 
-            // Step 4: Execute a query
-            String sql = "INSERT INTO employees (id, name, salary) VALUES (1, 'John Doe', 50000)";
+            // Step 4: Execute an SQL query
+            String sql = "INSERT INTO employees (id, name, salary) VALUES (1, 'Sharat Maharjan', 50000)";
             int rowsAffected = statement.executeUpdate(sql);
-            System.out.println(rowsAffected + " row(s) affected.");
-        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println(rowsAffected + " row(s) inserted successfully.");
+
+        } catch (ClassNotFoundException e) {
+            // Handle JDBC driver loading errors
+            System.out.println("JDBC driver not found.");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // Handle database connection or query execution errors
+            System.out.println("Error executing SQL query.");
             e.printStackTrace();
         } finally {
-            // Step 6: Close resources
+            // Step 5: Close resources
             try {
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
+                if (statement != null) {
+                    statement.close();
+                    System.out.println("Statement closed.");
+                }
+                if (connection != null) {
+                    connection.close();
+                    System.out.println("Connection closed.");
+                }
             } catch (SQLException e) {
+                System.out.println("Error closing resources.");
                 e.printStackTrace();
             }
         }
@@ -146,7 +169,7 @@ public class StatementExample {
 **Definition**:  
 The `ResultSet` interface represents the result of a `SELECT` query. It allows us to iterate through the rows returned by the query.
 
-**Program Example**:
+**Lab 3: ResultSet Interface**:
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -163,35 +186,53 @@ public class ResultSetExample {
             // Step 1: Load the JDBC driver
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Step 2: Establish a connection
+            // Step 2: Establish a connection to the database
             String url = "jdbc:mysql://localhost:3306/mydatabase";
             String username = "root";
             String password = "password";
             connection = DriverManager.getConnection(url, username, password);
 
-            // Step 3: Create a Statement
+            // Step 3: Create a Statement object
             statement = connection.createStatement();
 
-            // Step 4: Execute a query
+            // Step 4: Execute a SELECT query
             String sql = "SELECT id, name, salary FROM employees";
             resultSet = statement.executeQuery(sql);
 
             // Step 5: Process the ResultSet
+            System.out.println("Employee Details:");
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("name");
                 double salary = resultSet.getDouble("salary");
                 System.out.println("ID: " + id + ", Name: " + name + ", Salary: " + salary);
             }
-        } catch (ClassNotFoundException | SQLException e) {
+
+        } catch (ClassNotFoundException e) {
+            // Handle JDBC driver loading errors
+            System.out.println("JDBC driver not found.");
+            e.printStackTrace();
+        } catch (SQLException e) {
+            // Handle database connection or query execution errors
+            System.out.println("Error executing SQL query.");
             e.printStackTrace();
         } finally {
             // Step 6: Close resources
             try {
-                if (resultSet != null) resultSet.close();
-                if (statement != null) statement.close();
-                if (connection != null) connection.close();
+                if (resultSet != null) {
+                    resultSet.close();
+                    System.out.println("ResultSet closed.");
+                }
+                if (statement != null) {
+                    statement.close();
+                    System.out.println("Statement closed.");
+                }
+                if (connection != null) {
+                    connection.close();
+                    System.out.println("Connection closed.");
+                }
             } catch (SQLException e) {
+                System.out.println("Error closing resources.");
                 e.printStackTrace();
             }
         }
@@ -205,7 +246,7 @@ public class ResultSetExample {
 
 **Sample Output**:  
 ```
-ID: 1, Name: John Doe, Salary: 50000.0
+ID: 1, Name: Sharat Maharjan, Salary: 50000.0
 ```
 
 ---
@@ -233,6 +274,3 @@ We also learned how to:
 - Execute SQL queries using `Statement` and `PreparedStatement`.
 - Process query results using `ResultSet`.
 
-By mastering JDBC, we can build Java applications that interact with databases to store, retrieve, and manipulate data efficiently. This knowledge is essential for developing data-driven applications.
-
-Let me know if you'd like further clarification or additional examples! 😊
