@@ -43,7 +43,7 @@ The `Connection` interface represents a connection to the database. It is used t
      - Go to **Module Settings** (for IntelliJ IDEA, it's under `File` -> `Project Structure` -> `Modules`).
      - In the **Dependencies** tab, click the **+** button and add the `.jar` file.
 
-3. **Rebuild Your Project:**
+3. **Rebuild Project:**
    After adding the JDBC driver, rebuild project. In IntelliJ IDEA, click on `Build` -> `Rebuild Project`.
 
 
