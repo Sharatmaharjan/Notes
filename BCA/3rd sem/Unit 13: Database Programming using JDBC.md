@@ -102,7 +102,7 @@ public class ConnectionExample {
 
 **Sample Output**:  
 ```
-Connected to the database!
+Successfully connected to the database!
 ```
 
 ---
@@ -183,7 +183,7 @@ public class StatementExample {
 
 **Sample Output**:  
 ```
-1 row(s) affected.
+1 row(s) inserted successfully.
 ```
 
 ---
