@@ -111,6 +111,14 @@ Connected to the database!
 **Definition**:  
 The `Statement` interface is used to execute SQL queries (e.g., `SELECT`, `INSERT`, `UPDATE`, `DELETE`).
 
+```sql
+CREATE TABLE employees (
+    id INT PRIMARY KEY,               -- Unique identifier for each employee
+    name VARCHAR(100) NOT NULL,       -- Employee's name (up to 100 characters)
+    salary DECIMAL(10, 2) NOT NULL    -- Employee's salary (e.g., 50000.00)
+);
+```
+
 **Lab 2: Statement Interface**:
 ```java
 import java.sql.Connection;
@@ -127,9 +135,9 @@ public class StatementExample {
             Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Step 2: Establish a connection to the database
-            String url = "jdbc:mysql://localhost:3306/mydatabase";
+            String url = "jdbc:mysql://localhost:3306/mydatabase";   //mydatabase=whitefield
             String username = "root";
-            String password = "password";
+            String password = "password";   //password="";
             connection = DriverManager.getConnection(url, username, password);
 
             // Step 3: Create a Statement object
@@ -137,7 +145,7 @@ public class StatementExample {
 
             // Step 4: Execute an SQL query
             String sql = "INSERT INTO employees (id, name, salary) VALUES (1, 'Sharat Maharjan', 50000)";
-            int rowsAffected = statement.executeUpdate(sql);
+            int rowsAffected = statement.executeUpdate(sql);   //executeUpdate() for operations that modify the database (INSERT, UPDATE, DELETE)
             System.out.println(rowsAffected + " row(s) inserted successfully.");
 
         } catch (ClassNotFoundException e) {
@@ -212,7 +220,7 @@ public class ResultSetExample {
 
             // Step 4: Execute a SELECT query
             String sql = "SELECT id, name, salary FROM employees";
-            resultSet = statement.executeQuery(sql);
+            resultSet = statement.executeQuery(sql);   //executeQuery() for operations that retrieve data (SELECT)
 
             // Step 5: Process the ResultSet
             System.out.println("Employee Details:");
