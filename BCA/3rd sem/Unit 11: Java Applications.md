@@ -1,8 +1,5 @@
-### Unit 11: Java Applications [8 Hrs.]
+## Unit 11: Java Applications [8 Hrs.]
 
-In this unit, we will explore Java's graphical user interface (GUI) programming using **AWT** and **Swing**. We will learn about Swing components, event handling, layout management, and advanced features like menus, dialog boxes, and tables. Additionally, we will discuss how to use Integrated Development Environments (IDEs) like NetBeans for building Java applications.
-
----
 
 ### 1. About AWT & Swing
 
@@ -19,7 +16,7 @@ Swing is an extension of AWT and is part of the Java Foundation Classes (JFC). I
 **Definition**:  
 `JFrame` is a top-level container in Swing used to create windows. It provides a framework for adding other Swing components like buttons, labels, and text fields.
 
-**Program Example**:
+**Lab 1: JFrame**:
 ```java
 import javax.swing.*;
 
@@ -28,7 +25,7 @@ public class JFrameExample {
         // Create a JFrame
         JFrame frame = new JFrame("My First Swing Application");
         frame.setSize(400, 300); // Set size
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Close operation or frame.setDefaultCloseOperation(3);
         frame.setVisible(true); // Make the frame visible
     }
 }
@@ -37,6 +34,18 @@ public class JFrameExample {
 **Explanation**:  
 - We create a `JFrame` object and set its title, size, and close operation.
 - The `setVisible(true)` method makes the frame visible on the screen.
+
+**Default values:**
+
+1. **`setSize(width, height)`**
+   - Default: **0 × 0** (invisible frame)
+
+2. **`setDefaultCloseOperation()`**
+   - Default: **`JFrame.HIDE_ON_CLOSE`** (frame hides but application keeps running)
+
+3. **`setVisible(true)`**
+   - Default: **false** (frame is invisible)
+
 
 **Sample Output**:  
 A window titled "My First Swing Application" with a size of 400x300 pixels.
@@ -47,9 +56,9 @@ A window titled "My First Swing Application" with a size of 400x300 pixels.
 
 #### a. **JLabel**
 **Definition**:  
-`JLabel` is used to display a short string or an image on the screen.
+`JLabel` is used to display a short string or an image on the screen. It is a **non-editable, static display** — meaning users can't change it directly by clicking/typing. JLabel is used to show fixed text or images inside a Swing window — for titles, messages, form labels, images, and more.
 
-**Program Example**:
+**Lab 2: JLabel**:
 ```java
 import javax.swing.*;
 
@@ -57,6 +66,8 @@ public class JLabelExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JLabel Example");
         JLabel label = new JLabel("Hello, Swing!"); // Create a JLabel
+
+        frame.setLayout(new FlowLayout(FlowLayout.LEFT));
         frame.add(label); // Add label to the frame
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,6 +78,8 @@ public class JLabelExample {
 
 **Explanation**:  
 - We create a `JLabel` with the text "Hello, Swing!" and add it to the `JFrame`.
+- FlowLayout arranges components left-to-right, and when the space runs out, it wraps them to the next line. The default alignment is center, meaning components will be centered within their allocated space.
+- frame.setLayout(new FlowLayout()) tells the JFrame to use FlowLayout as the layout manager.
 
 **Sample Output**:  
 A window displaying the text "Hello, Swing!".
@@ -75,9 +88,11 @@ A window displaying the text "Hello, Swing!".
 
 #### b. **JTextField**
 **Definition**:  
-`JTextField` is a text component that allows the user to enter a single line of text.
+`JTextField` is a text component that allows the user to **enter or edit a single line** of text. 
+JLabel = static text (just showing something)
+JTextField = input box (where user types)
 
-**Program Example**:
+**Lab 3: JTextField**:
 ```java
 import javax.swing.*;
 
@@ -85,6 +100,8 @@ public class JTextFieldExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JTextField Example");
         JTextField textField = new JTextField("Enter text here"); // Create a JTextField
+
+        frame.setLayout(new FlowLayout(FlowLayout.LEFT));
         frame.add(textField); // Add text field to the frame
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,9 +120,9 @@ A window with a text field containing the text "Enter text here".
 
 #### c. **JButton**
 **Definition**:  
-`JButton` is a component that triggers an action when clicked.
+A `JButton` is a button that can trigger actions when clicked. It's one of the most commonly used components in Java Swing for user interaction.
 
-**Program Example**:
+**Lab 4: JButton**:
 ```java
 import javax.swing.*;
 
@@ -113,6 +130,8 @@ public class JButtonExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JButton Example");
         JButton button = new JButton("Click Me"); // Create a JButton
+
+        frame.setLayout(new FlowLayout());
         frame.add(button); // Add button to the frame
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -134,7 +153,7 @@ A window with a button labeled "Click Me".
 **Definition**:  
 Event handling is the mechanism to handle user interactions like button clicks, mouse movements, or key presses.
 
-**Program Example**:
+**Lab 5: Event Handling in Swing Applications**:
 ```java
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -144,12 +163,14 @@ public class EventHandlingExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Event Handling Example");
         JButton button = new JButton("Click Me");
-        button.addActionListener(new ActionListener() {
+        button.addActionListener(new ActionListener() {    //implementing the ActionListener interface using an anonymous inner class
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {    //implementation
                 JOptionPane.showMessageDialog(frame, "Button Clicked!");
             }
         });
+
+        frame.setLayout(new FlowLayout());
         frame.add(button);
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -159,8 +180,16 @@ public class EventHandlingExample {
 ```
 
 **Explanation**:  
-- We add an `ActionListener` to the `JButton` to handle button click events.
+- We add an `ActionListener` to the `JButton` to handle button click events by implementing the ActionListener interface using an anonymous inner class.
 - When the button is clicked, a dialog box displays the message "Button Clicked!".
+- **Anonymous inner classes** are a special type of inner class where we don't provide a name for the class. Instead, we define the class inline where it is needed, typically for short-term use.
+
+`JOptionPane` is a class in Java's Swing library that offers an easy way to display pop-up dialogs for various purposes, such as showing messages, requesting input from users, or seeking confirmation. It belongs to the `javax.swing` package and is widely used for creating message boxes in graphical user interface (GUI) applications.
+
+### Common Methods of `JOptionPane`:
+- **`showMessageDialog()`**: Displays a message to the user.
+- **`showInputDialog()`**: Prompts the user to provide input.
+- **`showConfirmDialog()`**: Asks the user a yes/no question and returns their response.
 
 **Sample Output**:  
 A window with a button. Clicking the button shows a dialog box with the message "Button Clicked!".
@@ -171,9 +200,10 @@ A window with a button. Clicking the button shows a dialog box with the message 
 
 #### a. **FlowLayout**
 **Definition**:  
-`FlowLayout` arranges components in a row, one after the other.
+`FlowLayout` arranges components in a row left-to-right flow, one after the other. If the container is resized and there isn't enough space, the components wrap to the next line.
 
-**Program Example**:
+
+**Lab 6: FlowLayout**:
 ```java
 import javax.swing.*;
 import java.awt.FlowLayout;
@@ -204,7 +234,7 @@ A window with three buttons arranged in a row.
 **Definition**:  
 `BorderLayout` divides the container into five regions: North, South, East, West, and Center.
 
-**Program Example**:
+**Lab 7: BorderLayout**:
 ```java
 import javax.swing.*;
 import java.awt.BorderLayout;
@@ -237,7 +267,7 @@ A window with buttons placed in the North, South, East, West, and Center regions
 **Definition**:  
 `GridLayout` arranges components in a grid of rows and columns.
 
-**Program Example**:
+**Lab 8: GridLayout**:
 ```java
 import javax.swing.*;
 import java.awt.GridLayout;
@@ -273,7 +303,7 @@ A window with six buttons arranged in a 2x3 grid.
 **Definition**:  
 `JCheckBox` is a component that allows the user to select or deselect an option.
 
-**Program Example**:
+**Lab 9: JCheckBox**:
 ```java
 import javax.swing.*;
 
@@ -281,6 +311,8 @@ public class JCheckBoxExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JCheckBox Example");
         JCheckBox checkBox = new JCheckBox("Enable Feature"); // Create a JCheckBox
+
+        frame.setLayout(new FlowLayout());
         frame.add(checkBox); // Add checkbox to the frame
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -301,7 +333,7 @@ A window with a checkbox labeled "Enable Feature".
 **Definition**:  
 `JRadioButton` is used to create a group of mutually exclusive options.
 
-**Program Example**:
+**Lab 10: JRadioButton**:
 ```java
 import javax.swing.*;
 
@@ -310,7 +342,9 @@ public class JRadioButtonExample {
         JFrame frame = new JFrame("JRadioButton Example");
         JRadioButton radio1 = new JRadioButton("Option 1");
         JRadioButton radio2 = new JRadioButton("Option 2");
-        ButtonGroup group = new ButtonGroup(); // Create a ButtonGroup
+        ButtonGroup group = new ButtonGroup(); // Create a ButtonGroup ensuring that only one radio button in the group can be selected at a time
+
+        frame.setLayout(new FlowLayout());
         group.add(radio1);
         group.add(radio2);
         frame.add(radio1);
@@ -334,7 +368,7 @@ A window with two radio buttons labeled "Option 1" and "Option 2".
 **Definition**:  
 `JComboBox` is a drop-down list that allows the user to select one option from a list.
 
-**Program Example**:
+**Lab 11: JComboBox**:
 ```java
 import javax.swing.*;
 
@@ -343,6 +377,8 @@ public class JComboBoxExample {
         JFrame frame = new JFrame("JComboBox Example");
         String[] options = {"Option 1", "Option 2", "Option 3"};
         JComboBox<String> comboBox = new JComboBox<>(options); // Create a JComboBox
+
+        frame.setLayout(new FlowLayout());
         frame.add(comboBox); // Add combo box to the frame
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -363,7 +399,7 @@ A window with a drop-down list containing "Option 1", "Option 2", and "Option 3"
 **Definition**:  
 `JList` is a component that displays a list of items from which the user can select one or more items.
 
-**Program Example**:
+**Lab 12: JList**:
 ```java
 import javax.swing.*;
 
@@ -372,6 +408,8 @@ public class JListExample {
         JFrame frame = new JFrame("JList Example");
         String[] items = {"Item 1", "Item 2", "Item 3"};
         JList<String> list = new JList<>(items); // Create a JList
+
+        frame.setLayout(new FlowLayout());
         frame.add(new JScrollPane(list)); // Add JList to a JScrollPane
         frame.setSize(300, 200);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
