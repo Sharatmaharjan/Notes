@@ -431,7 +431,7 @@ A window with a list containing "Item 1", "Item 2", and "Item 3".
 **Definition**:  
 Key and mouse events are used to handle user interactions like key presses and mouse clicks.
 
-**Program Example**:
+**Lab 13: Key & Mouse Event Handling**:
 ```java
 import javax.swing.*;
 import java.awt.event.*;
@@ -458,6 +458,7 @@ public class KeyMouseEventExample {
         frame.setVisible(true);
     }
 }
+
 ```
 
 **Explanation**:  
@@ -467,6 +468,130 @@ public class KeyMouseEventExample {
 - When a key is pressed, the key character is printed.
 - When the mouse is clicked, the coordinates of the click are printed.
 
+
+**Lab 14: Write a GUI program using components to find factorial and cube of number. Use TextField for giving input and Label for output. The program should display factorial if user press mouse on result button and cube if user release mouse from result button.**
+
+```java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class FactorialCubeCalculator {
+    public static void main(String[] args) {
+        // Create frame
+        JFrame frame = new JFrame("Factorial and Cube Finder");
+
+        // Create components
+        JTextField inputField = new JTextField(10);
+        JLabel resultLabel = new JLabel("Result will appear here");
+        JButton resultButton = new JButton("Result");
+
+        // Add mouse listener to the button
+        resultButton.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                String text = inputField.getText();
+                try {
+                    int num = Integer.parseInt(text);
+                    long fact = 1;
+                    for (int i = 1; i <= num; i++) {
+                        fact *= i;
+                    }
+                    resultLabel.setText("Factorial: " + fact);
+                } catch (NumberFormatException ex) {
+                    resultLabel.setText("Invalid input!");
+                }
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                String text = inputField.getText();
+                try {
+                    int num = Integer.parseInt(text);
+                    long cube = (long) num * num * num;
+                    resultLabel.setText("Cube: " + cube);
+                } catch (NumberFormatException ex) {
+                    resultLabel.setText("Invalid input!");
+                }
+            }
+        });
+
+        // Layout setting
+        frame.setLayout(new FlowLayout());
+        frame.add(new JLabel("Enter Number:"));
+        frame.add(inputField);
+        frame.add(resultButton);
+        frame.add(resultLabel);
+
+        // Frame settings
+        frame.setSize(300, 150);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+```
+
+**Lab 15: Write a GUI program using swing components to calculate sum and difference of two numbers. Use two text fields for input and pre-built dialog box for output. Your program should display sum if Add button and difference if subtract button is clicked.**
+
+```java
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SumDifferenceCalculator {
+    public static void main(String[] args) {
+        // Create frame
+        JFrame frame = new JFrame("Sum and Difference Calculator");
+
+        // Create components
+        JTextField numField1 = new JTextField(10);
+        JTextField numField2 = new JTextField(10);
+        JButton addButton = new JButton("Add");
+        JButton subtractButton = new JButton("Subtract");
+
+        // Add action listener for Add button
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int num1 = Integer.parseInt(numField1.getText());
+                    int num2 = Integer.parseInt(numField2.getText());
+                    int sum = num1 + num2;
+                    JOptionPane.showMessageDialog(frame, "Sum: " + sum);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Invalid input! Please enter numbers.");
+                }
+            }
+        });
+
+        // Add action listener for Subtract button
+        subtractButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    int num1 = Integer.parseInt(numField1.getText());
+                    int num2 = Integer.parseInt(numField2.getText());
+                    int diff = num1 - num2;
+                    JOptionPane.showMessageDialog(frame, "Difference: " + diff);
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Invalid input! Please enter numbers.");
+                }
+            }
+        });
+
+        // Layout setting
+        frame.setLayout(new FlowLayout());
+        frame.add(new JLabel("First Number:"));
+        frame.add(numField1);
+        frame.add(new JLabel("Second Number:"));
+        frame.add(numField2);
+        frame.add(addButton);
+        frame.add(subtractButton);
+
+        // Frame settings
+        frame.setSize(300, 200);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+    }
+}
+```
+
 ---
 
 ### 8. Menus in Swing
@@ -474,7 +599,7 @@ public class KeyMouseEventExample {
 **Definition**:  
 Menus are used to create dropdown menus in Swing applications.
 
-**Program Example**:
+**Lab 16: Menus in Swing**:
 ```java
 import javax.swing.*;
 
@@ -507,7 +632,7 @@ A window with a "File" menu containing an "Open" option.
 **Definition**:  
 Dialog boxes are used to display messages or prompt the user for input.
 
-**Program Example**:
+**Lab 17: Dialog Boxes in Swing**:
 ```java
 import javax.swing.*;
 
@@ -535,7 +660,7 @@ A dialog box with the message "This is a message dialog!".
 **Definition**:  
 `JTable` is used to display data in a tabular format.
 
-**Program Example**:
+**Lab 18: JTable for Displaying Data in Tabular Form**:
 ```java
 import javax.swing.*;
 
@@ -566,7 +691,7 @@ A window with a table displaying the data.
 **Definition**:  
 MDI (Multiple Document Interface) allows multiple windows to be displayed within a single parent window.
 
-**Program Example**:
+**Lab 19: MDI Using JDesktopPane & JInternalFrame**:
 ```java
 import javax.swing.*;
 
@@ -606,11 +731,7 @@ IDEs like NetBeans provide drag-and-drop functionality for building Java applica
 
 ---
 
-Absolutely! Let me continue and complete the response for your **second question** about **Unit 11: Java Applications**. I'll pick up where I left off and provide the remaining details, including program examples, explanations, sample outputs, and a summary.
-
----
-
-### 13. Adapter Classes (Continued)
+### 13. Adapter Classes
 
 **Definition**:  
 Adapter classes in Java provide default implementations for event listener interfaces. They are used to simplify event handling by allowing us to override only the methods we need, rather than implementing all methods of an interface.
@@ -620,43 +741,12 @@ Adapter classes in Java provide default implementations for event listener inter
 - `KeyAdapter`: Provides default implementations for `KeyListener` methods.
 - `WindowAdapter`: Provides default implementations for `WindowListener` methods.
 
-**Program Example**:
-```java
-import javax.swing.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-public class MouseAdapterExample {
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("MouseAdapter Example");
-        frame.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                System.out.println("Mouse Clicked at: " + e.getX() + ", " + e.getY());
-            }
-        });
-        frame.setSize(300, 200);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
-}
-```
-
-**Explanation**:  
-- We use `MouseAdapter` to handle mouse click events. Only the `mouseClicked` method is overridden.
-- When the mouse is clicked, the coordinates of the click are printed.
-
-**Sample Output**:  
-```
-Mouse Clicked at: 150, 100
-```
-
 ---
 
 
 ### 15. Summary
 
-In this unit, we explored Java's GUI programming using **AWT** and **Swing**. Here's a quick recap of what we covered:
+In this unit, we explored Java's GUI programming using **AWT** and **Swing**. What we covered:
 
 1. **AWT vs. Swing**:  
    - AWT is platform-dependent and uses native components.
