@@ -198,6 +198,22 @@ A window with a button. Clicking the button shows a dialog box with the message 
 
 ### 5. Layout Management
 
+In Java Swing, **layout management** means arranging GUI components (like buttons, labels, text fields) inside a container automatically, without manually setting their position (x, y).
+
+**Layout managers** help organize components neatly and adjust them properly when the window is resized.
+
+#### Common Layout Managers:
+- **FlowLayout**: Places components left to right in a row.  
+- **BorderLayout**: Divides the container into five areas — North, South, East, West, Center.  
+- **GridLayout**: Arranges components in a grid (equal-sized cells).  
+- **BoxLayout**: Arranges components vertically or horizontally.  
+- **CardLayout**: Displays one component at a time (like flipping cards).
+
+#### Advantages:
+- Makes GUI flexible and responsive.
+- Easier to manage compared to manual positioning.
+- Adapts to different screen sizes.
+
 #### a. **FlowLayout**
 **Definition**:  
 `FlowLayout` arranges components in a row left-to-right flow, one after the other. If the container is resized and there isn't enough space, the components wrap to the next line.
