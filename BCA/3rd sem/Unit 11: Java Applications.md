@@ -683,7 +683,7 @@ import javax.swing.*;
 public class JTableExample {
     public static void main(String[] args) {
         JFrame frame = new JFrame("JTable Example");
-        String[][] data = {{"1", "John", "Doe"}, {"2", "Jane", "Doe"}};
+        String[][] data = {{"1", "Sharat", "Maharjan"}, {"2", "Sujan", "Shrestha"}};
         String[] columns = {"ID", "First Name", "Last Name"};
         JTable table = new JTable(data, columns); // Create a JTable
         frame.add(new JScrollPane(table)); // Add JTable to a JScrollPane
@@ -696,6 +696,9 @@ public class JTableExample {
 
 **Explanation**:  
 - We create a `JTable` with data and column names and add it to a `JScrollPane`.
+- Tables (JTable) can have **many rows** or **many columns**.
+- If the table becomes **bigger than the frame**, we **won’t be able to see** everything.
+- JScrollPane solves this by **automatically adding scrollbars (both vertical and horizontal)** so that the user can scroll.
 
 **Sample Output**:  
 A window with a table displaying the data.
@@ -729,6 +732,9 @@ public class MDIExample {
 
 **Explanation**:  
 - We create a `JDesktopPane` and add a `JInternalFrame` to it.
+- JDesktopPane is a special container in Swing.
+- It is used to hold and manage multiple internal frames (JInternalFrame).
+- It looks like a mini desktop inside the application.
 
 **Sample Output**:  
 A window with an internal frame inside it.
