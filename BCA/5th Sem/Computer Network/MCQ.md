@@ -245,6 +245,7 @@
 ---
 
 ### **Unit 3: Data Link Layer**  
+
 1. The data link layer handles:  
    **a) Framing**  
    b) Routing  
