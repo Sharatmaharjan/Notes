@@ -219,13 +219,7 @@ User Program (User Mode)
 User Program (User Mode)
 
 ```
-```mermaid
-graph LR
- A[User Program (User Mode)] -->|1. System Call (e.g., int 0x80)| B[CPU switches from User Mode to Kernel Mode]
-    B -->|2. Kernel handles request (e.g., read file)| C[OS Kernel runs<br>(executes privileged instructions)]
-    C -->|3. Return result and switch back| A
 
-```
 ---
 
 ### **1.2.3 System Programs**  
