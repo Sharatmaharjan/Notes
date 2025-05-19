@@ -273,7 +273,7 @@ User Program (User Mode)
 
 #### Example:
 
-* MINIX, QNX, Mach (basis for macOS), L4 microkernel.
+* MINIX(Mini UNIX), QNX(Quick UNIX or Quantum UNIX), Mach (basis for macOS), L4 microkernel.
 
 | In Microkernel                                                                                                                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- |
