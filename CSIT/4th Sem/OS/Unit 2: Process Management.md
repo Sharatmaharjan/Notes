@@ -133,4 +133,280 @@ graph LR
 
 **Memory Aid:**  
 - Process = Company, Threads = Employees.  
-- ULT = Interns (cheap but limited), KLT = Full-timers (powerful but costly).  
+- ULT = Interns (cheap but limited), KLT = Full-timers (powerful but costly).
+
+---
+
+### **2.3 Inter Process Communication (IPC), Race Condition, Critical Section**  
+
+#### **1. Inter Process Communication (IPC)**  
+ 
+IPC is a mechanism that allows processes to communicate and synchronize their actions. Processes may run on the same system or different systems connected via a network.  
+
+**Why IPC?**  
+- Processes often need to share data (e.g., producer-consumer problem).  
+- Some tasks require coordination (e.g., avoiding simultaneous file access).  
+
+**Methods of IPC:**  
+#### **(A) Shared Memory**  
+- Processes share a common memory region.  
+- Faster than message passing (no kernel intervention).  
+- **Example:** A shared buffer between a producer and consumer process.  
+
+#### **(B) Message Passing**  
+- Processes communicate via system calls (`send()` and `receive()`).  
+- Works for both same-machine and distributed systems.  
+- **Example:** Pipes in Unix (`|` operator in shell commands).  
+
+#### **Diagram: IPC Methods**  
+```
++-------------------+       +-------------------+
+| Process A         |       | Process B         |
+| (Shared Memory)   |<----->| (Shared Memory)   |
++-------------------+       +-------------------+
+          ^                         ^
+          | Kernel Mediation         |
+          v                         v
++-------------------+       +-------------------+
+| Process X         |       | Process Y         |
+| (Message Passing) |<----->| (Message Passing) |
++-------------------+       +-------------------+
+```
+
+
+
+#### **2. Race Condition**  
+ 
+A race condition occurs when multiple processes access shared data concurrently, and the final outcome depends on the order of execution.  
+
+**Why is it a Problem?**  
+- Leads to inconsistent data.  
+- Hard to reproduce and debug.
+
+**Example:**  
+Two processes (P1 and P2) increment a shared variable `count = 5`:  
+1. P1 reads `count = 5`.  
+2. P2 reads `count = 5`.  
+3. P1 increments to `6` and writes back.  
+4. P2 increments to `6` and writes back.  
+- **Expected:** `count = 7` (if sequential).  
+- **Actual:** `count = 6` (due to race).  
+
+### **Diagram: Race Condition**  
+```
+P1: Read (5) → Increment (6) → Write (6)  
+P2: Read (5) → Increment (6) → Write (6)  
+Final value: 6 (instead of 7)  
+```
+
+
+#### **3. Critical Section**  
+
+A segment of code where shared resources (variables, files, etc.) are accessed.  
+
+**Requirements for Critical Section Problem:**  
+1. **Mutual Exclusion:** Only one process can execute in the critical section at a time.  
+2. **Progress:** If no process is in the critical section, another process must be allowed to enter.  
+3. **Bounded Waiting:** No process should wait indefinitely.  
+
+
+**Solutions to Critical Section Problem:**  
+1. **Peterson’s Algorithm** (Software-based, for 2 processes).  
+2. **Mutex Locks** (Hardware-based, `acquire()` and `release()`).  
+3. **Semaphores** (Generalized mutex, `wait()` and `signal()`).  
+
+**Diagram: Critical Section Handling**  
+```
++---------------------+
+| Entry Section       | ← Ensures mutual exclusion
++---------------------+
+| Critical Section    | ← Shared resource access
++---------------------+
+| Exit Section        | ← Releases lock
++---------------------+
+```
+
+---
+
+### **2.4 Implementing Mutual Exclusion**  
+Mutual Exclusion ensures that only one process/thread accesses the critical section (shared resources) at a time, preventing race conditions.
+
+#### **1. Mutual Exclusion with Busy Waiting**  
+
+Busy waiting (or spinlock) means a process continuously checks for a condition (e.g., a lock) in a loop while waiting to enter the critical section.  
+
+**Methods:**  
+**(A) Disabling Interrupts**  
+- **How?** Disable interrupts before entering the critical section.  
+- **Pros:** Simple (works for single-core systems).  
+- **Cons:**  
+  - Dangerous in user mode (only kernel should disable interrupts).  
+  - Doesn’t work for multi-core systems.  
+- **Example:**  
+  ```asm
+  CLI ; Disable interrupts (x86 instruction)  
+  ; Critical Section  
+  STI ; Enable interrupts  
+  ```
+
+**(B) Lock Variables**  
+- **How?** A shared `lock` variable (`0` = free, `1` = busy).  
+- **Problem:** Race condition in checking and setting the lock.  
+- **Example:**  
+  ```c
+  while (lock == 1);  // Busy wait  
+  lock = 1;           // Race condition here!  
+  // Critical Section  
+  lock = 0;  
+  ```
+
+**(C) Strict Alternation (Turn Variable)**  
+- **How?** Processes take turns using a `turn` variable.  
+- **Problem:** Violates *Progress* (a process must wait even if the other is idle).  
+- **Example:**  
+  ```c
+  // Process 0  
+  while (turn != 0); // Wait  
+  // Critical Section  
+  turn = 1;  
+
+  // Process 1  
+  while (turn != 1); // Wait  
+  // Critical Section  
+  turn = 0;  
+  ```
+
+**(D) Peterson’s Solution**  
+- **How?** Uses `turn` and `flag[2]` (for 2 processes).  
+- **Satisfies:** Mutual Exclusion, Progress, Bounded Waiting.  
+- **Example:**  
+  ```c
+  int flag[2] = {0, 0}, turn = 0;  
+
+  // Process i  
+  flag[i] = 1;          // I’m ready  
+  turn = 1 - i;          // Let the other go first  
+  while (flag[1-i] && turn == 1-i);  
+  // Critical Section  
+  flag[i] = 0;          // I’m done  
+  ```
+
+**(E) Test and Set Lock (TSL)**  
+- **How?** Hardware instruction (`TSL RX, LOCK`) sets lock and returns old value atomically.  
+- **Example:**  
+  ```asm
+  TSL R0, LOCK   ; Copy LOCK to R0 and set LOCK=1  
+  CMP R0, #0     ; Was LOCK 0?  
+  JNE WAIT       ; If not, wait  
+  ; Critical Section  
+  MOV LOCK, #0   ; Release lock  
+  ```
+
+
+#### **2. Sleep and Wakeup**  
+ 
+Instead of busy waiting, the OS puts the process to sleep and wakes it when the lock is free.  
+
+### **Example (Producer-Consumer Problem):**  
+```c
+// Producer  
+while (count == BUFFER_SIZE) sleep();  
+// Produce item  
+wakeup(Consumer);  
+
+// Consumer  
+while (count == 0) sleep();  
+// Consume item  
+wakeup(Producer);  
+```
+
+**Problem: Lost Wakeup**  
+- If `wakeup` is called before `sleep`, the signal is lost.  
+- **Solution:** Use **semaphores**.  
+
+---
+
+### **3. Semaphores**  
+ 
+An integer variable (`S`) accessed only via atomic operations:  
+- `wait(S)` (or `P`): Decrements `S`; if `S < 0`, the process sleeps.  
+- `signal(S)` (or `V`): Increments `S`; wakes up a waiting process.  
+
+**Types:**  
+1. **Binary Semaphore (`S = 0 or 1`)** → Acts like a mutex lock.  
+2. **Counting Semaphore (`S = N`)** → Allows `N` processes in critical section.  
+
+**Example (Mutex with Semaphore):**  
+```c
+semaphore S = 1;  
+
+// Process P1  
+wait(S);  
+// Critical Section  
+signal(S);  
+```
+
+### **Problem: Deadlocks**  
+- If two processes wait for each other’s resources.  
+
+---
+
+#### **4. Monitors**  
+ 
+A high-level synchronization construct where shared data and procedures are grouped together.  
+
+**Features:**  
+- Only one process can execute a monitor procedure at a time.  
+- Uses **condition variables** (`wait()`, `signal()`).  
+
+### **Example (Bounded Buffer Monitor):**  
+```java
+monitor BoundedBuffer {  
+  int buffer[N];  
+  condition full, empty;  
+
+  void produce(item) {  
+    if (buffer.isFull()) empty.wait();  
+    buffer.add(item);  
+    full.signal();  
+  }  
+
+  void consume() {  
+    if (buffer.isEmpty()) full.wait();  
+    item = buffer.remove();  
+    empty.signal();  
+  }  
+}  
+```
+
+---
+
+#### **5. Message Passing**  
+  
+Processes communicate via messages (`send()` and `receive()`).  
+
+**Types:**  
+1. **Blocking (Synchronous):**  
+   - `send()` blocks until the message is received.  
+   - `receive()` blocks until a message arrives.  
+2. **Non-Blocking (Asynchronous):**  
+   - `send()` returns immediately.  
+   - `receive()` checks for a message (may return empty).  
+
+**Example (Client-Server):**  
+```c
+// Server  
+while (1) {  
+  receive(REQUEST, &client);  
+  // Process request  
+  send(REPLY, client);  
+}  
+
+// Client  
+send(REQUEST, server);  
+receive(REPLY, &response);  
+```
+
+---
+
+
