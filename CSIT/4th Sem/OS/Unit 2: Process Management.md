@@ -33,8 +33,8 @@ OS treats all processes as **independent sequential programs** with:
 - Own virtual CPU (illusion created via CPU scheduling).  
 - Private address space (memory isolation).  
 
-- Processes interact via inter-process communication (IPC).
-- A process can create child processes, forming a process tree.
+Processes interact via inter-process communication (IPC).
+A process can create child processes, forming a process tree.
 
 **Diagram:**  
 ```
