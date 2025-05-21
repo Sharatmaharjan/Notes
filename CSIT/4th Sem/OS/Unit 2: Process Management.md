@@ -410,7 +410,6 @@ receive(REPLY, &response);
 ---
 
 # **Process Scheduling: Detailed Notes**  
-**OS Professor**  
 
 ## **2.6 Process Scheduling**  
 Process scheduling is the mechanism used by the OS to select which process runs next on the CPU. The **scheduler** is responsible for allocating CPU time efficiently based on scheduling algorithms.  
