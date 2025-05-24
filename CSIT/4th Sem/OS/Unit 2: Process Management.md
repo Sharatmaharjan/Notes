@@ -409,12 +409,177 @@ receive(REPLY, &response);
 
 ---
 
-# **Process Scheduling: Detailed Notes**  
+#### **2.5 Classical IPC Problems**
 
-## **2.6 Process Scheduling**  
+Classical IPC problems help illustrate common **synchronization issues** and how to solve them using **semaphores**, **mutexes**, and **monitors**.
+
+
+#### 1. **Producer-Consumer Problem (Bounded Buffer Problem)**
+
+**Problem Statement:**
+
+* A **producer** creates data items and places them in a **bounded (limited-size) buffer**.
+* A **consumer** removes items from the buffer.
+* The **goal** is to ensure:
+
+  * Producer waits if buffer is **full**.
+  * Consumer waits if buffer is **empty**.
+  * Mutual exclusion while accessing the buffer.
+
+**Real-life Analogy:**
+
+* A bakery (producer) produces bread.
+* A delivery truck (buffer) has limited slots.
+* Customers (consumers) buy bread from the truck.
+
+**Solution using Semaphores:**
+
+```c
+semaphore mutex = 1;      // mutual exclusion
+semaphore full = 0;       // count of full slots
+semaphore empty = N;      // count of empty slots (N = buffer size)
+
+Producer:
+while (true) {
+    produce_item();
+    wait(empty);        // wait for empty slot
+    wait(mutex);        // enter critical section
+    add_item_to_buffer();
+    signal(mutex);      // exit critical section
+    signal(full);       // one more full slot
+}
+
+Consumer:
+while (true) {
+    wait(full);         // wait for full slot
+    wait(mutex);        // enter critical section
+    remove_item_from_buffer();
+    signal(mutex);      // exit critical section
+    signal(empty);      // one more empty slot
+    consume_item();
+}
+```
+
+
+#### 2. **Sleeping Barber Problem**
+
+**Problem Statement:**
+
+* A **barber** sleeps when there are **no customers**.
+* If a customer arrives:
+
+  * Wakes the barber if sleeping.
+  * If all chairs are full, customer leaves.
+  * Else waits in the **waiting room** (limited chairs).
+
+**Real-life Analogy:**
+
+* A barbershop with one barber and `N` waiting chairs.
+
+**Challenges:**
+
+* Wake the barber when needed.
+* Ensure mutual exclusion in accessing customer count.
+* Don’t let more than `N` customers enter waiting room.
+
+**Solution using Semaphores:**
+
+```c
+semaphore customers = 0;   // number of waiting customers
+semaphore barber = 0;      // barber ready
+semaphore mutex = 1;       // for mutual exclusion
+int waiting = 0;           // number of customers waiting
+
+Barber:
+while (true) {
+    wait(customers);       // sleep if no customers
+    wait(mutex);
+    waiting = waiting - 1;
+    signal(barber);        // ready to cut hair
+    signal(mutex);
+    cut_hair();
+}
+
+Customer:
+wait(mutex);
+if (waiting < N) {
+    waiting = waiting + 1;
+    signal(customers);     // wake up barber if needed
+    signal(mutex);
+    wait(barber);          // wait until barber is ready
+    get_haircut();
+}
+else {
+    signal(mutex);         // no chair available, leave shop
+}
+```
+
+
+
+#### 3. **Dining Philosophers Problem**
+
+**Problem Statement:**
+
+* `5` philosophers sit around a table.
+* Each needs **two forks** to eat (left and right).
+* A fork is **shared between neighbors**.
+* **Goal**: avoid **deadlock** and **starvation**.
+
+**Real-life Analogy:**
+
+* Philosophers alternate between **thinking** and **eating**.
+* There are only **5 forks** (1 between each pair).
+
+**Problem Issues:**
+
+* If all philosophers pick the **left fork first**, they **deadlock**.
+* Some philosophers may **starve** if others keep eating.
+
+**Solution using Semaphores (Asymmetric Strategy):**
+
+```c
+semaphore forks[5] = {1, 1, 1, 1, 1};  // 5 binary semaphores for 5 forks
+
+Philosopher i:
+while (true) {
+    think();
+    if (i % 2 == 0) {          // even philosopher
+        wait(forks[i]);        // pick left fork
+        wait(forks[(i+1)%5]);  // pick right fork
+    } else {                   // odd philosopher
+        wait(forks[(i+1)%5]);  // pick right fork
+        wait(forks[i]);        // pick left fork
+    }
+    eat();
+    signal(forks[i]);          // put down left fork
+    signal(forks[(i+1)%5]);    // put down right fork
+}
+```
+
+**Alternate Solutions:**
+
+* Use **mutex + states (thinking, hungry, eating)**.
+* Limit the number of philosophers who can sit at the table at the same time (e.g., only 4 at once).
+
+---
+
+#### Summary Table:
+
+| Problem             | Key Concept            | Issue Solved                         | Common Tools      |
+| ------------------- | ---------------------- | ------------------------------------ | ----------------- |
+| Producer-Consumer   | Buffer Synchronization | Full/Empty buffer, race conditions   | Semaphores, Mutex |
+| Sleeping Barber     | Process Wake/Sleep     | Barbershop capacity, sleeping barber | Semaphores        |
+| Dining Philosophers | Resource Allocation    | Deadlock, starvation                 | Semaphores, Mutex |
+
+---
+
+
+### **Process Scheduling**  
+
+#### **2.6 Process Scheduling**  
 Process scheduling is the mechanism used by the OS to select which process runs next on the CPU. The **scheduler** is responsible for allocating CPU time efficiently based on scheduling algorithms.  
 
-### **Key Terms:**  
+**Key Terms:**  
 1. **Process Scheduling** – The act of selecting a process from the ready queue to execute on the CPU.  
 2. **Scheduler** – The OS component that decides the order of process execution.  
 3. **Ready Queue** – A queue of processes in main memory that are ready to execute.  
@@ -426,25 +591,25 @@ Process scheduling is the mechanism used by the OS to select which process runs 
 9. **Throughput** – Number of processes completed per unit time.  
 10. **CPU Utilization** – Percentage of time the CPU is busy (not idle).  
 
----
 
-## **Goals of Process Scheduling**  
+
+**Goals of Process Scheduling**  
 1. **Fairness** – All processes should get a fair share of CPU time.  
 2. **Efficiency** – Maximize CPU utilization and throughput.  
 3. **Minimize Response Time** – Important for interactive systems.  
 4. **Minimize Turnaround Time** – Important for batch systems.  
 5. **Avoid Starvation** – No process should wait indefinitely.  
 
----
 
-# **Process Scheduling Numericals (Scenarios 1 & 2)**  
+
+#### **Process Scheduling Numericals (Scenarios 1 & 2)**  
 
 - **Scenario 1:** All processes arrive at the same time (Arrival Time = 0).  
 - **Scenario 2:** Processes arrive at different times (Variable Arrival Time).  
 
 
-## **1. First-Come First-Served (FCFS) Scheduling**  
-### **Scenario 1: Same Arrival Time**  
+**1. First-Come First-Served (FCFS) Scheduling**  
+**Scenario 1: Same Arrival Time**  
 | Process | Arrival Time (AT) | Burst Time (BT) |
 |---------|-------------------|-----------------|
 | P1      | 0                 | 6               |
