@@ -328,7 +328,7 @@ wakeup(Producer);
 
 ### **3. Semaphores**  
  
-An integer variable (`S`) accessed only via atomic operations:  
+An integer variable (`S`) accessed only via atomic operations(An operation that executes completely or not at all, without being interrupted):  
 - `wait(S)` (or `P`): Decrements `S`; if `S < 0`, the process sleeps.  
 - `signal(S)` (or `V`): Increments `S`; wakes up a waiting process.  
 
