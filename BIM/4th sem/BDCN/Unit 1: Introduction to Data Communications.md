@@ -39,6 +39,8 @@ Data communication involves the transfer of digital or analog data between devic
    - Uses leased lines or satellites.  
    - Example: The Internet.  
 
+<br>
+
 3. **Metropolitan Area Network (MAN)**  
    - Covers a city or campus.  
    - Example: A city-wide broadband network.  
@@ -64,6 +66,7 @@ The **OSI (Open Systems Interconnection) model** is a **7-layer conceptual frame
 - Provides a **layered approach** to network communication.  
 - Each layer has **specific functions** and interacts with adjacent layers.  
 
+
 **OSI Model Layers (Top to Bottom)**  
 
 | **Layer No.** | **Layer Name** | **Function** | **Protocols & Devices** |
@@ -75,6 +78,10 @@ The **OSI (Open Systems Interconnection) model** is a **7-layer conceptual frame
 | **3** | **Network Layer** | Routes data packets between different networks using logical addressing. | IP, ICMP, OSPF, Router |
 | **2** | **Data Link Layer** | Provides error-free node-to-node communication (MAC addressing). | Ethernet, PPP, Switch, NIC |
 | **1** | **Physical Layer** | Transmits raw bitstream over a physical medium (cables, signals). | RJ45, Wi-Fi, Hub, Repeater |
+
+<br>
+<br>
+
 
 **OSI Model Diagram**  
 
@@ -126,6 +133,9 @@ The **OSI (Open Systems Interconnection) model** is a **7-layer conceptual frame
 - Devices: **Hubs, Repeaters, Cables (Fiber, Copper).**  
 
 ---
+<br>
+<br>
+<br>
 
 **Optional for Exam**
 **OSI Model Explained with Example (Email Sending Process)**  
@@ -168,7 +178,7 @@ At the receiver’s end, the process reverses (**decapsulation**).
 - **Encapsulation:** Data moves down the layers, with each layer adding a header.  
 - **Decapsulation:** At the receiver’s end, headers are removed as data moves up. 
 
-## **6. OSI Model vs. TCP/IP Model**  
+**OSI Model vs. TCP/IP Model**  
 
 | **OSI Model (7 Layers)** | **TCP/IP Model (4 Layers)** |
 |-------------------------|----------------------------|
@@ -177,7 +187,6 @@ At the receiver’s end, the process reverses (**decapsulation**).
 | Network Layer = Routing | Internet Layer = IP |
 | Transport Layer = TCP/UDP | Same as OSI |
 | Data Link + Physical = Network Interface | Same as OSI |
-
 
 **Questions (10 Marks)**  
 
@@ -230,11 +239,16 @@ At the receiver’s end, the process reverses (**decapsulation**).
 
 ---
 
+<br>
+<br>
+<br>
+<br>
+<br>
+
 ## **Summary & Key Takeaways**  
 ✔ **Data communication** requires delivery, accuracy, timeliness, and minimal jitter.  
 ✔ **Network types** include LAN, WAN, MAN, and PAN.  
 ✔ **OSI (7 layers)** and **TCP/IP (4 layers)** models define structured communication.  
 ✔ **Standards** (e.g., IEEE 802.11, TCP/IP) ensure interoperability.  
 ✔ **Future trends:** BYOD, IoT, and cloud computing are shaping networking.  
-
 
