@@ -166,15 +166,45 @@ A directed graph used to model resource allocation state:
 - Less effective for multiple instance resources
 - Doesn't show future requests
 
+<br><br><br><br><br><br>
+
 **Diagrams showing Multiple RAG examples**
-1. Deadlock-free scenario
+
+
+
+**1. Deadlock-free scenario**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/3.%20RAG.png)
 
-2. Deadlock scenario in cycle
+In the above figure: 
+- P1 is holding an instance of R2 (R2   ->   P2) and requesting or waiting for resource R1 (P1 ->  R1). 
+- Process P2 is holding an instance of R2 (R2   ->   P2), an instance of R1 (R1  ->    P2) and requesting a resource R3 (P2   R3). 
+- Process P3 is holding an instance of R3 (R3  ->   P3).
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+**2. Deadlock scenario in cycle**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/4.%20RAG%20deadlock%20in%20cycle.png)
 
-3. Deadlock-free scenario in cycle
+- P1->R1->P2->R3->P3->R2->P1
+- P2->R3->P3->R2->P2
+
+- Processes P1, P2, P3 are deadlocked because P2 is waiting for the resource R3 which is already allocated to P3. 
+- Similarly, P3 is waiting for either P1 or P2 to release R2 and P1 is waiting for R2. 
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+**3. Deadlock-free scenario in cycle**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/5.RAG%20no%20deadlock%20in%20cycle.png)
+
+- Above figure shows the graph with a cycle but no deadlock.
+- If the graph does not contain any cycle the process is not deadlock. 
+- Even if there is a cycle, there might not be a chance of deadlock if the resource contains multiple instances.  
+- Here, cycle exist in the system but does not contains any deadlock:
+- P1->R1->P3->R2->P1
+- P4 may release its instance of resource type R2. Such resources can be allocated to P3 breaking the cycle.
 
 ---
 
@@ -211,34 +241,15 @@ A directed graph used to model resource allocation state:
      - Impose total ordering on resource types
      - Require processes request resources in order
 
-### **Deadlock Modeling**
-Using these conditions, we can model deadlock probability:
 
-**Deadlock Likelihood Factors:**
-- Number of processes
-- Number of resource types
-- Process execution patterns
-- Resource allocation policies
-
-**Mathematical Representation:**
-For system with N processes and M resources:
-- Possible states = (Resource combinations)^N
-- Deadlock states = States violating prevention conditions
-
-**Practical Example:**
-Database system with:
-- 5 processes
-- 3 resource types (tables)
-- Each process needs 2 tables
-Deadlock probability increases with:
-- More concurrent transactions
-- Longer transaction durations
 
 **Diagram**
 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/2.%20venn%20diagram.jpg)
 
 ---
+
+<br><br><br><br>
 
 ## **Summary**
 
@@ -285,8 +296,10 @@ Deadlock probability increases with:
 ### **2. Deadlock Prevention**
 **Strategy:** Design system to eliminate **at least one** of the four necessary conditions.
 
-#### **Preventing Mutual Exclusion**
+#### **a. Preventing Mutual Exclusion**
 **Approach:** Make resources shareable when possible
+
+<br>
 
 **Implementation:**
 - Read-only files can be shared
@@ -297,7 +310,7 @@ Deadlock probability increases with:
 - Not all resources can be made shareable
 - Example: Write operations require exclusivity
 
-#### **Preventing Hold and Wait**
+#### **b. Preventing Hold and Wait**
 **Approach 1:** Require processes to request **all** resources at start
 - **Advantage:** No partial allocations
 - **Disadvantage:** Poor resource utilization
@@ -308,7 +321,7 @@ Deadlock probability increases with:
 
 **Example:** Database transaction requiring all locks upfront
 
-#### **Preventing No Preemption**
+#### **c. Preventing No Preemption**
 **Approach:** Allow resource preemption
 1. If a process can't get all resources, it releases held resources
 2. Process restarts when all resources available
@@ -321,7 +334,7 @@ Deadlock probability increases with:
 - Not applicable to all resources (e.g., printer output)
 - Complex state saving required
 
-#### **Preventing Circular Wait**
+#### **d. Preventing Circular Wait**
 **Approach:** Impose total ordering of resource types
 - Processes must request resources in numerical order
 - No process can request lower-numbered resource while holding higher
@@ -355,24 +368,30 @@ Processes must request in order R1→R2→R3
 - **Need:** Max Demand - Allocation
 
 **Safety Algorithm Steps:**
-1. Find process whose Need ≤ Available
-2. Assume it completes and releases resources
-3. Add released resources to Available
-4. Repeat until all processes complete (safe state) or none remain (unsafe)
+- This algorithm finds out whether the system is in safe state or not. This algorithm can be described as:
+
+- Step 1: **Need matrix = max – allocation**
+- Step 2: 
+    - if (**need < = available**){
+        - **New available = available + allocation**
+        }
+    - else{
+        Do not execute go forward
+        }
+
 
 **Resource Request Algorithm:**
-1. If request > Need, error
-2. If request > Available, wait
-3. Pretend to allocate:
-   - Available = Available - Request
-   - Allocation = Allocation + Request
-   - Need = Need - Request
-4. Check if resulting state is safe
+- It determines whether requests can be safely granted or not.
 
-**Example Calculation:**
-Consider system with:
-- 3 resource types (A,B,C) with total (10,5,7)
-- 5 processes with current allocation and max demand
+- Step 1: if **request < = need** then go to step 2
+    - Else error
+- Step 2: if **request < = available**, go to step 3
+    - Else wait
+- Step 3: 
+    - **Available = available – request**
+    - **Allocation = allocation + request**
+    - **Need = need – request**
+
 
 **Advantages:**
 - More flexible than prevention
@@ -383,7 +402,7 @@ Consider system with:
 - High computational overhead
 - Doesn't work well with dynamic requests
 
-**Diagram Suggestion:** Step-by-step example of Banker's algorithm execution.
+**Example Calculation:**
 
 ---
 
