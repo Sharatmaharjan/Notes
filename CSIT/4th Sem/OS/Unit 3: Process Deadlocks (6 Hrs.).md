@@ -402,7 +402,142 @@ Processes must request in order R1→R2→R3
 - High computational overhead
 - Doesn't work well with dynamic requests
 
-**Example Calculation:**
+**Problem Statement**
+
+How starvation differs from deadlock? Consider the following situation of processes and
+resources:
+
+| Process | Currently Holds | Maximum Required |
+|---------|-----------------|------------------|
+| P1      | 2               | 6                |
+| P2      | 1               | 5                |
+| P3      | 2               | 5                |
+| P4      | 2               | 6                |
+
+- a. What will happen if process P3 requests 1 resource?
+- b. What will happen if process P4 requests 1 resource?  
+
+**Solution:**
+
+Given the current system state:
+
+| Process | Has | Max |
+|---------|-----|-----|
+| P1      | 2   | 6   |
+| P2      | 1   | 5   |
+| P3      | 2   | 5   |
+| P4      | 2   | 6   |
+
+**Total Resources in System:** Not explicitly given, but can be calculated as:
+- **Total Allocated =** 2 (P1) + 1 (P2) + 2 (P3) + 2 (P4) = **7**
+- Assume **Total Resources = 10** (common practice when not specified)
+- **Available = Total - Allocated = 10 - 7 = 3**
+
+**Starvation vs Deadlock**
+- **Deadlock:** Circular waiting where processes block each other permanently
+- **Starvation:** Process waits indefinitely due to unfair resource allocation
+
+**Banker's Algorithm Components**
+1. **Need = Max - Has** (remaining resources each process may request)
+2. **Safety Algorithm:** Checks if system can allocate resources without deadlock
+3. **Resource-Request Algorithm:** Evaluates if a specific request can be granted safely
+
+---
+
+**Part (a): P3 Requests 1 Resource**
+
+**Step 1: Calculate Initial Needs**
+| Process | Has | Max | Need (Max - Has) |
+|---------|-----|-----|------------------|
+| P1      | 2   | 6   | 4                |
+| P2      | 1   | 5   | 4                |
+| P3      | 2   | 5   | 3                |
+| P4      | 2   | 6   | 4                |
+
+**Step 2: Evaluate P3's Request**
+- **Request = 1**
+- Check if request ≤ Need (1 ≤ 3) → **Valid**
+- Check if request ≤ Available (1 ≤ 3) → **Valid**
+
+**Step 3: Pretend to Allocate**
+- **New Allocation:**
+  - P3: Has = 2 + 1 = 3
+  - Available = 3 - 1 = 2
+- **Updated Need Table:**
+  - P3: Need = 5 - 3 = 2
+
+**Step 4: Safety Check**
+**Find a safe sequence where all processes can complete:**
+
+1. **Work = Available = 2**
+   - Compare with Needs:
+     - P1: Need=4 > 2 → Cannot run
+     - P2: Need=4 > 2 → Cannot run
+     - P3: Need=2 ≤ 2 → **Can run**
+     - P4: Need=4 > 2 → Cannot run
+   - **Execute P3:**
+     - Work = 2 (current) + 3 (P3's allocation) = 5
+
+2. **Work = 5**
+   - Check remaining processes:
+     - P1: Need=4 ≤ 5 → **Can run**
+     - P2: Need=4 ≤ 5 → **Can run**
+     - P4: Need=4 ≤ 5 → **Can run**
+   - Arbitrarily choose **P1**:
+     - Work = 5 + 2 = 7
+
+3. **Work = 7**
+   - Remaining processes:
+     - P2: Need=4 ≤ 7 → **Can run**
+     - P4: Need=4 ≤ 7 → **Can run**
+   - Choose **P2**:
+     - Work = 7 + 1 = 8
+
+4. **Work = 8**
+   - Only P4 remains:
+     - P4: Need=4 ≤ 8 → **Can run**
+     - Work = 8 + 2 = 10
+
+**Safe Sequence Found:** P3 → P1 → P2 → P4  
+**Conclusion:** Request can be granted safely.
+
+---
+
+**Part (b): P4 Requests 1 Resource**
+
+**Step 1: Use Original Need Table (Before Part a's Allocation)**
+| Process | Need |
+|---------|------|
+| P1      | 4    |
+| P2      | 4    |
+| P3      | 3    |
+| P4      | 4    |
+
+**Step 2: Evaluate P4's Request**
+- **Request = 1**
+- Check if request ≤ Need (1 ≤ 4) → **Valid**
+- Check if request ≤ Available (1 ≤ 3) → **Valid**
+
+**Step 3: Pretend to Allocate**
+- **New Allocation:**
+  - P4: Has = 2 + 1 = 3
+  - Available = 3 - 1 = 2
+- **Updated Need Table:**
+  - P4: Need = 6 - 3 = 3
+
+**Step 4: Safety Check**
+**Attempt to find a safe sequence:**
+
+1. **Work = Available = 2**
+   - Compare with Needs:
+     - P1: Need=4 > 2 → Cannot run
+     - P2: Need=4 > 2 → Cannot run
+     - P3: Need=3 > 2 → Cannot run
+     - P4: Need=3 > 2 → Cannot run
+   - **No process can run!**
+
+**Deadlock Imminent:** No safe sequence exists.  
+**Conclusion:** Request **cannot** be granted (would lead to deadlock).
 
 ---
 
@@ -433,8 +568,6 @@ Processes must request in order R1→R2→R3
 **Detection Frequency Tradeoffs:**
 - Frequent checks: High overhead
 - Infrequent checks: Long deadlock durations
-
-**Diagram Suggestion:** Wait-for graph examples showing deadlock/no-deadlock cases.
 
 ---
 
@@ -473,7 +606,6 @@ Processes must request in order R1→R2→R3
 
 **Example:** Database transaction rollback using logs
 
-**Diagram Suggestion:** Flowchart of recovery decision process.
 
 ---
 
@@ -488,20 +620,4 @@ Processes must request in order R1→R2→R3
 | Avoidance | Safe state checks | Balanced approach | Needs advance info | Medium-criticality |
 | Detection | Periodic checks | Flexible | Recovery needed | Systems with tolerance |
 
-### **Problem-Solving Approach**
-1. **For Analysis Questions:**
-   - Identify which handling method is being used
-   - Evaluate against the four conditions
-   - Consider resource types involved
-
-2. **For Calculation Questions:**
-   - Banker's algorithm: Track Available, Allocation, Need
-   - Wait-for graphs: Look for cycles
-   - Recovery: Calculate cost of different victim choices
-
-3. **For Design Questions:**
-   - Match method to system requirements
-   - Consider prevention vs detection tradeoffs
-   - Evaluate recovery strategies
-
-**Diagram Suggestion:** Decision tree for selecting deadlock handling approach based on system requirements.
+---
