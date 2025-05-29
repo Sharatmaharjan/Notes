@@ -17,8 +17,11 @@ A deadlock represents a permanent blocking condition where a set of processes re
 - Neither can proceed without the other releasing resources
 
 **Diagram** 
-
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png)
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
 
 ---
 
@@ -48,6 +51,8 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 
 **Important Note:** All four conditions must be present for deadlock. Preventing any one condition prevents deadlock.
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
 **Diagram**
 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png)
@@ -63,6 +68,8 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 - Can be reallocated to other processes
 - Process can resume later without problems
 - Typically don't cause deadlocks
+
+<br>
 
 **Examples:**
 - CPU cycles (via context switching)
@@ -488,4 +495,3 @@ Consider system with:
    - Evaluate recovery strategies
 
 **Diagram Suggestion:** Decision tree for selecting deadlock handling approach based on system requirements.
-
