@@ -16,7 +16,9 @@ A deadlock represents a permanent blocking condition where a set of processes re
 - Process B holds Resource 2 and requests Resource 1
 - Neither can proceed without the other releasing resources
 
-**Diagram Suggestion:** Insert simple circular wait diagram showing two processes and two resources with request/hold arrows.
+**Diagram** 
+
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
 
 ---
 
@@ -46,7 +48,9 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 
 **Important Note:** All four conditions must be present for deadlock. Preventing any one condition prevents deadlock.
 
-**Diagram Suggestion:** Insert flowchart showing how all four conditions interconnect to create deadlock.
+**Diagram**
+
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
 
 ---
 
@@ -106,7 +110,6 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 | Allocation flexibility | High | Low |
 | Implementation complexity | Moderate | Simple |
 
-**Diagram Suggestion:** Side-by-side comparison of resource types with examples.
 
 ---
 
@@ -216,7 +219,9 @@ Deadlock probability increases with:
 - More concurrent transactions
 - Longer transaction durations
 
-**Diagram Suggestion:** Venn diagram showing intersection of all four conditions creating deadlock.
+**Diagram**
+
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
 
 ---
 
@@ -244,11 +249,6 @@ Deadlock probability increases with:
    - Check each Coffman condition
    - Identify which conditions hold
    - Determine prevention strategies
-
-**Diagram Suggestion:** Summary flowchart for deadlock analysis showing:
-- Condition checking
-- RAG construction
-- Prevention approaches
 
 ---
 
@@ -281,8 +281,6 @@ Deadlock probability increases with:
 **Example Scenario:** 
 - Desktop OS allows user processes to deadlock
 - User resolves by manually killing processes
-
-**Diagram Suggestion:** Flowchart showing decision points for when to use Ostrich approach.
 
 ---
 
@@ -345,8 +343,6 @@ Processes must request in order R1→R2→R3
 **Disadvantages:**
 - Restricts programming flexibility
 - May force unnecessary resource acquisition
-
-**Diagram Suggestion:** Table comparing prevention methods for each condition.
 
 ---
 
