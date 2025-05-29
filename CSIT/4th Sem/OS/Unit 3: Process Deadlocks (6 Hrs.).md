@@ -18,7 +18,7 @@ A deadlock represents a permanent blocking condition where a set of processes re
 
 **Diagram** 
 
-https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th Sem/OS/images/Unit 3/1. circular-wait.png
 
 ---
 
@@ -50,7 +50,7 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 
 **Diagram**
 
-https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th Sem/OS/images/Unit 3/1. circular-wait.png
 
 ---
 
@@ -221,7 +221,7 @@ Deadlock probability increases with:
 
 **Diagram**
 
-https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png
+https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th Sem/OS/images/Unit 3/1. circular-wait.png
 
 ---
 
