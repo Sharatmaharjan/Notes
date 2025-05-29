@@ -166,10 +166,15 @@ A directed graph used to model resource allocation state:
 - Less effective for multiple instance resources
 - Doesn't show future requests
 
-**Diagram Suggestion:** Multiple RAG examples showing:
-- Deadlock-free scenario
-- Deadlock scenario
-- Multiple instance resource case
+**Diagrams showing Multiple RAG examples**
+1. Deadlock-free scenario
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/3.%20RAG.png)
+
+2. Deadlock scenario in cycle
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/4.%20RAG%20deadlock%20in%20cycle.png)
+
+3. Deadlock-free scenario in cycle
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/5.RAG%20no%20deadlock%20in%20cycle.png)
 
 ---
 
