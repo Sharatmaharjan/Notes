@@ -117,8 +117,11 @@ For deadlock to occur, **all** of these conditions must hold simultaneously:
 | Allocation flexibility | High | Low |
 | Implementation complexity | Moderate | Simple |
 
+<br><br><br>
 
 ---
+
+
 
 ## **Resource-Allocation Graph (RAG)**
 
@@ -228,34 +231,17 @@ Deadlock probability increases with:
 
 **Diagram**
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/1.%20circular-wait.png)
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%203/2.%20venn%20diagram.jpg)
 
 ---
 
 ## **Summary**
 
-### **Key Concepts to Master**
 1. **Deadlock Definition:** Circular wait with all four conditions
 2. **Resource Types:** Preemptable vs non-preemptable
 3. **RAG Interpretation:** Cycle detection methods
 4. **Condition Prevention:** Techniques for each condition
 
-### **Common Exam Questions**
-1. "Given a resource allocation graph, identify if deadlock exists"
-2. "Explain how violating any one condition prevents deadlock"
-3. "Compare prevention approaches for hold-and-wait vs circular wait"
-4. "Analyze why certain resources are non-preemptable"
-
-### **Problem-Solving Approach**
-1. **For RAG Problems:**
-   - Draw graph carefully
-   - Check all request/assignment edges
-   - Look for cycles
-
-2. **For Scenario Analysis:**
-   - Check each Coffman condition
-   - Identify which conditions hold
-   - Determine prevention strategies
 
 ---
 
