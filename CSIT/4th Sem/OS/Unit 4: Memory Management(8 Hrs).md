@@ -2,7 +2,7 @@
 
 ## **4.1 Memory Management Fundamentals**
 
-### **Introduction to Memory Management**
+### **a. Introduction to Memory Management**
 Memory management is the core OS function responsible for:
 - **Allocation/Deallocation** of memory to processes  
 - **Protection/isolation** between processes  
@@ -21,7 +21,7 @@ Insert a three-layer memory hierarchy diagram showing:
 
 ---
 
-### **Monoprogramming vs. Multiprogramming**
+### **b. Monoprogramming vs. Multiprogramming**
 
 #### **Monoprogramming**
 **Definition:** Only one process resides in memory at a time.  
@@ -63,7 +63,7 @@ Comparative timeline showing:
 
 ---
 
-### **Modelling Multiprogramming**
+### **c. Modelling Multiprogramming**
 
 #### **Degree of Multiprogramming**
 The number of processes in memory affects:  
@@ -92,7 +92,7 @@ Graph plotting CPU utilization vs. degree of multiprogramming.
 
 ---
 
-### **Fixed vs. Variable Partitions**
+### **d. Fixed vs. Variable Partitions**
 
 #### **Fixed Partitions**  
 **Implementation:**  
@@ -136,7 +136,7 @@ Side-by-side memory maps showing:
 
 ---
 
-### **Relocation and Protection**
+### **e. Relocation and Protection**
 
 #### **Static Relocation**  
 - Addresses bound at compile/load time  
@@ -174,7 +174,7 @@ MMU operation flowchart with base/limit registers.
 
 ## **4.2 Memory Management Techniques**
 
-### **Bitmaps vs. Linked Lists**
+### **a. Bitmaps vs. Linked Lists**
 
 #### **Bitmaps**  
 **Implementation:**  
@@ -220,7 +220,7 @@ Visual comparison of:
 
 ---
 
-### **Memory Allocation Strategies**
+### **b. Memory Allocation Strategies**
 
 #### **First-Fit**  
 - Allocate first sufficient hole found  
@@ -253,11 +253,10 @@ Animation showing allocation patterns for 3 strategies.
 
 ---
 
-# **Comprehensive Exam Notes: Memory Management (Unit 4.3, 4.4 & 4.5)**
 
 ## **4.3 Virtual Memory: Paging**
 
-### **Introduction to Paging**
+### **a. Introduction to Paging**
 Virtual memory enables execution of processes larger than physical memory by dividing them into fixed-size blocks called **pages** (typically 4KB).
 
 **Key Components:**
@@ -270,7 +269,7 @@ Virtual memory enables execution of processes larger than physical memory by div
 
 ---
 
-### **Page Table Structures**
+### **b. Page Table Structures**
 
 #### **1. Linear Page Table**
 - Simple array indexed by VPN
@@ -298,7 +297,7 @@ Comparative diagrams of all four page table structures.
 
 ---
 
-### **Handling Page Faults**
+### **c. Handling Page Faults**
 **Page Fault Sequence:**
 1. MMU detects invalid page table entry
 2. CPU traps to OS page fault handler
@@ -319,7 +318,7 @@ Flowchart of page fault handling steps.
 
 ---
 
-### **Translation Lookaside Buffer (TLB)**
+### **d. Translation Lookaside Buffer (TLB)**
 **Purpose:** Cache frequent VPN→PFN translations
 
 **Characteristics:**
@@ -348,7 +347,7 @@ CPU pipeline diagram showing TLB lookup.
 
 ---
 
-### **Algorithm Details**
+### **a. Algorithm Details**
 
 #### **1. FIFO (First-In First-Out)**
 - Evicts oldest page
@@ -391,7 +390,7 @@ Animation showing each algorithm's page selection.
 
 ---
 
-### **Locality of Reference**
+### **b. Locality of Reference**
 **Principle:** Programs access memory in predictable patterns:
 - **Temporal:** Recently used items likely reused
 - **Spatial:** Nearby addresses likely accessed
@@ -406,7 +405,7 @@ Loop processing array elements exhibits strong spatial locality.
 
 ## **4.5 Segmentation**
 
-### **Need for Segmentation**
+### **a. Need for Segmentation**
 **Problems with Pure Paging:**
 - No logical grouping of memory
 - Difficult shared library implementation
@@ -427,7 +426,7 @@ ELF segment viewer output.
 
 ---
 
-### **Segmentation Drawbacks**
+### **b. Segmentation Drawbacks**
 1. **External Fragmentation:**  
    - Variable sizes cause memory holes
    - Requires compaction
@@ -441,7 +440,7 @@ ELF segment viewer output.
 
 ---
 
-### **Segmentation with Paging (MULTICS)**
+### **c. Segmentation with Paging (MULTICS)**
 **Hybrid Approach:**
 1. Segment table points to page tables
 2. Each segment contains multiple pages
