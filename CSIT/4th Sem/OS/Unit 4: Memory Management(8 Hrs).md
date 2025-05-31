@@ -211,13 +211,11 @@ When a process requests memory, and the OS uses a linked list of free blocks, it
 
 ## **4.3.3. Page Table and Page Table Structure**
 
-This was covered in detail in the previous response, but for completeness in this unit, a concise summary is provided here.
-
-**Page Table Definition & Purpose:**
+**a. Page Table Definition & Purpose:**
 * A page table is a data structure, typically stored in main memory, that maps a process's logical page numbers to physical frame numbers. Each process has its own page table.
 * It is used by the MMU (Memory Management Unit) to translate logical addresses (Page Number, Offset) into physical addresses (Frame Number, Offset).
 
-**Page Table Entry (PTE) Structure:**
+**b. Page Table Entry (PTE) Structure:**
 Each entry in a page table typically contains:
 * **Frame Number:** The physical address of the page frame in main memory.
 * **Valid/Invalid Bit:** Indicates if the page is currently in physical memory.
@@ -229,7 +227,7 @@ Each entry in a page table typically contains:
 **Diagram: Address Translation (Review from previous section)**
 *(Mention to insert the same "Address Translation using a Page Table" diagram from the previous response here.)*
 
-**Page Table Structures:**
+**c. Page Table Structures:**
 To manage the size and lookup efficiency of page tables, especially for large address spaces:
 
 1.  **Linear (Flat) Page Table:**
@@ -273,30 +271,7 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 **Diagram: Page Fault Handling**
 *(Mention to insert a diagram here showing the flow of events from CPU attempting access, MMU detecting fault, OS intervention, disk I/O, updating page table, and restarting instruction.)*
-```mermaid
-graph TD
-    A[CPU Accesses Logical Address] --> B{MMU Checks Page Table}
-    B -- Valid Bit is 0 --> C[Page Fault Trap (to OS)]
 
-    subgraph OS Kernel
-        C --> D[Save Process State]
-        D --> E{Validate Address & Permissions}
-        E -- Invalid/No Permission --> F[Terminate Process]
-        E -- Valid & Permitted --> G[Locate Page on Disk (Swap Space)]
-        G --> H{Find Free Frame in RAM}
-        H -- No Free Frame --> I[Run Page Replacement Algorithm]
-        I --> J[Select Victim Page]
-        J -- If Dirty --> K[Write Victim Page to Disk]
-        K -- or --> H
-        H --> L[Read Requested Page from Disk into Free Frame]
-        L --> M[Update Page Table Entry (Set Valid Bit, Frame No)]
-        M --> N[Restore Process State]
-    end
-
-    N --> O[Restart Instruction]
-    O --> B
-```
-*Figure: Page Fault Handling Process*
 
 **4.3.5. TLBs (Translation Lookaside Buffers)**
 
@@ -313,20 +288,23 @@ graph TD
     * **Cost:** TLBs are hardware, making them expensive and thus limited in size.
     * **Context Switch Overhead:** When a context switch occurs, the TLB needs to be flushed entirely (if entries are not tagged with process IDs) to prevent the new process from using stale translations of the previous process. This causes a temporary performance dip as the TLB needs to be refilled.
 * **Hit Rate:** The percentage of times the requested page number is found in the TLB. A typical hit rate is 90% or higher.
-* **Effective Access Time (EAT) Calculation:**
-    * Let P be the TLB hit ratio (probability of a hit).
-    * Let T_{TLB} be the time to access the TLB (e.g., 20 ns).
-    * Let T_{mem} be the time to access main memory (e.g., 100 ns).
-    * EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + T_{mem} + T_{mem})
-        * Simplified for modern systems where TLB access is often parallel to the first part of memory access:
-        * EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + 2 \times T_{mem})
-        * If TLB access is negligible or parallel:
-        * EAT = P \times T_{mem} + (1-P) \times (2 \times T_{mem})
+
 
 **Diagram: TLB in Address Translation (Review from previous section)**
 *(Mention to insert the same "Address Translation with TLB" diagram from the previous section here.)*
 
 
+**Page Table** vs **TLB**
+
+| Feature             | Page Table                                 | TLB (Translation Lookaside Buffer)               |
+| :------------------ | :----------------------------------------- | :----------------------------------------------- |
+| **Type** | Data Structure                             | Hardware Cache (Associative Memory)              |
+| **Location** | Main Memory (RAM)                          | CPU (within the Memory Management Unit - MMU)    |
+| **Purpose** | Authoritative virtual-to-physical mapping  | Speed up virtual-to-physical address translation |
+| **Size/Capacity** | Can be very large (depends on virtual address space and hierarchy) | Very small (tens to thousands of entries)        |
+| **Access Speed** | Slower (requires memory access/es)         | Much faster (on-chip, near CPU speed)            |
+| **Management** | Primarily managed by OS (software)         | Primarily managed by MMU hardware (with OS flushing) |
+| **Behavior on Miss**| Triggers OS to load missing page (page fault) if not in memory | Triggers a lookup in the Page Table (hardware/OS) |
 
 
 ## **4.4.1. Concept of Locality of Reference**
@@ -340,39 +318,78 @@ graph TD
 
 Assume a given number of available frames and a reference string (sequence of page accesses).
 
-1.  **FIFO (First-In, First-Out):**
-    * **Explanation:** The page that has been in memory for the longest time is replaced. It treats pages as a queue; the page at the head of the queue (oldest) is removed.
-    * **Advantages:** Simple to implement.
-    * **Disadvantages:** Does not consider locality of reference. A frequently used page might be replaced just because it was loaded a long time ago.
-    * **Belady's Anomaly:** Suffers from this anomaly, where increasing the number of available frames can sometimes *increase* the number of page faults.
-    * **Example:** Reference string: 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5. Frames: 3.
-        * 1 (Fault), 2 (Fault), 3 (Fault) -> [1, 2, 3]
-        * 4 (Fault, 1 evicted) -> [2, 3, 4]
-        * 1 (Fault, 2 evicted) -> [3, 4, 1]
-        * ...and so on.
+**Reference string:** 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
+**Number of Frames:** 3
 
-2.  **Optimal (MIN):**
-    * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced. This algorithm provides the lowest possible page-fault rate.
-    * **Advantages:** Optimal performance (minimum page faults).
-    * **Disadvantages:** **Impossible to implement in practice** because it requires knowing the future reference string.
-    * **Use Case:** Used as a benchmark to compare the performance of other algorithms.
-    * **Example:** Reference string: 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5. Frames: 3.
-        * 1 (Fault), 2 (Fault), 3 (Fault) -> [1, 2, 3]
-        * 4 (Fault, 3 evicted because 1, 2 are used sooner than 3) -> [1, 2, 4]
-        * ...
 
-3.  **LRU (Least Recently Used):**
-    * **Explanation:** The page that has not been used for the longest period of time is replaced. This is a practical approximation of the Optimal algorithm, based on the assumption that past behavior predicts future behavior (locality of reference).
-    * **Advantages:** Generally performs well and does not suffer from Belady's Anomaly.
-    * **Disadvantages:** Complex to implement as it requires hardware support (e.g., counters or timestamps) to track the exact usage time for each page, which can be costly.
-    * **Implementation Methods:**
-        * **Counters:** Each PTE has a counter, incremented at each memory reference. When a page is accessed, its counter is updated. Replacement selects the page with the smallest counter.
-        * **Stack:** A linked list or stack where the most recently used page is moved to the top. Replacement takes from the bottom.
-    * **Example:** Reference string: 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5. Frames: 3.
-        * 1 (Fault), 2 (Fault), 3 (Fault) -> [1, 2, 3]
-        * 4 (Fault, 1 evicted as it was LRU) -> [2, 3, 4]
-        * 1 (Fault, 2 evicted as it was LRU) -> [3, 4, 1]
-        * ...
+**1 FIFO (First-In, First-Out)**
+
+  * **Explanation:** The page that has been in memory for the longest time is replaced. It treats pages as a queue; the page at the head of the queue (oldest) is removed.
+  * **Total Page Faults:** Counted at the end.
+
+| Reference | Frames (Oldest -\> Newest) | Page Fault? | Notes                                       |
+| :-------- | :------------------------ | :---------- | :------------------------------------------ |
+| 1         | \[1, -, -]                | **Yes** | 1 enters.                                   |
+| 2         | \[1, 2, -]                | **Yes** | 2 enters.                                   |
+| 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                   |
+| 4         | \[2, 3, 4]                | **Yes** | Frame full. 1 is oldest, replaced by 4.     |
+| 1         | \[3, 4, 1]                | **Yes** | Frame full. 2 is oldest, replaced by 1.     |
+| 2         | \[4, 1, 2]                | **Yes** | Frame full. 3 is oldest, replaced by 2.     |
+| 5         | \[1, 2, 5]                | **Yes** | Frame full. 4 is oldest, replaced by 5.     |
+| 1         | \[1, 2, 5]                | No          | 1 is already in memory.                     |
+| 2         | \[1, 2, 5]                | No          | 2 is already in memory.                     |
+| 3         | \[2, 5, 3]                | **Yes** | Frame full. 1 is oldest, replaced by 3.     |
+| 4         | \[5, 3, 4]                | **Yes** | Frame full. 2 is oldest, replaced by 4.     |
+| 5         | \[5, 3, 4]                | No          | 5 is already in memory.                     |
+
+**Total Page Faults for FIFO: 9**
+
+
+**2 Optimal (MIN)**
+
+  * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced.
+  * **Total Page Faults:** Counted at the end.
+
+| Reference | Frames                    | Page Fault? | Notes (Future Use)                                                                                   |
+| :-------- | :------------------------ | :---------- | :--------------------------------------------------------------------------------------------------- |
+| 1         | \[1, -, -]                | **Yes** | 1 enters.                                                                                            |
+| 2         | \[1, 2, -]                | **Yes** | 2 enters.                                                                                            |
+| 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                                                                            |
+| 4         | \[1, 2, 4]                | **Yes** | Frames \[1, 2, 3]. Need to replace one for 4. \<br\> Future use: 1 (soon), 2 (soon), 3 (never again until 3 at end). \<br\> Replace 3. |
+| 1         | \[1, 2, 4]                | No          | 1 is already in memory.                                                                              |
+| 2         | \[1, 2, 4]                | No          | 2 is already in memory.                                                                              |
+| 5         | \[1, 2, 5]                | **Yes** | Frames \[1, 2, 4]. Need to replace one for 5. \<br\> Future use: 1 (soon), 2 (soon), 4 (at end). \<br\> Replace 4.    |
+| 1         | \[1, 2, 5]                | No          | 1 is already in memory.                                                                              |
+| 2         | \[1, 2, 5]                | No          | 2 is already in memory.                                                                              |
+| 3         | \[1, 5, 3]                | **Yes** | Frames \[1, 2, 5]. Need to replace one for 3. \<br\> Future use: 1 (soon), 2 (later), 5 (at end). \<br\> Replace 2.    |
+| 4         | \[1, 3, 4]                | **Yes** | Frames \[1, 5, 3]. Need to replace one for 4. \<br\> Future use: 1 (soon), 5 (soon), 3 (later). \<br\> Replace 5.    |
+| 5         | \[1, 3, 5]                | **Yes** | Frames \[1, 3, 4]. Need to replace one for 5. \<br\> Future use: 1 (soon), 3 (soon), 4 (never again). \<br\> Replace 4. |
+
+**Total Page Faults for Optimal: 8**
+
+
+
+**3 LRU (Least Recently Used)**
+
+  * **Explanation:** The page that has not been used for the longest period of time is replaced.
+  * **Total Page Faults:** Counted at the end.
+
+| Reference | Frames                    | LRU Order (MRU -\> LRU) | Page Fault? | Notes (Least Recently Used)                                       |
+| :-------- | :------------------------ | :--------------------- | :---------- | :---------------------------------------------------------------- |
+| 1         | \[1, -, -]                | \[1]                   | **Yes** | 1 enters.                                                       |
+| 2         | \[1, 2, -]                | \[2, 1]                | **Yes** | 2 enters.                                                       |
+| 3         | \[1, 2, 3]                | \[3, 2, 1]             | **Yes** | 3 enters.                                                       |
+| 4         | \[2, 3, 4]                | \[4, 3, 2]             | **Yes** | Frames \[1, 2, 3]. 1 is LRU. Replace 1 with 4.                 |
+| 1         | \[4, 1, 3]                | \[1, 4, 3]             | **Yes** | Frames \[2, 3, 4]. 2 is LRU. Replace 2 with 1.                 |
+| 2         | \[1, 2, 4]                | \[2, 1, 4]             | **Yes** | Frames \[1, 3, 4]. 3 is LRU. Replace 3 with 2.                 |
+| 5         | \[1, 2, 5]                | \[5, 2, 1]             | **Yes** | Frames \[1, 2, 4]. 4 is LRU. Replace 4 with 5.                 |
+| 1         | \[1, 5, 2]                | \[1, 5, 2]             | No          | 1 is accessed. Move to MRU.                                   |
+| 2         | \[1, 2, 5]                | \[2, 1, 5]             | No          | 2 is accessed. Move to MRU.                                   |
+| 3         | \[1, 2, 3]                | \[3, 2, 1]             | **Yes** | Frames \[1, 2, 5]. 5 is LRU. Replace 5 with 3.                 |
+| 4         | \[1, 3, 4]                | \[4, 3, 1]             | **Yes** | Frames \[1, 2, 3]. 2 is LRU. Replace 2 with 4.                 |
+| 5         | \[3, 4, 5]                | \[5, 4, 3]             | **Yes** | Frames \[1, 3, 4]. 1 is LRU. Replace 1 with 5.                 |
+
+**Total Page Faults for LRU: 10**
 
 4.  **LFU (Least Frequently Used):**
     * **Explanation:** The page with the smallest count of accesses is replaced. A counter is associated with each page, and it's incremented on each access.
