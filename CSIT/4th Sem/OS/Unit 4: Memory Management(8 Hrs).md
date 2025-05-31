@@ -324,37 +324,42 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 Assume a given number of available frames and a reference string (sequence of page accesses).
 
-**Reference string:** 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5 <br>
-**Number of Frames:** 3
-
+* Reference String: `4, 7, 6, 1, 7, 6, 1, 2, 7, 2`
+* Frame size: `3`
 
 **1. FIFO (First-In, First-Out)**
 
   * **Explanation:** The page that has been in memory for the longest time is replaced. It treats pages as a queue; the page at the head of the queue (oldest) is removed.
   * **Total Page Faults:** Counted at the end.
 
-| Reference | Frames (Oldest -\> Newest) | Page Fault? | Notes                                       |
-| :-------- | :------------------------ | :---------- | :------------------------------------------ |
-| 1         | \[1, -, -]                | **Yes** | 1 enters.(**Page fault**->Since 1 wasn't in Main Memory but was in logical space) |
-| 2         | \[1, 2, -]                | **Yes** | 2 enters.                                   |
-| 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                   |
-| 4         | \[2, 3, 4]                | **Yes** | Frame full. 1 is oldest, replaced by 4.     |
-| 1         | \[3, 4, 1]                | **Yes** | Frame full. 2 is oldest, replaced by 1.     |
-| 2         | \[4, 1, 2]                | **Yes** | Frame full. 3 is oldest, replaced by 2.     |
-| 5         | \[1, 2, 5]                | **Yes** | Frame full. 4 is oldest, replaced by 5.     |
-| 1         | \[1, 2, 5]                | No          | 1 is already in memory.                     |
-| 2         | \[1, 2, 5]                | No          | 2 is already in memory.                     |
-| 3         | \[2, 5, 3]                | **Yes** | Frame full. 1 is oldest, replaced by 3.     |
-| 4         | \[5, 3, 4]                | **Yes** | Frame full. 2 is oldest, replaced by 4.     |
-| 5         | \[5, 3, 4]                | No          | 5 is already in memory.                     |
+| Step | Reference | Frame Content | Page Fault  |
+| ---- | --------- | ------------- | ----------- |
+| 1    | 4         | 4             | Yes(Miss)  Since 4 is not currently loaded into a physical frame in main memory |
+| 2    | 7         | 4, 7          | Yes         |
+| 3    | 6         | 4, 7, 6       | Yes         |
+| 4    | 1         | 7, 6, 1       | Yes (4 out) |
+| 5    | 7         | 7, 6, 1       | No(Hit) Since 7 is already loaded in memory |
+| 6    | 6         | 7, 6, 1       | No          |
+| 7    | 1         | 7, 6, 1       | No          |
+| 8    | 2         | 6, 1, 2       | Yes (7 out) |
+| 9    | 7         | 1, 2, 7       | Yes (6 out) |
+| 10   | 2         | 1, 2, 7       | No          |
 
-**Total Page Faults for FIFO: 9**
+**Total Page Faults (FIFO): 6**
 
+---
 
 **2. Optimal (MIN)**
 
-  * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced.
+  * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced. In this algorithm, we are looking into the future or "predicting." If a page fault occurs, we simply look at the sequence of page references to see which page in the frame will not be used for the longest time. Despite the fact that this algorithm has the lowest page-fault rate of all algorithms, it is not practical since it is hard to predict the future.
   * **Total Page Faults:** Counted at the end.
+
+---
+
+Assume a given number of available frames and a reference string (sequence of page accesses).
+
+* Reference String: `4, 7, 6, 1, 7, 6, 1, 2, 7, 2`
+* Frame size: `3`
 
 
 **3. LRU (Least Recently Used)**
@@ -362,22 +367,23 @@ Assume a given number of available frames and a reference string (sequence of pa
   * **Explanation:** The page that has not been used for the longest period of time is replaced.
   * **Total Page Faults:** Counted at the end.
 
-| Reference | Frames                    | LRU Order (MRU -\> LRU) | Page Fault? | Notes (Least Recently Used)                                       |
-| :-------- | :------------------------ | :--------------------- | :---------- | :---------------------------------------------------------------- |
-| 1         | \[1, -, -]                | \[1]                   | **Yes** | 1 enters.                                                       |
-| 2         | \[1, 2, -]                | \[2, 1]                | **Yes** | 2 enters.                                                       |
-| 3         | \[1, 2, 3]                | \[3, 2, 1]             | **Yes** | 3 enters.                                                       |
-| 4         | \[2, 3, 4]                | \[4, 3, 2]             | **Yes** | Frames \[1, 2, 3]. 1 is LRU. Replace 1 with 4.                 |
-| 1         | \[4, 1, 3]                | \[1, 4, 3]             | **Yes** | Frames \[2, 3, 4]. 2 is LRU. Replace 2 with 1.                 |
-| 2         | \[1, 2, 4]                | \[2, 1, 4]             | **Yes** | Frames \[1, 3, 4]. 3 is LRU. Replace 3 with 2.                 |
-| 5         | \[1, 2, 5]                | \[5, 2, 1]             | **Yes** | Frames \[1, 2, 4]. 4 is LRU. Replace 4 with 5.                 |
-| 1         | \[1, 5, 2]                | \[1, 5, 2]             | No          | 1 is accessed. Move to MRU.                                   |
-| 2         | \[1, 2, 5]                | \[2, 1, 5]             | No          | 2 is accessed. Move to MRU.                                   |
-| 3         | \[1, 2, 3]                | \[3, 2, 1]             | **Yes** | Frames \[1, 2, 5]. 5 is LRU. Replace 5 with 3.                 |
-| 4         | \[1, 3, 4]                | \[4, 3, 1]             | **Yes** | Frames \[1, 2, 3]. 2 is LRU. Replace 2 with 4.                 |
-| 5         | \[3, 4, 5]                | \[5, 4, 3]             | **Yes** | Frames \[1, 3, 4]. 1 is LRU. Replace 1 with 5.                 |
+| Step | Reference | Frame Content | Page Fault | Action                  |
+| ---- | --------- | ------------- | ---------- | ----------------------- |
+| 1    | 4         | 4             | Yes        | Load 4                  |
+| 2    | 7         | 4, 7          | Yes        | Load 7                  |
+| 3    | 6         | 4, 7, 6       | Yes        | Load 6                  |
+| 4    | 1         | 7, 6, 1       | Yes        | Replace LRU (4)         |
+| 5    | 7         | 6, 1, 7       | No         | Update 7 as most recent |
+| 6    | 6         | 1, 7, 6       | No         | Update 6 as most recent |
+| 7    | 1         | 7, 6, 1       | No         | Update 1 as most recent |
+| 8    | 2         | 6, 1, 2       | Yes        | Replace LRU (7)         |
+| 9    | 7         | 1, 2, 7       | Yes        | Replace LRU (6)         |
+| 10   | 2         | 1, 7, 2       | No         | Update 2 as most recent |
 
-**Total Page Faults for LRU: 10**
+**Total Page Faults (LRU): 6**
+**Note: Frame Content->(LRU,...,MRU)**
+
+---
 
 4.  **LFU (Least Frequently Used):**
     * **Explanation:** The page with the smallest count of accesses is replaced. A counter is associated with each page, and it's incremented on each access.
