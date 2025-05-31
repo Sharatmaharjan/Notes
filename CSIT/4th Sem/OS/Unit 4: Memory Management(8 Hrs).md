@@ -389,7 +389,26 @@ Assume a given number of available frames and a reference string (sequence of pa
     * **Explanation:** The page with the smallest count of accesses is replaced. A counter is associated with each page, and it's incremented on each access.
     * **Advantages:** Potentially better than FIFO for some access patterns.
     * **Disadvantages:** Does not account for aging. A page that was heavily used in the past but is no longer needed might stay in memory indefinitely because its count is high. Complex to implement exact counts.
-    * **Example:** If a page was accessed 1000 times at the start of a program but never again, and another page was accessed 5 times recently, LFU would evict the recently used page if its count was lower.
+
+Assume a given number of available frames and a reference string (sequence of page accesses).
+
+* Reference String: `4, 7, 6, 1, 7, 6, 1, 2, 7, 2`
+* Frame size: `3`
+
+| Step | Reference | Frame Content | Page Fault | Action                                                  |
+| ---- | --------- | ------------- | ---------- | ------------------------------------------------------- |
+| 1    | 4         | 4             | ✅ Yes      | Load 4 (count: 1)                                       |
+| 2    | 7         | 4, 7          | ✅ Yes      | Load 7 (count: 1)                                       |
+| 3    | 6         | 4, 7, 6       | ✅ Yes      | Load 6 (count: 1)                                       |
+| 4    | 1         | 7, 6, 1       | ✅ Yes      | Evict 4 (count: 1, oldest), load 1 (count: 1)           |
+| 5    | 7         | 7, 6, 1       | ❌ No       | 7 used → increment count (7: 2)                         |
+| 6    | 6         | 7, 6, 1       | ❌ No       | 6 used → increment count (6: 2)                         |
+| 7    | 1         | 7, 6, 1       | ❌ No       | 1 used → increment count (1: 2)                         |
+| 8    | 2         | 6, 1, 2       | ✅ Yes      | Evict 7 (count: 2, FIFO tie breaker), load 2 (count: 1) |
+| 9    | 7         | 1, 2, 7       | ✅ Yes      | Evict 6 (count: 2, FIFO), load 7 (count: 1)             |
+| 10   | 2         | 2, 7, 1       | ❌ No       | 2 used → increment count (2: 2)                         |
+
+**Total Page Faults (LFU): 6**
 
 5.  **Approximation of LRU (e.g., Clock / Second Chance):**
     * Due to the overhead of implementing true LRU/LFU, approximations are often used, which leverage the "Accessed Bit" (Reference Bit) in the PTE.
