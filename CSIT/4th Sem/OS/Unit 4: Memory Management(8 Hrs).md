@@ -565,6 +565,63 @@ Assume a given number of available frames and a reference string (sequence of pa
 * **Compaction:** To mitigate external fragmentation, memory compaction is necessary, which is a costly and time-consuming process involving moving segments in memory.
 * **Complexity of Memory Management:** Managing variable-sized holes and performing compaction adds significant complexity to the OS.
 
+**Problem**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/10.png)
+
+To compute the **physical address** for a given **logical address (segment, offset)** using the segment table:
+
+**Formula:**
+
+> **Physical Address = Base\[segment] + offset**
+
+But only if:
+
+> **offset < length\[segment]**
+> Otherwise: **it's an error (segmentation fault).**
+
+
+**Segment Table**
+
+| Segment | Base | Length |
+| ------- | ---- | ------ |
+| 0       | 219  | 600    |
+| 1       | 2300 | 14     |
+| 2       | 90   | 100    |
+| 3       | 1327 | 580    |
+| 4       | 1952 | 965    |
+
+
+**(a) 0,430**
+
+* Offset = 430 < 600 → ✅ valid
+* Physical Address = 219 + 430 = **649**
+
+**(b) 1,10**
+
+* Offset = 10 < 14 → ✅ valid
+* Physical Address = 2300 + 10 = **2310**
+
+**(c) 1,11**
+
+* Offset = 11 < 14 → ✅ valid
+* Physical Address = 2300 + 11 = **2311**
+
+**(d) 2,500**
+
+* Offset = 500 > 100 → ❌ **invalid**
+* **Segmentation fault**
+
+**Final Answers:**
+
+| Logical Address | Physical Address / Error |
+| --------------- | ------------------------ |
+| (0, 430)        | 649                      |
+| (1, 10)         | 2310                     |
+| (1, 11)         | 2311                     |
+| (2, 500)        | Segmentation Fault (❌)   |
+
+
 ## **4.5.3. Segmentation with Paging (MULTICS)**
 
 * **Explanation:** To combine the benefits of both segmentation (user view, protection, sharing) and paging (no external fragmentation, efficient allocation), some systems use a hybrid approach: **Segmentation with Paging**. The famous MULTICS (Multiplexed Information and Computing Service) operating system was a pioneer in this approach.
