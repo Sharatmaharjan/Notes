@@ -188,6 +188,97 @@ When a process requests memory, and the OS uses a linked list of free blocks, it
 | **Best-Fit** | Allocates the smallest sufficiently large block  | Leaves largest holes intact               | Slow (full scan), creates many tiny unusable fragments (more external fragmentation). |
 | **Worst-Fit** | Allocates the largest sufficiently large block   | Tries to leave a large usable remnant     | Slow (full scan), breaks down large free blocks quickly. |
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/9.png)
+
+We are given:
+
+* **Initial holes(free memory) in memory (in order):**
+  `15 MB, 2 MB, 10 MB, 6 MB, 8 MB, 20 MB`
+
+* **Requests:**
+  (a) 10 MB
+  (b) 10 MB
+
+
+**a. First Fit:**
+
+**Strategy:** Allocate the first hole that is big enough.
+
+**Step-by-step:**
+
+1. First 10 MB request:
+
+   * 15 MB is big enough → **allocate 10 MB from 15 MB**
+   * New holes: `5 MB, 2 MB, 10 MB, 6 MB, 8 MB, 20 MB`
+
+2. Second 10 MB request:
+
+   * 5 MB → too small
+   * 2 MB → too small
+   * 10 MB → fits → **allocate 10 MB**
+   * Final holes: `5 MB, 2 MB, 6 MB, 8 MB, 20 MB`
+
+**Answer (First Fit):**
+(a) 15 MB hole
+(b) 10 MB hole
+
+
+**b. Next Fit:**
+
+**Strategy:** Same as first fit, but continue searching from where the last allocation occurred (circular if needed).
+
+**Step-by-step:**
+
+1. First 10 MB request:
+
+   * Start from beginning → 15 MB → allocate
+   * Pointer now at next hole (2 MB)
+   * Holes: `5 MB, 2 MB, 10 MB, 6 MB, 8 MB, 20 MB`
+
+2. Second 10 MB request:
+
+   * Start at 2 MB → too small
+   * 10 MB → fits → allocate
+   * Pointer now at 6 MB
+   * Holes: `5 MB, 2 MB, 6 MB, 8 MB, 20 MB`
+
+**Answer (Next Fit):**
+(a) 15 MB hole
+(b) 10 MB hole
+
+
+**c. Best Fit:**
+
+**Strategy:** Choose the **smallest hole** that is big enough (to reduce waste).
+
+**Step-by-step:**
+
+1. First 10 MB request:
+
+   * Candidates: 15 MB, 10 MB, 20 MB
+   * **Best fit = 10 MB** → allocate
+   * Holes: `15 MB, 2 MB, 6 MB, 8 MB, 20 MB`
+
+2. Second 10 MB request:
+
+   * Candidates: 15 MB, 20 MB
+   * **Best fit = 15 MB** → allocate
+   * Final holes: `5 MB, 2 MB, 6 MB, 8 MB, 20 MB`
+
+**Answer (Best Fit):**
+(a) 10 MB hole
+(b) 15 MB hole
+
+
+**Final Summary:**
+
+| Strategy  | (a) Hole Used | (b) Hole Used |
+| --------- | ------------- | ------------- |
+| First Fit | 15 MB         | 10 MB         |
+| Next Fit  | 15 MB         | 10 MB         |
+| Best Fit  | 10 MB         | 15 MB         |
+
+---
 
 ## **4.3.1. Virtual Memory**
 
