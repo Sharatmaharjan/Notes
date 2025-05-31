@@ -329,7 +329,7 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 | Reference | Frames (Oldest -\> Newest) | Page Fault? | Notes                                       |
 | :-------- | :------------------------ | :---------- | :------------------------------------------ |
-| 1         | \[1, -, -]                | **Yes** | 1 enters.(Since 1 wasn't in Main Memory but was in logical space->Page fault) |
+| 1         | \[1, -, -]                | **Yes** | 1 enters.(**Page fault**->Since 1 wasn't in Main Memory but was in logical space) |
 | 2         | \[1, 2, -]                | **Yes** | 2 enters.                                   |
 | 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                   |
 | 4         | \[2, 3, 4]                | **Yes** | Frame full. 1 is oldest, replaced by 4.     |
