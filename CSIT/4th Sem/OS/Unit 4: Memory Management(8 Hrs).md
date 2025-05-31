@@ -464,7 +464,8 @@ Assume a given number of available frames and a reference string (sequence of pa
     6.  If valid, the **base address** is added to the **offset** to get the physical address.
 
 **Diagram: Segmentation Address Translation**
-*(Mention to insert a diagram here showing a CPU generating a logical address (segment, offset), lookup in a segment table (base, limit), check for overflow, and then adding base to offset to get physical address.)*
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/8.png)
 
 
 ## **4.5.2. Drawbacks of Segmentation:**
@@ -491,4 +492,18 @@ Assume a given number of available frames and a reference string (sequence of pa
     * **Increased Complexity:** The most complex memory management scheme, requiring multiple levels of tables for translation.
     * **Increased Overhead:** Each memory access requires at least two memory lookups (one for the segment table, one for the page table) before the actual data access (mitigated by TLBs that store segment and page table entries).
 
-**Diagram: Segmentation with Paging**
+---
+
+**Paging** vs **Segmentation**
+
+| Feature            | Paging                               | Segmentation                                   |
+| :----------------- | :--------------------------------------------- | :------------------------------------------------------- |
+| **Concept** | Divides program into fixed-size blocks (pages). | Divides program into logical, variable-size units (segments). |
+| **User View** | Not visible to the user; memory appears as a single linear address space. | Visible to the user; memory is viewed as a collection of segments, reflecting program structure. |
+| **Address Space** | Single, 1-D (one-dimensional) virtual address space. | Multiple, 2-D (two-dimensional) virtual address spaces (segment number, offset). |
+| **Internal Fragmentation** | Suffers from internal fragmentation (unused space within a page). | Does not suffer from internal fragmentation.   |
+| **External Fragmentation** | Does not suffer from external fragmentation. | Suffers from external fragmentation (unused space between segments). |
+| **Complexity** | Relatively simple hardware implementation.     | More complex hardware implementation (variable-size mapping). |
+| **Security/Protection** | Protection is on a per-page basis. | Protection is on a per-segment basis, aligning with logical program units. |
+| **Sharing** | Sharing of pages can be complex (e.g., shared code must align with page boundaries). | Easier to share segments (e.g., shared libraries, procedures). |
+| **Main Table** | Page Table.                          | Segment Table.                                 |
