@@ -318,18 +318,18 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 Assume a given number of available frames and a reference string (sequence of page accesses).
 
-**Reference string:** 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
+**Reference string:** 1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5 <br>
 **Number of Frames:** 3
 
 
-**1 FIFO (First-In, First-Out)**
+**1. FIFO (First-In, First-Out)**
 
   * **Explanation:** The page that has been in memory for the longest time is replaced. It treats pages as a queue; the page at the head of the queue (oldest) is removed.
   * **Total Page Faults:** Counted at the end.
 
 | Reference | Frames (Oldest -\> Newest) | Page Fault? | Notes                                       |
 | :-------- | :------------------------ | :---------- | :------------------------------------------ |
-| 1         | \[1, -, -]                | **Yes** | 1 enters.                                   |
+| 1         | \[1, -, -]                | **Yes** | 1 enters.(Since 1 wasn't in Main Memory but was in logical space->Page fault) |
 | 2         | \[1, 2, -]                | **Yes** | 2 enters.                                   |
 | 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                   |
 | 4         | \[2, 3, 4]                | **Yes** | Frame full. 1 is oldest, replaced by 4.     |
@@ -345,7 +345,7 @@ Assume a given number of available frames and a reference string (sequence of pa
 **Total Page Faults for FIFO: 9**
 
 
-**2 Optimal (MIN)**
+**2. Optimal (MIN)**
 
   * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced.
   * **Total Page Faults:** Counted at the end.
@@ -369,7 +369,7 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 
 
-**3 LRU (Least Recently Used)**
+**3. LRU (Least Recently Used)**
 
   * **Explanation:** The page that has not been used for the longest period of time is replaced.
   * **Total Page Faults:** Counted at the end.
