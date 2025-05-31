@@ -38,11 +38,11 @@ Memory management is the process of coordinating and controlling the use of a co
 ## **4.1.3. Modelling Multiprogramming**
 
 Multiprogramming efficiency can be modeled to understand its benefits. A simple probabilistic model can be used to estimate CPU utilization.
-* **Assumptions:** A system with $N$ processes in memory, and each process spends a fraction $p$ of its time waiting for I/O.
-* **CPU Utilization Formula:** The probability that all $N$ processes are waiting for I/O is $p^N$. Therefore, the CPU utilization is $1 - p^N$.
-* **Practical Example:** If a process spends 80% ($p=0.8$) of its time on I/O, then:
-    * With monoprogramming ($N=1$): CPU utilization = $1 - 0.8^1 = 0.2$ (20%).
-    * With 4 processes ($N=4$): CPU utilization = $1 - 0.8^4 = 1 - 0.4096 = 0.5904$ (approx. 59%).
+* **Assumptions:** A system with N processes in memory, and each process spends a fraction p of its time waiting for I/O.
+* **CPU Utilization Formula:** The probability that all N processes are waiting for I/O is p^N. Therefore, the CPU utilization is 1 - p^N.
+* **Practical Example:** If a process spends 80% (p=0.8) of its time on I/O, then:
+    * With monoprogramming (N=1): CPU utilization = 1 - 0.8^1 = 0.2 (20%).
+    * With 4 processes (N=4): CPU utilization = 1 - 0.8^4 = 1 - 0.4096 = 0.5904 (approx. 59%).
     * This model demonstrates how CPU utilization significantly increases with a higher degree of multiprogramming, especially when processes are I/O-bound.
 
 ## **4.1.4. Multiprogramming with Fixed and Variable Partitions**
@@ -65,23 +65,7 @@ These are early memory management techniques for multiprogramming:
 
 **Diagram: Fixed Partitions**
 *(Mention to insert a diagram here showing main memory divided into several distinct, fixed-size blocks, with some blocks containing processes and some showing internal fragmentation, and some being empty.)*
-```mermaid
-graph TD
-    M[Main Memory]
-    M --> P1[Partition 1 (1MB)]
-    M --> P2[Partition 2 (0.5MB)]
-    M --> P3[Partition 3 (0.5MB)]
-    M --> P4[Partition 4 (2MB)]
 
-    P1 -- Contains --> A[Process A (0.8MB)]
-    P1 -- Wasted --> W1[0.2MB Wasted (Internal Fragmentation)]
-    P2 -- Contains --> B[Process B (0.4MB)]
-    P2 -- Wasted --> W2[0.1MB Wasted]
-    P3 -- Contains --> Empty[Empty]
-    P4 -- Contains --> C[Process C (1.5MB)]
-    P4 -- Wasted --> W3[0.5MB Wasted]
-```
-*Figure: Fixed Partitions with Internal Fragmentation*
 
 **Variable Partitions (Dynamic Partitioning):**
 * **Explanation:** Memory is not partitioned beforehand. When a program needs to be loaded, the OS allocates a contiguous block of memory exactly equal to the program's size. When a program terminates, its memory is returned to a pool of free memory, potentially creating small, non-contiguous free blocks (holes).
@@ -93,22 +77,11 @@ graph TD
     * **External Fragmentation:** As processes are loaded and unloaded, memory becomes fragmented into many small, non-contiguous free blocks. These small holes might collectively be large enough to satisfy a new request, but no single hole is large enough. This makes it difficult to allocate larger programs.
     * More complex to implement.
     * Requires **compaction** to alleviate external fragmentation, which is a costly operation that moves all processes to one end of memory to consolidate free space.
-* **Example:** A 5MB memory. Process A (2MB) loads. Process B (1MB) loads. Process A terminates, leaving a 2MB hole. Process C (3MB) wants to load, but the 2MB hole is too small. Even though 4MB total free space (2MB + 1MB after B) might exist, it's fragmented.
+* **Example:** A 5MB memory. Process A (2MB) loads. Process B (1MB) loads. Process A terminates, leaving a 2MB hole. Process C (3MB) wants to load, but the 2MB hole is too small. Even though 4MB total free space might exist, it's fragmented.
 
 **Diagram: Variable Partitions and External Fragmentation**
 *(Mention to insert a diagram here showing main memory with processes loaded into variable-sized blocks, and multiple small, non-contiguous "holes" of free space.)*
-```mermaid
-graph TD
-    M[Main Memory]
-    M_Start[0] --> A[Process A (2MB)]
-    A --> H1[Hole 1 (1MB)]
-    H1 --> B[Process B (1.5MB)]
-    B --> H2[Hole 2 (0.5MB)]
-    H2 --> C[Process C (1MB)]
-    C --> H3[Hole 3 (1.5MB)]
-    H3 --> M_End[End of Memory]
-```
-*Figure: Variable Partitions with External Fragmentation*
+
 
 **Comparison Table: Fixed vs. Variable Partitions**
 
@@ -124,15 +97,15 @@ graph TD
 ## **4.1.5. Relocation and Protection**
 
 **Relocation:**
-* **Explanation:** Relocation refers to the ability to load a process into any available contiguous block of physical memory, rather than requiring it to load at a fixed, predefined address. This is crucial for multiprogramming, as memory becomes fragmented and processes need to be moved or loaded where space is available.
+* **Explanation:** Relocation refers to the **ability to load a process into any available contiguous block of physical memory**, rather than requiring it to load at a fixed, predefined address. This is crucial for multiprogramming, as memory becomes fragmented and processes need to be moved or loaded where space is available.
 * **Types of Addresses:**
-    * **Logical Address (Virtual Address):** The address generated by the CPU. This address is relative to the start of the program and does not change regardless of where the program is loaded in physical memory.
-    * **Physical Address (Absolute Address):** The actual address in main memory.
+    * **Logical Address (Virtual Address):** The **address generated by the CPU**. This address is relative to the start of the program and does not change regardless of where the program is loaded in physical memory.
+    * **Physical Address (Absolute Address):** The **actual address in main memory**.
 * **Mechanism:**
     * **Static Relocation:** Done at load time. The loader modifies all logical addresses in the program to physical addresses before execution. This means a program, once loaded, cannot be moved.
     * **Dynamic Relocation (Runtime Relocation):** Done at runtime by the MMU. The CPU generates logical addresses, and a hardware mechanism (often using a **Relocation Register / Base Register** and a **Limit Register**) adds the base address of the process to the logical address to get the physical address. This allows the program to be moved in memory after loading.
-        * **Base Register:** Contains the starting physical address of the process in memory.
-        * **Limit Register:** Contains the size of the process's memory region, ensuring that addresses generated do not exceed the allocated space.
+        * **Base Register:** **Contains the starting physical address of the process** in memory.
+        * **Limit Register:** **Contains the size of the process's memory region**, ensuring that addresses generated do not exceed the allocated space.
 * **Advantages of Dynamic Relocation:**
     * Allows processes to be loaded into any available memory block.
     * Facilitates swapping and compaction.
@@ -141,18 +114,7 @@ graph TD
 
 **Diagram: Dynamic Relocation**
 *(Mention to insert a diagram here showing a CPU generating a logical address, which is then added to a Base Register's value, and checked against a Limit Register, to produce a physical address.)*
-```mermaid
-graph TD
-    A[CPU Generated Logical Address] --> B{+}
-    B -- Input 1 --> A
-    B -- Input 2 --> C[Base Register (Program Start Address)]
-    B --> D[Result of Addition]
-    D --> E{Comparison with Limit Register}
-    E -- If Result < Limit Register --> F[Physical Address]
-    E -- If Result >= Limit Register --> G[Memory Protection Error (Trap)]
-    F --> H[Memory Access]
-```
-*Figure: Dynamic Relocation and Protection using Base and Limit Registers*
+
 
 **Protection:**
 * **Explanation:** In a multiprogramming environment, it's crucial to protect the memory space of one process from being accessed or corrupted by another process, and also to protect the OS kernel's memory from user processes.
@@ -166,34 +128,13 @@ graph TD
 * **Explanation:** Memory is divided into fixed-size allocation units (e.g., 4 KB, 8 KB). A bitmap is a bit array where each bit corresponds to one allocation unit. A bit value of '0' indicates the unit is free, and '1' indicates it's occupied (or vice-versa).
 * **Advantages:**
     * Simplicity of implementation.
-    * Easy to find a block of $N$ free units by searching for $N$ consecutive '0' bits.
+    * Easy to find a block of N free units by searching for N consecutive '0' bits.
 * **Disadvantages:**
     * Searching for a contiguous block of memory can be slow, as it involves scanning the bitmap.
     * The size of the bitmap depends on the size of the allocation unit. A smaller unit size leads to a larger bitmap but potentially less internal fragmentation.
     * Not ideal for variable-sized memory blocks.
 * **Example:** If memory is 1MB and allocation unit is 4KB, there are 256 allocation units. The bitmap would be 256 bits (32 bytes).
 
-**Diagram: Memory Bitmap**
-*(Mention to insert a diagram here showing a block of memory divided into fixed-size units, with a corresponding bitmap array below it showing '0' for free units and '1' for occupied units.)*
-```mermaid
-graph TD
-    M[Main Memory]
-    M --> U1[Unit 1 (Occupied)]
-    M --> U2[Unit 2 (Occupied)]
-    M --> U3[Unit 3 (Free)]
-    M --> U4[Unit 4 (Occupied)]
-    M --> U5[Unit 5 (Free)]
-    M --> U6[Unit 6 (Free)]
-
-    BM[Memory Bitmap]
-    BM --> B1[1 (for U1)]
-    BM --> B2[1 (for U2)]
-    BM --> B3[0 (for U3)]
-    BM --> B4[1 (for U4)]
-    BM --> B5[0 (for U5)]
-    BM --> B6[0 (for U6)]
-```
-*Figure: Memory Management using a Bitmap*
 
 ## **4.2.2. Memory Management with Linked-Lists**
 
@@ -212,15 +153,7 @@ graph TD
 
 **Diagram: Memory Linked List**
 *(Mention to insert a diagram here showing memory blocks (some occupied, some free) and arrows representing a linked list connecting them.)*
-```mermaid
-graph TD
-    head[HEAD] --> O1[Occupied Block 1<br>Addr: X, Size: Y]
-    O1 --> F1[Free Block 1<br>Addr: A, Size: B]
-    F1 --> O2[Occupied Block 2<br>Addr: C, Size: D]
-    O2 --> F2[Free Block 2<br>Addr: E, Size: F]
-    F2 --> tail[TAIL]
-```
-*Figure: Memory Management using a Linked List*
+
 
 ## **4.2.3. Memory Allocation Strategies (for Variable Partitions)**
 
@@ -381,14 +314,14 @@ graph TD
     * **Context Switch Overhead:** When a context switch occurs, the TLB needs to be flushed entirely (if entries are not tagged with process IDs) to prevent the new process from using stale translations of the previous process. This causes a temporary performance dip as the TLB needs to be refilled.
 * **Hit Rate:** The percentage of times the requested page number is found in the TLB. A typical hit rate is 90% or higher.
 * **Effective Access Time (EAT) Calculation:**
-    * Let $P$ be the TLB hit ratio (probability of a hit).
-    * Let $T_{TLB}$ be the time to access the TLB (e.g., 20 ns).
-    * Let $T_{mem}$ be the time to access main memory (e.g., 100 ns).
-    * $EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + T_{mem} + T_{mem})$
+    * Let P be the TLB hit ratio (probability of a hit).
+    * Let T_{TLB} be the time to access the TLB (e.g., 20 ns).
+    * Let T_{mem} be the time to access main memory (e.g., 100 ns).
+    * EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + T_{mem} + T_{mem})
         * Simplified for modern systems where TLB access is often parallel to the first part of memory access:
-        * $EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + 2 \times T_{mem})$
+        * EAT = P \times (T_{TLB} + T_{mem}) + (1-P) \times (T_{TLB} + 2 \times T_{mem})
         * If TLB access is negligible or parallel:
-        * $EAT = P \times T_{mem} + (1-P) \times (2 \times T_{mem})$
+        * EAT = P \times T_{mem} + (1-P) \times (2 \times T_{mem})
 
 **Diagram: TLB in Address Translation (Review from previous section)**
 *(Mention to insert the same "Address Translation with TLB" diagram from the previous section here.)*
