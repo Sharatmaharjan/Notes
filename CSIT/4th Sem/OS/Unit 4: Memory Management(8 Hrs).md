@@ -440,28 +440,7 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 **Diagram: Segmentation Address Translation**
 *(Mention to insert a diagram here showing a CPU generating a logical address (segment, offset), lookup in a segment table (base, limit), check for overflow, and then adding base to offset to get physical address.)*
-```mermaid
-graph TD
-    LA[Logical Address<br>(Segment Number, Offset)] --> S[Segment Number]
-    LA --> O[Offset]
 
-    subgraph MMU
-        STBR[Segment Table Base Register] -- points to --> ST[Segment Table]
-        S -- Index --> ST
-        ST_Entry[Segment Table Entry<br> (Base, Limit, Protection)]
-
-        O --> CheckLimit{Is Offset < Limit?}
-        ST_Entry -- provides Limit --> CheckLimit
-        CheckLimit -- Yes --> AddBase{Add Offset to Base Address}
-        ST_Entry -- provides Base --> AddBase
-        AddBase --> PA[Physical Address]
-
-        CheckLimit -- No --> Trap[Segmentation Fault (Error)]
-    end
-
-    PA --> RAM[Main Memory]
-```
-*Figure: Segmentation Address Translation*
 
 ## **4.5.2. Drawbacks of Segmentation:**
 
@@ -488,32 +467,3 @@ graph TD
     * **Increased Overhead:** Each memory access requires at least two memory lookups (one for the segment table, one for the page table) before the actual data access (mitigated by TLBs that store segment and page table entries).
 
 **Diagram: Segmentation with Paging**
-*(Mention to insert a diagram here showing the logical address (segment, offset), segment table mapping segment to a page table, offset further split into page number and offset, lookup in page table for frame, then combined with offset for physical address.)*
-```mermaid
-graph TD
-    LA[Logical Address<br>(Segment S, Offset O)] --> S[Segment S]
-    LA --> O[Offset O]
-
-    subgraph MMU
-        SR[Segment Registers / STBR] -- points to --> ST[Segment Table]
-        S -- Index --> ST
-        STE[Segment Table Entry<br>(Base Address of Page Table for S, Limit)]
-
-        STE -- provides base for --> PT[Page Table for Segment S]
-
-        O --> SplitOffset{Split Offset O into:<br>Page Number P, Offset D}
-        SplitOffset --> P[Page Number P]
-        SplitOffset --> D[Offset D]
-
-        P -- Index --> PT
-        PTE[Page Table Entry<br>(Frame F, Protection bits)]
-
-        PTE --> F[Frame Number F]
-        F -- concatenate with D --> PA[Physical Address]
-    end
-
-    PA --> RAM[Main Memory]
-```
-*Figure: Segmentation with Paging Address Translation*
-
----
