@@ -25,6 +25,8 @@ Data communication involves the transfer of digital or analog data between devic
 4. **Transmission Medium** – The physical or wireless path (e.g., fiber optic cable, Wi-Fi).  
 5. **Protocols** – Rules governing data exchange (e.g., TCP/IP, HTTP).  
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%201/2.png)
+
 **Question:**  
 *Q: List and briefly explain the five key components of a data communication network.*  
 
