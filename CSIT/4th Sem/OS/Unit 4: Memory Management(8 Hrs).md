@@ -64,6 +64,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A 1MB memory divided into four 256KB partitions. If a 100KB program loads into a 256KB partition, 156KB is wasted (internal fragmentation).
 
 **Diagram: Fixed Partitions**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/1.png)
 
 
