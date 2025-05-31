@@ -350,24 +350,6 @@ Assume a given number of available frames and a reference string (sequence of pa
   * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced.
   * **Total Page Faults:** Counted at the end.
 
-| Reference | Frames                    | Page Fault? | Notes (Future Use)                                                                                   |
-| :-------- | :------------------------ | :---------- | :--------------------------------------------------------------------------------------------------- |
-| 1         | \[1, -, -]                | **Yes** | 1 enters.                                                                                            |
-| 2         | \[1, 2, -]                | **Yes** | 2 enters.                                                                                            |
-| 3         | \[1, 2, 3]                | **Yes** | 3 enters.                                                                                            |
-| 4         | \[1, 2, 4]                | **Yes** | Frames \[1, 2, 3]. Need to replace one for 4. \<br\> Future use: 1 (soon), 2 (soon), 3 (never again until 3 at end). \<br\> Replace 3. |
-| 1         | \[1, 2, 4]                | No          | 1 is already in memory.                                                                              |
-| 2         | \[1, 2, 4]                | No          | 2 is already in memory.                                                                              |
-| 5         | \[1, 2, 5]                | **Yes** | Frames \[1, 2, 4]. Need to replace one for 5. \<br\> Future use: 1 (soon), 2 (soon), 4 (at end). \<br\> Replace 4.    |
-| 1         | \[1, 2, 5]                | No          | 1 is already in memory.                                                                              |
-| 2         | \[1, 2, 5]                | No          | 2 is already in memory.                                                                              |
-| 3         | \[1, 5, 3]                | **Yes** | Frames \[1, 2, 5]. Need to replace one for 3. \<br\> Future use: 1 (soon), 2 (later), 5 (at end). \<br\> Replace 2.    |
-| 4         | \[1, 3, 4]                | **Yes** | Frames \[1, 5, 3]. Need to replace one for 4. \<br\> Future use: 1 (soon), 5 (soon), 3 (later). \<br\> Replace 5.    |
-| 5         | \[1, 3, 5]                | **Yes** | Frames \[1, 3, 4]. Need to replace one for 5. \<br\> Future use: 1 (soon), 3 (soon), 4 (never again). \<br\> Replace 4. |
-
-**Total Page Faults for Optimal: 8**
-
-
 
 **3. LRU (Least Recently Used)**
 
