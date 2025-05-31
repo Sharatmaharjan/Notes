@@ -81,6 +81,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A 5MB memory. Process A (2MB) loads. Process B (1MB) loads. Process A terminates, leaving a 2MB hole. Process C (3MB) wants to load, but the 2MB hole is too small. Even though 4MB total free space might exist, it's fragmented.
 
 **Diagram: Variable Partitions and External Fragmentation**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/2.png)
 
 
@@ -114,6 +115,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** If a program's logical address is `100` and it's loaded into physical memory starting at address `5000` (stored in the Base Register), the MMU translates `100` to `5000 + 100 = 5100`.
 
 **Diagram: Dynamic Relocation**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/3.png)
 
 
@@ -153,6 +155,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A list could look like: (Occupied, Address 0, Size 200KB) -> (Free, Address 200KB, Size 100KB) -> (Occupied, Address 300KB, Size 500KB) -> (Free, Address 800KB, Size 200KB).
 
 **Diagram: Memory Linked List**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/4.png)
 
 ## **4.2.3. Memory Allocation Strategies (for Variable Partitions)**
@@ -225,6 +228,7 @@ Each entry in a page table typically contains:
 * Other bits (Cache Disable, Global, etc.).
 
 **Diagram: Address Translation**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/5.png)
 
 **c. Page Table Structures:**
@@ -270,6 +274,7 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 9.  **Restart Instruction:** The CPU registers and process context are restored, and the instruction that caused the page fault is restarted. Since the page is now in memory, the instruction will complete successfully.
 
 **Diagram: Page Fault Handling**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6.png)
 
 
@@ -291,6 +296,7 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 
 **Diagram: TLB in Address Translation (Review from previous section)**
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/7.png)
 
 
