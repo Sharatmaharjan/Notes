@@ -64,7 +64,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A 1MB memory divided into four 256KB partitions. If a 100KB program loads into a 256KB partition, 156KB is wasted (internal fragmentation).
 
 **Diagram: Fixed Partitions**
-*(Mention to insert a diagram here showing main memory divided into several distinct, fixed-size blocks, with some blocks containing processes and some showing internal fragmentation, and some being empty.)*
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/1.png)
 
 
 **Variable Partitions (Dynamic Partitioning):**
@@ -80,7 +80,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A 5MB memory. Process A (2MB) loads. Process B (1MB) loads. Process A terminates, leaving a 2MB hole. Process C (3MB) wants to load, but the 2MB hole is too small. Even though 4MB total free space might exist, it's fragmented.
 
 **Diagram: Variable Partitions and External Fragmentation**
-*(Mention to insert a diagram here showing main memory with processes loaded into variable-sized blocks, and multiple small, non-contiguous "holes" of free space.)*
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/2.png)
 
 
 **Comparison Table: Fixed vs. Variable Partitions**
@@ -113,7 +113,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** If a program's logical address is `100` and it's loaded into physical memory starting at address `5000` (stored in the Base Register), the MMU translates `100` to `5000 + 100 = 5100`.
 
 **Diagram: Dynamic Relocation**
-*(Mention to insert a diagram here showing a CPU generating a logical address, which is then added to a Base Register's value, and checked against a Limit Register, to produce a physical address.)*
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/3.png)
 
 
 **Protection:**
@@ -152,8 +152,7 @@ These are early memory management techniques for multiprogramming:
 * **Example:** A list could look like: (Occupied, Address 0, Size 200KB) -> (Free, Address 200KB, Size 100KB) -> (Occupied, Address 300KB, Size 500KB) -> (Free, Address 800KB, Size 200KB).
 
 **Diagram: Memory Linked List**
-*(Mention to insert a diagram here showing memory blocks (some occupied, some free) and arrows representing a linked list connecting them.)*
-
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/4.png)
 
 ## **4.2.3. Memory Allocation Strategies (for Variable Partitions)**
 
@@ -224,8 +223,8 @@ Each entry in a page table typically contains:
 * **Accessed Bit (Reference Bit):** Set if the page has been read or written.
 * Other bits (Cache Disable, Global, etc.).
 
-**Diagram: Address Translation (Review from previous section)**
-*(Mention to insert the same "Address Translation using a Page Table" diagram from the previous response here.)*
+**Diagram: Address Translation**
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/5.png)
 
 **c. Page Table Structures:**
 To manage the size and lookup efficiency of page tables, especially for large address spaces:
@@ -270,7 +269,7 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 9.  **Restart Instruction:** The CPU registers and process context are restored, and the instruction that caused the page fault is restarted. Since the page is now in memory, the instruction will complete successfully.
 
 **Diagram: Page Fault Handling**
-*(Mention to insert a diagram here showing the flow of events from CPU attempting access, MMU detecting fault, OS intervention, disk I/O, updating page table, and restarting instruction.)*
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6.png)
 
 
 **4.3.5. TLBs (Translation Lookaside Buffers)**
@@ -291,7 +290,7 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 
 **Diagram: TLB in Address Translation (Review from previous section)**
-*(Mention to insert the same "Address Translation with TLB" diagram from the previous section here.)*
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/7.png)
 
 
 **Page Table** vs **TLB**
