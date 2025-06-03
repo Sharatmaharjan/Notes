@@ -37,7 +37,6 @@ In host-based architectures, a central host (e.g., mainframe) performs all proce
 - Limited scalability as the host can become a bottleneck.
 - High latency for remote clients due to centralized processing.
 
-**Diagram**: [Insert a diagram showing a central host connected to multiple dumb terminals via a network.]
 
 ### 2. Client-Based Architectures
 Client-based architectures place most processing on the client, with the server primarily providing data storage.
@@ -59,7 +58,7 @@ Client-based architectures place most processing on the client, with the server 
 - Software updates must be deployed to all clients.
 - Security risks due to data processing on less-controlled clients.
 
-**Diagram**: [Insert a diagram showing multiple clients with processing logic connected to a server storing data.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/1.png)
 
 ### 3. Client-Server Architectures
 Client-server architectures distribute processing between clients and servers. Clients handle user interfaces, while servers manage data and complex computations.
@@ -81,7 +80,7 @@ Client-server architectures distribute processing between clients and servers. C
 - Requires reliable network connectivity.
 - Complex to design for fault tolerance.
 
-**Diagram**: [Insert a diagram showing clients sending requests to a server, which responds with processed data.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/2.png)
 
 ### 4. Cloud Computing Architectures
 Cloud computing architectures leverage remote servers hosted in data centers to provide scalable, on-demand services.
@@ -103,7 +102,7 @@ Cloud computing architectures leverage remote servers hosted in data centers to 
 - Data privacy and security concerns in shared environments.
 - Potential vendor lock-in.
 
-**Diagram**: [Insert a diagram showing clients accessing cloud services via the internet, with servers in a data center.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/3.png)
 
 ### 5. Peer-to-Peer (P2P) Architectures
 In P2P architectures, all nodes (peers) act as both clients and servers, sharing resources directly.
@@ -125,7 +124,7 @@ In P2P architectures, all nodes (peers) act as both clients and servers, sharing
 - Performance depends on peer availability and cooperation.
 - Legal and ethical issues in some applications (e.g., piracy).
 
-**Diagram**: [Insert a diagram showing multiple peers interconnected, each acting as both client and server.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/4.png)
 
 ### Choosing Architectures
 Selecting an architecture depends on application requirements, scalability, cost, and security needs.
@@ -158,7 +157,7 @@ The WWW is a global system of interconnected resources accessed via the internet
 
 **Example**: Accessing "www.example.com" involves DNS lookup, an HTTP GET request, and rendering an HTML page.
 
-**Diagram**: [Insert a diagram showing a browser sending an HTTP request to a server, receiving a response, and rendering a webpage.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/6.png)
 
 ### HTTP Request and Response
 HTTP (HyperText Transfer Protocol) governs communication between clients and servers.
@@ -209,7 +208,7 @@ Email enables asynchronous communication of text and multimedia content over net
 
 **Example**: Sending an email from user1@gmail.com to user2@yahoo.com involves Gmail’s MTA forwarding the email to Yahoo’s MTA.
 
-**Diagram**: [Insert a diagram showing the email flow from sender’s MUA to MTA, through intermediate MTAs, to recipient’s MDA and MUA.]
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/7.png)
 
 ### SMTP Packet
 SMTP (Simple Mail Transfer Protocol) governs email transmission between MTAs.
@@ -323,5 +322,5 @@ Videoconferencing enables real-time audio-visual communication.
 | Instant Messaging | XMPP, others   | Yes       | Medium   | Medium          | WhatsApp chat       |
 | Videoconferencing | SIP, WebRTC    | Yes       | Medium   | High            | Zoom meeting        |
 
-**Diagram**: [Insert a diagram showing Telnet, IM, and videoconferencing workflows, highlighting client-server or P2P communication.]
+
 
