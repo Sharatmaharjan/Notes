@@ -102,7 +102,7 @@ Cloud computing architectures leverage remote servers hosted in data centers to 
 - Data privacy and security concerns in shared environments.
 - Potential vendor lock-in.
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/3.png)
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/3.jpg)
 
 ### 5. Peer-to-Peer (P2P) Architectures
 In P2P architectures, all nodes (peers) act as both clients and servers, sharing resources directly.
@@ -124,7 +124,7 @@ In P2P architectures, all nodes (peers) act as both clients and servers, sharing
 - Performance depends on peer availability and cooperation.
 - Legal and ethical issues in some applications (e.g., piracy).
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/4.png)
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%202/4.jpeg)
 
 ### Choosing Architectures
 Selecting an architecture depends on application requirements, scalability, cost, and security needs.
