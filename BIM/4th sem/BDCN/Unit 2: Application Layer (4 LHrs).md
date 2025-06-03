@@ -191,8 +191,6 @@ HTTP (HyperText Transfer Protocol) governs communication between clients and ser
 - Statelessness requires additional mechanisms (e.g., cookies) for session management.
 - Overhead in establishing connections for each request (mitigated by HTTP/2).
 
-**Numerical Example**: For a webpage with 10 resources (HTML, CSS, images), each requiring a 100 ms round-trip time, total load time without connection reuse is 1 second. HTTP/2 multiplexing reduces this to ~200 ms.
-
 ---
 
 ## Electronic Mail
