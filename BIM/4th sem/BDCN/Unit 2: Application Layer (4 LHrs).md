@@ -288,7 +288,7 @@ Telnet provides remote access to command-line interfaces on servers.
 Instant messaging (IM) enables real-time text communication.
 
 - **Working**:
-  - Uses protocols like XMPP or proprietary systems (e.g., WhatsApp).
+  - Uses protocols like XMPP(Extensible Messaging and Presence Protocol) or proprietary systems (e.g., WhatsApp).
   - Clients connect to a server, which relays messages.
 - **Example**: Sending a message on WhatsApp, which routes through WhatsApp’s servers.
 - **Advantages**:
@@ -302,7 +302,7 @@ Instant messaging (IM) enables real-time text communication.
 Videoconferencing enables real-time audio-visual communication.
 
 - **Working**:
-  - Uses protocols like SIP or WebRTC.
+  - Uses protocols like SIP(Session Initiation Protocol) or WebRTC(Web Real-Time Communication).
   - Streams audio and video via UDP for low latency.
 - **Example**: A Zoom meeting where participants’ video feeds are relayed through Zoom’s servers.
 - **Advantages**:
