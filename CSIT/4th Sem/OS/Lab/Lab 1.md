@@ -84,7 +84,6 @@ int main() {
 
 ```c
 #include <stdio.h>
-#include <stdlib.h>
 #include <pthread.h>
 #include <semaphore.h>
 #include <unistd.h>
@@ -93,79 +92,92 @@ int main() {
 #define THINKING 0
 #define HUNGRY 1
 #define EATING 2
-#define LEFT (philosopher_number + 4) % NUM_PHILOSOPHERS
-#define RIGHT (philosopher_number + 1) % NUM_PHILOSOPHERS
 
 sem_t mutex;
-sem_t philosopher_sem[NUM_PHILOSOPHERS];
+sem_t chopsticks[NUM_PHILOSOPHERS];
 int state[NUM_PHILOSOPHERS];
-int philosophers[NUM_PHILOSOPHERS] = {0, 1, 2, 3, 4};
 
-void test(int philosopher_number) {
-    if (state[philosopher_number] == HUNGRY &&
-        state[LEFT] != EATING &&
-        state[RIGHT] != EATING) {
-        state[philosopher_number] = EATING;
-        printf("Philosopher %d is eating\n", philosopher_number);
-        sem_post(&philosopher_sem[philosopher_number]);
-    }
-}
-
-void take_forks(int philosopher_number) {
-    sem_wait(&mutex);
-    state[philosopher_number] = HUNGRY;
-    printf("Philosopher %d is hungry\n", philosopher_number);
-    test(philosopher_number);
-    sem_post(&mutex);
-    sem_wait(&philosopher_sem[philosopher_number]);
-    sleep(1); // Simulate eating time
-}
-
-void put_forks(int philosopher_number) {
-    sem_wait(&mutex);
-    state[philosopher_number] = THINKING;
-    printf("Philosopher %d is thinking\n", philosopher_number);
-    test(LEFT);
-    test(RIGHT);
-    sem_post(&mutex);
-}
-
-void *philosopher(void *arg) {
-    int philosopher_number = *(int *)arg;
-    while (1) {
-        printf("Philosopher %d is thinking\n", philosopher_number);
-        sleep(rand() % 3); // Simulate thinking time
-        take_forks(philosopher_number);
-        put_forks(philosopher_number);
-    }
-    return NULL;
-}
+void *philosopher(void *num);
+void take_chopsticks(int);
+void put_chopsticks(int);
+void test(int);
 
 int main() {
-    pthread_t threads[NUM_PHILOSOPHERS];
-    
-    // Initialize semaphores and mutex
+    pthread_t philosophers[NUM_PHILOSOPHERS];
+    int philosopher_numbers[NUM_PHILOSOPHERS];
+
+    // Initialize semaphores
     sem_init(&mutex, 0, 1);
     for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
-        sem_init(&philosopher_sem[i], 0, 0);
-        state[i] = THINKING;
+        sem_init(&chopsticks[i], 0, 1);
+        philosopher_numbers[i] = i;
     }
-    
+
     // Create philosopher threads
     for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
-        pthread_create(&threads[i], NULL, philosopher, &philosophers[i]);
+        pthread_create(&philosophers[i], NULL, philosopher, &philosopher_numbers[i]);
     }
-    
-    // Run for a fixed duration
-    sleep(10);
-    
-    // Cleanup (in practice, this would need proper thread termination)
+
+    // Wait for threads to finish (though they run indefinitely)
     for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
-        sem_destroy(&philosopher_sem[i]);
+        pthread_join(philosophers[i], NULL);
     }
+
+    // Clean up semaphores
     sem_destroy(&mutex);
-    
+    for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
+        sem_destroy(&chopsticks[i]);
+    }
+
     return 0;
+}
+
+void *philosopher(void *num) {
+    int *philosopher_num = (int *)num;
+    int i = *philosopher_num;
+
+    while (1) {
+        printf("Philosopher %d is thinking\n", i);
+        sleep(1); // Thinking time
+
+        take_chopsticks(i);
+
+        printf("Philosopher %d is eating\n", i);
+        sleep(1); // Eating time
+
+        put_chopsticks(i);
+    }
+}
+
+void take_chopsticks(int i) {
+    sem_wait(&mutex);
+    state[i] = HUNGRY;
+    printf("Philosopher %d is hungry\n", i);
+    test(i);
+    sem_post(&mutex);
+    sem_wait(&chopsticks[i]);
+}
+
+void test(int i) {
+    if (state[i] == HUNGRY && 
+        state[(i + NUM_PHILOSOPHERS - 1) % NUM_PHILOSOPHERS] != EATING && 
+        state[(i + 1) % NUM_PHILOSOPHERS] != EATING) {
+        
+        state[i] = EATING;
+        sem_post(&chopsticks[i]);
+    }
+}
+
+void put_chopsticks(int i) {
+    sem_wait(&mutex);
+    state[i] = THINKING;
+    printf("Philosopher %d has finished eating\n", i);
+    
+    // Notify neighbors
+    test((i + NUM_PHILOSOPHERS - 1) % NUM_PHILOSOPHERS);
+    test((i + 1) % NUM_PHILOSOPHERS);
+    
+    sem_post(&mutex);
 }
 ```
 
