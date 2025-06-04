@@ -191,9 +191,9 @@ void put_chopsticks(int i) {
 
 **3. Write a program to simulate the following scheduling algorithm.**
 
-**FCFS**
-**SJF**
-**Round Robin**
+- **FCFS**
+- **SJF**
+- **Round Robin**
 
 **For each of the algorithm finds out turnaround time and waiting time.**
 
