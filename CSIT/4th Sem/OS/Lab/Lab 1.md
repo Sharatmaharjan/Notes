@@ -82,6 +82,127 @@ int main() {
 }
 ```
 
+
+### 1. Basic Concept
+Imagine a factory with:
+- A producer making items and putting them on a conveyor belt (buffer)
+- A consumer taking items off the conveyor belt
+- The belt can only hold 5 items at once (BUFFER_SIZE)
+
+### 2. Key Components
+
+**a. The Buffer**
+```c
+int buffer[BUFFER_SIZE];  // Our "conveyor belt" with 5 slots
+int in = 0, out = 0;      // Pointers to track where to add/remove items
+```
+
+**b. The Traffic Lights (Semaphores)**
+```c
+sem_t mutex, empty, full;
+```
+- `mutex`: Like a bathroom key - only one thread can hold it at a time
+- `empty`: Counts empty slots ("Hey producer, there are X free spaces!")
+- `full`: Counts full slots ("Hey consumer, there are X items ready!")
+
+### 3. Producer's Job
+```c
+void *producer(void *arg) {
+    int item;
+    for (int i = 0; i < 10; i++) {
+        // 1. Make a new item (random number)
+        item = rand() % 100;
+        
+        // 2. Wait for empty space (stop if belt is full)
+        sem_wait(&empty);
+        
+        // 3. Get exclusive access (take the bathroom key)
+        sem_wait(&mutex);
+        
+        // 4. Put item on belt
+        buffer[in] = item;
+        printf("Producer produced %d\n", item);
+        in = (in + 1) % BUFFER_SIZE;  // Wrap around if needed
+        
+        // 5. Release access (return the key)
+        sem_post(&mutex);
+        
+        // 6. Tell consumer "There's one more item!"
+        sem_post(&full);
+        
+        // 7. Take a quick break
+        sleep(rand() % 2);
+    }
+    return NULL;
+}
+```
+
+### 4. Consumer's Job
+```c
+void *consumer(void *arg) {
+    int item;
+    for (int i = 0; i < 10; i++) {
+        // 1. Wait for items (stop if belt is empty)
+        sem_wait(&full);
+        
+        // 2. Get exclusive access
+        sem_wait(&mutex);
+        
+        // 3. Take item from belt
+        item = buffer[out];
+        printf("Consumer consumed %d\n", item);
+        out = (out + 1) % BUFFER_SIZE;
+        
+        // 4. Release access
+        sem_post(&mutex);
+        
+        // 5. Tell producer "There's one more empty space!"
+        sem_post(&empty);
+        
+        // 6. Take a quick break
+        sleep(rand() % 2);
+    }
+    return NULL;
+}
+```
+
+### 5. Main Function
+```c
+int main() {
+    // Initialize our traffic lights:
+    sem_init(&mutex, 0, 1);       // Mutex starts at 1 (available)
+    sem_init(&empty, 0, BUFFER_SIZE); // 5 empty slots initially
+    sem_init(&full, 0, 0);        // 0 full slots initially
+    
+    // Hire our workers (create threads)
+    pthread_create(&prod_thread, NULL, producer, NULL);
+    pthread_create(&cons_thread, NULL, consumer, NULL);
+    
+    // Wait for them to finish their shifts
+    pthread_join(prod_thread, NULL);
+    pthread_join(cons_thread, NULL);
+    
+    // Remove the traffic lights
+    sem_destroy(&mutex);
+    sem_destroy(&empty);
+    sem_destroy(&full);
+    
+    return 0;
+}
+```
+
+### 6. Visualizing the Flow
+
+```
+Producer:                     Consumer:
+1. Check for empty space      1. Check for full slots
+2. Get permission             2. Get permission
+3. Add item to buffer         3. Remove item from buffer
+4. Signal "item added"        4. Signal "space freed"
+5. Sleep a bit                5. Sleep a bit
+```
+
+
 ---
 
 **2. Write a program to implement the concept of the dining philosopher problem.**
