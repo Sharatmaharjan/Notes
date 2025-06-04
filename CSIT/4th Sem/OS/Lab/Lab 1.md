@@ -1,5 +1,9 @@
 **1. Write a program in C to implement producer-consumer problem using semaphore.**
 
+The producer-consumer problem is a classic synchronization problem where:
+    - Producers generate data and put it into a buffer
+    - Consumers take data from the buffer
+    - We need to ensure producers don't add data to a full buffer and consumers don't remove data from an empty buffer
 
 ```c
 #include <stdio.h>
@@ -81,6 +85,8 @@ int main() {
 ---
 
 **2. Write a program to implement the concept of the dining philosopher problem.**
+
+The Dining Philosophers problem is a classic synchronization problem that demonstrates challenges in avoiding deadlock when multiple processes compete for limited resources.
 
 ```c
 #include <stdio.h>
@@ -194,147 +200,196 @@ void put_chopsticks(int i) {
 ```c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #define MAX_PROCESSES 10
-#define TIME_QUANTUM 2 // For Round Robin
 
-// Structure to represent a process
 typedef struct {
-    int pid;          // Process ID
-    int arrival_time; // Arrival time
-    int burst_time;   // Burst time
-    int remaining_time; // For Round Robin
-    int completion_time;
-    int turnaround_time;
+    int pid;
+    int arrival_time;
+    int burst_time;
+    int priority;
+    int remaining_time;
     int waiting_time;
+    int turnaround_time;
 } Process;
 
-// Function to initialize processes
-void initialize_processes(Process p[], int n) {
-    // Sample processes: {PID, Arrival Time, Burst Time}
-    int sample_data[][3] = {{1, 0, 5}, {2, 1, 3}, {3, 2, 8}, {4, 3, 6}};
-    for (int i = 0; i < n; i++) {
-        p[i].pid = sample_data[i][0];
-        p[i].arrival_time = sample_data[i][1];
-        p[i].burst_time = sample_data[i][2];
-        p[i].remaining_time = p[i].burst_time;
-        p[i].completion_time = 0;
-        p[i].turnaround_time = 0;
-        p[i].waiting_time = 0;
+void fcfs(Process processes[], int n);
+void sjf(Process processes[], int n);
+void priority(Process processes[], int n);
+void round_robin(Process processes[], int n, int quantum);
+void print_results(Process processes[], int n);
+
+int main() {
+    Process processes[MAX_PROCESSES];
+    int n, choice, quantum;
+
+    printf("Enter number of processes (max %d): ", MAX_PROCESSES);
+    scanf("%d", &n);
+
+    for(int i = 0; i < n; i++) {
+        printf("\nProcess %d:\n", i+1);
+        processes[i].pid = i+1;
+        printf("Arrival Time: ");
+        scanf("%d", &processes[i].arrival_time);
+        printf("Burst Time: ");
+        scanf("%d", &processes[i].burst_time);
+        printf("Priority: ");
+        scanf("%d", &processes[i].priority);
+        processes[i].remaining_time = processes[i].burst_time;
     }
+
+    printf("\nScheduling Algorithms:\n");
+    printf("1. FCFS\n2. SJF\n3. Priority\n4. Round Robin\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch(choice) {
+        case 1:
+            fcfs(processes, n);
+            break;
+        case 2:
+            sjf(processes, n);
+            break;
+        case 3:
+            priority(processes, n);
+            break;
+        case 4:
+            printf("Enter time quantum: ");
+            scanf("%d", &quantum);
+            round_robin(processes, n, quantum);
+            break;
+        default:
+            printf("Invalid choice\n");
+            return 1;
+    }
+
+    print_results(processes, n);
+    return 0;
 }
 
-// FCFS Scheduling
-void fcfs(Process p[], int n) {
-    printf("\nFCFS Scheduling:\n");
-    int current_time = 0;
-    for (int i = 0; i < n; i++) {
-        if (current_time < p[i].arrival_time) {
-            current_time = p[i].arrival_time;
-        }
-        p[i].completion_time = current_time + p[i].burst_time;
-        p[i].turnaround_time = p[i].completion_time - p[i].arrival_time;
-        p[i].waiting_time = p[i].turnaround_time - p[i].burst_time;
-        current_time = p[i].completion_time;
-    }
-}
-
-// SJF Scheduling (Non-preemptive)
-void sjf(Process p[], int n) {
-    printf("\nSJF Scheduling:\n");
-    Process temp[MAX_PROCESSES];
-    for (int i = 0; i < n; i++) temp[i] = p[i];
-    
-    int current_time = 0, completed = 0;
-    while (completed < n) {
-        int min_burst = 9999, min_index = -1;
-        for (int i = 0; i < n; i++) {
-            if (temp[i].arrival_time <= current_time && temp[i].completion_time == 0) {
-                if (temp[i].burst_time < min_burst) {
-                    min_burst = temp[i].burst_time;
-                    min_index = i;
-                }
+void fcfs(Process processes[], int n) {
+    // Sort by arrival time
+    for(int i = 0; i < n-1; i++) {
+        for(int j = 0; j < n-i-1; j++) {
+            if(processes[j].arrival_time > processes[j+1].arrival_time) {
+                Process temp = processes[j];
+                processes[j] = processes[j+1];
+                processes[j+1] = temp;
             }
         }
-        if (min_index == -1) {
+    }
+
+    int current_time = 0;
+    for(int i = 0; i < n; i++) {
+        if(current_time < processes[i].arrival_time)
+            current_time = processes[i].arrival_time;
+        
+        processes[i].waiting_time = current_time - processes[i].arrival_time;
+        current_time += processes[i].burst_time;
+        processes[i].turnaround_time = processes[i].waiting_time + processes[i].burst_time;
+    }
+}
+
+void sjf(Process processes[], int n) {
+    int completed = 0, current_time = 0;
+
+    while(completed < n) {
+        int shortest = -1;
+        int min_burst = 9999;
+
+        for(int i = 0; i < n; i++) {
+            if(processes[i].arrival_time <= current_time && 
+               processes[i].remaining_time > 0 && 
+               processes[i].remaining_time < min_burst) {
+                min_burst = processes[i].remaining_time;
+                shortest = i;
+            }
+        }
+
+        if(shortest == -1) {
             current_time++;
             continue;
         }
-        temp[min_index].completion_time = current_time + temp[min_index].burst_time;
-        temp[min_index].turnaround_time = temp[min_index].completion_time - temp[min_index].arrival_time;
-        temp[min_index].waiting_time = temp[min_index].turnaround_time - temp[min_index].burst_time;
-        current_time = temp[min_index].completion_time;
+
+        processes[shortest].remaining_time = 0;
+        processes[shortest].turnaround_time = current_time + processes[shortest].burst_time - processes[shortest].arrival_time;
+        processes[shortest].waiting_time = processes[shortest].turnaround_time - processes[shortest].burst_time;
+        current_time += processes[shortest].burst_time;
         completed++;
-        p[min_index] = temp[min_index]; // Update original array
     }
 }
 
-// Round Robin Scheduling
-void round_robin(Process p[], int n, int quantum) {
-    printf("\nRound Robin Scheduling (Quantum = %d):\n", quantum);
-    Process temp[MAX_PROCESSES];
-    for (int i = 0; i < n; i++) temp[i] = p[i];
-    
-    int current_time = 0, completed = 0;
-    while (completed < n) {
-        int done = 1;
-        for (int i = 0; i < n; i++) {
-            if (temp[i].remaining_time > 0) {
-                done = 0;
-                if (temp[i].arrival_time <= current_time) {
-                    int time_slice = (temp[i].remaining_time < quantum) ? temp[i].remaining_time : quantum;
-                    temp[i].remaining_time -= time_slice;
-                    current_time += time_slice;
-                    if (temp[i].remaining_time == 0) {
-                        temp[i].completion_time = current_time;
-                        temp[i].turnaround_time = temp[i].completion_time - temp[i].arrival_time;
-                        temp[i].waiting_time = temp[i].turnaround_time - temp[i].burst_time;
-                        completed++;
-                        p[i] = temp[i]; // Update original array
-                    }
+void priority(Process processes[], int n) {
+    int completed = 0, current_time = 0;
+
+    while(completed < n) {
+        int highest_priority = -1;
+        int min_priority = 9999;
+
+        for(int i = 0; i < n; i++) {
+            if(processes[i].arrival_time <= current_time && 
+               processes[i].remaining_time > 0 && 
+               processes[i].priority < min_priority) {
+                min_priority = processes[i].priority;
+                highest_priority = i;
+            }
+        }
+
+        if(highest_priority == -1) {
+            current_time++;
+            continue;
+        }
+
+        processes[highest_priority].remaining_time = 0;
+        processes[highest_priority].turnaround_time = current_time + processes[highest_priority].burst_time - processes[highest_priority].arrival_time;
+        processes[highest_priority].waiting_time = processes[highest_priority].turnaround_time - processes[highest_priority].burst_time;
+        current_time += processes[highest_priority].burst_time;
+        completed++;
+    }
+}
+
+void round_robin(Process processes[], int n, int quantum) {
+    int remaining = n;
+    int current_time = 0;
+
+    while(remaining > 0) {
+        for(int i = 0; i < n; i++) {
+            if(processes[i].arrival_time <= current_time && processes[i].remaining_time > 0) {
+                int exec_time = (processes[i].remaining_time > quantum) ? quantum : processes[i].remaining_time;
+                
+                processes[i].remaining_time -= exec_time;
+                current_time += exec_time;
+
+                if(processes[i].remaining_time == 0) {
+                    remaining--;
+                    processes[i].turnaround_time = current_time - processes[i].arrival_time;
+                    processes[i].waiting_time = processes[i].turnaround_time - processes[i].burst_time;
                 }
             }
         }
-        if (done) current_time++;
     }
 }
 
-// Function to print results
-void print_results(Process p[], int n, const char* algo) {
-    printf("\nResults for %s:\n", algo);
-    printf("PID\tArrival\tBurst\tCompletion\tTurnaround\tWaiting\n");
-    float avg_turnaround = 0, avg_waiting = 0;
-    for (int i = 0; i < n; i++) {
-        printf("%d\t%d\t%d\t%d\t\t%d\t\t%d\n",
-               p[i].pid, p[i].arrival_time, p[i].burst_time,
-               p[i].completion_time, p[i].turnaround_time, p[i].waiting_time);
-        avg_turnaround += p[i].turnaround_time;
-        avg_waiting += p[i].waiting_time;
-    }
-    printf("Average Turnaround Time: %.2f\n", avg_turnaround / n);
-    printf("Average Waiting Time: %.2f\n", avg_waiting / n);
-}
+void print_results(Process processes[], int n) {
+    float avg_wait = 0, avg_turnaround = 0;
 
-int main() {
-    int n = 4; // Number of processes
-    Process processes[MAX_PROCESSES];
-    
-    // FCFS
-    initialize_processes(processes, n);
-    fcfs(processes, n);
-    print_results(processes, n, "FCFS");
-    
-    // SJF
-    initialize_processes(processes, n);
-    sjf(processes, n);
-    print_results(processes, n, "SJF");
-    
-    // Round Robin
-    initialize_processes(processes, n);
-    round_robin(processes, n, TIME_QUANTUM);
-    print_results(processes, n, "Round Robin");
-    
-    return 0;
+    printf("\nPID\tArrival\tBurst\tPriority\tWaiting\tTurnaround\n");
+    for(int i = 0; i < n; i++) {
+        printf("%d\t%d\t%d\t%d\t\t%d\t%d\n", 
+               processes[i].pid,
+               processes[i].arrival_time,
+               processes[i].burst_time,
+               processes[i].priority,
+               processes[i].waiting_time,
+               processes[i].turnaround_time);
+
+        avg_wait += processes[i].waiting_time;
+        avg_turnaround += processes[i].turnaround_time;
+    }
+
+    printf("\nAverage Waiting Time: %.2f\n", avg_wait/n);
+    printf("Average Turnaround Time: %.2f\n", avg_turnaround/n);
 }
 ```
 
@@ -342,137 +397,172 @@ int main() {
 
 **4. Write a program to simulate Banker's algorithm.**
 
+The Banker's algorithm is a resource allocation and deadlock avoidance algorithm that tests for safety by simulating the allocation of predetermined maximum possible amounts of all resources.
+
 ```c
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MAX_PROCESSES 5
-#define MAX_RESOURCES 3
+#define MAX_PROCESSES 10
+#define MAX_RESOURCES 10
 
-// Function to check if the system is in a safe state
-bool is_safe_state(int processes[], int n, int resources[], int m,
-                   int available[], int max[][MAX_RESOURCES], int allocation[][MAX_RESOURCES]) {
-    int work[MAX_RESOURCES];
-    int finish[MAX_PROCESSES] = {0};
-    int safe_sequence[MAX_PROCESSES];
-    int count = 0;
+int available[MAX_RESOURCES];
+int max[MAX_PROCESSES][MAX_RESOURCES];
+int allocation[MAX_PROCESSES][MAX_RESOURCES];
+int need[MAX_PROCESSES][MAX_RESOURCES];
+int n, m; // n = number of processes, m = number of resources
 
-    // Initialize work as available
-    for (int i = 0; i < m; i++) {
-        work[i] = available[i];
+void input_data() {
+    printf("Enter number of processes: ");
+    scanf("%d", &n);
+    printf("Enter number of resources: ");
+    scanf("%d", &m);
+
+    printf("Enter available resources:\n");
+    for(int i = 0; i < m; i++) {
+        printf("Resource %d: ", i+1);
+        scanf("%d", &available[i]);
     }
 
-    // Find a safe sequence
-    while (count < n) {
+    printf("Enter maximum demand matrix:\n");
+    for(int i = 0; i < n; i++) {
+        printf("For process P%d:\n", i);
+        for(int j = 0; j < m; j++) {
+            printf("Resource %d: ", j+1);
+            scanf("%d", &max[i][j]);
+        }
+    }
+
+    printf("Enter allocation matrix:\n");
+    for(int i = 0; i < n; i++) {
+        printf("For process P%d:\n", i);
+        for(int j = 0; j < m; j++) {
+            scanf("%d", &allocation[i][j]);
+            need[i][j] = max[i][j] - allocation[i][j];
+        }
+    }
+}
+
+bool is_safe() {
+    int work[m];
+    bool finish[n];
+    int safe_sequence[n];
+    int count = 0;
+
+    // Initialize work and finish
+    for(int i = 0; i < m; i++)
+        work[i] = available[i];
+    for(int i = 0; i < n; i++)
+        finish[i] = false;
+
+    while(count < n) {
         bool found = false;
-        for (int i = 0; i < n; i++) {
-            if (finish[i] == 0) {
+        for(int i = 0; i < n; i++) {
+            if(!finish[i]) {
                 bool can_allocate = true;
-                for (int j = 0; j < m; j++) {
-                    int need = max[i][j] - allocation[i][j];
-                    if (need > work[j]) {
+                for(int j = 0; j < m; j++) {
+                    if(need[i][j] > work[j]) {
                         can_allocate = false;
                         break;
                     }
                 }
-                if (can_allocate) {
-                    for (int j = 0; j < m; j++) {
+
+                if(can_allocate) {
+                    for(int j = 0; j < m; j++)
                         work[j] += allocation[i][j];
-                    }
                     safe_sequence[count++] = i;
-                    finish[i] = 1;
+                    finish[i] = true;
                     found = true;
                 }
             }
         }
-        if (!found) {
-            return false; // No safe sequence found
+        if(!found) {
+            printf("System is not in safe state\n");
+            return false;
         }
     }
 
-    // Print safe sequence
-    printf("System is in a safe state.\nSafe Sequence: ");
-    for (int i = 0; i < n; i++) {
-        printf("P%d", safe_sequence[i]);
-        if (i < n - 1) printf(" -> ");
-    }
+    printf("System is in safe state\nSafe sequence: ");
+    for(int i = 0; i < n; i++)
+        printf("P%d ", safe_sequence[i]);
     printf("\n");
     return true;
 }
 
-// Function to initialize sample data and run Banker's Algorithm
+void request_resources() {
+    int process_num;
+    printf("Enter process number (0-%d): ", n-1);
+    scanf("%d", &process_num);
+
+    int request[m];
+    printf("Enter request for process P%d:\n", process_num);
+    for(int i = 0; i < m; i++) {
+        printf("Resource %d: ", i+1);
+        scanf("%d", &request[i]);
+    }
+
+    // Check if request <= need
+    for(int i = 0; i < m; i++) {
+        if(request[i] > need[process_num][i]) {
+            printf("Error: Request exceeds maximum claim\n");
+            return;
+        }
+    }
+
+    // Check if request <= available
+    for(int i = 0; i < m; i++) {
+        if(request[i] > available[i]) {
+            printf("Process must wait, resources not available\n");
+            return;
+        }
+    }
+
+    // Try to allocate resources temporarily
+    for(int i = 0; i < m; i++) {
+        available[i] -= request[i];
+        allocation[process_num][i] += request[i];
+        need[process_num][i] -= request[i];
+    }
+
+    // Check if system is still in safe state
+    if(is_safe()) {
+        printf("Request granted\n");
+    } else {
+        // Roll back changes
+        printf("Request denied - would lead to unsafe state\n");
+        for(int i = 0; i < m; i++) {
+            available[i] += request[i];
+            allocation[process_num][i] -= request[i];
+            need[process_num][i] += request[i];
+        }
+    }
+}
+
 int main() {
-    int n = MAX_PROCESSES; // Number of processes
-    int m = MAX_RESOURCES; // Number of resource types
+    int choice;
+    input_data();
 
-    // Sample data
-    int allocation[MAX_PROCESSES][MAX_RESOURCES] = {
-        {0, 1, 0}, // P0
-        {2, 0, 0}, // P1
-        {3, 0, 2}, // P2
-        {2, 1, 1}, // P3
-        {0, 0, 2}  // P4
-    };
+    while(1) {
+        printf("\nBanker's Algorithm Menu:\n");
+        printf("1. Check system safety\n");
+        printf("2. Request resources\n");
+        printf("3. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    int max[MAX_PROCESSES][MAX_RESOURCES] = {
-        {7, 5, 3}, // P0
-        {3, 2, 2}, // P1
-        {9, 0, 2}, // P2
-        {2, 2, 2}, // P3
-        {4, 3, 3}  // P4
-    };
-
-    int available[MAX_RESOURCES] = {3, 3, 2}; // Available resources
-    int processes[MAX_PROCESSES] = {0, 1, 2, 3, 4};
-
-    // Calculate need matrix
-    int need[MAX_PROCESSES][MAX_RESOURCES];
-    for (int i = 0; i < n; i++) {
-        for (int j = 0; j < m; j++) {
-            need[i][j] = max[i][j] - allocation[i][j];
+        switch(choice) {
+            case 1:
+                is_safe();
+                break;
+            case 2:
+                request_resources();
+                break;
+            case 3:
+                return 0;
+            default:
+                printf("Invalid choice\n");
         }
     }
-
-    // Print input data
-    printf("Allocation Matrix:\n");
-    for (int i = 0; i < n; i++) {
-        printf("P%d: ", i);
-        for (int j = 0; j < m; j++) {
-            printf("%d ", allocation[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nMax Matrix:\n");
-    for (int i = 0; i < n; i++) {
-        printf("P%d: ", i);
-        for (int j = 0; j < m; j++) {
-            printf("%d ", max[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nNeed Matrix:\n");
-    for (int i = 0; i < n; i++) {
-        printf("P%d: ", i);
-        for (int j = 0; j < m; j++) {
-            printf("%d ", need[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("\nAvailable Resources: ");
-    for (int i = 0; i < m; i++) {
-        printf("%d ", available[i]);
-    }
-    printf("\n");
-
-    // Check for safe state
-    if (!is_safe_state(processes, n, available, m, available, max, allocation)) {
-        printf("System is in an unsafe state.\n");
-    }
-
-    return 0;
 }
 ```
 
