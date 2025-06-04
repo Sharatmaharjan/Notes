@@ -1,6 +1,6 @@
 **1. Write a program in C to implement producer-consumer problem using semaphore.**
 
-The producer-consumer problem is a classic synchronization problem where:
+- The producer-consumer problem is a classic synchronization problem where:
     - Producers generate data and put it into a buffer
     - Consumers take data from the buffer
     - We need to ensure producers don't add data to a full buffer and consumers don't remove data from an empty buffer
