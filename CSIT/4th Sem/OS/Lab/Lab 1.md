@@ -207,7 +207,17 @@ Producer:                     Consumer:
 
 **2. Write a program to implement the concept of the dining philosopher problem.**
 
-The Dining Philosophers problem is a classic synchronization problem that demonstrates challenges in avoiding deadlock when multiple processes compete for limited resources.
+🧠 What is the Dining Philosophers Problem?
+
+- Imagine 5 philosophers sitting around a table.
+
+- Each has a plate of food and needs 2 chopsticks to eat (left and right).
+
+- There are only 5 chopsticks shared between them.
+
+- Philosophers alternate between thinking and eating.
+
+- Problem: Avoid deadlock (where everyone is waiting forever) and starvation (some never get to eat).
 
 ```c
 #include <stdio.h>
@@ -307,6 +317,213 @@ void put_chopsticks(int i) {
     sem_post(&mutex);
 }
 ```
+
+This program is a solution to the Dining Philosophers Problem using threads and semaphores in C.
+
+---
+
+✅ Explanation
+
+🔹 #include Statements
+
+Header	Purpose
+
+<stdio.h>	For printf()
+<pthread.h>	For using threads
+<semaphore.h>	For using semaphores (sem_t)
+<unistd.h>	For sleep() function
+
+
+
+---
+
+🔹 #define Macros
+
+#define NUM_PHILOSOPHERS 5
+#define THINKING 0
+#define HUNGRY 1
+#define EATING 2
+
+Defines:
+
+Total philosophers (5)
+
+States of each philosopher.
+
+
+
+---
+
+🔹 Global Variables
+
+sem_t mutex;                          // For critical section
+sem_t chopsticks[NUM_PHILOSOPHERS];  // Semaphore for each philosopher's access
+int state[NUM_PHILOSOPHERS];         // Tracks philosopher states
+
+mutex: To ensure only one philosopher can update state/check neighbors at a time.
+
+chopsticks[i]: Controls when philosopher i can start eating.
+
+state[i]: Tracks if philosopher i is THINKING, HUNGRY, or EATING.
+
+
+
+---
+
+🔄 Main Function Breakdown
+
+1. Initialize Semaphores
+
+sem_init(&mutex, 0, 1);
+for (int i = 0; i < NUM_PHILOSOPHERS; i++) {
+    sem_init(&chopsticks[i], 0, 1);
+    philosopher_numbers[i] = i;
+}
+
+mutex is binary (value 1) — allows only 1 thread in critical section.
+
+Each chopsticks[i] also starts at 1, meaning chopstick is available.
+
+
+
+---
+
+2. Create Philosopher Threads
+
+pthread_create(&philosophers[i], NULL, philosopher, &philosopher_numbers[i]);
+
+Each thread simulates a philosopher using the philosopher() function.
+
+
+---
+
+3. Join Threads (Wait Forever)
+
+pthread_join(philosophers[i], NULL);
+
+Each thread runs an infinite loop (while(1)), so main() waits forever.
+
+
+---
+
+🧩 Philosopher Behavior (Thread Function)
+
+while (1) {
+    printf("Philosopher %d is thinking\n", i);
+    sleep(1);
+
+    take_chopsticks(i);
+
+    printf("Philosopher %d is eating\n", i);
+    sleep(1);
+
+    put_chopsticks(i);
+}
+
+Think → Take chopsticks → Eat → Put chopsticks
+
+Uses sleep() to simulate time.
+
+
+
+---
+
+🍴 take_chopsticks(i)
+
+sem_wait(&mutex);
+state[i] = HUNGRY;
+printf("Philosopher %d is hungry\n", i);
+test(i);                   // Check if they can eat now
+sem_post(&mutex);
+
+sem_wait(&chopsticks[i]);  // Wait if still can't eat
+
+Sets own state to HUNGRY
+
+Calls test(i) to check if both neighbors are not eating.
+
+If eligible, sets state[i] = EATING and unlocks chopsticks[i].
+
+Then waits on chopsticks[i] (unless already unlocked).
+
+
+
+---
+
+🧪 test(i)
+
+if (state[i] == HUNGRY &&
+    state[left] != EATING &&
+    state[right] != EATING) {
+    
+    state[i] = EATING;
+    sem_post(&chopsticks[i]);
+}
+
+If both neighbors are not eating, philosopher can eat.
+
+
+---
+
+🍽 put_chopsticks(i)
+
+sem_wait(&mutex);
+state[i] = THINKING;
+printf("Philosopher %d has finished eating\n", i);
+
+// Try to allow neighbors to eat
+test(left);
+test(right);
+sem_post(&mutex);
+
+Sets own state to THINKING
+
+Calls test() on neighbors so they may start eating
+
+Critical section protected by mutex
+
+
+
+---
+
+🔄 Flow Summary
+
+[Thinking]
+    ↓
+[Hungry] --> wait (if neighbors eating)
+    ↓
+[Eating]
+    ↓
+[Put Chopsticks] --> check neighbors
+    ↓
+[Thinking]
+
+
+---
+
+🔐 Deadlock Avoidance
+
+Only 1 philosopher modifies shared state at a time (via mutex)
+
+Each philosopher checks if both neighbors are not eating before proceeding
+
+Releasing own chopsticks signals neighbors
+
+
+
+---
+
+✅ Final Output Sample (may vary):
+
+Philosopher 0 is thinking
+Philosopher 1 is thinking
+...
+Philosopher 2 is hungry
+Philosopher 2 is eating
+...
+Philosopher 2 has finished eating
+...
+
 
 ---
 
