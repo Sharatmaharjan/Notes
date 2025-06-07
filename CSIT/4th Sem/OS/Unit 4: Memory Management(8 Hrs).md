@@ -507,6 +507,8 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 **Total Page Faults (LFU): 6**
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.png)
+
 5.  **Approximation of LRU (e.g., Clock / Second Chance):**
     * Due to the overhead of implementing true LRU/LFU, approximations are often used, which leverage the "Accessed Bit" (Reference Bit) in the PTE.
 
@@ -522,14 +524,14 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 
 
-   * **Clock Algorithm:**
+    * **Clock Algorithm:**
         * **Explanation:** A circular list of pages is maintained (conceptually like a clock face). A "clock hand" pointer moves around the circle. When a page needs to be replaced, the hand advances.
             * If the page the hand points to has its Accessed Bit '0', that page is evicted.
             * If the Accessed Bit is '1', it's cleared ('0'), and the hand advances to the next page. This continues until a page with an '0' Accessed Bit is found.
         * **Advantages:** Simpler and more efficient than LRU while providing good performance. Widely used in practice.
         * **Disadvantages:** Can suffer from Belady's anomaly in specific scenarios.
 
-   * **WSClock (Working Set Clock):**
+    * **WSClock (Working Set Clock):**
         * **Explanation:** An extension of the Clock algorithm that incorporates the **Working Set Model**. Each page frame has an "Accessed Bit" and a "time-of-last-use" stamp. The clock hand scans frames. If a page's Accessed Bit is '1', it's cleared and its "time-of-last-use" updated. If it's '0', the algorithm checks its "time-of-last-use" against a threshold (`delta`). If the page hasn't been used for `delta` time, it's considered old and is a candidate for eviction. If it's still "fresh" (used within `delta` time) or the hand makes a full circle, it might need to iterate again.
         * **Advantages:** Closely approximates the Working Set Model (keeping useful pages) while remaining practical.
         * **Disadvantages:** More complex than basic Clock.
