@@ -413,66 +413,72 @@ A **page fault** is a type of interrupt (trap) that occurs when a program tries 
 
 ## **4.4.2. Page Replacement Algorithms**
 
-Assume a given number of available frames and a reference string (sequence of page accesses).
 
-* Reference String: `4, 7, 6, 1, 7, 6, 1, 2, 7, 2`
-* Frame size: `3`
 
 **1. FIFO (First-In, First-Out)**
 
   * **Explanation:** The page that has been in memory for the longest time is replaced. It treats pages as a queue; the page at the head of the queue (oldest) is removed.
   * **Total Page Faults:** Counted at the end.
 
-| Step | Reference | Frame Content | Page Fault  |
-| ---- | --------- | ------------- | ----------- |
-| 1    | 4         | 4             | Yes(Miss)  Since 4 is not currently loaded into a physical frame in main memory |
-| 2    | 7         | 4, 7          | Yes         |
-| 3    | 6         | 4, 7, 6       | Yes         |
-| 4    | 1         | 7, 6, 1       | Yes (4 out) |
-| 5    | 7         | 7, 6, 1       | No(Hit) Since 7 is already loaded in memory |
-| 6    | 6         | 7, 6, 1       | No          |
-| 7    | 1         | 7, 6, 1       | No          |
-| 8    | 2         | 6, 1, 2       | Yes (7 out) |
-| 9    | 7         | 1, 2, 7       | Yes (6 out) |
-| 10   | 2         | 1, 2, 7       | No          |
-
-**Total Page Faults (FIFO): 6**
-
----
-
-**2. Optimal (MIN)**
-
-  * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced. In this algorithm, we are looking into the future or "predicting." If a page fault occurs, we simply look at the sequence of page references to see which page in the frame will not be used for the longest time. Despite the fact that this algorithm has the lowest page-fault rate of all algorithms, it is not practical since it is hard to predict the future.
-  * **Total Page Faults:** Counted at the end.
-
----
-
 Assume a given number of available frames and a reference string (sequence of page accesses).
 
-* Reference String: `4, 7, 6, 1, 7, 6, 1, 2, 7, 2`
+* Reference String: `7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3`
 * Frame size: `3`
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/1%20FIFO.png)
 
-**3. LRU (Least Recently Used)**
+**C/W:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/1%20FIFO%20CW.png)
+
+---
+
+**2. LRU (Least Recently Used)**
 
   * **Explanation:** The page that has not been used for the longest period of time is replaced.
   * **Total Page Faults:** Counted at the end.
 
-| Step | Reference | Frame Content | Page Fault | Action                  |
-| ---- | --------- | ------------- | ---------- | ----------------------- |
-| 1    | 4         | 4             | Yes        | Load 4                  |
-| 2    | 7         | 4, 7          | Yes        | Load 7                  |
-| 3    | 6         | 4, 7, 6       | Yes        | Load 6                  |
-| 4    | 1         | 7, 6, 1       | Yes        | Replace LRU (4)         |
-| 5    | 7         | 6, 1, 7       | No         | Update 7 as most recent |
-| 6    | 6         | 1, 7, 6       | No         | Update 6 as most recent |
-| 7    | 1         | 7, 6, 1       | No         | Update 1 as most recent |
-| 8    | 2         | 6, 1, 2       | Yes        | Replace LRU (7)         |
-| 9    | 7         | 1, 2, 7       | Yes        | Replace LRU (6)         |
-| 10   | 2         | 1, 7, 2       | No         | Update 2 as most recent |
+Assume a given number of available frames and a reference string (sequence of page accesses).
 
-**Total Page Faults (LRU): 6**
-**Note: Frame Content->(LRU,...,MRU)**
+* Reference String: `7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3`
+* Frame size: `3`
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/2.%20LRU.png)
+
+**C/W:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/2%20LRU%20CW.png)
+
+---
+
+**3. Most Recently Used (MRU)**
+
+* **Explanation:** In this algorithm, page will be replaced which has been used recently.
+* **Total Page Faults:** Counted at the end.
+
+Assume a given number of available frames and a reference string (sequence of page accesses).
+
+* Reference String: `7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3`
+* Frame size: `3`
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/5%20MRU.jpg)
+
+**4. Optimal (MIN)**
+
+  * **Explanation:** The page that will *not be used for the longest period of time* in the future is replaced. In this algorithm, we are looking into the future or "predicting." If a page fault occurs, we simply look at the sequence of page references to see which page in the frame will not be used for the longest time. Despite the fact that this algorithm has the lowest page-fault rate of all algorithms, it is not practical since it is hard to predict the future.
+  * **Total Page Faults:** Counted at the end.
+
+Assume a given number of available frames and a reference string (sequence of page accesses).
+
+* Reference String: `7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 3`
+* Frame size: `3`
+
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/3.%20Optimal.png)
+
+**C/W:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/3%20Optimal%20CW.png)
 
 ---
 
@@ -511,14 +517,17 @@ Assume a given number of available frames and a reference string (sequence of pa
         * **Advantages:** Much simpler to implement than true LRU, but performs significantly better than pure FIFO by considering recent usage.
         * **Disadvantages:** Still prone to Belady's Anomaly in some cases.
 
-    * **Clock Algorithm:**
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.jpg)
+
+
+   * **Clock Algorithm:**
         * **Explanation:** A circular list of pages is maintained (conceptually like a clock face). A "clock hand" pointer moves around the circle. When a page needs to be replaced, the hand advances.
             * If the page the hand points to has its Accessed Bit '0', that page is evicted.
             * If the Accessed Bit is '1', it's cleared ('0'), and the hand advances to the next page. This continues until a page with an '0' Accessed Bit is found.
         * **Advantages:** Simpler and more efficient than LRU while providing good performance. Widely used in practice.
         * **Disadvantages:** Can suffer from Belady's anomaly in specific scenarios.
 
-    * **WSClock (Working Set Clock):**
+   * **WSClock (Working Set Clock):**
         * **Explanation:** An extension of the Clock algorithm that incorporates the **Working Set Model**. Each page frame has an "Accessed Bit" and a "time-of-last-use" stamp. The clock hand scans frames. If a page's Accessed Bit is '1', it's cleared and its "time-of-last-use" updated. If it's '0', the algorithm checks its "time-of-last-use" against a threshold (`delta`). If the page hasn't been used for `delta` time, it's considered old and is a candidate for eviction. If it's still "fresh" (used within `delta` time) or the hand makes a full circle, it might need to iterate again.
         * **Advantages:** Closely approximates the Working Set Model (keeping useful pages) while remaining practical.
         * **Disadvantages:** More complex than basic Clock.
