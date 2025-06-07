@@ -366,10 +366,6 @@ int main() {
 
 ---
 
-The provided C program simulates the **Sleeping Barber Problem**, a classic synchronization problem in operating systems. It uses semaphores and threads to model a barber shop where a barber cuts hair for customers, with a limited number of waiting chairs. Below is a step-by-step explanation of the program.
-
----
-
 ### **Step-by-Step Explanation**
 
 #### **1. Header Files and Preprocessor Directives**
