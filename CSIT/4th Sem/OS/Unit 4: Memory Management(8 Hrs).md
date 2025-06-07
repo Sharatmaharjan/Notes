@@ -534,6 +534,8 @@ Assume a given number of available frames and a reference string (sequence of pa
         * **Advantages:** Closely approximates the Working Set Model (keeping useful pages) while remaining practical.
         * **Disadvantages:** More complex than basic Clock.
 
+      **Numerical: Refer to hamrocsit**
+
 ## **4.4.3. Belady's Anomaly**
 
 * **Explanation:** An undesirable phenomenon observed in some page replacement algorithms (like FIFO and Second Chance) where increasing the number of available physical frames can lead to an *increase* in the number of page faults for a given reference string.
