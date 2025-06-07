@@ -517,9 +517,11 @@ Assume a given number of available frames and a reference string (sequence of pa
         * **Advantages:** Much simpler to implement than true LRU, but performs significantly better than pure FIFO by considering recent usage.
         * **Disadvantages:** Still prone to Belady's Anomaly in some cases.
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.jpg)
 
-//https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.jpg
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.png)
+
+
+
    * **Clock Algorithm:**
         * **Explanation:** A circular list of pages is maintained (conceptually like a clock face). A "clock hand" pointer moves around the circle. When a page needs to be replaced, the hand advances.
             * If the page the hand points to has its Accessed Bit '0', that page is evicted.
