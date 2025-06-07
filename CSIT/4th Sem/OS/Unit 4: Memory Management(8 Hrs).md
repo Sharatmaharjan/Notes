@@ -519,7 +519,7 @@ Assume a given number of available frames and a reference string (sequence of pa
 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.jpg)
 
-
+//https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/4th%20Sem/OS/images/Unit%204/6%20Second%20chance.jpg
    * **Clock Algorithm:**
         * **Explanation:** A circular list of pages is maintained (conceptually like a clock face). A "clock hand" pointer moves around the circle. When a page needs to be replaced, the hand advances.
             * If the page the hand points to has its Accessed Bit '0', that page is evicted.
