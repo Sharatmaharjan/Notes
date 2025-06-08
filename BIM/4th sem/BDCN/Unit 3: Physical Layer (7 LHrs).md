@@ -134,7 +134,9 @@ Multiplexing is a technique that allows multiple data streams to share a single 
     * **Wavelength Division Multiplexing (WDM):**
         * **Explanation:** A form of FDM specifically used for optical fiber. Different data streams are transmitted simultaneously over a single fiber using different wavelengths (colors) of light.
         * **Diagram:**
+          
           ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/6%20WDM.png)
+          
         * **Advantages:**
             * Vastly increases the capacity of optical fiber.
             * Allows for extremely high data rates.
@@ -170,7 +172,10 @@ Communication media are the physical pathways over which data travels.
 #### 3.1 Twisted Pair Cable
 
 * **Explanation:** Consists of pairs of insulated copper wires twisted together. The twisting helps to reduce electromagnetic interference (EMI) from external sources and crosstalk between adjacent pairs within the cable.
-* **Diagram:** *Insert Diagram: A cross-section of a twisted-pair cable showing multiple twisted pairs.*
+* **Diagram:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/7.png)
+
 * **Types:**
     * **Unshielded Twisted Pair (UTP):** Most common type. No metallic shielding around the pairs.
     * **Shielded Twisted Pair (STP):** Contains a metallic shield around the twisted pairs to further reduce EMI.
@@ -188,7 +193,10 @@ Communication media are the physical pathways over which data travels.
 #### 3.2 Coaxial Cable
 
 * **Explanation:** Consists of a central copper conductor surrounded by an insulating layer, a metallic braid or foil shield, and an outer insulating jacket. The concentric design provides better shielding against EMI than twisted pair.
-* **Diagram:** *Insert Diagram: A cross-section of a coaxial cable showing the central conductor, insulator, braid, and jacket.*
+* **Diagram:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/8%20coaxial%20cable.jpg)
+
 * **Types:**
     * **Thicknet (10BASE5):** Thicker, stiffer, and harder to install.
     * **Thinnet (10BASE2):** Thinner and more flexible.
@@ -205,7 +213,10 @@ Communication media are the physical pathways over which data travels.
 #### 3.3 Fiber-Optic Cable
 
 * **Explanation:** Transmits data as pulses of light through thin strands of glass or plastic (fibers). It consists of a core (where light travels), cladding (reflects light back into the core), and a protective jacket.
-* **Diagram:** *Insert Diagram: A cross-section of a fiber-optic cable showing the core, cladding, and jacket. Also, a diagram illustrating total internal reflection within the fiber.*
+* **Diagram:**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/8%20optical%20fiber.png)
+
 * **Types:**
     * **Single-Mode Fiber (SMF):** Smaller core, allows only one mode (path) of light to propagate. Used for long distances and high bandwidth.
     * **Multi-Mode Fiber (MMF):** Larger core, allows multiple modes (paths) of light to propagate. Used for shorter distances.
@@ -239,7 +250,6 @@ Communication media are the physical pathways over which data travels.
 #### 3.4 Radio (Wireless)
 
 * **Explanation:** Uses radio waves for communication through the air. Data is modulated onto a carrier wave and transmitted wirelessly.
-* **Diagram:** *Insert Diagram: A transmitter sending radio waves to a receiver.*
 * **Advantages:**
     * Mobility: Devices can move while maintaining connectivity.
     * Ease of installation (no cables).
@@ -255,7 +265,6 @@ Communication media are the physical pathways over which data travels.
 #### 3.5 Microwave (Wireless)
 
 * **Explanation:** Uses high-frequency radio waves (microwaves) for communication. Typically line-of-sight transmission, meaning the transmitter and receiver must have an unobstructed path.
-* **Diagram:** *Insert Diagram: Two microwave antennas with a clear line-of-sight path between them.*
 * **Types:**
     * **Terrestrial Microwave:** Antennas mounted on towers transmit signals directly to each other.
     * **Satellite Microwave:** Signals are beamed from an earth station to a satellite in orbit, which then retransmits them to another earth station.
@@ -273,7 +282,6 @@ Communication media are the physical pathways over which data travels.
 #### 3.6 Satellite (Wireless)
 
 * **Explanation:** A specialized form of microwave communication where communication relays are provided by artificial satellites in Earth orbit. Signals are sent up to the satellite (uplink) and retransmitted down to Earth (downlink).
-* **Diagram:** *Insert Diagram: An earth station transmitting to a satellite, which then retransmits to another earth station.*
 * **Types of Orbits:**
     * **Geosynchronous Earth Orbit (GEO):** Satellites orbit at a fixed position relative to the Earth, providing continuous coverage to a large area. High latency due to distance.
     * **Medium Earth Orbit (MEO):** Closer than GEO, lower latency, requires more satellites for continuous coverage.
