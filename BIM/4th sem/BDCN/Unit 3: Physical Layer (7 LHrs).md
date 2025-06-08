@@ -22,7 +22,10 @@ Circuit configuration describes how devices are connected to form a communicatio
 
 * **Point-to-Point Configuration:**
     * **Explanation:** A dedicated communication link between two specific devices. Data flows directly from one device to the other.
-    * **Diagram:** *Insert Diagram: Two devices connected directly by a single line.*
+    * **Diagram:**
+
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/1%20point-to-point-connection.jpg)
+
     * **Advantages:**
         * High bandwidth availability for the two connected devices.
         * Reduced interference from other devices.
@@ -35,7 +38,10 @@ Circuit configuration describes how devices are connected to form a communicatio
 
 * **Multipoint Configuration (Shared Circuit):**
     * **Explanation:** Multiple devices share a single communication link. Access to the medium is controlled by some protocol (e.g., polling, contention).
-    * **Diagram:** *Insert Diagram: Multiple devices connected to a single shared line.*
+    * **Diagram:**
+
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/2%20Multipoint-connection.jpg)
+
     * **Advantages:**
         * Cost-effective as fewer cables are required.
         * Easier to add new devices.
@@ -51,26 +57,25 @@ Data flow describes the direction in which data can travel over a communication 
 
 * **Simplex:**
     * **Explanation:** Data flows in one direction only.
-    * **Diagram:** *Insert Diagram: Device A -> Device B (one-way arrow).*
     * **Advantages:** Simple to implement.
     * **Disadvantages:** No acknowledgment or feedback possible.
     * **Practical Example:** Traditional radio broadcasting, TV broadcasting.
 
 * **Half-Duplex:**
     * **Explanation:** Data can flow in both directions, but not simultaneously. Devices take turns transmitting and receiving.
-    * **Diagram:** *Insert Diagram: Device A <-> Device B (two-way arrow, but with a note indicating non-simultaneous transmission).*
     * **Advantages:** Allows for two-way communication with simpler hardware than full-duplex.
     * **Disadvantages:** Can be slower than full-duplex due to turn-around time.
     * **Practical Example:** Walkie-talkies, older hub-based Ethernet.
 
 * **Full-Duplex:**
     * **Explanation:** Data can flow in both directions simultaneously.
-    * **Diagram:** *Insert Diagram: Device A <-> Device B (two simultaneous two-way arrows, or two separate lines for each direction).*
     * **Advantages:**
         * Higher throughput and efficiency as data can be transmitted and received concurrently.
         * No turn-around time overhead.
     * **Disadvantages:** More complex hardware required (e.g., separate transmission and reception paths).
     * **Practical Example:** Modern telephone conversations, switched Ethernet networks.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/3%20Half-Duplex-Full-Duplex.png)
 
 **Comparison Table: Data Flow Modes**
 
@@ -94,7 +99,10 @@ Multiplexing is a technique that allows multiple data streams to share a single 
 
     * **Frequency Division Multiplexing (FDM):**
         * **Explanation:** The available bandwidth of a communication medium is divided into multiple frequency bands. Each data stream is assigned a unique frequency band, and all streams are transmitted simultaneously over the medium. A guard band is often used between channels to prevent interference.
-        * **Diagram:** *Insert Diagram: A frequency spectrum divided into distinct frequency bands, each carrying a different signal.*
+        * **Diagram:**
+          
+          ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/4%20FDM.png)
+
         * **Advantages:**
             * Relatively simple to implement for analog signals.
             * Continuous transmission without time delays.
@@ -107,7 +115,10 @@ Multiplexing is a technique that allows multiple data streams to share a single 
 
     * **Time Division Multiplexing (TDM):**
         * **Explanation:** The total time available on a communication medium is divided into discrete time slots. Each data stream is given a dedicated time slot in a repeating cycle. Data from different streams is transmitted sequentially in their assigned slots. TDM is typically used for digital signals.
-        * **Diagram:** *Insert Diagram: A timeline divided into slots, with different data streams occupying different slots in a recurring pattern.*
+        * **Diagram:**
+          
+          ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/5%20TDM.png)
+          
         * **Types of TDM:**
             * **Synchronous TDM:** Each input source is given a fixed time slot, even if it has no data to send.
             * **Asynchronous (Statistical) TDM:** Time slots are dynamically allocated only to input sources that have data to send, making it more efficient for bursty data.
@@ -122,12 +133,35 @@ Multiplexing is a technique that allows multiple data streams to share a single 
 
     * **Wavelength Division Multiplexing (WDM):**
         * **Explanation:** A form of FDM specifically used for optical fiber. Different data streams are transmitted simultaneously over a single fiber using different wavelengths (colors) of light.
-        * **Diagram:** *Insert Diagram: Multiple colored light beams entering a single optical fiber and exiting as separate colored beams.*
+        * **Diagram:**
+          ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/6%20WDM.png)
         * **Advantages:**
             * Vastly increases the capacity of optical fiber.
             * Allows for extremely high data rates.
         * **Disadvantages:** Requires specialized optical equipment (lasers, filters).
         * **Practical Example:** High-capacity backbone networks for the internet.
+
+
+| Feature / Aspect                  | FDM (Frequency Division Multiplexing)       | TDM (Time Division Multiplexing)           | WDM (Wavelength Division Multiplexing)           |
+| --------------------------------- | ------------------------------------------- | ------------------------------------------ | ------------------------------------------------ |
+| **Full Form**                     | Frequency Division Multiplexing             | Time Division Multiplexing                 | Wavelength Division Multiplexing                 |
+| **Basic Principle**               | Divides bandwidth into multiple frequencies | Divides time into multiple time slots      | Divides light spectrum into wavelengths          |
+| **Type of Signal**                | Analog                                      | Digital                                    | Optical                                          |
+| **Medium Used**                   | Coaxial cable, radio                        | Twisted pair, digital transmission systems | Fiber optic cable                                |
+| **Bandwidth Sharing**             | Users get separate frequency bands          | Users get separate time slots              | Users get separate wavelengths (colors) of light |
+| **Synchronization Required**      | No                                          | Yes                                        | Yes (in optical systems)                         |
+| **Interference/Crosstalk**        | High (due to adjacent frequencies)          | Low (if synced properly)                   | Very low (excellent isolation)                   |
+| **Efficiency**                    | Less efficient due to guard bands           | More efficient in digital systems          | Very efficient in optical systems                |
+| **Cost**                          | Low to moderate                             | Moderate                                   | High                                             |
+| **Use in Analog/Digital Systems** | Analog systems mostly                       | Digital systems mostly                     | Optical (fiber-based) digital communication      |
+| **Scalability**                   | Limited by bandwidth                        | Limited by number of slots and sync issues | Highly scalable (many wavelengths can be used)   |
+
+| Technique | Practical Applications Today                                                                                                             |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **FDM**   | - FM/AM Radio broadcasting<br>- Cable TV<br>- Legacy telephone systems<br>- Some DSL technologies                                        |
+| **TDM**   | - Digital telephony (e.g., T1/E1 lines)<br>- 4G/5G mobile systems<br>- Satellite communication<br>- Computer networks                    |
+| **WDM**   | - High-speed fiber optic communication<br>- Long-distance internet backbones<br>- Data center interconnects<br>- Submarine cable systems |
+
 
 ### 3. Communication Media
 
