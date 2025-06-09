@@ -247,7 +247,7 @@ Communication media are the physical pathways over which data travels.
 | Security        | Low                | Medium            | High                   |
 | Common Use      | LANs               | CATV, Older LANs  | Backbone, Data Centers |
 
-#### 3.4 Radio (Wireless)
+#### 3.4 Radio (Wireless 3 kHz up to 300 GHz.) 
 
 * **Explanation:** Uses radio waves for communication through the air. Data is modulated onto a carrier wave and transmitted wirelessly.
 * **Advantages:**
@@ -262,9 +262,9 @@ Communication media are the physical pathways over which data travels.
     * Regulation of frequency bands.
 * **Practical Example:** Wi-Fi (802.11), Bluetooth, cellular networks (2G, 3G, 4G, 5G).
 
-#### 3.5 Microwave (Wireless)
+#### 3.5 Microwave (Wireless 0.3 GHz) to 300 GHz.)
 
-* **Explanation:** Uses high-frequency radio waves (microwaves) for communication. Typically line-of-sight transmission, meaning the transmitter and receiver must have an unobstructed path.
+* **Explanation:** Microwaves are actually a subset of radio waves, uses high-frequency radio waves (microwaves) for communication. Typically line-of-sight transmission, meaning the transmitter and receiver must have an unobstructed path.
 * **Types:**
     * **Terrestrial Microwave:** Antennas mounted on towers transmit signals directly to each other.
     * **Satellite Microwave:** Signals are beamed from an earth station to a satellite in orbit, which then retransmits them to another earth station.
@@ -321,6 +321,7 @@ This involves transmitting digital data (bits) using digital signals.
     * **DC Component:** Reduces or eliminates the DC component, which can interfere with some transmission media.
     * **Error Detection:** Some codes have built-in error detection capabilities.
     * **Bandwidth Efficiency:** Optimizes the number of bits transmitted per unit of bandwidth.
+
 * **Common Line Coding Schemes:**
 
     * **Non-Return-to-Zero (NRZ):**
