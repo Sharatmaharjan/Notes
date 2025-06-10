@@ -349,36 +349,7 @@ This involves transmitting digital data (bits) using digital signals.
 
 #### 4.2 Transmission Modes
 
-Transmission modes refer to how the bits are transmitted relative to each other over a communication link.
-
-* **Parallel Transmission:**
-    * **Explanation:** Multiple bits are transmitted simultaneously over multiple parallel wires.
-    * **Advantages:** High data rate.
-    * **Disadvantages:**
-        * Expensive (requires many wires).
-        * Limited distance due to skew (bits arriving at different times).
-        * Susceptible to crosstalk.
-    * **Practical Example:** Internal computer buses.
-
-* **Serial Transmission:**
-    * **Explanation:** Bits are transmitted one after another over a single wire.
-    * **Advantages:**
-        * Inexpensive (fewer wires).
-        * Suitable for long distances.
-        * Less prone to skew and crosstalk.
-    * **Disadvantages:** Lower data rate than parallel transmission.
-    * **Practical Example:** Ethernet, USB, RS-232 serial ports.
-
-**Comparison Table: Transmission Modes**
-
-| Feature         | Parallel Transmission | Serial Transmission |
-| :-------------- | :-------------------- | :------------------ |
-| Wires           | Multiple              | Single              |
-| Speed           | High (short distances) | Medium-High (long distances) |
-| Cost            | High                  | Low                 |
-| Distance        | Short                 | Long                |
-| Skew/Crosstalk  | High                  | Low                 |
-| Common Use      | Internal computer buses | Network connections |
+Simplex, Half and Full duplex.
 
 #### 4.3 Digital Transmission (General Concepts)
 
