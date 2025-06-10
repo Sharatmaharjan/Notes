@@ -262,7 +262,7 @@ Communication media are the physical pathways over which data travels.
     * Regulation of frequency bands.
 * **Practical Example:** Wi-Fi (802.11), Bluetooth, cellular networks (2G, 3G, 4G, 5G).
 
-#### 3.5 Microwave (Wireless 0.3 GHz) to 300 GHz.)
+#### 3.5 Microwave (Wireless 0.3 GHz to 300 GHz.)
 
 * **Explanation:** Microwaves are actually a subset of radio waves, uses high-frequency radio waves (microwaves) for communication. Typically line-of-sight transmission, meaning the transmitter and receiver must have an unobstructed path.
 * **Types:**
@@ -282,10 +282,6 @@ Communication media are the physical pathways over which data travels.
 #### 3.6 Satellite (Wireless)
 
 * **Explanation:** A specialized form of microwave communication where communication relays are provided by artificial satellites in Earth orbit. Signals are sent up to the satellite (uplink) and retransmitted down to Earth (downlink).
-* **Types of Orbits:**
-    * **Geosynchronous Earth Orbit (GEO):** Satellites orbit at a fixed position relative to the Earth, providing continuous coverage to a large area. High latency due to distance.
-    * **Medium Earth Orbit (MEO):** Closer than GEO, lower latency, requires more satellites for continuous coverage.
-    * **Low Earth Orbit (LEO):** Closest to Earth, lowest latency, requires many satellites to provide coverage.
 * **Advantages:**
     * Global coverage, even in remote areas.
     * High bandwidth potential.
@@ -313,14 +309,9 @@ The choice of communication media depends on several factors:
 
 This involves transmitting digital data (bits) using digital signals.
 
-#### 4.1 Coding (Line Coding)
+#### 4.1 Coding (Line Coding-digital data (sequence of bits) into a digital signal)
 
 * **Explanation:** Line coding is the process of converting digital data (sequence of bits) into a digital signal that can be transmitted over a physical medium. It defines the voltage levels, pulse shapes, and timing used to represent bits.
-* **Purpose:**
-    * **Synchronization:** Helps the receiver synchronize its clock with the sender's.
-    * **DC Component:** Reduces or eliminates the DC component, which can interfere with some transmission media.
-    * **Error Detection:** Some codes have built-in error detection capabilities.
-    * **Bandwidth Efficiency:** Optimizes the number of bits transmitted per unit of bandwidth.
 
 * **Common Line Coding Schemes:**
 
@@ -329,47 +320,32 @@ This involves transmitting digital data (bits) using digital signals.
         * **Types:**
             * **NRZ-Level (NRZ-L):** High voltage for '1', low voltage for '0'.
             * **NRZ-Invert (NRZ-I):** A transition (change in voltage) at the beginning of the bit interval represents '1', no transition represents '0'.
-        * **Diagram:** *Insert Diagram: Waveforms for NRZ-L and NRZ-I for a sample bit stream (e.g., 0101100).*
         * **Advantages:** Simple to implement, efficient use of bandwidth.
         * **Disadvantages:** Lack of synchronization for long sequences of '0's or '1's, presence of DC component (NRZ-L).
 
     * **Return-to-Zero (RZ):**
         * **Explanation:** The signal returns to zero voltage level in the middle of each bit interval.
-        * **Diagram:** *Insert Diagram: Waveform for RZ for a sample bit stream (e.g., 0101100).*
         * **Advantages:** Provides synchronization (transition in every bit), no DC component.
         * **Disadvantages:** Requires twice the bandwidth of NRZ, more complex.
 
     * **Manchester Encoding:**
         * **Explanation:** A transition in the middle of each bit interval is used for synchronization and to represent the bit. A transition from low to high represents '0', and a transition from high to low represents '1' (or vice-versa, depending on convention).
-        * **Diagram:** *Insert Diagram: Waveform for Manchester encoding for a sample bit stream (e.g., 0101100).*
-        * **Advantages:** Self-clocking (good synchronization), no DC component.
+        * **Advantages:** Self-clocking (good synchronization).
         * **Disadvantages:** Requires twice the bandwidth of NRZ.
         * **Practical Example:** Used in original Ethernet (10BASE-T).
 
     * **Differential Manchester Encoding:**
         * **Explanation:** A transition in the middle of the bit interval is always present for clocking. The bit value is determined by the presence or absence of a transition at the beginning of the bit interval. A transition at the beginning represents '0', no transition represents '1' (or vice-versa).
-        * **Diagram:** *Insert Diagram: Waveform for Differential Manchester encoding for a sample bit stream (e.g., 0101100).*
         * **Advantages:** Self-clocking, immune to polarity inversion, no DC component.
         * **Disadvantages:** Requires twice the bandwidth of NRZ.
         * **Practical Example:** Used in Token Ring networks.
 
     * **Bipolar AMI (Alternate Mark Inversion):**
         * **Explanation:** '0' is represented by no pulse. '1' is represented by alternating positive and negative pulses.
-        * **Diagram:** *Insert Diagram: Waveform for Bipolar AMI for a sample bit stream (e.g., 0101100).*
         * **Advantages:** Reduces DC component, some error detection (if two consecutive positive or negative pulses occur).
         * **Disadvantages:** Long sequences of '0's can cause synchronization issues.
         * **Practical Example:** Used in some older digital telephony systems (T1/E1).
 
-**Comparison Table: Line Coding Schemes**
-
-| Scheme                   | DC Component | Synchronization | Bandwidth Efficiency | Complexity | Usage Example |
-| :----------------------- | :----------- | :-------------- | :------------------- | :--------- | :------------ |
-| NRZ-L                    | High         | Poor            | High                 | Low        | Internal computer buses |
-| NRZ-I                    | Medium       | Poor            | High                 | Low        | USB          |
-| RZ                       | Low          | Good            | Low                  | Medium     | -            |
-| Manchester               | Low          | Good            | Low                  | Medium     | 10BASE-T Ethernet |
-| Differential Manchester  | Low          | Good            | Low                  | Medium     | Token Ring   |
-| Bipolar AMI              | Low          | Medium          | High                 | Medium     | T1/E1 lines  |
 
 #### 4.2 Transmission Modes
 
@@ -377,29 +353,26 @@ Transmission modes refer to how the bits are transmitted relative to each other 
 
 * **Parallel Transmission:**
     * **Explanation:** Multiple bits are transmitted simultaneously over multiple parallel wires.
-    * **Diagram:** *Insert Diagram: Multiple wires carrying bits in parallel.*
     * **Advantages:** High data rate.
     * **Disadvantages:**
         * Expensive (requires many wires).
         * Limited distance due to skew (bits arriving at different times).
         * Susceptible to crosstalk.
-    * **Practical Example:** Internal computer buses, printer cables (older).
+    * **Practical Example:** Internal computer buses.
 
 * **Serial Transmission:**
     * **Explanation:** Bits are transmitted one after another over a single wire.
-    * **Diagram:** *Insert Diagram: A single wire carrying bits sequentially.*
     * **Advantages:**
         * Inexpensive (fewer wires).
         * Suitable for long distances.
         * Less prone to skew and crosstalk.
-    * **Disadvantages:** Lower data rate than parallel transmission (for the same clock speed).
-    * **Practical Example:** Ethernet, USB, FireWire, RS-232 serial ports.
+    * **Disadvantages:** Lower data rate than parallel transmission.
+    * **Practical Example:** Ethernet, USB, RS-232 serial ports.
 
 **Comparison Table: Transmission Modes**
 
 | Feature         | Parallel Transmission | Serial Transmission |
 | :-------------- | :-------------------- | :------------------ |
-| Bits per cycle  | Multiple              | One                 |
 | Wires           | Multiple              | Single              |
 | Speed           | High (short distances) | Medium-High (long distances) |
 | Cost            | High                  | Low                 |
