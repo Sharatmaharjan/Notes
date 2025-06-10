@@ -351,16 +351,27 @@ This involves transmitting digital data (bits) using digital signals.
 
 Simplex, Half and Full duplex.
 
-#### 4.3 Digital Transmission (General Concepts)
+#### 4.3 Digital Transmission
 
-* **Data Rate (Bit Rate):** The number of bits transmitted per second (bps).
-* **Baud Rate (Symbol Rate):** The number of signal changes (symbols) per second. In digital transmission of digital data, sometimes a symbol can represent more than one bit, leading to data rate > baud rate.
-* **Bandwidth:** The range of frequencies a transmission medium can carry.
-* **Nyquist Theorem:** For a noiseless channel, the maximum data rate ($C$) is given by $C = 2B \log_2 M$, where $B$ is the bandwidth and $M$ is the number of distinct signal levels. This theorem provides an upper bound on data rate for ideal channels.
-* **Shannon-Hartley Theorem:** For a noisy channel, the maximum theoretical data rate ($C$) is given by $C = B \log_2 (1 + S/N)$, where $B$ is the bandwidth, $S$ is the average signal power, and $N$ is the average noise power. $S/N$ is the signal-to-noise ratio, often expressed in decibels (dB) as $10 \log_{10} (S/N)$. This theorem provides a practical upper bound for real-world channels.
-    * **Numerical Example:** A channel has a bandwidth of 3000 Hz and a signal-to-noise ratio of 30 dB.
-        * First, convert SNR from dB to ratio: $30 = 10 \log_{10} (S/N) \implies 3 = \log_{10} (S/N) \implies S/N = 10^3 = 1000$.
-        * Using Shannon-Hartley: $C = 3000 \log_2 (1 + 1000) \approx 3000 \log_2 (1001) \approx 3000 \times 9.96 \approx 29880$ bps.
+Digital transmission refers to the end-to-end process of moving digital data. It involves several layers of the OSI model, but at the physical layer, the core steps for transmitting digital data are:
+
+1.  **Data Generation:** The source application or device generates digital data (e.g., typing a message, creating a file). This data is already in binary format. **(No ADC needed here if the source is digital).**
+
+2.  **Data Framing and Encapsulation:** Higher layers (Data Link, Network, Transport) add headers and trailers, segment data, and prepare it for transmission. This results in a larger block of raw digital bits.
+
+3.  **Line Coding (Digital-to-Digital Conversion):** This is where the raw digital bits are converted into a **digital electrical signal** (discrete voltage pulses) suitable for the chosen physical medium (e.g., copper wire).
+
+4.  **Medium Adaptation:**
+    * **For Wired Transmission (e.g., Ethernet over copper):** The digital electrical signal is often sent directly over the wire.
+    * **For Wireless Transmission (e.g., Wi-Fi, Cellular):** The digital electrical signal *cannot* be transmitted directly through the air. Instead, it must be used to **modulate an analog carrier wave**.
+        * **Digital Modulation (Digital-to-Analog Conversion):** The digital signal (output of the line coder) is fed into a **modulator**. The modulator uses the digital information to systematically vary a high-frequency **analog carrier wave's** amplitude, frequency, or phase (e.g., using ASK, FSK, PSK, or QAM).
+
+5.  **Reception and Demodulation/Decoding:**
+    * At the receiver, the incoming signal is captured.
+    * **Wireless Receiver:** First, **Demodulation** (the reverse of modulation) converts the analog RF signal back into the original digital electrical signal.
+    * **Wired/Wireless Receiver:** Then, **Line Decoding** (the reverse of line coding) converts the digital electrical signal back into the original sequence of logical 0s and 1s.
+
+6.  **Error Checking and Data Extraction:** The digital data is checked for errors, and higher-layer headers/trailers are removed to reconstruct the original data for the receiving application.
 
 #### 4.4 How Ethernet Transmits Data
 
@@ -393,14 +404,12 @@ This involves converting digital data into an analog signal for transmission ove
 
     * **Amplitude Shift Keying (ASK):**
         * **Explanation:** The amplitude (strength) of the carrier wave is varied to represent different digital values. The frequency and phase remain constant.
-        * **Diagram:** *Insert Diagram: A carrier wave with varying amplitude to represent 0s and 1s.*
         * **Advantages:** Simple to implement.
         * **Disadvantages:** Susceptible to noise (amplitude variations caused by noise can be misinterpreted as data).
         * **Practical Example:** Used in some fiber optic links and very low-speed modems.
 
     * **Frequency Shift Keying (FSK):**
         * **Explanation:** The frequency of the carrier wave is varied to represent different digital values. The amplitude and phase remain constant.
-        * **Diagram:** *Insert Diagram: A carrier wave with varying frequency to represent 0s and 1s.*
         * **Advantages:** Less susceptible to noise than ASK.
         * **Disadvantages:** Requires more bandwidth than ASK for the same data rate.
         * **Practical Example:** Used in older modems (up to 1200 bps), low-speed wireless communication.
@@ -410,21 +419,40 @@ This involves converting digital data into an analog signal for transmission ove
         * **Types:**
             * **Binary PSK (BPSK):** Two phases (e.g., 0 and 180 degrees) represent '0' and '1'.
             * **Quadrature PSK (QPSK):** Four phases (e.g., 45, 135, 225, 315 degrees) represent two bits (dibit) per symbol.
-        * **Diagram:** *Insert Diagram: A carrier wave with varying phase to represent 0s and 1s (for BPSK and QPSK).*
         * **Advantages:** More robust against noise than ASK, more bandwidth efficient than FSK.
         * **Disadvantages:** More complex to implement.
         * **Practical Example:** Used in DSL, Wi-Fi, satellite communication, cellular networks.
 
     * **Quadrature Amplitude Modulation (QAM):**
         * **Explanation:** Combines both amplitude and phase modulation to represent multiple bits per symbol. This allows for higher data rates for a given bandwidth.
-        * **Diagram:** *Insert Diagram: A constellation diagram showing points representing different combinations of amplitude and phase (e.g., 16-QAM or 64-QAM).*
         * **Advantages:** Very high bandwidth efficiency, high data rates.
         * **Disadvantages:** Most complex to implement, more susceptible to noise than PSK at higher constellations.
         * **Practical Example:** Used in high-speed modems (ADSL, cable modems), Wi-Fi (802.11ac/ax), digital television broadcasting.
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/1.png)
+
+
 #### 5.2 Capacity of a Circuit
 
-The capacity of a circuit refers to the maximum rate at which data can be transmitted reliably over that circuit. This is governed by the Nyquist and Shannon-Hartley theorems discussed in section 4.3.
+**Capacity of a Circuit** is the **maximum theoretical rate (in bps)** at which **digital data can be reliably transmitted** over a communication channel.
+
+It's governed by two main types of channels:
+
+1.  **Noiseless Channel (Nyquist Theorem):**
+    * **Formula:** $C = 2B \log_2 M$
+    * **Where:**
+        * $C$ = Capacity (bps)
+        * $B$ = Bandwidth (Hz)
+        * $M$ = Number of discrete signal levels (symbols)
+    * **In short:** Capacity is limited by bandwidth and how many bits each signal change can represent.
+
+2.  **Noisy Channel (Shannon-Hartley Theorem):**
+    * **Formula:** $C = B \log_2 (1 + S/N)$
+    * **Where:**
+        * $C$ = Capacity (bps)
+        * $B$ = Bandwidth (Hz)
+        * $S/N$ = Signal-to-Noise Ratio (linear ratio, not dB)
+    * **In short:** Capacity is limited by bandwidth and how strong the signal is relative to the noise.
 
 #### 5.3 How Modems Transmit Data
 
@@ -435,10 +463,6 @@ The capacity of a circuit refers to the maximum rate at which data can be transm
     3.  **Transmission:** The analog signal travels over the telephone line to the receiving modem.
     4.  **Demodulation:** The receiving modem demodulates the incoming analog signal, converting it back into the original digital bits.
     5.  **Digital Data Output:** The receiving modem sends these digital bits to the receiving computer.
-* **Numerical Example (Conceptual):**
-    * A modem uses 16-QAM. Each symbol represents $\log_2 16 = 4$ bits.
-    * If the modem can transmit 2400 symbols per second (baud rate), then the data rate is $2400 \times 4 = 9600$ bps.
-* **Diagram:** *Insert Diagram: A block diagram showing two computers connected via modems and a telephone line, illustrating modulation and demodulation.*
 * **Advantages of using Modems:** Enabled digital communication over existing analog telephone infrastructure.
 * **Disadvantages of using Modems:** Limited bandwidth compared to digital lines, susceptible to line noise, required dial-up connection.
 
@@ -453,21 +477,16 @@ The process of converting analog signals into digital signals is called Analog-t
 * **Sampling:**
     * **Explanation:** The analog signal is measured at regular intervals. The sampling rate (number of samples per second) must be at least twice the highest frequency component of the analog signal to accurately reconstruct the original signal (Nyquist-Shannon sampling theorem).
     * **Practical Example:** For voice (human speech, typically up to 4 kHz), a common sampling rate is 8,000 samples per second.
-    * **Diagram:** *Insert Diagram: An analog waveform with discrete points sampled at regular intervals.*
+    
 
 * **Quantization:**
     * **Explanation:** Each sampled analog value is assigned a discrete numerical value from a finite set of levels. This involves rounding the sampled amplitude to the nearest predefined quantization level.
-    * **Diagram:** *Insert Diagram: Sampled points being mapped to discrete quantization levels.*
-    * **Quantization Error:** The difference between the actual analog sample value and the assigned quantization level. More quantization levels (more bits per sample) reduce quantization error but increase data rate.
+    * **Quantization Error:** The difference between the actual analog sample value and the assigned quantization level.
 
 * **Encoding (Digital Encoding):**
     * **Explanation:** The quantized values are then converted into a binary code (series of bits). Each quantization level is assigned a unique binary code.
-    * **Example:** If 256 quantization levels are used, each sample will be encoded into 8 bits ($2^8 = 256$).
-    * **Numerical Example (Pulse Code Modulation - PCM):**
-        * Voice signal bandwidth: 4 kHz.
-        * Sampling rate (Nyquist): $2 \times 4 \text{ kHz} = 8000$ samples/second.
-        * Quantization: 256 levels (8 bits per sample).
-        * Data rate: $8000 \text{ samples/second} \times 8 \text{ bits/sample} = 64,000 \text{ bps (64 kbps)}$. This is the standard data rate for a single digital voice channel (DS0) in telephone networks.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%203/2.png)
 
 #### 6.2 How Telephones Transmit Voice Data
 
@@ -483,7 +502,7 @@ The process of converting analog signals into digital signals is called Analog-t
 #### 6.3 How Instant Messenger Transmits Voice Data
 
 * **Explanation:** Instant messenger applications (like WhatsApp, Zoom, Google Meet) transmit voice data over the internet using digital means. They employ voice compression techniques to reduce bandwidth requirements.
-* **Process (Simplified):**
+* **Process:**
     1.  **Analog Voice Input:** Microphone captures analog voice.
     2.  **Analog-to-Digital Conversion:** The voice is sampled and quantized into digital form (e.g., PCM).
     3.  **Voice Compression (Codec):** Unlike traditional telephony that might use uncompressed PCM, instant messengers use audio codecs (e.g., Opus, Speex, G.729) to significantly compress the digital voice data. This reduces the data rate while maintaining acceptable voice quality. Compression techniques remove redundant and perceptually irrelevant information.
