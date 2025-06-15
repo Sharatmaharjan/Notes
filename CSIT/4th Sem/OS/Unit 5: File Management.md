@@ -162,9 +162,9 @@ The file system layout describes how the file system is organized on a disk. A d
     * **Use Case/Example:** When a computer starts, the BIOS/UEFI reads the boot block from the active partition to load the initial bootloader, which then loads the full OS.
 * **Superblock:** Contains key information about the file system (e.g., total blocks, free block count, inode table size, block size, file system state). Crucial for mounting and checking the file system.
     * **Use Case/Example:** When Linux mounts an `ext4` partition, it reads the superblock to understand the file system's overall structure and status. If the superblock is corrupted, the file system cannot be read.
-* **Free Block Management Area:** Stores information about free (available) disk blocks. (Discussed in 5.4).
+* **Free Block Management Area:** Stores information about free (available) disk blocks.
     * **Use Case/Example:** A bitmap indicating which blocks are available for new file data.
-* **Inode List (for UNIX-like systems):** A table of inodes, each describing a file (metadata, pointers to data blocks). (Discussed in 5.2.4).
+* **Inode List (for UNIX-like systems):** A table of inodes, each describing a file (metadata, pointers to data blocks).
     * **Use Case/Example:** When the OS needs to access a file in an `ext4` file system, it first finds its inode number, then uses that number to locate the inode in the inode list to get the file's attributes and data block pointers.
 * **Root Directory:** The top-level directory of the file system.
     * **Use Case/Example:** In Linux, the `/` directory; in Windows, the root of a drive like `C:\`.
