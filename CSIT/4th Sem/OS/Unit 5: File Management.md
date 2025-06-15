@@ -30,6 +30,8 @@ File structure refers to how a file is organized internally. Common structures i
 * **Complex Structures:** Trees, indices, or databases, often managed by a database management system (DBMS) built on top of the OS's unstructured byte stream.
     * **Use Case/Example:** A MySQL database file (e.g., `.ibd` file for InnoDB). The OS sees it as a large binary file, but the MySQL server software internally manages it as a complex B-tree or other database structure to store tables, indices, and rows.
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/1%20file%20structure.jpg)
+
 #### 5.1.3. File Types
 
 File types categorize files based on their content and purpose. The OS or applications use file types to determine how to handle a file.
@@ -60,6 +62,11 @@ File access methods define how information within a file can be read or written.
 * **Indexed Sequential Access:** A hybrid approach. Files are organized sequentially, but an index is maintained to allow faster jumps to specific sections, after which sequential reading can continue.
     * **Use Case/Example:** An old ISAM (Indexed Sequential Access Method) file system for large data records. One might use an index to quickly jump to the start of records for "Students with last names starting with 'S'", then read sequentially from there.
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20file%20access.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20indexed%20sequential%20access.png)
+
+
 #### 5.1.5. File Attributes
 
 File attributes are metadata associated with a file, providing information about it.
@@ -77,6 +84,9 @@ File attributes are metadata associated with a file, providing information about
     * **Use Case/Example:** A file created by `userA` on `2024-01-15 10:00:00` and last modified by `userB` on `2024-06-10 15:30:00`. This helps in version control or system auditing.
 * **Read-only/Archive/Hidden/System flags:** Specific flags for file behavior.
     * **Use Case/Example:** Setting the "Read-only" flag on `important_config.ini` prevents accidental modification. The "Hidden" flag on system files (e.g., in Windows) prevents them from cluttering user views.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/3%20file%20attributes.png)
+
 
 #### 5.1.6. File Operations
 
@@ -100,6 +110,9 @@ Operating systems provide system calls for users and applications to perform ope
 * **Rename:** Changes the name of a file.
     * **Use Case/Example:** `mv old_name.txt new_name.txt` (Linux) or "Rename" option in File Explorer (Windows).
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/4%20file%20operations.png)
+
+
 #### 5.1.7. Directory Systems
 
 Directory systems organize files in a hierarchical structure, making it easier for users to locate and manage them.
@@ -112,7 +125,8 @@ Directory systems organize files in a hierarchical structure, making it easier f
     * **Scalability Issues:** Hard to manage a large number of files.
     * **No User Isolation:** No way to group files by user or project.
 * **Use Case/Example:** Early personal computer systems like CP/M, where all files were in the "root" or main directory of a floppy disk. If user A created `report.txt`, user B could not create another file also named `report.txt`.
-* **Diagram Suggestion:** A single box labeled "Root Directory" with arrows pointing to multiple file icons.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/5%20single.png)
 
 **b) Two-Level Directory System:**
 * **Structure:** Each user has a separate directory (User File Directory - UFD) within a master file directory (MFD).
@@ -123,7 +137,8 @@ Directory systems organize files in a hierarchical structure, making it easier f
     * **No Sharing:** Difficult to share files between users without copying.
     * Still limited for grouping files within a single user's space.
 * **Use Case/Example:** Used in some early multi-user mainframes. If User1 has `report.txt` in their UFD, and User2 also has `report.txt` in their UFD, there's no conflict. However, User1 cannot easily access User2's `report.txt`.
-* **Diagram Suggestion:** A "Master File Directory" pointing to multiple "User File Directories," each pointing to their respective files.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/5%20two%20level.png)
 
 **c) Hierarchical (Tree-Structured) Directory System:**
 * **Structure:** The most common model today. Directories can contain both files and other subdirectories, forming a tree-like structure. There is a single root directory.
@@ -135,7 +150,8 @@ Directory systems organize files in a hierarchical structure, making it easier f
     * More complex to implement.
     * Searching for a file can take longer if the path is deep.
 * **Use Case/Example:** All modern operating systems like UNIX/Linux (`/home/user/documents/projects/os_project/`) and Windows (`C:\Users\Username\Documents\Projects\OS_Project\`). This allows for highly organized file storage.
-* **Diagram Suggestion:** A tree structure starting from a "Root" directory, branching into subdirectories and files.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/5%20tree.png)
 
 #### 5.1.8. File System Layout
 
@@ -155,7 +171,7 @@ The file system layout describes how the file system is organized on a disk. A d
 * **Data Blocks:** The actual storage area for file data and directory contents.
     * **Use Case/Example:** The blocks where the actual content of `my_document.txt` or `photo.jpg` is stored.
 
-* **Diagram Suggestion:** A linear representation of a disk partition showing sections for Boot Block, Superblock, Free Block List, Inode List, Root Directory, and Data Blocks.
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/6%20file%20%20system%20layout.png)
 
 ### 5.2. Implementing Files (Disk Space Allocation)
 
@@ -177,7 +193,8 @@ This section details how file data is stored on disk and how the OS manages the 
     * File B (2 blocks): allocated blocks 3, 4. Directory entry: `File B: Start=3, Length=2`.
     * Later, File A is deleted, freeing blocks 0, 1, 2.
     * Now, if a new File C (4 blocks) arrives, it cannot be allocated contiguously because the largest free contiguous space is 3 blocks (0,1,2). Even if blocks 5, 6, 7, 8 are free, they might not be consecutive if File B is still there, leading to external fragmentation.
-* **Diagram Suggestion:** A linear representation of disk blocks, showing files occupying contiguous segments, with gaps representing fragmentation.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20Contiguous%20Allocation.jpg)
 
 #### 5.2.2. Linked List Allocation
 
@@ -196,7 +213,9 @@ This section details how file data is stored on disk and how the OS manages the 
     * Block 25 contains data + pointer to Block 5.
     * Block 5 contains data + pointer to NULL (end of file).
     * To read the data in Block 5, the system must first read Block 10 to get the pointer to Block 25, then read Block 25 to get the pointer to Block 5. This involves multiple disk I/Os for random access.
-* **Diagram Suggestion:** A linear representation of disk blocks, with arrows showing pointers from one block to the next, forming a chain for a file.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20indexedAllocation.jpg)
+
 
 #### 5.2.3. Linked List Allocation using Table in Memory (FAT - File Allocation Table)
 
@@ -212,22 +231,8 @@ This section details how file data is stored on disk and how the OS manages the 
 * **Disadvantages:**
     * **FAT Size:** The entire FAT must be in memory for efficient operation, which can be very large for large disks with small block sizes.
     * Still sequential traversal for finding arbitrary blocks, though faster than disk traversal.
-* **Numerical Example/Use Case:**
-    * Consider a file `MyDoc.txt` starting at Block 2.
-    * **Directory Entry for MyDoc.txt:** Start Block: 2
-    * **FAT (in memory):**
-        * FAT[0] = Free
-        * FAT[1] = Free
-        * FAT[2] = 5  (Block 2 points to Block 5)
-        * FAT[3] = Free
-        * FAT[4] = Free
-        * FAT[5] = 9  (Block 5 points to Block 9)
-        * FAT[6] = Free
-        * FAT[7] = Free
-        * FAT[8] = Free
-        * FAT[9] = -1 (Block 9 is the end of the file)
-    * To read `MyDoc.txt`, the OS starts at Block 2. To get the next block, it looks up FAT[2] (which is 5). Then FAT[5] (which is 9). Then FAT[9] (end of file). This is how FAT16/FAT32 file systems worked.
-* **Diagram Suggestion:** A diagram showing a directory pointing to a starting block in a FAT table. The FAT table then shows a chain of pointers to actual data blocks on disk.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20linked%20list%20FAT.png)
 
 #### 5.2.4. Inodes (Indexed Allocation)
 
@@ -246,12 +251,8 @@ This section details how file data is stored on disk and how the OS manages the 
 * **Disadvantages:**
     * **Overhead:** For very small files, the inode itself might be larger than the file data.
     * **Multiple Disk Accesses:** For very large files, multiple disk reads are required to traverse indirect pointers to find a data block (e.g., 3 reads for a triple indirect block before the actual data block).
-* **Numerical Example/Use Case (UNIX-like system with 4KB blocks):**
-    * Suppose an inode has 12 direct pointers, 1 single, 1 double, 1 triple indirect pointer. Each pointer is 4 bytes. A block can hold 4KB / 4B = 1024 pointers.
-    * **Small file (e.g., 10KB):** Uses 3 direct pointers (3 blocks * 4KB/block = 12KB). All data accessed with one inode read, then direct data block reads.
-    * **Medium file (e.g., 5MB):** Uses 12 direct pointers + 1 single indirect pointer. The single indirect block holds 1024 pointers, allowing 1024 * 4KB = 4MB more data. Total 12*4KB + 4MB = 48KB + 4MB. All data can be reached with one inode read and one indirect block read.
-    * **Large file (e.g., 1GB):** Uses direct, single, and double indirect pointers. A double indirect block can point to 1024 single indirect blocks, each pointing to 1024 data blocks. So, 1024 * 1024 * 4KB = 4GB. To access a block referenced by a double indirect pointer, it requires 1 inode read, 1 double indirect block read, 1 single indirect block read, then the actual data block read (4 disk reads total).
-* **Diagram Suggestion:** An inode structure box showing direct, single, double, and triple indirect pointers branching out to data blocks and other index blocks.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20indexedAllocation.jpg)
 
 ### 5.3. Directory Operations, Path Names, Directory Implementation, Shared Files
 
