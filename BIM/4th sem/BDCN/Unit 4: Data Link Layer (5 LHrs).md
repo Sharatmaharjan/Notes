@@ -16,7 +16,7 @@ The Data Link Layer is the second layer in the OSI (Open Systems Interconnection
 
 Media Access Control (MAC) is a sublayer of the Data Link Layer that defines how devices in a shared medium network gain access to the transmission medium to send data.
 
-#### 2.1 Contention-Based Access
+#### 2.1 Contention-Based Access(compete)
 
 * **Explanation:** In contention-based access, all devices on a shared medium compete for access to the medium. If the medium is free, a device can transmit. If multiple devices transmit simultaneously, a collision occurs, leading to data corruption. Mechanisms are in place to detect and handle these collisions.
 * **Advantages:**
@@ -36,20 +36,21 @@ Media Access Control (MAC) is a sublayer of the Data Link Layer that defines how
             3.  **Collision Detection:** While transmitting, the station continues to monitor the medium for collisions. A collision occurs if two or more stations transmit simultaneously.
             4.  **Collision Handling:** If a collision is detected, all involved stations immediately stop transmitting and send a "jam signal" to ensure all other stations detect the collision.
             5.  **Backoff Algorithm:** Each station then waits a random amount of time (backoff period) before attempting retransmission. This random delay helps to prevent repeated collisions.
-        * **Diagram:** *Insert Diagram: Flowchart illustrating the CSMA/CD process (listen, transmit, detect collision, jam, backoff, retry).*
+
         * **Theoretical Example:** Consider two stations, A and B, in a CSMA/CD network. A starts transmitting. Before A's signal reaches B, B also senses the medium as idle and starts transmitting. A collision occurs. Both A and B detect the collision, send a jam signal, and then independently calculate a random backoff time before attempting to retransmit.
 
-    * **Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA):**
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/1%20CSMA%20CD.png)
+
+   * **Carrier Sense Multiple Access with Collision Avoidance (CSMA/CA):**
         * **Explanation:** Used in wireless networks (Wi-Fi) where collision detection is difficult due to the "hidden terminal" problem (stations might not hear each other, but both can hear the access point, leading to collisions at the AP). Instead of detecting collisions, CSMA/CA attempts to avoid them.
         * **Mechanism:**
             1.  **Carrier Sense:** A station listens for ongoing transmissions.
-            2.  **Interframe Spacing (IFS):** If the medium is idle, the station waits for a short interframe space (DIFS for data, SIFS for ACK).
+            2.  **Interframe Spacing (IFS):** If the medium is idle, the station waits for a short interframe space.
             3.  **Contention Window:** The station then picks a random backoff value from a contention window.
             4.  **Decrement Backoff:** The station decrements its backoff counter as long as the channel is idle.
             5.  **Transmission:** When the counter reaches zero, the station transmits.
             6.  **Acknowledgement (ACK):** The receiver sends an ACK to confirm successful reception. If no ACK is received, it's assumed a collision occurred (or the frame was lost), and the sender retransmits after another backoff.
             7.  **RTS/CTS (Optional):** Request To Send (RTS) and Clear To Send (CTS) handshake can be used to reserve the medium before data transmission, especially in environments with hidden terminals.
-        * **Diagram:** *Insert Diagram: Flowchart illustrating the CSMA/CA process (listen, IFS, backoff, transmit, wait for ACK, retransmit if no ACK).*
         * **Practical Example:** In a Wi-Fi network, a laptop wants to send data. It listens for activity. If the channel is free, it waits for DIFS, then a random backoff. When the backoff expires, it sends data. The AP receives and sends an ACK. If the ACK is not received, the laptop retransmits.
 
 #### 2.2 Controlled Access
@@ -67,17 +68,14 @@ Media Access Control (MAC) is a sublayer of the Data Link Layer that defines how
 
     * **Polling:**
         * **Explanation:** A primary device (controller) polls secondary devices in a predefined order to determine if they have data to send. Only the polled device can transmit.
-        * **Diagram:** *Insert Diagram: A central polling device connected to multiple secondary devices, with arrows indicating the polling sequence and data transmission.*
-        * **Advantages:** Eliminates collisions, predictable access.
         * **Disadvantages:** Overhead of polling messages, potential for idle time if polled devices have no data, single point of failure (primary device).
         * **Practical Example:** Older mainframe terminal networks, some point-of-sale systems.
 
     * **Token Passing:**
         * **Explanation:** A special frame called a "token" circulates among stations in a logical or physical ring. Only the station holding the token is allowed to transmit data. After transmitting, the station passes the token to the next station in the sequence.
-        * **Diagram:** *Insert Diagram: Stations arranged in a ring, with a token circulating and a station capturing the token to transmit.*
         * **Advantages:** Eliminates collisions, fair access, predictable latency.
         * **Disadvantages:** Complexity of token management (what if token is lost or duplicated?), overhead of token passing.
-        * **Practical Example:** Token Ring networks, FDDI (Fiber Distributed Data Interface).
+        * **Practical Example:** Token Ring networks.
 
 #### 2.3 Relative Performance
 
@@ -128,23 +126,15 @@ Error detection techniques add redundant information to the data block (frame) b
         * **Odd Parity:** The parity bit is set so that the total number of '1's in the block (data + parity) is odd.
     * **Advantages:** Simple to implement.
     * **Disadvantages:** Can detect only an odd number of bit errors. Cannot detect an even number of errors (e.g., 2 bits flipped). Cannot correct errors.
-    * **Theoretical Example:**
-        * Data: 1011001 (4 '1's)
-        * Even Parity: Add '0' (10110010) - total '1's = 4 (even)
-        * Odd Parity: Add '1' (10110011) - total '1's = 5 (odd)
-        * If 10110010 is sent with even parity, and received as 11110010 (one bit error), the receiver counts 5 '1's, knows an error occurred.
-        * If received as 11110110 (two bit errors), the receiver counts 6 '1's, assumes no error, fails to detect.
+      
+    ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/2%20parity%20check.jpg)
 
 * **Checksum:**
     * **Explanation:** The sender computes a sum of all the data segments in a message. This sum is appended to the message. At the receiver, the checksum is recalculated, and if it matches the transmitted checksum, the data is assumed to be error-free.
     * **Advantages:** Simple to implement, can detect more errors than simple parity.
     * **Disadvantages:** Less robust than CRC, may not detect all multiple-bit errors.
-    * **Theoretical Example (Simple Sum):**
-        * Data segments (in 16-bit chunks): 0101010101010101, 1010101010101010
-        * Sum: 0101010101010101 + 1010101010101010 = 1111111111111111
-        * Checksum (one's complement of sum): 0000000000000000
-        * Sender transmits: Data segments + Checksum (0000000000000000)
-        * Receiver adds all segments including checksum. If the result is all 1s, no error.
+  
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/2%20check%20sum.jpg)
 
 * **Cyclic Redundancy Check (CRC):**
     * **Explanation:** A powerful and widely used error detection technique. It treats the data to be transmitted as a binary polynomial. This data polynomial is divided by a predefined generator polynomial (both sender and receiver use the same generator polynomial). The remainder of this division is the CRC checksum (Frame Check Sequence - FCS), which is appended to the data. The receiver performs the same polynomial division. If the remainder is zero, no error is assumed.
@@ -152,39 +142,8 @@ Error detection techniques add redundant information to the data block (frame) b
         * Excellent error detection capabilities, particularly for burst errors (multiple consecutive bit errors).
         * Widely used in networking (Ethernet, Wi-Fi, HDLC, ATM).
     * **Disadvantages:** More complex to implement than parity or simple checksum.
-    * **Theoretical Example:**
-        * Data D = 1010001101 (10 bits)
-        * Generator Polynomial G = $x^4 + x + 1$ (which is 10011 in binary)
-        * CRC calculation (simplified steps):
-            1.  Append (degree of G - 1) zeros to D. Here, degree of G is 4, so append 3 zeros: 1010001101000.
-            2.  Perform binary polynomial division (XOR operations) of the new data by G.
-            3.  The remainder is the CRC.
-        * *Diagram: Illustrate the polynomial division process with XOR operations.*
-        * **Numerical Example (CRC-4 with G=10011):**
-            * Data = 1011
-            * Generator = 10011
-            * Append (4-1)=3 zeros to Data: 1011000
-            * Perform XOR division:
-                ```
-                  1010
-                ______
-                10011 | 1011000
-                      - 10011
-                      -------
-                       001010
-                       - 00000
-                       -------
-                        010100
-                        - 010011
-                        --------
-                         000001
-                         - 000000
-                         --------
-                           000011
-                ```
-            * Remainder (CRC) = 0011.
-            * Transmitted frame: 10110011 (Data + CRC).
-            * At receiver, divide 10110011 by 10011. If remainder is 0, no error.
+  
+    ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/2%20CRC.jpg)
 
 **Comparison Table: Error Detection Methods**
 
@@ -201,22 +160,26 @@ Error detection techniques add redundant information to the data block (frame) b
 
     * **Stop-and-Wait ARQ:**
         * **Explanation:** The sender transmits one frame and then stops, waiting for an acknowledgment (ACK) from the receiver. If an ACK is received, the next frame is sent. If a NAK is received or a timeout occurs, the current frame is retransmitted.
-        * **Diagram:** *Insert Diagram: Sender-Receiver interaction for Stop-and-Wait (send frame, wait for ACK, send next; or send frame, timeout, retransmit).*
         * **Advantages:** Simple to implement, guaranteed delivery.
         * **Disadvantages:** Very inefficient for channels with high propagation delay or low bandwidth due to waiting time.
         * **Theoretical Example:** If the round-trip time (RTT) is 100ms and frame transmission time is 1ms, the channel is idle for 99ms between frames.
 
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/3%20stop%20and%20wait%20arq.png)
+
     * **Go-Back-N ARQ:**
         * **Explanation:** The sender can transmit multiple frames (up to a window size N) without waiting for an ACK for each. If an error is detected in a frame (or a NAK is received), the sender retransmits the erroneous frame *and all subsequent frames* that were sent after the erroneous one. The receiver discards all frames following the first detected error until the correct frame is received.
-        * **Diagram:** *Insert Diagram: Sender-Receiver interaction for Go-Back-N (send multiple frames, if NAK for frame X, resend X and X+1, X+2...).*
         * **Advantages:** More efficient than Stop-and-Wait, especially for high-bandwidth, high-delay links.
         * **Disadvantages:** Can lead to unnecessary retransmissions if many frames are affected or if a single frame is lost, wasting bandwidth. Receiver buffer management is simpler (doesn't need to buffer out-of-order frames).
+         
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/3%20go%20back%20n%20arq.jpg)
 
     * **Selective Repeat ARQ:**
-        * **Explanation:** The sender can transmit multiple frames (up to a window size N). If an error is detected in a frame, only that specific erroneous frame is retransmitted. The receiver accepts and buffers frames that arrive out of order (if they are correct) and only passes them to the Network Layer once the missing (retransmitted) frames are received and the sequence is complete.
-        * **Diagram:** *Insert Diagram: Sender-Receiver interaction for Selective Repeat (send multiple frames, if NAK for frame X, resend only X. Receiver buffers out-of-order frames).*
+        * **Explanation:** The sender can transmit multiple frames (up to a window size N). If an error is detected in a frame, only that specific erroneous frame is retransmitted. The receiver accepts and buffers frames that arrive out of order (if they are correct) and only passes them to the Network Layer once the missing (retransmitted) frames are received and the sequence is complete.    
         * **Advantages:** Most efficient ARQ protocol as it minimizes retransmissions.
         * **Disadvantages:** Most complex to implement due to receiver buffering and reordering requirements.
+      
+   ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/3%20selective%20repeat%20arq.png)
+
 
 **Comparison Table: ARQ Protocols**
 
