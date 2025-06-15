@@ -62,8 +62,8 @@ File access methods define how information within a file can be read or written.
 * **Indexed Sequential Access:** A hybrid approach. Files are organized sequentially, but an index is maintained to allow faster jumps to specific sections, after which sequential reading can continue.
     * **Use Case/Example:** An old ISAM (Indexed Sequential Access Method) file system for large data records. One might use an index to quickly jump to the start of records for "Students with last names starting with 'S'", then read sequentially from there.
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20file%20access.png)
-https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20file%20%20access.png
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20file%20%20access.png)
+
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/2%20indexed%20sequential%20access.png)
 
 
