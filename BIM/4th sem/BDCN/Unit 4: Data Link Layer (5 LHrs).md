@@ -140,7 +140,7 @@ Error detection techniques add redundant information to the data block (frame) b
     * **Explanation:** A powerful and widely used error detection technique. It treats the data to be transmitted as a binary polynomial. This data polynomial is divided by a predefined generator polynomial (both sender and receiver use the same generator polynomial). The remainder of this division is the CRC checksum (Frame Check Sequence - FCS), which is appended to the data. The receiver performs the same polynomial division. If the remainder is zero, no error is assumed.
     * **Advantages:**
         * Excellent error detection capabilities, particularly for burst errors (multiple consecutive bit errors).
-        * Widely used in networking (Ethernet, Wi-Fi, HDLC, ATM).
+        * Widely used in networking (Ethernet, Wi-Fi, HDLC).
     * **Disadvantages:** More complex to implement than parity or simple checksum.
   
     ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%204/2%20CRC.jpg)
