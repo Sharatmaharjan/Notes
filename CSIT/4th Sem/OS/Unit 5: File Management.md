@@ -285,7 +285,7 @@ Directories are special files that store information about other files and direc
 
 #### 5.3.3. Directory Implementation
 
-Directories are essentially lists of files and their attributes. Their implementation varies:
+Directory implementation refers to how the operating system internally stores and manages information about files and directories — essentially how it organizes file metadata and structure. Directories are essentially lists of files and their attributes. Their implementation varies:
 * **Linear List:** A simple list of file names and pointers to their respective data blocks or inodes.
     * **Advantages:** Simple to implement.
     * **Disadvantages:** Slow search for large directories. Deletion can be complex.
