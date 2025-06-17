@@ -310,23 +310,53 @@ Directories are essentially lists of files and their attributes. Their implement
 
 #### 5.3.4. Shared Files
 
-Allowing multiple users or processes to access the same file is crucial for collaboration and resource efficiency.
-* **Hard Links:** Create multiple directory entries that all point to the *same inode* (in UNIX-like systems) or file control block.
-    * **Characteristics:** All hard links are equally valid; deleting one doesn't delete the file until the last hard link is removed. Only possible within the same file system.
-    * **Advantages:** Efficient, original file not distinguishable from link.
-    * **Disadvantages:** Cannot span file systems; can't link to directories (to avoid cycles).
-    * **Use Case/Example:**
-        * User A creates `report.txt`.
-        * User B creates a hard link `ln report.txt my_copy.txt`.
-        * Both `report.txt` and `my_copy.txt` point to the *exact same data blocks* on disk. If User A deletes `report.txt`, `my_copy.txt` still exists and the file data is preserved because it still has a link count > 0.
-* **Symbolic Links (Soft Links):** A special file that contains the *path name* of another file or directory.
-    * **Characteristics:** The link is just a pointer to a path. If the original file is deleted or moved, the symbolic link breaks (becomes a "dangling pointer"). Can span file systems and link to directories.
-    * **Advantages:** Flexible, can link to any file/directory anywhere.
-    * **Disadvantages:** Less efficient (requires extra lookup); dangling pointers are possible.
-    * **Use Case/Example:**
-        * A program might need to access a configuration file always at `/etc/app.conf`, but the actual file is in `/opt/app/configs/app_prod.conf`. A symbolic link `ln -s /opt/app/configs/app_prod.conf /etc/app.conf` can be created.
-        * If `/opt/app/configs/app_prod.conf` is later deleted, `/etc/app.conf` becomes a broken (dangling) link.
-        * Used for creating shortcuts to files or folders in Windows, or linking library versions in Linux (e.g., `libfoo.so` linking to `libfoo.so.1.2.3`).
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/9%20hard%20and%20soft%20links.jpg)
+
+###  **1. Hard Link** (Default)
+
+* Hard links are used in Linux/Unix systems when you want multiple file names to refer to the same data on disk — without duplicating the content.
+* A **hard link** is another name for the same file.
+* Both point to the **same inode** (same data on disk).
+* If the original file is deleted, the data remains accessible through the hard link.
+
+####  Syntax:
+
+```bash
+ln source_file link_name
+```
+
+####  Example:
+
+```bash
+ln file1.txt file1_hardlink.txt
+```
+
+* Now both files refer to the same data.
+* Changes in one reflect in the other.
+
+---
+
+### **2. Symbolic (Soft) Link**
+
+* A **symbolic link** is like a shortcut or pointer.
+* It points to the **path** of the original file.
+* If the original file is deleted, the symlink becomes **broken**.
+
+#### Syntax:
+
+```bash
+ln -s source_file link_name
+```
+
+#### Example:
+
+```bash
+ln -s file1.txt file1_symlink.txt
+```
+
+* `file1_symlink.txt` points to `file1.txt`.
+* One can see it's a symlink using `ls -l`.
+
 
 * **Comparison Table: Hard Links vs. Symbolic Links**
 
@@ -342,9 +372,9 @@ Allowing multiple users or processes to access the same file is crucial for coll
 
 ### 5.4. Free Space Management
 
-Managing free disk blocks is essential for allocating space to new files and reclaiming space from deleted files.
+Managing free disk blocks is essential for allocating space to new files and reclaiming space from deleted files. Modern OS and file systems primarily use Bitmaps + Extents.
 
-#### 5.4.1. Bitmaps (Bit Vector)
+#### 5.4.1. Bitmaps (Bit Vector) [ Widely Used Today]
 
 * **Explanation:** A bitmap (or bit vector) is a bit array where each bit corresponds to a disk block. A bit value of `1` typically indicates that the block is allocated (in use), and `0` indicates that it is free.
 * **Advantages:**
@@ -354,20 +384,12 @@ Managing free disk blocks is essential for allocating space to new files and rec
 * **Disadvantages:**
     * **Space Overhead:** The bitmap itself can be large for very large disks (e.g., a 1 TB disk with 4 KB blocks needs a 32 MB bitmap, which is (1024 GB * 1024 MB/GB * 1024 KB/MB) / 4 KB/block = 268,435,456 blocks. This would require 268,435,456 bits / 8 bits/byte = 33,554,432 bytes, or 32 MB).
     * Must be kept in memory for efficient access, or at least portions of it.
-* **Numerical Example/Use Case:**
-    * Assume a disk has 16 blocks (Block 0 to Block 15).
-    * **Initial state (all blocks free):**
-        `Bitmap: 0000 0000 0000 0000` (Index: 0123 4567 89AB CDEF)
-    * **Allocate Blocks 0, 1, 2 for File A (contiguous allocation):**
-        `Bitmap: 1110 0000 0000 0000`
-    * **Allocate Block 7 for File B:**
-        `Bitmap: 1110 0001 0000 0000`
-    * **Free Block 1 (File C deletes part of its data, or internal fragmentation):**
-        `Bitmap: 1010 0001 0000 0000`
-    * **Finding 2 contiguous free blocks:** Scan the bitmap for `00`. In the current state, `00` exists at indices (3,4), (4,5), (5,6), (8,9), etc. This makes it efficient to find consecutive free blocks.
-* **Diagram Suggestion:** A linear representation of disk blocks with a corresponding bitmap above it, showing 0s for free and 1s for allocated.
 
-#### 5.4.2. Linked List (Free List)
+The given instance of disk blocks on the disk in Figure 1 (where green blocks are allocated) can be represented by a bitmap of 16 bits as: **1111000111111001** .
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/10%20bitmap.png)
+
+#### 5.4.2. Linked List (Free List) [Mostly Outdated]
 
 * **Explanation:** All free disk blocks are linked together into a list. The first free block contains a pointer to the second free block, which points to the third, and so on. The OS only needs to store a pointer to the head of this free list.
 * **Advantages:**
@@ -377,16 +399,9 @@ Managing free disk blocks is essential for allocating space to new files and rec
     * **Poor Performance for Finding Contiguous Blocks:** Difficult and slow to find contiguous blocks for contiguous file allocation.
     * **Reliability Issues:** A single lost pointer can lead to the loss of a large number of free blocks.
     * **Sequential Traversal:** Finding a specific number of free blocks might require traversing a long list on disk.
-* **Numerical Example/Use Case:**
-    * Assume a disk with blocks:
-        `[Block 0 (allocated), Block 1 (free), Block 2 (allocated), Block 3 (free), Block 4 (free), Block 5 (allocated)]`
-    * **Free List Head Pointer:** Points to Block 1.
-    * **Contents of free blocks:**
-        * Block 1: (contains a pointer to Block 3)
-        * Block 3: (contains a pointer to Block 4)
-        * Block 4: (contains a NULL/end-of-list pointer)
-    * **Allocation of a new file requiring 1 block:** The OS takes Block 1. The Free List Head now points to Block 3.
-    * **Allocation of a new file requiring 2 blocks:** The OS would take Block 1 and then Block 3. This would require two separate seeks unless it was intelligent enough to find two *consecutive* blocks, which is not inherent in a simple linked list.
-* **Diagram Suggestion:** A linear representation of disk blocks, showing some allocated blocks and a chain of arrows linking together the free blocks.
+
+In Figure-2, the free space list head points to Block 5 which points to Block 6, the next free block and so on. The last free block would contain a null pointer indicating the end of free list.
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/10%20linkedlist.png)
 
 ---
