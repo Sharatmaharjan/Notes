@@ -214,8 +214,7 @@ This section details how file data is stored on disk and how the OS manages the 
     * Block 5 contains data + pointer to NULL (end of file).
     * To read the data in Block 5, the system must first read Block 10 to get the pointer to Block 25, then read Block 25 to get the pointer to Block 5. This involves multiple disk I/Os for random access.
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20indexedAllocation.jpg)
-
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/7%20Linked_allocation_example.jpg)
 
 #### 5.2.3. Linked List Allocation using Table in Memory (FAT - File Allocation Table)
 
@@ -291,14 +290,23 @@ Directories are essentially lists of files and their attributes. Their implement
     * **Advantages:** Simple to implement.
     * **Disadvantages:** Slow search for large directories. Deletion can be complex.
     * **Use Case/Example:** In early file systems or very small, simple directories. To find a file, the OS scans this list from beginning to end.
+
+ ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/8%20linear%20list.png)
+
 * **Hash Table:** Uses a hash function to map file names to entries in a hash table, which then point to the file information.
     * **Advantages:** Very fast search and insertion on average.
     * **Disadvantages:** Collisions must be handled. Can be complex to resize.
     * **Use Case/Example:** Some modern file systems might use hashing for large directories to speed up lookups. When searching for "document.txt", its name is hashed to quickly jump to a likely location in the table.
+ 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%205/8%20hash%20table.png)
+
+
 * **B-Tree/B+Tree:** Used for very large directories in some high-performance file systems.
     * **Advantages:** Efficient searching, insertion, and deletion for large datasets.
     * **Disadvantages:** More complex to implement.
     * **Use Case/Example:** Modern file systems like NTFS (Windows) and HFS+ (macOS) use B-trees for very large directories to ensure scalable performance, especially for directories with thousands of files.
+
+
 
 #### 5.3.4. Shared Files
 
