@@ -246,7 +246,7 @@ Data link protocols define the rules for transmitting data frames over a link.
 * **Types:**
     * **Character-oriented (Byte-oriented):** Data is treated as a sequence of characters. Control characters (e.g., SYN, STX, ETX) are used to mark the beginning and end of frames. (e.g., BISYNC - Binary Synchronous Communications).
     * **Bit-oriented:** Data is treated as a stream of bits, regardless of character boundaries. Frames are delimited by special bit patterns (flags). (e.g., HDLC - High-level Data Link Control, PPP - Point-to-Point Protocol).
-* **Practical Example:** Ethernet, HDLC, SDLC, PPP, ATM.
+* **Practical Example:** Ethernet, HDLC, SDLC, PPP.
 
 **Comparison Table: Asynchronous vs. Synchronous Transmission**
 
