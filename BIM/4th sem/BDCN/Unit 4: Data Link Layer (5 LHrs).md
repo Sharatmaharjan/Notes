@@ -196,6 +196,9 @@ Error detection techniques add redundant information to the data block (frame) b
 
 * **Explanation:** Instead of retransmission, FEC adds enough redundant information (error-correcting codes) to the transmitted data so that the receiver can detect and *correct* a certain number of errors without needing to request retransmission.
 * **Mechanism:** Uses complex mathematical algorithms (e.g., Hamming codes, Reed-Solomon codes, convolutional codes) to generate parity bits that allow for error correction.
+
+Hamming Code example: https://www.geeksforgeeks.org/computer-networks/hamming-code-in-computer-network/
+  
 * **Advantages:**
     * No retransmission needed, making it suitable for real-time applications (e.g., streaming video, voice) where delays are critical.
     * Useful in noisy channels where retransmissions would be frequent and inefficient.
@@ -219,7 +222,6 @@ Data link protocols define the rules for transmitting data frames over a link.
 #### 4.1 Asynchronous Transmission
 
 * **Explanation:** Data is transmitted one character (byte) at a time. Each character is framed with a start bit at the beginning and one or more stop bits at the end. These start/stop bits define the beginning and end of a character, allowing the receiver to synchronize with each individual character rather than the entire bit stream. There might be idle time between characters.
-* **Diagram:** *Insert Diagram: A sequence of bytes with start bits, data bits, and stop bits, showing potential idle time between bytes.*
 * **Advantages:**
     * Simple to implement.
     * Suitable for low-speed, bursty data traffic (e.g., keyboard input).
@@ -229,10 +231,12 @@ Data link protocols define the rules for transmitting data frames over a link.
     * Lower efficiency for continuous data streams.
 * **Practical Example:** RS-232 serial communication ports, old modems.
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/images/Unit%205/4%20synchronous%20and%20asynchronous.png)
+
+
 #### 4.2 Synchronous Transmission
 
 * **Explanation:** Data is transmitted in continuous blocks (frames) without start and stop bits for individual characters. Synchronization is achieved by synchronizing the clocks of the sender and receiver. This often involves sending a preamble or sync characters at the beginning of each frame to align the clocks.
-* **Diagram:** *Insert Diagram: A continuous stream of bits organized into frames, with a header (including sync pattern) and trailer.*
 * **Advantages:**
     * Higher efficiency due to less overhead (no start/stop bits per character).
     * Suitable for high-speed, continuous data streams.
