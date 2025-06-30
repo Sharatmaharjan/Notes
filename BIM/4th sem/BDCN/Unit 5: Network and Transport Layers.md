@@ -330,7 +330,7 @@ Control how the TCP connection behaves. Each flag is 1 bit (on/off):
 
 ---  
 
-## **4. Key Concepts with Examples**  
+## **Key Concepts with Examples**  
 ### **Fragmentation in Network Layer**  
 - If a packet exceeds **MTU (Maximum Transmission Unit)**, it is fragmented.  
 - Example: MTU = 1500 bytes, Packet size = 4000 bytes → Fragmented into 3 packets.  
@@ -342,7 +342,7 @@ Control how the TCP connection behaves. Each flag is 1 bit (on/off):
 
 ---  
 
-## **5. Summary**  
+## **Summary**  
 ✔ **TCP** is reliable but slow; **UDP** is fast but unreliable.  
 ✔ **IPv4** uses 32-bit addresses, **IPv6** uses 128-bit.  
 ✔ **Subnetting** divides networks for efficient addressing.  
@@ -350,5 +350,436 @@ Control how the TCP connection behaves. Each flag is 1 bit (on/off):
 ✔ **Sliding window** in TCP manages flow control.  
 
 ---
+
+# **4. Transport Layer Functions**    
+
+### **Key Functions of the Transport Layer**  
+a. **Linking to the Application Layer** (Port Addressing)  
+b. **Segmenting and Reassembling Data**  
+c. **Session Management** (Connection Establishment & Termination)  
+d. **Error Control & Flow Control**  
+e. **Multiplexing & Demultiplexing**   
+
+---  
+
+## **a. Linking to the Application Layer (Port Addressing)**  
+- The Transport Layer uses **port numbers** to identify different applications.  
+- **Well-known ports**:  
+  - HTTP (Port 80), HTTPS (443), FTP (21), SSH (22), DNS (53)  
+- **Ephemeral ports**: Temporary ports assigned to client applications.  
+
+### **Example: Web Browsing (HTTP)**  
+- **Client** sends a request from port **49152** (random) to **Server Port 80**.  
+- **Server** responds back to **Client Port 49152**.  
+
+#### **Why Ports are Needed?**  
+✔ Allows multiple applications to run simultaneously.  
+✔ Ensures correct data delivery to the right application.  
+
+---  
+
+## **b. Segmenting and Reassembling Data**  
+- **Segmentation**: Breaking large data into smaller **segments (TCP)** or **datagrams (UDP)**.  
+- **Reassembly**: Putting segments back in order at the receiver.  
+
+### **Example: File Transfer (FTP)**  
+- A **10 MB file** is divided into **1500-byte segments** (if MTU = 1500 bytes).  
+- Each segment has a **sequence number** for reassembly.  
+
+#### **Advantages of Segmentation**  
+✔ Efficient transmission over networks with varying MTUs.  
+✔ Prevents large data blocks from congesting the network.  
+
+#### **Disadvantages**  
+✖ Adds overhead (headers for each segment).  
+✖ Requires buffering and reassembly at the receiver.  
+
+---  
+
+## **c. Session Management (Connection Control)**  
+### **TCP Connection Management (3-Way Handshake)**  
+1. **SYN** → Client initiates connection.  
+2. **SYN-ACK** → Server acknowledges.  
+3. **ACK** → Client confirms.  
+
+### **TCP Connection Termination (4-Way Handshake)**  
+1. **FIN** → Host A requests closure.  
+2. **ACK** → Host B acknowledges.  
+3. **FIN** → Host B sends its own FIN.  
+4. **ACK** → Host A confirms.  
+
+#### **Why Proper Session Management is Important?**  
+✔ Ensures reliable data transfer.  
+✔ Prevents half-open connections wasting resources.  
+
+---  
+
+## **d. Error Control & Flow Control**  
+### **Error Control in TCP**  
+- **Acknowledgements (ACKs)**: Receiver confirms received segments.  
+- **Retransmission (Timeout)**: Lost packets are resent.  
+
+### **Flow Control (Sliding Window Protocol)**  
+- Adjusts transmission speed based on receiver’s buffer capacity.   
+
+#### **Example of Sliding Window**  
+- **Window Size = 3** → Sender can transmit 3 packets before waiting for ACK.  
+- If ACK for Packet 2 is lost, sender retransmits from Packet 2.  
+
+---  
+
+## **e. Multiplexing & Demultiplexing**  
+- **Multiplexing**: Combining multiple application data into one transport layer segment.  
+- **Demultiplexing**: Separating received data for different applications.  
+
+### **Example: Web Server Handling Multiple Requests**  
+- A single server uses **port 80 (HTTP)** but serves multiple clients using different **ephemeral ports**.  
+
+---  
+
+## **Summary Table: Transport Layer Functions**  
+| **Function**               | **Description** | **Protocol Example** |  
+|----------------------------|----------------|----------------------|  
+| **Port Addressing**         | Links data to correct app using ports | TCP/UDP |  
+| **Segmentation**            | Breaks data into smaller units | TCP (Segments), UDP (Datagrams) |  
+| **Session Management**      | Establishes & terminates connections | TCP (3-Way Handshake) |  
+| **Error Control**           | Detects & recovers lost packets | TCP (ACKs, Retransmission) |  
+| **Flow Control**            | Prevents sender from overwhelming receiver | TCP (Sliding Window) |  
+| **Multiplexing/Demultiplexing** | Combines/Separates data streams | TCP/UDP |  
+
+---  
+
+# **5. Addressing in Network and Transport Layers**   
+
+## **a. Introduction to Addressing**  
+Addressing is a fundamental concept in networking that ensures data is correctly routed from source to destination. The **Network Layer (IP addressing)** and **Data Link Layer (MAC addressing)** work together to achieve this.  
+
+### **Types of Addressing**  
+1. **Logical Addressing (IP Addresses)** – Used at the **Network Layer**.  
+2. **Physical Addressing (MAC Addresses)** – Used at the **Data Link Layer**.  
+3. **Port Addressing (Port Numbers)** – Used at the **Transport Layer**.  
+
+---  
+
+## **b. Assigning Addresses**  
+### **A. IP Addressing (Logical Addressing)**  
+- **IPv4**: 32-bit address (e.g., `192.168.1.1`)  
+- **IPv6**: 128-bit address (e.g., `2001:0db8:85a3::8a2e:0370:7334`)  
+
+#### **IPv4 Address Classes**  
+| **Class** | **Range** | **Purpose** |  
+|-----------|----------------|------------|  
+| **A**     | 1.0.0.0 – 126.255.255.255 | Large Networks |  
+| **B**     | 128.0.0.0 – 191.255.255.255 | Medium Networks |  
+| **C**     | 192.0.0.0 – 223.255.255.255 | Small Networks |  
+| **D**     | 224.0.0.0 – 239.255.255.255 | Multicasting |  
+| **E**     | 240.0.0.0 – 255.255.255.255 | Reserved |  
+ 
+
+#### **Private vs Public IP Addresses**  
+| **Type** | **Range** | **Usage** |  
+|----------|----------------|----------|  
+| **Private** | 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 | Internal networks (NAT needed) |  
+| **Public** | All others | Internet communication |  
+
+#### **Subnetting (Numerical Example)**  
+**Problem:** Divide `192.168.10.0/24` into 4 subnets.  
+**Solution:**  
+- New subnet mask: `/26` (since \(2^2 = 4\) subnets).  
+- Subnets:  
+  1. `192.168.10.0/26` (Hosts: 1-62)  
+  2. `192.168.10.64/26` (Hosts: 65-126)  
+  3. `192.168.10.128/26` (Hosts: 129-190)  
+  4. `192.168.10.192/26` (Hosts: 193-254)  
+
+ 
+### **B. MAC Addressing (Physical Addressing)**  
+- **48-bit hexadecimal** (e.g., `00:1A:2B:3C:4D:5E`)  
+- **Assigned by manufacturer** (first 24 bits = OUI, last 24 bits = NIC identifier).  
+- Used in **Ethernet & Wi-Fi** for local network communication.  
+
+
+### **C. Port Addressing (Transport Layer)**  
+- **16-bit numbers** (0-65535)  
+- **Well-known ports (0-1023)**: HTTP (80), HTTPS (443), FTP (21)  
+- **Dynamic ports (49152-65535)**: Temporary client-side ports  
+
+---  
+
+## **c. Address Resolution**  
+### **A. Address Resolution Protocol (ARP)**  
+- Resolves **IPv4 addresses to MAC addresses** in a local network.  
+- Works via **ARP Request (Broadcast)** and **ARP Reply (Unicast)**.  
+
+#### **Example: ARP Process**  
+1. **Host A** wants to send data to **Host B (IP: 192.168.1.2)** but doesn’t know its MAC.  
+2. **Host A** broadcasts an **ARP Request**: *"Who has 192.168.1.2?"*  
+3. **Host B** replies with its MAC address.  
+4. **Host A** updates its **ARP Cache**.  
+
+
+#### **ARP Cache Table Example**  
+| **IP Address** | **MAC Address** |  
+|----------------|-----------------|  
+| 192.168.1.1    | 00:1A:2B:3C:4D:5E |  
+| 192.168.1.2    | 00:1B:3C:4D:5E:6F |  
+
+### **B. Reverse ARP (RARP)**  
+- Resolves **MAC addresses to IP addresses**.  
+
+### **C. Neighbor Discovery Protocol (NDP) – IPv6 Equivalent of ARP**  
+- Uses **ICMPv6** instead of ARP.  
+
+---  
+
+## **d. Comparison: ARP vs RARP vs NDP**  
+| **Protocol** | **Function** | **Used in** |  
+|-------------|-------------|------------|  
+| **ARP** | IP → MAC resolution | IPv4 |  
+| **RARP** | MAC → IP resolution | Legacy systems |  
+| **NDP** | IP → MAC resolution (IPv6) | IPv6 |  
+
+---  
+ 
+## **e. Summary Table: Addressing in Networking**  
+| **Address Type** | **Layer** | **Example** | **Purpose** |  
+|-----------------|----------|------------|------------|  
+| **IP Address (IPv4/IPv6)** | Network Layer | `192.168.1.1` | Logical addressing across networks |  
+| **MAC Address** | Data Link Layer | `00:1A:2B:3C:4D:5E` | Physical addressing in LAN |  
+| **Port Number** | Transport Layer | `80 (HTTP)` | Identifies applications |  
+
+---  
+
+# **6. Routing in Computer Networks**  
+
+## **a. Introduction to Routing**  
+**Routing** is the process of selecting the best path for data packets to travel from a source to a destination across interconnected networks. It is a core function of the **Network Layer (Layer 3)**.  
+
+### **Key Objectives of Routing:**  
+✔ **Path Determination** – Finding the optimal route.  
+✔ **Packet Forwarding** – Sending packets along the chosen path.  
+✔ **Adaptability** – Adjusting routes based on network changes.   
+
+---  
+
+## **b. Types of Routing**  
+
+### **A. Static Routing**  
+- Routes are **manually configured** by an administrator.  
+- **No automatic updates** – Changes require manual intervention.  
+
+#### **Example:**  
+```  
+Router(config)# ip route 192.168.2.0 255.255.255.0 10.0.0.2  
+```  
+*(This command sets a static route to `192.168.2.0/24` via next-hop `10.0.0.2`.)*  
+
+#### **Advantages:**  
+✔ No routing protocol overhead.  
+✔ Secure (no dynamic route advertisements).  
+
+#### **Disadvantages:**  
+✖ Not scalable for large networks.  
+✖ Manual updates needed for topology changes.  
+
+### **B. Dynamic Routing**  
+- Routes are **automatically updated** using **routing protocols**.  
+- Adapts to network changes (link failures, congestion).  
+
+#### **Example Protocols:**  
+- **RIP (Routing Information Protocol)** – Distance-vector, hop-count metric.  
+- **OSPF (Open Shortest Path First)** – Link-state, Dijkstra’s algorithm.  
+- **BGP (Border Gateway Protocol)** – Path-vector, used in the Internet.  
+
+#### **Advantages:**  
+✔ Self-adjusting to network changes.  
+✔ Scalable for large networks.  
+
+#### **Disadvantages:**  
+✖ Higher CPU/memory usage.  
+✖ Vulnerable to routing loops if misconfigured.   
+
+---  
+
+## **c. Routing Protocols**  
+
+### **A. Distance-Vector Protocols**  
+- Routers share **entire routing tables** with neighbors.  
+- Uses **hop count** as a metric.  
+
+#### **Example: RIP (Routing Information Protocol)**  
+- **Max hops = 15** (16 = unreachable).  
+- **Updates every 30 sec** (can cause slow convergence).  
+
+### **B. Link-State Protocols**  
+- Routers share **link-state advertisements (LSAs)**.  
+- Builds a **topology map** using Dijkstra’s algorithm.  
+
+#### **Example: OSPF (Open Shortest Path First)**  
+- **Fast convergence** (updates sent immediately on changes).  
+- **Hierarchical design** (areas reduce overhead).  
+
+### **C. Hybrid Protocols**  
+- Combines **distance-vector and link-state** features.  
+- **Example:** EIGRP (Enhanced Interior Gateway Routing Protocol).  
+
+### **Comparison Table: Routing Protocols**  
+| **Protocol** | **Type** | **Metric** | **Convergence** | **Use Case** |  
+|-------------|---------|-----------|----------------|-------------|  
+| **RIP** | Distance-Vector | Hop Count | Slow | Small networks |  
+| **OSPF** | Link-State | Cost (Bandwidth) | Fast | Large enterprises |  
+| **BGP** | Path-Vector | Path Attributes | Slow | Internet routing |  
+| **EIGRP** | Hybrid | Bandwidth + Delay | Fast | Cisco networks |  
+
+---  
+
+## **d. Multicasting**  
+- **One-to-many** communication (e.g., video streaming, online meetings).  
+- Uses **Class D IP addresses (224.0.0.0 – 239.255.255.255)**.  
+
+### **Key Protocols:**  
+- **IGMP (Internet Group Management Protocol)** – Manages multicast group membership.  
+- **PIM (Protocol Independent Multicast)** – Forwards multicast traffic.  
+
+---  
+
+## **e. The Anatomy of a Router**  
+
+### **Key Components:**  
+1. **CPU** – Executes routing protocols and forwarding decisions.  
+2. **RAM** – Stores **routing tables, ARP cache, running config**.  
+3. **NVRAM** – Stores **startup configuration**.  
+4. **Flash Memory** – Holds **OS (e.g., Cisco IOS)**.  
+5. **Interfaces (Ports)** – Ethernet, Serial, WAN.  
+
+
+### **Routing Table Example:**  
+| **Destination** | **Next Hop** | **Interface** | **Metric** |  
+|----------------|-------------|--------------|-----------|  
+| 192.168.1.0/24 | Directly Connected | FastEthernet0/0 | 0 |  
+| 10.0.0.0/8 | 203.0.113.1 | Serial0/0/0 | 1 |  
+| 0.0.0.0/0 | 198.51.100.1 | Serial0/0/1 | 0 |  
+
+---  
+
+## **Summary Table: Key Routing Concepts**  
+| **Concept** | **Description** | **Example** |  
+|------------|----------------|------------|  
+| **Static Routing** | Manually configured routes | `ip route 192.168.1.0 255.255.255.0 10.0.0.2` |  
+| **Dynamic Routing** | Automatically updated routes | RIP, OSPF, BGP |  
+| **Default Route** | Fallback for unknown destinations | `0.0.0.0/0` |  
+| **Multicast** | One-to-many communication | Video conferencing (224.0.0.0/4) |  
+| **Router Components** | CPU, RAM, NVRAM, Flash, Interfaces | Cisco 2901 |  
+
+---  
+
+# **7. TCP/IP Example: Addressing, Connections, and Layers**   
+
+## **a. Introduction to TCP/IP Communication**  
+The **TCP/IP model** governs end-to-end data transmission in modern networks. This section covers:  
+✔ **Known vs Unknown Addresses** (How devices find each other)  
+✔ **TCP Connection Establishment** (Reliable communication)  
+✔ **Interaction of TCP/IP with Network Layer** (Role of IP in routing)  
+
+---  
+
+## **b. Known vs Unknown Addresses**  
+
+### **A. Known Addresses (Direct Communication)**  
+- **Scenario:** Devices are on the **same subnet** (e.g., `192.168.1.0/24`).  
+- **Process:**  
+  1. **Source** checks if the **destination IP is in the same subnet**.  
+  2. If yes, it uses **ARP** to find the **MAC address** of the destination.  
+  3. Data is sent **directly** via Ethernet/Wi-Fi.  
+
+#### **Example:**  
+- **Host A (`192.168.1.10`)** → **Host B (`192.168.1.20`)**  
+  - No router needed. ARP resolves `192.168.1.20` to a MAC address.  
+
+
+### **B. Unknown Addresses (Indirect Communication)**  
+- **Scenario:** Devices are on **different networks** (e.g., `192.168.1.10` → `10.0.0.5`).  
+- **Process:**  
+  1. **Source** identifies the destination is **outside its subnet**.  
+  2. It forwards the packet to the **default gateway (router)**.  
+  3. The router uses its **routing table** to forward the packet.  
+
+#### **Example:**  
+- **Host A (`192.168.1.10`)** → **Server (`10.0.0.5`)**  
+  - Host A sends the packet to its **default gateway (`192.168.1.1`)**.  
+  - The router routes it toward `10.0.0.0/8`.  
+
+---  
+
+## **c. TCP Connections (3-Way Handshake)**  
+### **Step-by-Step TCP Establishment**  
+1. **SYN** – Client sends a synchronization packet.  
+   - `Seq = X`, `SYN=1`.  
+2. **SYN-ACK** – Server acknowledges and sends its own SYN.  
+   - `Seq = Y`, `ACK = X+1`, `SYN=1`.  
+3. **ACK** – Client confirms the connection.  
+   - `Seq = X+1`, `ACK = Y+1`.  
+
+
+### **Why 3-Way Handshake?**  
+✔ Ensures **both devices are ready** to communicate.  
+✔ Synchronizes **initial sequence numbers** for reliability.  
+
+---  
+
+## **d. TCP/IP and Network Layer Interaction**  
+
+### **A. Encapsulation Process**  
+1. **Application Layer** – HTTP/FTP data.  
+2. **Transport Layer (TCP/UDP)** – Adds **port numbers** (e.g., `80` for HTTP).  
+3. **Network Layer (IP)** – Adds **source/destination IPs**.  
+4. **Data Link Layer** – Adds **MAC addresses**.  
+
+### **B. Role of IP (Network Layer)**  
+✔ **Logical Addressing** – Uses IPs to route packets globally.  
+✔ **Fragmentation** – Splits large packets if MTU is exceeded.  
+✔ **Routing** – Uses protocols like OSPF/BGP to find paths.  
+
+#### **Example: HTTP Request Flow**  
+1. **Client** sends `GET /` to `www.example.com:80`.  
+2. **TCP** adds port `80`.  
+3. **IP** adds source (`192.168.1.10`) and destination (`93.184.216.34`).  
+4. **Ethernet** adds MACs for local delivery.  
+
+---  
+
+## **e. Key Scenarios with Examples**  
+
+### **Scenario 1: LAN Communication (Known Address)**  
+- **Host A (`192.168.1.10`)** pings **Host B (`192.168.1.20`)**.  
+  - ARP resolves `192.168.1.20` to a MAC.  
+  - ICMP echo request sent directly.  
+
+### **Scenario 2: WAN Communication (Unknown Address)**  
+- **Host A (`192.168.1.10`)** accesses **Google (`142.250.190.78`)**.  
+  - Packet goes to the **default gateway**.  
+  - Router uses **NAT** to mask private IP.  
+
+### **Scenario 3: TCP File Download**  
+1. **SYN** → **SYN-ACK** → **ACK** (Connection established).  
+2. Data sent in **segments** with sequence numbers.  
+3. **FIN** → **ACK** → **FIN** → **ACK** (Connection closed).  
+
+
+---  
+
+## **Summary Table: TCP/IP Communication**  
+| **Concept** | **Layer** | **Protocol/Address Used** | **Example** |  
+|------------|----------|--------------------------|------------|  
+| **Known Addresses** | Data Link | MAC (ARP) | `192.168.1.10` → `192.168.1.20` |  
+| **Unknown Addresses** | Network | IP + Default Gateway | `192.168.1.10` → `8.8.8.8` |  
+| **TCP Connection** | Transport | TCP Ports + 3-Way Handshake | HTTP (Port 80) |  
+| **Routing** | Network | IP + Routing Protocols | OSPF, BGP |  
+
+---  
+ 
+
+
+
 
 
