@@ -1,0 +1,2 @@
+## 1. Suppose an ISP owns the block of addresses of the form 200.201.202.0 and it wants to create six subnets from this block, with each block having the same number of IP addresses. Calculate subnet mask, range, netid, broadcast id and prefixes (of form a.b.c.d/x) for the six subnets.
+## 2. Suppose an ISP owns the block of addresses of the form 210.249.240.0 and it wants to create Six subnets from this block, with each block having the same number of IP addresses. Calculate subnet mask, usable IP range, network id and broadcast id in each subnet.
