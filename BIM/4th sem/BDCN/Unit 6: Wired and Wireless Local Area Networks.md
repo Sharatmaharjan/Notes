@@ -1,5 +1,4 @@
 # **Unit 6: Wired and Wireless Local Area Networks**  
-**Detailed Exam-Oriented Notes**  
 
 ## **1. Introduction to LANs**  
 A **Local Area Network (LAN)** is a network that connects devices within a limited geographical area such as a home, office, or campus. LANs enable resource sharing (files, printers, internet) and communication among connected devices.  
@@ -105,35 +104,6 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 
 ---  
 
-## **4. Exam-Oriented Questions**  
-
-**Q1. What is the difference between a hub and a switch?**  
-- **Hub:** Broadcasts data to all devices (inefficient).  
-- **Switch:** Forwards data only to the target device (uses MAC addresses).  
-
-**Q2. Why is a switch better than a hub?**  
-- **Switches reduce collisions**, improve speed, and support full-duplex communication.  
-
-**Q3. What are the advantages of wired LANs over wireless LANs?**  
-- **Higher speed, lower latency, better security, no interference.**  
-
-**Q4. What is the role of a Network OS?**  
-- To **manage users, security, and shared resources** (files, printers) in a network.  
-
----  
-
-## **5. Diagrams to Study**  
-1. **LAN Topology (Star, Bus, Ring)**  
-2. **Hub vs Switch vs Router**  
-3. **Ethernet Cable Types (Cat 5e/6/7, Fiber Optic)**  
-4. **Wi-Fi Standards (802.11ac, ax, be)**  
-
-*(Refer to **Tanenbaum’s "Computer Networks"** or **Cisco CCNA materials** for diagrams.)*  
-
-**End of Notes** 🚀
-
-# **Unit 6: Wired and Wireless Ethernet**  
-**Detailed Exam-Oriented Notes**  
 
 ## **1. Wired Ethernet**  
 
@@ -262,21 +232,7 @@ Ethernet networks use different physical layouts:
 
 ---
 
-## **4. Exam Focus Points**  
-
-✔ Know the difference between CSMA/CD and CSMA/CA  
-✔ Memorize Ethernet and Wi-Fi standards with speeds  
-✔ Understand wireless frame structure  
-✔ Be able to compare wired vs wireless advantages  
-✔ Know evolution of wireless security protocols  
-
-**Practice Question:**  
-*"A company wants to set up a new office network. Compare the advantages of using wired Ethernet versus wireless Ethernet, considering factors like speed, reliability, and security."*  
-
-*(End of Notes)* 🚀
-
 # **Best Practice LAN Design**  
-**Comprehensive Exam-Oriented Guide**  
 
 ## **1. Designing User Access with Wired Ethernet**  
 
@@ -418,20 +374,8 @@ Ethernet networks use different physical layouts:
 
 ---
 
-## **7. Exam Focus Points**  
-
-✔ Understand **hierarchical network design principles**  
-✔ Know **wireless site survey fundamentals**  
-✔ Memorize **data center leaf-spine advantages**  
-✔ Be able to **compare different deployment scenarios**  
-
-**Practice Question**:  
-*"A university needs to design wireless coverage for a new library building. Describe the key considerations for AP placement, channel planning, and security measures you would recommend."*  
-
-*(End of Notes)* 🚀
 
 # **Improving LAN Performance**  
-**Comprehensive Optimization Strategies**  
 
 ## **1. Improving Server Performance**  
 
@@ -559,17 +503,4 @@ Priority 3: All other traffic → Remaining 50%
 
 ---
 
-## **6. Exam Focus Points**  
 
-✔ **Memorize** QoS priority classes (EF, AF41, etc.)  
-✔ **Understand** TCP window scaling mechanics  
-✔ **Calculate** bandwidth requirements:  
-   ```  
-   Required BW = (Data Size × 8) / Transfer Time  
-   ```  
-✔ **Compare** optimization techniques (compression vs caching)  
-
-**Practice Question**:  
-*"A company's file server is experiencing slow response times. Propose three hardware and two software optimizations to improve performance, explaining how each solution helps."*  
-
-*(End of Notes)* 🚀
