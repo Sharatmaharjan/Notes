@@ -8,8 +8,7 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 ✔ **Limited geographical coverage** (typically within a single building)  
 ✔ **Privately owned and managed**  
 ✔ **Uses wired (Ethernet) or wireless (Wi-Fi) technologies**  
-
-*(Insert Diagram: Typical LAN Setup with Wired and Wireless Connections)*  
+ 
 
 ---  
 
@@ -54,7 +53,6 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 | **Mobility**      | Limited (fixed cables) | High (no cables) |  
 | **Security**      | More secure (physical access needed) | Less secure (requires encryption) |  
 
-*(Insert Diagram: Ethernet Cable vs Wi-Fi Signal Transmission)*  
 
 ---  
 
@@ -74,7 +72,18 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 - Allows **Wi-Fi devices** to connect to a wired network.  
 - **Example:** A **router’s Wi-Fi** acts as an access point.  
 
-*(Insert Diagram: Hub vs Switch vs Access Point in a LAN)*  
+
+| Feature          | Hub                          | Switch                        | Access Point (AP)              |
+|------------------|------------------------------|-------------------------------|--------------------------------|
+| **Layer**        | Layer 1 (Physical)           | Layer 2 (Data Link)           | Layer 2 (Bridges to Layer 1)   |
+| **Function**     | Broadcasts to all ports      | Directs traffic to specific ports | Connects wireless devices to wired networks |
+| **Intelligence** | None (dumb device)           | MAC address learning          | Converts wired ↔ wireless signals |
+| **Performance**  | Low (shared bandwidth)       | High (dedicated per-port)     | Medium (shared wireless medium) |
+| **Collisions**   | High (single collision domain)| None (per-port domain)        | Managed via CSMA/CA            |
+| **Security**     | None                         | Port security/VLAN support    | WPA2/WPA3 encryption           |
+| **Use Case**     | Obsolete (historical)        | Modern wired networks         | Wi-Fi networks                 |
+| **Example**      | 10BASE-T hub                 | Cisco 2960 switch             | Ubiquiti UniFi AP              |
+
 
 ---  
 
@@ -91,7 +100,7 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 
 ---  
 
-## **3. Summary Table: LAN Components**  
+## **Summary Table: LAN Components**  
 
 | **Component**       | **Function** | **Example** |  
 |---------------------|-------------|------------|  
@@ -105,7 +114,7 @@ A **Local Area Network (LAN)** is a network that connects devices within a limit
 ---  
 
 
-## **1. Wired Ethernet**  
+## **3. Wired Ethernet**  
 
 ### **A. Ethernet Topologies**  
 Ethernet networks use different physical layouts:  
@@ -124,9 +133,7 @@ Ethernet networks use different physical layouts:
      ✔ Simple cabling  
    - *Disadvantages*:  
      ✖ Prone to collisions  
-     ✖ Entire network fails if cable breaks  
-
-*(Insert Diagram: Comparison of Star vs Bus Topologies)*  
+     ✖ Entire network fails if cable breaks   
 
 ### **B. Media Access Control (MAC) - CSMA/CD**  
 - **Carrier Sense Multiple Access with Collision Detection**  
@@ -136,8 +143,7 @@ Ethernet networks use different physical layouts:
 - *Modern Ethernet*:  
   - Full-duplex switches made CSMA/CD obsolete  
   - Still important for historical understanding  
-
-*(Insert Diagram: CSMA/CD Process Flowchart)*  
+ 
 
 ### **C. Types of Ethernet**  
 
@@ -154,7 +160,7 @@ Ethernet networks use different physical layouts:
 
 ---
 
-## **2. Wireless Ethernet (Wi-Fi)**  
+## **4. Wireless Ethernet (Wi-Fi)**  
 
 ### **A. Wireless Topologies**  
 
@@ -166,16 +172,12 @@ Ethernet networks use different physical layouts:
    - Devices connect directly without AP  
    - Limited to small temporary networks  
 
-*(Insert Diagram: Infrastructure vs Ad-Hoc Networks)*  
-
 ### **B. Media Access Control - CSMA/CA**  
 - **Carrier Sense Multiple Access with Collision Avoidance**  
 - Key differences from wired:  
   ✔ Uses RTS/CTS (Request-to-Send/Clear-to-Send)  
   ✔ Implements NAV (Network Allocation Vector)  
-  ✔ Includes acknowledgment frames  
-
-*(Insert Diagram: CSMA/CA Handshake Process)*  
+  ✔ Includes acknowledgment frames   
 
 ### **C. Wireless Frame Layout**  
 
@@ -216,11 +218,10 @@ Ethernet networks use different physical layouts:
    - 192-bit encryption  
    - Protects against brute-force attacks  
 
-*(Insert Table: Comparison of Wireless Security Protocols)*  
 
 ---
 
-## **3. Comparison: Wired vs Wireless Ethernet**  
+## **Comparison: Wired vs Wireless Ethernet**  
 
 | **Feature**       | **Wired Ethernet** | **Wireless Ethernet** |  
 |-------------------|--------------------|-----------------------|  
@@ -232,7 +233,7 @@ Ethernet networks use different physical layouts:
 
 ---
 
-# **Best Practice LAN Design**  
+# **5. Best Practice LAN Design**  
 
 ## **1. Designing User Access with Wired Ethernet**  
 
@@ -247,9 +248,7 @@ Ethernet networks use different physical layouts:
 
 ✔ **Topology**:  
    - **Star topology** with hierarchical design  
-   - **Link aggregation** (LACP) for uplinks  
-
-*(Insert Diagram: Enterprise Wired Access Design)*  
+   - **Link aggregation** (LACP) for uplinks   
 
 **Best Practices**:  
 - Maintain **30% spare ports** for expansion  
@@ -273,7 +272,6 @@ Ethernet networks use different physical layouts:
    - **Controller-based**: Cisco WLC, Aruba Mobility Controller  
    - **Cloud-managed**: Meraki, Ubiquiti UniFi  
 
-*(Insert Diagram: Wireless Heat Map for Coverage Planning)*  
 
 **Best Practices**:  
 - Implement **WPA3-Enterprise** with RADIUS  
@@ -297,8 +295,6 @@ Ethernet networks use different physical layouts:
    - **iSCSI/NVMe over Fabrics**  
    - **Separate storage VLANs**  
 
-*(Insert Diagram: Modern Leaf-Spine Data Center Design)*  
-
 **Best Practices**:  
 - Implement **VXLAN** for network virtualization  
 - Use **ECMP** for load balancing  
@@ -321,8 +317,6 @@ Ethernet networks use different physical layouts:
    - **WAF** (Web Application Firewall)  
    - **DDoS Protection** (Cloudflare, AWS Shield)  
 
-*(Insert Diagram: 3-Tier e-Commerce Architecture)*  
-
 **Best Practices**:  
 - Implement **Auto-scaling** for web tier  
 - Use **CDN** for static content  
@@ -344,8 +338,7 @@ Ethernet networks use different physical layouts:
 ✔ **Remote Access**:  
    - **VPN** for secure remote work  
    - **Dynamic DNS** for small servers  
-
-*(Insert Diagram: Typical SOHO Network Setup)*  
+ 
 
 **Best Practices**:  
 - Enable **Guest Network** isolation  
@@ -354,7 +347,7 @@ Ethernet networks use different physical layouts:
 
 ---
 
-## **6. Comparison Tables**  
+## **Comparison Tables**  
 
 ### **Wired vs Wireless Access Design**  
 | **Factor**       | **Wired**               | **Wireless**             |  
@@ -375,7 +368,7 @@ Ethernet networks use different physical layouts:
 ---
 
 
-# **Improving LAN Performance**  
+# **6. Improving LAN Performance**  
 
 ## **1. Improving Server Performance**  
 
@@ -392,7 +385,6 @@ Ethernet networks use different physical layouts:
    - **Teaming/LACP**: Combine multiple 1Gbps ports → 2Gbps+  
    - **10Gbps/25Gbps NICs** for high-demand servers  
 
-*(Insert Diagram: Server NIC Teaming Configuration)*  
 
 ### **B. Software Optimization**  
 ✔ **Load Balancing**:  
@@ -430,8 +422,6 @@ Priority 1: Voice (DSCP 46) → 20% bandwidth guarantee
 Priority 2: Video (DSCP 34) → 30% bandwidth  
 Priority 3: All other traffic → Remaining 50%  
 ```
-
-*(Insert Diagram: QoS Traffic Prioritization Schema)*  
 
 ### **C. Protocol Optimization**  
 ✔ **Jumbo Frames**:  
