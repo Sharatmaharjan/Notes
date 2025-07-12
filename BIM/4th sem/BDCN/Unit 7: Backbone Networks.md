@@ -11,8 +11,6 @@ A **backbone network** is a high-speed central infrastructure that interconnects
 ✔ **Redundant paths** (fault tolerance)  
 ✔ **Scalable architecture**  
 
-*(Insert Diagram: Hierarchical Network Design with Core/Distribution/Access Layers)*  
-
 ---
 
 ## **2. Switched Backbones**  
@@ -31,8 +29,6 @@ A **backbone network** is a high-speed central infrastructure that interconnects
 - *Disadvantages*:  
   ✖ Single point of failure  
   ✖ Limited scalability  
-
-*(Insert Diagram: Collapsed Backbone Design)*  
 
 #### **ii) Distributed Backbone**  
 - Multiple interconnected switches form the backbone  
@@ -77,7 +73,6 @@ A university campus with:
   ✔ QoS guarantees (VoIP/VPN support)  
   ✔ Any-to-any connectivity  
 
-*(Insert Diagram: Routed vs Switched Backbone Comparison)*  
 
 ### **C. Protocol Considerations**  
 ✔ **OSPF** (for dynamic routing)  
