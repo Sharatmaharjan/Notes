@@ -202,19 +202,19 @@ Ethernet networks use different physical layouts:
 
 ### **E. Wireless Security**  
 
-1. **WEP (Weak)**  
+1. **WEP(Wired Equivalent Privacy) (Weak)**  
    - 64/128-bit encryption  
    - Easily crackable  
 
-2. **WPA**  
-   - TKIP encryption  
+2. **WPA(Wi-Fi Protected Access)**  
+   - TKIP(Temporal Key Integrity Protocol) encryption  
    - Better than WEP but still vulnerable  
 
-3. **WPA2 (Recommended)**  
-   - AES-CCMP encryption  
+3. **WPA2(Wi-Fi Protected Access II) (Recommended)**  
+   - AES-CCMP(Advanced Encryption Standard – Counter Mode with Cipher Block Chaining Message Authentication Code Protocol) encryption  
    - Enterprise mode with RADIUS  
 
-4. **WPA3 (Latest)**  
+4. **WPA3(Wi-Fi Protected Access III) (Latest)**  
    - 192-bit encryption  
    - Protects against brute-force attacks  
 
@@ -264,7 +264,7 @@ Ethernet networks use different physical layouts:
    - **AP Density**: 1 AP per 1,500 sq.ft (office) / 500 sq.ft (high-density)  
    - **Channel Planning**: Non-overlapping channels (1,6,11 for 2.4GHz)  
 
-✔ **AP Placement**:  
+✔ **AP(Access Point) Placement**:  
    - **Ceiling-mounted** for optimal coverage  
    - **Avoid** metal obstructions and microwave ovens  
 
@@ -296,8 +296,8 @@ Ethernet networks use different physical layouts:
    - **Separate storage VLANs**  
 
 **Best Practices**:  
-- Implement **VXLAN** for network virtualization  
-- Use **ECMP** for load balancing  
+- Implement **VXLAN(Virtual Extensible LAN)** for network virtualization  
+- Use **ECMP(Equal-Cost Multi-Path)** for load balancing  
 - Deploy **TOR (Top-of-Rack)** switching  
 
 ---
@@ -305,7 +305,7 @@ Ethernet networks use different physical layouts:
 ## **4. Designing the e-Commerce Edge**  
 
 ### **Critical Elements**  
-✔ **DMZ Design**:  
+✔ **DMZ(Demilitarized Zone) Design**:  
    - **Web/App/DB tiers** in separate security zones  
    - **Reverse proxies** (NGINX, F5)  
 
@@ -319,12 +319,12 @@ Ethernet networks use different physical layouts:
 
 **Best Practices**:  
 - Implement **Auto-scaling** for web tier  
-- Use **CDN** for static content  
-- **Regular PCI-DSS compliance audits**  
+- Use **CDN(Content Delivery Network)** for static content  
+- **Regular PCI-DSS(Payment Card Industry Data Security Standard) compliance audits**  
 
 ---
 
-## **5. Designing the SOHO Environment**  
+## **5. Designing the SOHO(Small Office/Home Office) Environment**  
 
 ### **Key Components**  
 ✔ **All-in-One Devices**:  
