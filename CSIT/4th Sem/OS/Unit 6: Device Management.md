@@ -61,7 +61,7 @@ It is a hardware/software architecture paradigm where:
 **Disadvantages:**  
 - Complexity (cache coherency issues).  
 
-
+```
 +----------------+       +-------------------+       +---------------+
 |                |       |                   |       |               |
 |    CPU         |       |  DMA Controller   |       |  I/O Device   |
@@ -99,7 +99,7 @@ It is a hardware/software architecture paradigm where:
 |    RAM         |<======|======= BUS =======|======>|               |
 |                |       |                   |       |               |
 +----------------+       +-------------------+       +---------------+
-
+```
 ---
 
 ### **5. Interrupts**
