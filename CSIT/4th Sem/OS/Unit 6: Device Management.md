@@ -278,6 +278,7 @@ Typically, I/O software is organized into layers that progressively abstract com
 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%207.png)
 
+
 ---
 
 ### **3. Disk Formatting Techniques**
