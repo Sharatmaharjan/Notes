@@ -263,7 +263,7 @@ Typically, I/O software is organized into layers that progressively abstract com
 | **C-SCAN**    | Circular SCAN (resets to start)  |
 
 **Numericals**
-
+1. 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%201.png)
 
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%202.png)
@@ -279,28 +279,74 @@ Typically, I/O software is organized into layers that progressively abstract com
 ![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%207.png)
 
 
+2. Find the seek time using SCAN, C-SCAN, Look and C-Look disk scheduling algorithms for processing the following request queue: 35, 70, 45, 15, 65, 20, 80, 90, 75, 130. Suppose the disk has tracks numbered from 0 to 150 and assume the disk arm to be at 30 and moving outward.
+3. Consider a disk with 200 tracks and the queue has random requests from different processes in the order : 45, 48, 29, 17, 80, 150, 28 and 188. Find the seek time using FIFO, SSTF and SCAN. Assume the initial position of head as 100.
+4. Suppose a disk has 201 cylinders, numbered from 0 to 200. At the same time the disk arm is at cylinder 10, and there is a queue of disk access requests for cylinders 30, 85, 90, 100, 105, 110, 135, and 145. Find the total seek time for the disk scheduling algorithm FCFS and SSTF. Assume the head is moving inward.
+5. Suppose a disk has 201 cylinders, numbered from 0 to 200. At the same time the disk arm is at cylinder 95, and there is a queue of disk access requests for cylinders 82,170,43,140,24,16 and 190. Calculate the seek time for the disk scheduling algorithm FCFS,SSTF,SCAN and C-SCAN.
+
 ---
 
-### **3. Disk Formatting Techniques**
-- **Low-Level Formatting:**  
-  - Divides platters into sectors (factory done).  
-- **Cylinder Skew:**  
-  - Offsets sector numbering to reduce rotation delay.  
-- **Interleaving:**  
-  - Physical/logical sector staggering (obsolete in modern disks).  
+## 3. Disk Formatting Techniques
 
-**Error Handling:**  
-- **ECC (Error-Correcting Codes):** Detects/corrects bit flips.  
-- **Bad Sector Remapping:** Spare sectors replace defective ones.  
+Disk formatting is the process of preparing a storage device like a hard disk or SSD for initial use by an operating system. It sets up the structure needed to store files and manage space.
+
+### Types of Disk Formatting
+
+1. **Low-Level Formatting (Physical Formatting)**
+
+   * This is the process of dividing the disk into sectors and tracks.
+   * It defines the physical layout on the disk surface.
+   * Originally done at the factory to mark sector boundaries.
+   * Modern hard drives come pre-formatted at this level, so users rarely perform low-level formatting.
+   * It also checks for bad sectors on the disk.
+
+2. **High-Level Formatting (Logical Formatting)**
+
+   * Creates a file system structure on the disk.
+   * Sets up file allocation tables or other metadata structures.
+   * Prepares the disk so the OS can store files and directories.
+   * Examples include formatting a disk as NTFS, FAT32, ext4, etc.
+   * Usually done by the user when initializing a new disk or reformatting.
+
+3. **Quick Format**
+
+   * Only deletes the file system structures and marks the disk as empty.
+   * Does **not** erase the actual data blocks.
+   * Faster than a full format.
+   * Used when you want to quickly erase and reuse the disk without scanning for bad sectors.
+
+4. **Full Format**
+
+   * Deletes file system structures **and** scans the entire disk surface for bad sectors.
+   * Takes longer but ensures disk health.
+   * Erases data by overwriting (depending on OS and options).
+
+
+### Summary Table
+
+| Formatting Type       | Description                                 | Performed by                     | Purpose                   |
+| --------------------- | ------------------------------------------- | -------------------------------- | ------------------------- |
+| Low-Level Formatting  | Divides disk into sectors and tracks        | Usually factory or special tools | Physical layout setup     |
+| High-Level Formatting | Creates file system and metadata            | Operating system / user          | Prepare disk for files    |
+| Quick Format          | Erases file system, no bad sector check     | User / OS                        | Fast disk reset           |
+| Full Format           | Erases file system + checks for bad sectors | User / OS                        | Disk health and data wipe |
+
+---
+
+### Example
+
+When you buy a new hard drive, it usually has low-level formatting done by the manufacturer. To use it on your computer, you perform a **high-level format** by selecting a file system like NTFS or FAT32. If you want to erase everything quickly without checking the disk, you choose a **quick format**. To thoroughly check the disk for errors and erase all data, you perform a **full format**.
+
 
 ---
 
 ### **4. RAID Levels**
 
-RAID is a storage virtualization technology that combines multiple physical disk drives into a single logical unit for:
-- Improved performance (via parallel I/O operations)
-- Increased reliability (via redundancy)
-- Enhanced capacity (via aggregation)
+RAID (Redundant Array of Independent/Inexpensive Disks) is a method of combining multiple physical hard drives (or SSDs) into one logical unit to improve performance, reliability, or both.
+- It distributes and/or duplicates data across the drives.
+- Managed by hardware (RAID controller) or software (OS-level RAID).
+- Used in servers, data centers, and high-performance systems.
+
 
 | **Level** | **Description**          | **Redundancy?** | **Performance** | **Use Case**       |
 |-----------|--------------------------|-----------------|-----------------|--------------------|
