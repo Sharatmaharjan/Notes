@@ -100,6 +100,35 @@ It is a hardware/software architecture paradigm where:
 |                |       |                   |       |               |
 +----------------+       +-------------------+       +---------------+
 ```
+
+
+### DMA Data Transfer Process Steps:
+
+1. **CPU Initiates DMA Transfer**
+
+   * CPU programs the DMA controller with:
+
+     * **Source:** The I/O device (e.g., disk)
+     * **Destination:** RAM address (e.g., 0x1000)
+     * **Size:** Amount of data to transfer (e.g., 4 KB)
+   * CPU then signals the DMA controller to start the transfer.
+
+2. **DMA Controller Requests Bus Control**
+
+   * DMA controller requests control of the system bus to perform the transfer.
+   * If CPU is currently using the bus, it **pauses** (bus arbitration) to allow DMA controller access.
+
+3. **DMA Transfers Data**
+
+   * DMA controller directly transfers data from the I/O device to RAM over the system bus without CPU intervention.
+   * Data flows: **Device → DMA controller → RAM**
+
+4. **DMA Transfer Complete - Interrupt CPU**
+
+   * Once the transfer finishes, the DMA controller sends an **interrupt** signal to the CPU.
+   * CPU resumes control and processes the data as needed.
+
+
 ---
 
 ### **5. Interrupts**
@@ -119,37 +148,96 @@ It is a hardware/software architecture paradigm where:
 
 ---
 
-## **6.2 I/O Software**
 
-### **1. Goals of I/O Software**
-- **Device Independence:** Uniform interface (`read()/write()`).  
-- **Error Handling:** Retry transient errors (e.g., disk read failures).  
-- **Synchronous/Asynchronous:** Support both blocking and non-blocking I/O.  
+# 6.2 I/O Software
 
----
+### Overview
 
-### **2. I/O Handling Techniques**
-| **Method**            | **Mechanism**                              | **Pros**               | **Cons**              |
-|-----------------------|-------------------------------------------|------------------------|-----------------------|
-| **Programmed I/O**    | CPU polls device status                   | Simple                 | Wastes CPU cycles     |
-| **Interrupt-Driven**  | Device interrupts CPU when ready          | Efficient for low load | Overhead at high load |
-| **DMA**              | Offloads transfer to DMA controller       | Best for bulk data     | Complex setup         |
+I/O Software is a collection of programs and routines that control and manage input/output devices, acting as an intermediary between the hardware and user or application programs. It hides the complicated details of device hardware, allowing programs to perform I/O tasks easily and consistently.
 
----
+For example, when a program wants to read data from a keyboard or print text on the screen, it uses I/O software like device drivers and operating system routines to communicate with the actual hardware without dealing directly with the device specifics.
 
-### **3. I/O Software Layers**
-**Layered Architecture:**  
-1. **Interrupt Handlers:**  
-   - Minimal (save state, wake driver).  
-   - Example: Mark disk read completion.  
-2. **Device Drivers:**  
-   - OS-specific code to control hardware.  
-   - Example: `nvme.ko` for NVMe SSDs.  
-3. **Device-Independent Layer:**  
-   - Uniform API, error handling.  
-4. **User-Level I/O:**  
-   - Libraries (e.g., `stdio.h`).  
+### Functions of I/O Software
 
+1. **Device Independence**
+
+   * Programs use generic I/O calls without needing to know hardware specifics.
+   * I/O software translates these calls to device-specific commands.
+
+2. **Buffering**
+
+   * Temporarily stores data between the device and the program.
+   * Helps match the speed differences between devices and CPU/memory.
+
+3. **Error Handling**
+
+   * Detects and recovers from device errors.
+   * Reports errors to the system or user.
+
+4. **Device Scheduling**
+
+   * Manages multiple I/O requests.
+   * Schedules device access efficiently, often optimizing throughput and response time.
+
+5. **Device Initialization and Control**
+
+   * Initializes device registers and configures device modes.
+   * Controls device operations by sending commands.
+
+
+### Layers of I/O Software
+
+Typically, I/O software is organized into layers that progressively abstract complexity:
+
+1. **User-level I/O software (Application Programs)**
+
+   * High-level interfaces and APIs for performing I/O.
+   * Example: Reading a file, printing to screen.
+
+2. **Device-independent I/O software**
+
+   * Provides generic I/O operations regardless of device type.
+   * Manages buffering, error handling, and device scheduling.
+   * Examples: File system routines, buffering modules.
+
+3. **Device Drivers (Device-dependent I/O software)**
+
+   * Specific to each hardware device.
+   * Translates generic requests into hardware-specific commands.
+   * Manages device registers, interrupts, and data transfer.
+
+4. **Interrupt Handlers and Device Controllers**
+
+   * Lowest-level software interacting directly with hardware.
+   * Handles interrupts and manages immediate hardware status.
+
+
+### Types of I/O Software Interfaces
+
+* **System Calls**: OS provides system calls for I/O operations like `read()`, `write()`, `open()`, `close()`.
+* **I/O Libraries**: Provide higher-level routines using system calls.
+* **Device Drivers**: Offer device-specific routines to control hardware.
+
+
+### Example: Reading a File Using I/O Software
+
+1. Application calls `read()` system call.
+2. Device-independent I/O software checks buffers or schedules device access.
+3. Device driver sends commands to hardware device.
+4. Device performs data transfer using programmed I/O or DMA.
+5. Interrupt signals completion; device driver and OS update status.
+6. Data returns to application.
+
+
+### Summary Table
+
+| **Function**        | **Description**                             |
+| ------------------- | ------------------------------------------- |
+| Device Independence | Hides device details from user programs     |
+| Buffering           | Temporarily stores data to smooth transfers |
+| Error Handling      | Detects and manages device errors           |
+| Device Scheduling   | Orders device access for efficiency         |
+| Device Control      | Sends commands and configures devices       |
 
 ---
 
@@ -160,9 +248,10 @@ It is a hardware/software architecture paradigm where:
   - 512B–4KB/sector (modern disks use 4K sectors).  
 - **Cylinder:** Same track across platters.  
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20%20structure.jpg)
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/platter.png)
 
----
 
 ### **2. Disk Scheduling Algorithms**
 | **Algorithm** | **Description**                  | 
@@ -174,6 +263,20 @@ It is a hardware/software architecture paradigm where:
 | **C-SCAN**    | Circular SCAN (resets to start)  |
 
 **Numericals**
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%201.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%202.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%203.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%204.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%205.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%206.png)
+
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/Unit%206/disk%20scheduling%20algorithm%207.png)
 
 ---
 
