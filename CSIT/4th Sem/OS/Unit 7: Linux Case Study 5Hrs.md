@@ -366,6 +366,8 @@ Linux uses a **complex memory management system** designed to efficiently alloca
 | **XFS** | High performance, scalability |  
 | **Btrfs** | Snapshots, checksums |  
 
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/CSIT/4th%20Sem/OS/images/filesystem-structure.png)
+
 ### **Disk Management Commands**  
 | Command | Description |  
 |---------|-------------|  
@@ -403,9 +405,4 @@ ls /dev/sd*
 
 ---  
 
-## **Exam Tips**  
-✔ Focus on **system calls** (`fork()`, `exec()`).  
-✔ Understand **scheduling policies** (CFS vs. Real-Time).  
-✔ Compare **file systems** (Ext4 vs. XFS).  
-✔ Practice **command-line examples** (`lsmod`, `df`).  
 
