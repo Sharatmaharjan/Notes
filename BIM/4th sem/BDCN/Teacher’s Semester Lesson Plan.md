@@ -1,15 +1,14 @@
-
 # **Prime College**  
 (BIM Program)  
 
-# **Teacher’s Semester Lesson Plan**  
+# **Teacher's Semester Lesson Plan**  
 
 **Semester:** BIM 4th  
 **Subject Code/Name:** IT 240: Business Data Communication and Networking  
 **Credits:** 3  
 **Lecture Hours:** 48  
 
-**Instructor Name:** Er. Sharat Maharjan 
+**Instructor Name:** Er. Sharat Maharjan  
 
 ---
 
@@ -23,20 +22,35 @@
 
 ### **Lesson Plan**  
 
+**Unit 1 (3 hours): Introduction to Data Communications**  
+Topics include network components & types, OSI vs TCP/IP models, network standards, and future trends (IoT, BYOD). Pedagogy will involve lectures and a Smart Cities case study. Assessment includes a group discussion comparing OSI/TCP/IP models. Remarks: Use Packet Tracer for demonstration.
 
-| Hrs | Unit | Topics/Sub-Topics | Pedagogy/Activities | Assignments/Assessments | Remarks |
-|-----|------|------------------|---------------------|-------------------------|---------|
-| 3 | 1 | **Introduction to Data Communications**<br>• Network components & types<br>• OSI vs TCP/IP models<br>• Network standards<br>• Future trends (IoT, BYOD) | Lecture + case study (Smart Cities) | Group discussion: Compare OSI/TCP/IP | Use Packet Tracer demo |
-| 4 | 2 | **Application Layer**<br>• Client-server architectures<br>• HTTP/SMTP/MIME<br>• Cloud computing | Wireshark demo | Presentation: "How Zoom uses UDP" | Guest speaker (IT admin) |
-| 7 | 3 | **Physical Layer**<br>• Transmission media<br>• Modulation/Multiplexing<br>• VoIP | Lab: Build Ethernet cable | Report: "5G vs Fiber" | RJ45 tools required |
-| 5 | 4 | **Data Link Layer**<br>• MAC protocols<br>• Error detection<br>• Synchronous transmission | Packet Tracer simulation | Quiz: CRC problems | - |
-| 7 | 5 | **Network/Transport Layers**<br>• TCP vs UDP<br>• IP subnetting<br>• Routing protocols | Subnetting workshop | Project: Campus subnet design | Cisco CLI required |
-| 6 | 6 | **Wired/Wireless LANs**<br>• Ethernet/Wi-Fi standards<br>• VLANs & security<br>• Performance tuning | Hackathon: Secure Wi-Fi | Case study: SOHO design | - |
-| 4 | 7 | **Backbone Networks**<br>• Switched/routed backbones<br>• VLAN implementation | Switch config lab | Lab: Configure VLAN | Switch hardware needed |
-| 4 | 8 | **Wide Area Networks**<br>• T-carrier/SONET<br>• VPNs/MPLS | AWS VPN lab | Reflection: VPN uses | - |
-| 2 | 9 | **The Internet**<br>• ISP architectures<br>• Access technologies<br>• Governance | Debate: Net neutrality | Infographic | Group work |
-| 6 | 10 | **Network Design**<br>• Needs analysis<br>• SNMP monitoring<br>• Cost management | Role-play: IT support | Final project | Invite IT manager |
+**Unit 2 (4 hours): Application Layer**  
+Covers client-server architectures, HTTP/SMTP/MIME, and cloud computing. Activities include Wireshark demonstrations. Students will present "How Zoom uses UDP". Remarks: IT admin guest speaker will participate.
 
+**Unit 3 (7 hours): Physical Layer**  
+Focuses on transmission media, modulation/multiplexing, and VoIP. Lab activity: building Ethernet cables. Assessment requires a "5G vs Fiber" report. Remarks: RJ45 tools will be needed.
+
+**Unit 4 (5 hours): Data Link Layer**  
+Examines MAC protocols, error detection, and synchronous transmission. Uses Packet Tracer simulations. Assessment includes a quiz on CRC problems.
+
+**Unit 5 (7 hours): Network/Transport Layers**  
+Covers TCP vs UDP, IP subnetting, and routing protocols. Features subnetting workshops. Project involves campus subnet design. Remarks: Cisco CLI required.
+
+**Unit 6 (6 hours): Wired/Wireless LANs**  
+Studies Ethernet/Wi-Fi standards, VLANs & security, and performance tuning. Hackathon activity: securing Wi-Fi. Case study on SOHO design.
+
+**Unit 7 (4 hours): Backbone Networks**  
+Explores switched/routed backbones and VLAN implementation. Lab work on switch configuration. Assessment: VLAN configuration lab. Remarks: Switch hardware needed.
+
+**Unit 8 (4 hours): Wide Area Networks**  
+Examines T-carrier/SONET and VPNs/MPLS. AWS VPN lab activity. Assessment includes reflection on VPN uses.
+
+**Unit 9 (2 hours): The Internet**  
+Covers ISP architectures, access technologies, and governance. Features net neutrality debate. Assessment: internet backbone infographic (group work).
+
+**Unit 10 (6 hours): Network Design**  
+Focuses on needs analysis, SNMP monitoring, and cost management. Role-play activity: IT support scenarios. Final project: college network proposal. Remarks: IT manager will be invited.
 
 ---
 
@@ -66,9 +80,7 @@
 ---
 
 **Signature:**  
-Sharat Maharjan <br>
-Full Time IT Teacher <br>
+Sharat Maharjan  
+Full Time IT Teacher  
 Prime College  
-
---- 
 
