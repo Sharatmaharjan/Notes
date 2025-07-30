@@ -23,18 +23,18 @@
 
 ### **Lesson Plan**  
 
-| Hrs. | Unit | Topics/Sub-Topics | Pedagogy/Activities | Materials/Resources | Assignments/Assessments | Remarks |  
-|------|------|--------------------|----------------------|----------------------|--------------------------|---------|  
-| **3** | **1** | **Introduction to Data Communications** <br> - Components & Types of Networks <br> - OSI vs. Internet Model <br> - Network Standards (IEEE, TCP/IP) <br> - Future Trends (IoT, BYOD) | Lecture + Case Study (e.g., Smart Cities) | FitzGerald (Ch. 1), Cisco Whitepapers | Group Discussion: "Compare OSI and TCP/IP models" | Use Packet Tracer for demo |  
-| **4** | **2** | **Application Layer** <br> - Client-Server vs. P2P Architectures <br> - HTTP/SMTP/MIME <br> - Cloud Computing & Web Apps | Demo (Wireshark HTTP capture) + Debate | Forouzan (Ch. 2), Cloudflare Blog | Presentation: "How Zoom uses UDP" | Guest speaker (IT admin) |  
-| **7** | **3** | **Physical Layer** <br> - Transmission Media (Fiber vs. Wireless) <br> - Modulation & Multiplexing <br> - VoIP & Analog-Digital Conversion | Lab: Build a coaxial cable + Modem simulation | Tanenbaum (Ch. 3), YouTube: "How Fiber Works" | Report: "Compare 5G vs. Fiber" | Lab equipment required |  
-| **5** | **4** | **Data Link Layer** <br> - MAC Protocols (CSMA/CD) <br> - Error Detection (CRC, Checksum) <br> - Synchronous Transmission | Packet Tracer Lab: Error simulation | Stallings (Ch. 5), GeeksforGeeks | Quiz: "Solve CRC problems" | Pair programming |  
-| **7** | **5** | **Network & Transport Layers** <br> - TCP vs. UDP <br> - IP Addressing & Subnetting <br> - Routing Protocols (OSPF, BGP) | Subnetting Workshop + Router CLI Demo | FitzGerald (Ch. 6), SubnettingPractice.com | Project: "Design a subnet for a campus" | Use Cisco Packet Tracer |  
-| **6** | **6** | **Wired/Wireless LANs** <br> - Ethernet Standards (IEEE 802.3/11) <br> - VLANs & Security (WPA3) <br> - LAN Performance Optimization | Hackathon: "Secure a Wi-Fi Network" | Forouzan (Ch. 7), OWASP Guide | Case Study: "LAN Design for SOHO" | Raspberry Pi setup |  
-| **4** | **7** | **Backbone Networks** <br> - Switched vs. Routed Backbones <br> - VLAN Implementation <br> - Performance Metrics | Visio Diagramming + Cisco Switch Config | Tanenbaum (Ch. 8) | Lab: "Configure VLAN on Switch" | Switch hardware needed |  
-| **4** | **8** | **Wide Area Networks** <br> - Dedicated Circuits (T1, SONET) <br> - VPNs & Packet Switching (MPLS) | Virtual Lab: AWS VPN Setup | Stallings (Ch. 9), AWS Docs | Reflection: "VPNs in Remote Work" | Cloud credits required |  
-| **2** | **9** | **The Internet** <br> - ISP Architectures <br> - DSL/Cable/Fiber <br> - Internet Governance | Debate: "Net Neutrality" | FitzGerald (Ch. 10), ICANN Reports | Infographic: "Internet Backbone" | Group activity |  
-| **6** | **10** | **Network Design & Management** <br> - Needs Analysis & Cost Assessment <br> - SNMP & Traffic Monitoring <br> - End-User Support | Role-Play: "IT Support Scenario" | Forouzan (Ch. 12), SolarWinds Demo | Final Project: "Propose a Network for Prime College" | Invite IT manager |  
+| Hrs | Unit | Topics/Sub-Topics | Pedagogy/Activities | Assignments/Assessments | Remarks |
+|-----|------|-------------------|---------------------|-------------------------|---------|
+| 3 | 1 | **Introduction to Data Communications**<br>- Network components & types<br>- OSI vs TCP/IP models<br>- Network standards<br>- Future trends (IoT, BYOD) | Lecture + case study (Smart Cities) | Group discussion: Compare OSI/TCP/IP | Use Packet Tracer demo |
+| 4 | 2 | **Application Layer**<br>- Client-server architectures<br>- HTTP/SMTP/MIME<br>- Cloud computing | Wireshark demo  | Presentation: "How Zoom uses UDP" | Guest speaker (IT admin) |
+| 7 | 3 | **Physical Layer**<br>- Transmission media<br>- Modulation/Multiplexing<br>- VoIP | Lab: Build an Ethernet cable | Report: "5G vs Fiber" | Lab equipment needed |
+| 5 | 4 | **Data Link Layer**<br>- MAC protocols<br>- Error detection<br>- Synchronous transmission | Packet Tracer error simulation | Quiz: CRC problems | - |
+| 7 | 5 | **Network/Transport Layers**<br>- TCP vs UDP<br>- IP subnetting<br>- Routing protocols | Subnetting workshop | Project: Campus subnet design | Use Cisco CLI |
+| 6 | 6 | **Wired/Wireless LANs**<br>- Ethernet/Wi-Fi standards<br>- VLANs & security<br>- Performance tuning | Hackathon: Secure Wi-Fi | Case study: SOHO LAN design | - |
+| 4 | 7 | **Backbone Networks**<br>- Switched/routed backbones<br>- VLAN implementation | Switch configuration lab | Lab: Configure VLAN | Switch hardware required |
+| 4 | 8 | **Wide Area Networks**<br>- T-carrier/SONET<br>- VPNs/MPLS | AWS VPN virtual lab | Reflection: VPNs in remote work | - |
+| 2 | 9 | **The Internet**<br>- ISP architectures<br>- Access technologies<br>- Governance | Debate: Net neutrality | Infographic: Internet backbone | Group activity |
+| 6 | 10 | **Network Design**<br>- Needs analysis<br>- SNMP monitoring<br>- Cost management | Role-play: IT support | Final project: College network proposal | Invite IT manager |
 
 ---
 
