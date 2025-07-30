@@ -64,8 +64,8 @@
 ---
 
 **Signature:**  
-Sharat Maharjan
-Full Time IT Teacher
+Sharat Maharjan <br>
+Full Time IT Teacher <br>
 Prime College  
 
 --- 
