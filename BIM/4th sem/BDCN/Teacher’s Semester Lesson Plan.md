@@ -23,18 +23,20 @@
 
 ### **Lesson Plan**  
 
+
 | Hrs | Unit | Topics/Sub-Topics | Pedagogy/Activities | Assignments/Assessments | Remarks |
-|-----|------|-------------------|---------------------|-------------------------|---------|
-| 3 | 1 | **Introduction to Data Communications**<br>- Network components & types<br>- OSI vs TCP/IP models<br>- Network standards<br>- Future trends (IoT, BYOD) | Lecture + case study (Smart Cities) | Group discussion: Compare OSI/TCP/IP | Use Packet Tracer demo |
-| 4 | 2 | **Application Layer**<br>- Client-server architectures<br>- HTTP/SMTP/MIME<br>- Cloud computing | Wireshark demo  | Presentation: "How Zoom uses UDP" | Guest speaker (IT admin) |
-| 7 | 3 | **Physical Layer**<br>- Transmission media<br>- Modulation/Multiplexing<br>- VoIP | Lab: Build an Ethernet cable | Report: "5G vs Fiber" | Lab equipment needed |
-| 5 | 4 | **Data Link Layer**<br>- MAC protocols<br>- Error detection<br>- Synchronous transmission | Packet Tracer error simulation | Quiz: CRC problems | - |
-| 7 | 5 | **Network/Transport Layers**<br>- TCP vs UDP<br>- IP subnetting<br>- Routing protocols | Subnetting workshop | Project: Campus subnet design | Use Cisco CLI |
-| 6 | 6 | **Wired/Wireless LANs**<br>- Ethernet/Wi-Fi standards<br>- VLANs & security<br>- Performance tuning | Hackathon: Secure Wi-Fi | Case study: SOHO LAN design | - |
-| 4 | 7 | **Backbone Networks**<br>- Switched/routed backbones<br>- VLAN implementation | Switch configuration lab | Lab: Configure VLAN | Switch hardware required |
-| 4 | 8 | **Wide Area Networks**<br>- T-carrier/SONET<br>- VPNs/MPLS | AWS VPN virtual lab | Reflection: VPNs in remote work | - |
-| 2 | 9 | **The Internet**<br>- ISP architectures<br>- Access technologies<br>- Governance | Debate: Net neutrality | Infographic: Internet backbone | Group activity |
-| 6 | 10 | **Network Design**<br>- Needs analysis<br>- SNMP monitoring<br>- Cost management | Role-play: IT support | Final project: College network proposal | Invite IT manager |
+|-----|------|------------------|---------------------|-------------------------|---------|
+| 3 | 1 | **Introduction to Data Communications**<br>• Network components & types<br>• OSI vs TCP/IP models<br>• Network standards<br>• Future trends (IoT, BYOD) | Lecture + case study (Smart Cities) | Group discussion: Compare OSI/TCP/IP | Use Packet Tracer demo |
+| 4 | 2 | **Application Layer**<br>• Client-server architectures<br>• HTTP/SMTP/MIME<br>• Cloud computing | Wireshark demo | Presentation: "How Zoom uses UDP" | Guest speaker (IT admin) |
+| 7 | 3 | **Physical Layer**<br>• Transmission media<br>• Modulation/Multiplexing<br>• VoIP | Lab: Build Ethernet cable | Report: "5G vs Fiber" | RJ45 tools required |
+| 5 | 4 | **Data Link Layer**<br>• MAC protocols<br>• Error detection<br>• Synchronous transmission | Packet Tracer simulation | Quiz: CRC problems | - |
+| 7 | 5 | **Network/Transport Layers**<br>• TCP vs UDP<br>• IP subnetting<br>• Routing protocols | Subnetting workshop | Project: Campus subnet design | Cisco CLI required |
+| 6 | 6 | **Wired/Wireless LANs**<br>• Ethernet/Wi-Fi standards<br>• VLANs & security<br>• Performance tuning | Hackathon: Secure Wi-Fi | Case study: SOHO design | - |
+| 4 | 7 | **Backbone Networks**<br>• Switched/routed backbones<br>• VLAN implementation | Switch config lab | Lab: Configure VLAN | Switch hardware needed |
+| 4 | 8 | **Wide Area Networks**<br>• T-carrier/SONET<br>• VPNs/MPLS | AWS VPN lab | Reflection: VPN uses | - |
+| 2 | 9 | **The Internet**<br>• ISP architectures<br>• Access technologies<br>• Governance | Debate: Net neutrality | Infographic | Group work |
+| 6 | 10 | **Network Design**<br>• Needs analysis<br>• SNMP monitoring<br>• Cost management | Role-play: IT support | Final project | Invite IT manager |
+
 
 ---
 
