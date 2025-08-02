@@ -71,6 +71,7 @@ $ ./process_demo
 **Expected Output:**  
 ```
 Parent starting (PID: 1234)
+Parent waiting for child (PID: 1235)
 Child running (PID: 1235, Parent PID: 1234)
 total 24
 -rw-r--r-- 1 user user  220 Jun 25 09:30 file.txt
