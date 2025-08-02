@@ -39,8 +39,8 @@ int main() {
         int status;
         waitpid(pid, &status, 0);  // Wait for specific child
         
-        if (WIFEXITED(status)) {
-            printf("Child exited with status %d\n", WEXITSTATUS(status));
+        if (WIFEXITED(status)) {  //Was If Exited
+            printf("Child exited with status %d\n", WEXITSTATUS(status));  //Wait Exit Status
         }
     } 
     else {
