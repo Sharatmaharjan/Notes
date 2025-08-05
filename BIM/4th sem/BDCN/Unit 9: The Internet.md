@@ -7,7 +7,7 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 ### **Key Characteristics:**  
 ✔ **Decentralized architecture** (no single owner)  
 ✔ **Packet-switched communication** (IP-based routing)  
-✔ **Redundant pathways** (self-healing via BGP)  
+✔ **Redundant pathways** (self-healing via BGP-automatically reroute traffic if one path fails)  
 
 
 ---
@@ -22,6 +22,13 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 | **ISP Backbones** | High-speed fiber links (Tier 1/2/3) |  
 | **IXPs (Internet Exchange Points)** | ISP interconnection hubs |  
 
+
+Tier 1: Owns and operates the main intercontinental highways.
+Tier 2: Connects cities and towns via regional roads, some of which use Tier 1 highways.
+Tier 3: Provides local streets to homes and small offices.
+
+
+
 ### **B. Connecting to an ISP**  
 1. **Physical Connection**:  
    - Home: Modem → Router → ISP Point of Presence (PoP)  
@@ -29,7 +36,7 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 
 2. **Logical Connection**:  
    - **DHCP**: Assigns IP address  
-   - **PPPoE**: Authentication for DSL  
+   - **PPPoE(Point-to-Point Protocol over Ethernet)**: Authentication for DSL  (When you enter your ISP-provided username and password into your router/modem (e.g., for WorldLink or Vianet in Nepal), that’s typically using PPPoE.)
 
 ### **C. The Internet Today**  
 - **IPv4 exhaustion** → IPv6 adoption (~40% as of 2023)  
@@ -43,10 +50,15 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 ## **3. Internet Access Technologies**  
 
 ### **A. Digital Subscriber Line (DSL)**  
-| **Type** | **Speed** | **Distance Limit** |  
-|----------|----------|-------------------|  
-| ADSL | 1-100 Mbps | 5.5 km |  
-| VDSL2 | 100-300 Mbps | 1.2 km |  
+
+DSL is a family of technologies that provides internet access over traditional telephone lines (copper wires). It enables high-speed data transmission while allowing simultaneous voice calls and internet usage.
+DSL is commonly used in homes and small businesses where fiber may not be available.
+
+| **Type**                             | **Speed**                                       | **Distance Limit**          | **Description**                                                                                                      |
+| ------------------------------------ | ----------------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| **ADSL** (Asymmetric DSL)            | **1–100 Mbps** (typically lower upstream speed) | **Up to 5.5 km** from DSLAM | Optimized for **download-heavy** activities like web browsing and streaming. Upload speed is lower.                  |
+| **VDSL2** (Very-high-bit-rate DSL 2) | **100–300 Mbps** (higher in short distances)    | **Up to 1.2 km** from DSLAM | Offers much **faster speeds** than ADSL, suitable for HD video, gaming, and VoIP. Speed drops sharply with distance. |
+
 
 **Working Principle:**  
 - Uses existing telephone lines  
@@ -55,18 +67,30 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
   - 25 kHz-1.1 MHz = Data  
 
 ### **B. Cable Modem**  
-- **DOCSIS Standards**:  
-  - 3.0 → 1 Gbps down  
-  - 4.0 → 10 Gbps down  
+
+A Cable Modem provides internet access over the same coaxial cable network used for cable TV. It is widely used in residential and business broadband connections.
+
+| **Version**    | **Maximum Download Speed** | **Notes**                                                    |
+| -------------- | -------------------------- | ------------------------------------------------------------ |
+| **DOCSIS 3.0** | Up to **1 Gbps**           | Supports channel bonding for higher speeds                   |
+| **DOCSIS 4.0** | Up to **10 Gbps**          | Latest standard with improved upstream and downstream speeds |
+ 
 - **Shared medium**: Bandwidth splits among neighborhood users  
 
 ### **C. Fiber to the Home (FTTH)**  
-| **Technology** | **Speed** | **Architecture** |  
-|---------------|----------|------------------|  
-| GPON | 2.5 Gbps down | Passive optical splitter |  
-| XGS-PON | 10 Gbps symmetric | Point-to-multipoint |  
+
+FTTH delivers high-speed internet access by running fiber-optic cables directly to individual homes or businesses. This technology offers much faster and more reliable connections compared to copper-based DSL or coaxial cable.
+
+| **Technology**                                             | **Speed**                                                  | **Architecture**                                                                                                              |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| **GPON** (Gigabit Passive Optical Network)                 | Up to **2.5 Gbps downstream**                              | Uses **passive optical splitters** to share a single fiber among multiple users                                               |
+| **XGS-PON** (10 Gigabit Symmetric Passive Optical Network) | Up to **10 Gbps symmetric** (both downstream and upstream) | Also uses **point-to-multipoint architecture** with passive splitters but supports much higher speeds and symmetric bandwidth |
+ 
 
 ### **D. WiMAX (IEEE 802.16)**  
+
+WiMAX (Worldwide Interoperability for Microwave Access) is a wireless broadband technology designed to provide high-speed internet access over long distances, especially for the last-mile connection.
+
 - **Last-mile wireless** (30-40 km range)  
 - **Declining use**: Replaced by 4G/5G  
 
@@ -83,15 +107,19 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 ## **4. Future of the Internet**  
 
 ### **A. Internet Governance**  
-| **Organization** | **Role** |  
-|------------------|---------|  
-| **ICANN** | Manages DNS/IP allocation |  
-| **IETF** | Develops protocols (RFCs) |  
-| **ITU** | Global telecom standards |  
+
+Internet governance refers to the coordination and management of key technical and policy aspects of the Internet to ensure it operates smoothly, securely, and reliably worldwide.
+
+| **Organization**                                                | **Role**                                                                                                                                                |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **ICANN** (Internet Corporation for Assigned Names and Numbers) | Manages the **Domain Name System (DNS)** and IP address allocation worldwide. Ensures unique naming and addressing.                                     |
+| **IETF** (Internet Engineering Task Force)                      | Develops and promotes **Internet standards and protocols** through RFCs (Request for Comments). Responsible for protocols like TCP/IP, HTTP, SMTP, etc. |
+| **ITU** (International Telecommunication Union)                 | UN agency that sets **global telecommunications standards** and coordinates international radio spectrum and satellite orbits.                          |
+
 
 ### **B. Emerging Technologies**  
 1. **Web 3.0**:  
-   - Decentralized apps (Blockchain, IPFS)  
+   - Decentralized apps (Blockchain, IPFS(InterPlanetary File System))  
 2. **Metaverse**:  
    - VR/AR integration (Requires <20ms latency)  
 3. **Quantum Internet**:  
