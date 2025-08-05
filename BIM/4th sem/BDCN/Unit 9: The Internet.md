@@ -72,7 +72,7 @@ A Cable Modem provides internet access over the same coaxial cable network used 
 
 | **Version**    | **Maximum Download Speed** | **Notes**                                                    |
 | -------------- | -------------------------- | ------------------------------------------------------------ |
-| **DOCSIS 3.0** | Up to **1 Gbps**           | Supports channel bonding for higher speeds                   |
+| **DOCSIS(Data Over Cable Service Interface Specification) 3.0** | Up to **1 Gbps**           | Supports channel bonding for higher speeds                   |
 | **DOCSIS 4.0** | Up to **10 Gbps**          | Latest standard with improved upstream and downstream speeds |
  
 - **Shared medium**: Bandwidth splits among neighborhood users  
