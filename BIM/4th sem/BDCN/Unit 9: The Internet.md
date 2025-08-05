@@ -56,8 +56,8 @@ DSL is commonly used in homes and small businesses where fiber may not be availa
 
 | **Type**                             | **Speed**                                       | **Distance Limit**          | **Description**                                                                                                      |
 | ------------------------------------ | ----------------------------------------------- | --------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| **ADSL** (Asymmetric DSL)            | **1–100 Mbps** (typically lower upstream speed) | **Up to 5.5 km** from DSLAM | Optimized for **download-heavy** activities like web browsing and streaming. Upload speed is lower.                  |
-| **VDSL2** (Very-high-bit-rate DSL 2) | **100–300 Mbps** (higher in short distances)    | **Up to 1.2 km** from DSLAM | Offers much **faster speeds** than ADSL, suitable for HD video, gaming, and VoIP. Speed drops sharply with distance. |
+| **ADSL** (Asymmetric DSL)            | **1–100 Mbps** (typically lower upstream speed) | **Up to 5.5 km**  | Optimized for **download-heavy** activities like web browsing and streaming. Upload speed is lower.                  |
+| **VDSL2** (Very-high-bit-rate DSL 2) | **100–300 Mbps** (higher in short distances)    | **Up to 1.2 km**  | Offers much **faster speeds** than ADSL, suitable for HD video, gaming, and VoIP. Speed drops sharply with distance. |
 
 
 **Working Principle:**  
