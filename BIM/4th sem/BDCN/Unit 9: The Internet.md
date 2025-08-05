@@ -23,9 +23,9 @@ The Internet is a **global network of networks** that uses TCP/IP to connect bil
 | **IXPs (Internet Exchange Points)** | ISP interconnection hubs |  
 
 
-Tier 1: Owns and operates the main intercontinental highways.
-Tier 2: Connects cities and towns via regional roads, some of which use Tier 1 highways.
-Tier 3: Provides local streets to homes and small offices.
+Tier 1: Owns and operates the main intercontinental highways.<br>
+Tier 2: Connects cities and towns via regional roads, some of which use Tier 1 highways.<br>
+Tier 3: Provides local streets to homes and small offices.<br>
 
 
 
