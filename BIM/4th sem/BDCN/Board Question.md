@@ -161,4 +161,5 @@ As the Network Manager for the new three-floor department store, I would design 
 
 3. Encode the digital bit stream 101101 with ASK, PSK and FSK in coding techniques.
 
-![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/blob/main/BIM/4th%20sem/BDCN/ASK%20PSK%20FSK.png)
+![Diagram](https://raw.githubusercontent.com/Sharatmaharjan/Notes/main/BIM/4th%20sem/BDCN/ASK%20PSK%20FSK.png)
+
