@@ -363,15 +363,18 @@ class LinkedList {
 
    ```java
    public void addNodeAtBeginning(int newData) {
-       Node newNode = new Node(newData);
-       newNode.next = head;  // Link the new node to the current head
-       head = newNode;       // Update head to point to the new node
+    Node newNode = new Node(newData);
 
-       // If the list was empty, update tail as well
-       if (tail == null) {
-           tail = newNode;
-       }
-   }
+    // If the list is empty
+    if (head == null) {
+        head = newNode;
+        tail = newNode;
+    } else {
+        // Normal case: list already has nodes
+        newNode.next = head;
+        head = newNode;
+      }
+    }
    ```
 
 2. **At the End**  
@@ -382,7 +385,7 @@ class LinkedList {
    ```java
    public void addNodeAtEnd(int newData) {
        Node newNode = new Node(newData);
-       if (tail == null) {
+       if (head == null) {
            // List is empty, new node becomes both head and tail
            head = newNode;
            tail = newNode;
