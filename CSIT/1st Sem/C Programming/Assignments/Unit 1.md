@@ -20,6 +20,7 @@ Hello World
 
 * Use formula: **area = π × r × r**
 * Circumference = **2 × π × r**
+  
   **Sample Output:**
 
 ```
@@ -33,6 +34,7 @@ Circumference = 31.40
 ### **3. Write a program to calculate simple interest and display the result.**
 
 **Hint:** Use formula: **SI = (P × T × R) / 100**
+
 **Sample Output:**
 
 ```
@@ -45,6 +47,7 @@ Simple Interest = 100
 ### **4. Write a program to convert Celsius temperature to Fahrenheit.**
 
 **Formula:** F = C * 9/5 + 32
+
 **Sample Output:**
 
 ```
@@ -57,6 +60,7 @@ Fahrenheit = 77
 ### **5. Write a program to find the square root of a given number.**
 
 **Hint:** Use a mathematical library function for square root.
+
 **Sample Output:**
 
 ```
@@ -69,6 +73,7 @@ Square Root = 7
 ### **6. Write a program to find the power of a given number.**
 
 **Hint:** Use a power function OR multiply manually.
+
 **Sample Output:**
 
 ```
@@ -84,6 +89,7 @@ Result = 32
 
 * Area = length × breadth
 * Perimeter = 2 × (length + breadth)
+  
   **Sample Output:**
 
 ```
@@ -116,6 +122,7 @@ After swapping: a=10, b=5
 ### **9. Write a program to display Compound Interest.**
 
 **Hint:** Use: **CI = P(1 + R/100)^T – P**
+
 **Sample Output:**
 
 ```
@@ -128,6 +135,7 @@ Compound Interest = 210
 ### **10. Write a program to calculate BMI and display result.**
 
 **Formula:** BMI = weight / (height * height)
+
 **Sample Output:**
 
 ```
@@ -144,6 +152,7 @@ BMI = 22.04
 
 * 1 dozen = 12
 * Price of one mango = (price_of_dozen / 12)
+* 
   **Sample Output:**
 
 ```
@@ -159,6 +168,7 @@ Total price = 100
 **Hint:**
 
 * area = π(R² – r²)
+  
   **Sample Output:**
 
 ```
@@ -175,6 +185,7 @@ Area = 153.94
 
 * s = (a + b + c) / 2
 * area = √[s(s–a)(s–b)(s–c)]
+  
   **Sample Output:**
 
 ```
@@ -191,6 +202,7 @@ Area = 6
 * Each subject is out of 100
 * Total = sum of all marks
 * Percentage = (total / 500) × 100
+  
   **Sample Output:**
 
 ```
@@ -208,6 +220,7 @@ Percentage = 80%
 * Rate = Rs 15 per unit
   **Hint:**
 * units = current – previous
+  
   **Sample Output:**
 
 ```
@@ -221,6 +234,7 @@ Total bill = Rs 1500
 ### **16. Write a program to calculate distance between two points P(x1, y1) and Q(x2, y2).**
 
 **Formula:** distance = √[(x2–x1)² + (y2–y1)²]
+
 **Sample Output:**
 
 ```
@@ -237,6 +251,7 @@ Distance = 7.21
 
 * Last digit = n % 10
 * First digit = n / 100
+  
   **Sample Output:**
 
 ```
@@ -252,6 +267,7 @@ Last digit = 3
 **Hint:**
 
 * Extract digits using %, / operations
+  
   **Sample Output:**
 
 ```
