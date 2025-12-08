@@ -21,7 +21,7 @@ Hello World
 * Use formula: **area = π × r × r**
 * Circumference = **2 × π × r**
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Enter radius: 5
@@ -90,7 +90,7 @@ Result = 32
 * Area = length × breadth
 * Perimeter = 2 × (length + breadth)
   
-  **Sample Output:**
+ **Sample Output:**
 
 ```
 Enter length and breadth: 4 6
@@ -110,7 +110,8 @@ Perimeter = 20
 
 * For (a): Use temp variable
 * For (b): Use arithmetic operations
-  **Sample Output:**
+ 
+**Sample Output:**
 
 ```
 Before swapping: a=5, b=10
@@ -152,8 +153,8 @@ BMI = 22.04
 
 * 1 dozen = 12
 * Price of one mango = (price_of_dozen / 12)
-* 
-  **Sample Output:**
+
+**Sample Output:**
 
 ```
 Enter price of dozen: 240
@@ -166,10 +167,9 @@ Total price = 100
 ### **12. Write a program to calculate area between two concentric circles.**
 
 **Hint:**
-
 * area = π(R² – r²)
-  
-  **Sample Output:**
+ 
+**Sample Output:**
 
 ```
 Enter outer radius: 10
@@ -186,7 +186,7 @@ Area = 153.94
 * s = (a + b + c) / 2
 * area = √[s(s–a)(s–b)(s–c)]
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Enter sides: 3 4 5
@@ -203,7 +203,7 @@ Area = 6
 * Total = sum of all marks
 * Percentage = (total / 500) × 100
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Marks: 80 75 90 85 70
@@ -221,7 +221,7 @@ Percentage = 80%
   **Hint:**
 * units = current – previous
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Enter previous and current units: 1200 1300
@@ -252,7 +252,7 @@ Distance = 7.21
 * Last digit = n % 10
 * First digit = n / 100
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Input: 123
@@ -268,7 +268,7 @@ Last digit = 3
 
 * Extract digits using %, / operations
   
-  **Sample Output:**
+**Sample Output:**
 
 ```
 Input: 234
@@ -276,4 +276,3 @@ Sum of digits = 9
 ```
 
 ---
-
