@@ -300,7 +300,7 @@ Empty Queue:
 
 size == 0
 
-```
+```java
 class ArrayQueue {
     int front, rear, size;
     int capacity;
