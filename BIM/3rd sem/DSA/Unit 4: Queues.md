@@ -70,7 +70,7 @@ Queues can be implemented using two main techniques:
   2. If not full, insert the element at `queue[rear]` and increment `rear`.  
 
   **Dequeue**:  
-  1. Check if the queue is empty (`front > rear`).  
+  1. Check if the queue is empty (`front == rear`).  
   2. If not empty, return the element at `queue[front]` and increment `front`.
 ``` java
 public class ArrayQueue {
@@ -191,17 +191,167 @@ public class ArrayQueue {
 #### **6. Circular Queue**
 A **Circular Queue** solves the unused space problem of a linear queue by connecting the last position of the queue back to the first position, forming a circular structure.  
 
-- **Key Points**:  
-  - The `rear` wraps around to the beginning of the array when it reaches the end.  
-  - `front` and `rear` pointers are updated using modulo arithmetic:  
-    - `rear = (rear + 1) % size`  
-    - `front = (front + 1) % size`  
-  - Efficient use of memory.  
+### Algorithm for Circular Queue (Using Array)
 
-- **Conditions**:  
-  - **Full Queue**: `(rear + 1) % size == front`  
-  - **Empty Queue**: `front == -1` or `front == rear + 1`  
+1. Initialization
 
+1. Set front = 0
+2. Set rear = -1
+3. Set size = 0
+4. Set capacity = N   // size of array
+5. Create array arr[capacity]
+
+
+---
+
+2. ENQUEUE(data)
+
+Insert element into the circular queue
+
+Algorithm ENQUEUE(data):
+1. If size == capacity:
+       Print "Queue is full"
+       Return
+
+2. rear = (rear + 1) % capacity      // move rear forward circularly
+
+3. arr[rear] = data                  // insert the data
+
+4. size = size + 1                   // increase count
+
+5. End
+
+
+---
+
+3. DEQUEUE()
+
+Remove and return the front element
+
+Algorithm DEQUEUE():
+1. If size == 0:
+       Print "Queue is empty"
+       Return -1
+
+2. value = arr[front]                // store element to return
+
+3. front = (front + 1) % capacity    // move front forward circularly
+
+4. size = size - 1
+
+5. Return value
+
+
+---
+
+4. PEEK()
+
+Return the front element without removing it
+
+Algorithm PEEK():
+1. If size == 0:
+       Return -1
+
+2. Return arr[front]
+
+
+---
+
+5. isEmpty()
+
+Algorithm isEmpty():
+1. If size == 0:
+       Return true
+2. Else:
+       Return false
+
+
+---
+
+6. isFull()
+
+Algorithm isFull():
+1. If size == capacity:
+       Return true
+2. Else:
+       Return false
+
+
+### Key Points
+
+The rear wraps around to index 0 when it reaches the end of the array.
+
+The queue uses modulo arithmetic to update indexes:
+
+rear = (rear + 1) % capacity
+
+front = (front + 1) % capacity
+
+
+Circular queue ensures efficient use of memory, reusing freed spaces after deletions.
+
+### Conditions
+
+Full Queue:
+
+size == capacity
+
+Empty Queue:
+
+size == 0
+
+```
+class ArrayQueue {
+    int front, rear, size;
+    int capacity;
+    int arr[];
+
+    public ArrayQueue(int capacity) {
+        this.capacity = capacity;
+        arr = new int[capacity];
+        front = 0;
+        rear = -1;
+        size = 0;
+    }
+
+    // Insert
+    void enqueue(int data) {
+        if (isFull()) {
+            System.out.println("Queue is full!");
+            return;
+        }
+        rear = (rear + 1) % capacity; // Circular nature
+        arr[rear] = data;
+        size++;
+    }
+
+    // Remove
+    int dequeue() {
+        if (isEmpty()) {
+            System.out.println("Queue is empty!");
+            return -1;
+        }
+        int value = arr[front];
+        front = (front + 1) % capacity;
+        size--;
+        return value;
+    }
+
+    // Peek
+    int peek() {
+        if (isEmpty()) return -1;
+        return arr[front];
+    }
+
+    boolean isEmpty() {
+        return size == 0;
+    }
+
+    boolean isFull() {
+        return size == capacity;
+    }
+}
+```
 ---
 
 #### **7. Priority Queue**
