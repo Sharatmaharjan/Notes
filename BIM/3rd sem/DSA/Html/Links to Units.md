@@ -3,3 +3,5 @@ Unit 1 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/
 Unit 2 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/BIM/3rd%20sem/DSA/Html/Unit%202_%20Linked%20Lists.html
 
 Unit 3 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/BIM/3rd%20sem/DSA/Html/Unit%203_%20Stack.html
+
+Unit 4 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/BIM/3rd%20sem/DSA/Html/Unit%204_%20Queues.html
