@@ -81,20 +81,27 @@ Write a Java program to define a class **`BankAccount`** with private data membe
 
 1. Create a base class named Bonus. The class should contain two fields salesID of type String and salesAmount of type double. Include a getBonus method that calculates a salesperson’s bonus using *bonus = sales * 0.05. Create a derived class named PremiumBonus from Bonus. The derived class’s getPremiumBonus method should calculate the bonus using *bonus = sales * 0.05 + (sales - 2500) * 0.01. Write a class with main method to create object of PremiumBonus class and use this object to find both bonus and premium bonus.
 
+---
+
 2. Write a Java program that uses interface to support multiple inheritance.
+
+---
 
 3. Assume that a bank maintains two kinds of account for its customers, one called savings account and the other current account. The savings account provides compound interest and withdrawal facilities but no cheque book facility. The current account provides cheque book facility but no interest. Current account holders should also maintain a minimum balance and if the balance falls below this level, a service charge is imposed.
 
-Create a class Account that stores customer name, account number and type of account. From this derive the classes Curr_act and Sav_act to make them more specific to their requirements. Include the necessary method in order to achieve the following tasks:
+  Create a class Account that stores customer name, account number and type of account. From this derive the classes Curr_act and Sav_act to make them more specific to their requirements. Include the necessary method in order to achieve the following tasks:
+  
+  a. Accept deposit from a customer and update the balance.
+  
+  b. Display the balance.
+  
+  c. Compute and deposit interest.
+  
+  d. Permit withdrawal and update the balance.
+  
+  e. Check for the minimum balance, impose penalty, if necessary, and update the balance.
 
-a. Accept deposit from a customer and update the balance.
+---
 
-b. Display the balance.
-
-c. Compute and deposit interest.
-
-d. Permit withdrawal and update the balance.
-
-e. Check for the minimum balance, impose penalty, if necessary, and update the balance.
 
 ---
