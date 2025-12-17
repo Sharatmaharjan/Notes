@@ -467,3 +467,447 @@ Check divisibility from 2 to n−1.
 ```
 
 ---
+
+# ADDITIONAL CONTROL STRUCTURE & PATTERN QUESTIONS
+
+## 1. Skipping a Specific Term in a Series
+
+**Question:**
+Write a program to display the following series up to **25 terms**, but **do not print the 7th term**:
+2 × 3, 3 × 5, 4 × 7, 5 × 9, …
+
+**Hint:**
+
+* Use a loop counter to generate terms
+* Use `continue` to skip the 7th term
+
+**Sample Output:**
+
+```
+2 x 3
+3 x 5
+4 x 7
+5 x 9
+...
+(Skips 7th term)
+...
+```
+
+---
+
+## 2. Power Calculation Without Using pow()
+
+**Question:**
+Write a program to calculate the value of ( x^y ) without using the `pow()` function.
+
+**Hint:**
+
+* Use a loop to multiply `x` repeatedly
+* Initialize result as 1
+
+**Sample Output:**
+
+```
+Enter x: 2
+Enter y: 4
+Result = 16
+```
+
+---
+
+## 3. Menu-Driven Program Using Character Choice
+
+**Question:**
+Write a menu-driven program that performs the following operations based on user choice:
+
+A. Find Odd or Even
+B. Find Positive or Negative
+C. Find Factorial
+D. Exit
+
+The menu should repeat until the user selects **D**.
+
+**Hint:**
+
+* Use `do-while` loop
+* Use `switch` with character input
+
+**Sample Output:**
+
+```
+Enter choice: A
+Number is Even
+
+Enter choice: C
+Factorial = 120
+
+Enter choice: D
+Program terminated.
+```
+
+---
+
+## 4. Harmonic Series
+
+**Question:**
+Write a program to display the **n terms of harmonic series** and also display their sum.
+
+Series:
+1 + 1/2 + 1/3 + 1/4 + … + 1/n
+
+**Hint:**
+
+* Use `float` variables
+* Accumulate sum inside loop
+
+**Sample Output:**
+
+```
+1 + 1/2 + 1/3 + 1/4
+Sum = 2.0833
+```
+
+---
+
+## 5. Sum of Repeated Digit Series
+
+**Question:**
+Write a program to find the sum of the series:
+9 + 99 + 999 + 9999 + …
+
+**Hint:**
+
+* Build the number progressively
+* Add each term to sum
+
+**Sample Output:**
+
+```
+Enter number of terms: 4
+Sum = 11106
+```
+
+---
+
+# PATTERN QUESTIONS (NO CODE)
+
+---
+
+## 6. Right-Angle Triangle of Stars
+
+**Question:**
+Write a program to print a right-angle triangle of stars.
+
+**Hint:**
+
+* Use nested loops
+* Inner loop depends on row number
+
+**Sample Output:**
+
+```
+*
+**
+***
+****
+*****
+```
+
+---
+
+## 7. Inverted Right-Angle Triangle
+
+**Question:**
+Write a program to print an inverted right-angle triangle using stars.
+
+**Hint:**
+
+* Outer loop decreases
+* Inner loop prints stars
+
+**Sample Output:**
+
+```
+*****
+****
+***
+**
+*
+```
+
+---
+
+## 8. Square Pattern of Stars
+
+**Question:**
+Write a program to print a square pattern of stars.
+
+**Hint:**
+
+* Use same loop limits for rows and columns
+
+**Sample Output:**
+
+```
+*****
+*****
+*****
+*****
+*****
+```
+
+---
+
+## 9. Centered Star Pyramid
+
+**Question:**
+Write a program to display a centered pyramid of stars.
+
+**Hint:**
+
+* Use spaces before stars
+* Stars follow odd-number pattern
+
+**Sample Output:**
+
+```
+    *
+   ***
+  *****
+ *******
+*********
+```
+
+---
+
+## 10. Inverted Pyramid of Stars
+
+**Question:**
+Write a program to display an inverted pyramid of stars.
+
+**Hint:**
+
+* First print spaces, then stars
+* Decrease star count each row
+
+**Sample Output:**
+
+```
+*********
+ *******
+  *****
+   ***
+    *
+```
+
+---
+
+## 11. Diamond Pattern
+
+**Question:**
+Write a program to print a diamond pattern using stars.
+
+**Hint:**
+
+* Combine pyramid and inverted pyramid
+
+**Sample Output:**
+
+```
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *
+```
+
+---
+
+## 12. Hollow Square Pattern
+
+**Question:**
+Write a program to display a hollow square of stars.
+
+**Hint:**
+
+* Print stars only on boundary positions
+
+**Sample Output:**
+
+```
+*****
+*   *
+*   *
+*   *
+*****
+```
+
+---
+
+## 13. Number Pyramid
+
+**Question:**
+Write a program to display a number pyramid.
+
+**Hint:**
+
+* Numbers start from 1 in each row
+
+**Sample Output:**
+
+```
+    1
+   12
+  123
+ 1234
+12345
+```
+
+---
+
+# OUTPUT-BASED
+
+**14. Trace the output**
+
+```c
+#include<conio.h>
+#include<stdio.h>
+void main(){
+  int i =0,k;
+  for(k=5;k>=0;k–){
+    i=i+k;
+  }
+  printf(“%d\t”,i);
+  getch();
+}
+```
+
+---
+
+
+## 15. Sales Commission Calculation
+
+**Question:**
+Write a C program to input the total sales amount of a salesperson and calculate the commission using a slab-wise commission system according to the following rules:
+
+| Sales Amount        | Commission    |
+| ------------------- | ------------- |
+| Below 10000         | No commission |
+| ≥ 10000 and < 20000 | 20%           |
+| ≥ 20000             | 30%           |
+
+**Hint:**
+
+* Use `if–else if` ladder
+* Commission = sales × rate
+
+**Sample Output:**
+
+```
+Enter sales amount: 15000
+Commission = 1000
+```
+
+---
+
+## 16. Temperature Condition Message
+
+**Question:**
+Write a program to input temperature and print message according to following conditions:
+
+a) Ice – if temperature is less than 0
+b) Water – if temperature is between 0 and 100
+c) Steam – if temperature is more than 100
+
+**Hint:**
+
+* Use relational operators
+* Order of conditions matters
+
+**Sample Output:**
+
+```
+Enter temperature: 120
+Steam
+```
+
+---
+
+## 17. Menu-Driven Program Using Switch Case
+
+**Question:**
+Write a program to find the following using switch-case statement:
+
+1. Area of rectangle
+2. Simple interest
+3. Volume of cube
+
+**Hint:**
+
+* Take user choice
+* Perform calculation based on choice
+
+**Sample Output:**
+
+```
+Enter choice: 2
+Simple Interest = 450
+```
+
+---
+
+## 18. Switch Case Operations on Number
+
+**Question:**
+Write a program using switch case to perform the following operations:
+
+a. Find greater number between two numbers
+b. Check whether a number is odd or even
+c. Check whether a number is positive or negative
+
+**Hint:**
+
+* Use switch on user choice
+* Use relational and modulus operators
+
+**Sample Output:**
+
+```
+Enter choice: b
+Enter number: 2
+Number is Even
+```
+
+---
+
+## 19. Electricity Billing System
+
+**Question:**
+Write a program for electricity authority to calculate total electricity charge according to the following conditions:
+
+| Unit Consumed | Charge Rate      |
+| ------------- | ---------------- |
+| U ≤ 20        | Minimum Rs. 100  |
+| 20 < U ≤ 40   | Rs. 6 per unit   |
+| 40 < U ≤ 80   | Rs. 6.5 per unit |
+| 80 < U ≤ 100  | Rs. 7 per unit   |
+| U > 100       | Rs. 7.5 per unit |
+
+**Hint:**
+
+* Use slab-wise and cumulative calculation
+* Apply minimum charge if applicable
+
+**Sample Output:**
+
+```
+Units consumed: 65
+Total Bill = Rs. 317.5
+```
+
+---
+
