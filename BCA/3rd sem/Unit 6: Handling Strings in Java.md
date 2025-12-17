@@ -197,7 +197,7 @@ Java provides methods to change the case of a string:
 - `toUpperCase()`: Converts the string to uppercase.
 - `toLowerCase()`: Converts the string to lowercase.
 
-#### Lab 5: Changing Case
+#### Lab 5: Changing Case (Example of String immutable)
 ```java
 public class ChangeCase {
     public static void main(String[] args) {
