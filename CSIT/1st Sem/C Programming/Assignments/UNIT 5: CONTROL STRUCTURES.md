@@ -933,45 +933,89 @@ Obese (BMI ≥ 29.9)
 Display the calculated BMI value up to two decimal places and the corresponding health result.
 
 Sample Output – 1
-
+```c
 Enter height in meters: 1.72
 Enter weight in kg: 65
 
 BMI = 21.97
 Result: Healthy
-
+```
 
 ---
 
 Sample Output – 2
-
+```
 Enter height in meters: 1.60
 Enter weight in kg: 45
 
 BMI = 17.57
 Result: Underweight
-
+```
 
 ---
 
 Sample Output – 3
-
+```
 Enter height in meters: 1.68
 Enter weight in kg: 79
 
 BMI = 27.99
 Result: Overweight
-
+```
 
 ---
 
 Sample Output – 4
-
+```
 Enter height in meters: 1.75
 Enter weight in kg: 95
 
 BMI = 31.02
 Result: Obese
-
+```
 
 ---
+
+## 21. Number Guessing Game (Random Number from 1–100)
+
+Question:
+
+Write a C program to create a number guessing game. The computer should generate a random number between 1 and 100 using srand() and rand(). Then repeatedly ask the user to guess the number until the correct answer is found.
+
+For every wrong guess:
+
+display “Too High!” if the guess is greater than the number
+
+display “Too Low!” if the guess is smaller than the number
+
+
+The program should stop only when the user guesses the correct number and display the total number of attempts taken.
+
+Hint:
+
+Use srand(time(NULL)) to generate a different number each time
+
+Use a loop (while or do-while) to repeat guessing
+
+Store number of guesses in a counter
+
+Compare user guess with random number using if–else
+
+
+Sample Output:
+```
+Guess a number between 1 and 100: 50
+Too High! Try again.
+
+Guess a number between 1 and 100: 20
+Too Low! Try again.
+
+Guess a number between 1 and 100: 32
+Too High! Try again.
+
+Guess a number between 1 and 100: 27
+Correct! You guessed the number in 4 attempts.
+```
+
+---
+
