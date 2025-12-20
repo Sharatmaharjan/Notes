@@ -589,7 +589,7 @@ Sum = 11106
 
 ---
 
-# PATTERN QUESTIONS (NO CODE)
+# PATTERN QUESTIONS
 
 ---
 
@@ -911,3 +911,67 @@ Total Bill = Rs. 317.5
 
 ---
 
+## 20. BMI Calculation
+
+**Question:**
+
+Write a program in C to calculate the Body Mass Index (BMI) of a person. The program should take the person's height in meters and weight in kilograms, compute BMI using the formula:
+
+BMI = weight / (height * height)
+
+After calculating BMI, use suitable if–else statements to display whether the person is:
+
+Underweight (BMI < 18.5)
+
+Healthy (18.5 ≤ BMI < 24.9)
+
+Overweight (24.9 ≤ BMI < 29.9)
+
+Obese (BMI ≥ 29.9)
+
+
+Display the calculated BMI value up to two decimal places and the corresponding health result.
+
+Sample Output – 1
+
+Enter height in meters: 1.72
+Enter weight in kg: 65
+
+BMI = 21.97
+Result: Healthy
+
+
+---
+
+Sample Output – 2
+
+Enter height in meters: 1.60
+Enter weight in kg: 45
+
+BMI = 17.57
+Result: Underweight
+
+
+---
+
+Sample Output – 3
+
+Enter height in meters: 1.68
+Enter weight in kg: 79
+
+BMI = 27.99
+Result: Overweight
+
+
+---
+
+Sample Output – 4
+
+Enter height in meters: 1.75
+Enter weight in kg: 95
+
+BMI = 31.02
+Result: Obese
+
+
+---
