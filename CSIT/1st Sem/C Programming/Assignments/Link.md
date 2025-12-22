@@ -4,4 +4,4 @@ Unit 3 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/
 
 Unit 4 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT%204%20%E2%80%93%20OPERATORS%20AND%20EXPRESSIONS_%20LAB%20ASSIGNMENT.html
 
-Unit 5 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT%205_%20CONTROL%20STATEMENTS.html
+Unit 5 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT%205_%20CONTROL%20STRUCTURE.html
