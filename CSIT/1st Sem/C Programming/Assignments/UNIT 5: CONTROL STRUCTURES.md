@@ -1018,4 +1018,3 @@ Correct! You guessed the number in 4 attempts.
 ```
 
 ---
-
