@@ -7,3 +7,5 @@ Unit 4 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/
 Unit 5 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT%205_%20CONTROL%20STRUCTURE.html
 
 Unit 6: https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT%206%20_%20ARRAY.html
+
+Unit 7 : https://htmlpreview.github.io/?https://github.com/Sharatmaharjan/Notes/blob/main/CSIT/1st%20Sem/C%20Programming/Assignments/UNIT_7___FUNCTIONS.html
