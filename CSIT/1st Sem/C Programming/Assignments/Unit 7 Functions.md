@@ -1,4 +1,4 @@
-## PART A: USER DEFINED FUNCTION
+## PART A: FUNCTIONS
 
 ---
 
@@ -212,4 +212,3 @@ GCD = 6
 ```
 
 ---
-
