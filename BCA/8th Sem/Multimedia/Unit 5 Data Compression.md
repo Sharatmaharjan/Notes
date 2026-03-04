@@ -1,4 +1,4 @@
-# **Unit:** 5: Data Compression (6 Hrs)
+# **Unit** 5: Data Compression (6 Hrs)
 
 
 ### 5.1 Need for Data Compression
