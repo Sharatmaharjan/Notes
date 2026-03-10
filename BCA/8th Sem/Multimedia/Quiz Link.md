@@ -9,3 +9,7 @@ Unit 4 : https://sharatmaharjan.github.io/BCA-Quiz/8th/Multimedia/Unit4.html
 Unit 5 : https://sharatmaharjan.github.io/BCA-Quiz/8th/Multimedia/Unit5.html
 
 Unit 6 : https://sharatmaharjan.github.io/BCA-Quiz/8th/Multimedia/Unit6.html
+
+Unit 7 : https://sharatmaharjan.github.io/BCA-Quiz/8th/Multimedia/Unit7.html
+
+Unit 8 : https://sharatmaharjan.github.io/BCA-Quiz/8th/Multimedia/Unit8.html
