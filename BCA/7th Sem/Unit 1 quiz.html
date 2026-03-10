@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzy Pro • Unit 1 Ethics (30 MCQs)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .option {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .option:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px -5px rgb(0 0 0 / 0.1);
+        }
+        
+        .option:disabled {
+            cursor: not-allowed;
+        }
+        
+        .progress-bar {
+            transition: width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .quiz-container {
+            animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Extra mobile friendliness */
+        @media (max-width: 640px) {
+            .option {
+                padding: 1.25rem 1rem;
+                font-size: 1rem;
+            }
+            h2 {
+                font-size: 1.35rem;
+                line-height: 1.3;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-2xl w-full mx-auto">
+        <!-- Header -->
+        <div class="flex items-center justify-between mb-8 text-white">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-white/20 backdrop-blur-xl rounded-3xl flex items-center justify-center text-4xl shadow-inner">🎯</div>
+                <div>
+                    <h1 class="text-3xl sm:text-4xl font-bold tracking-tighter">Quizzy Pro</h1>
+                    <p class="text-white/70 text-sm -mt-1">Unit 1 • Ethics for IT Workers & Users • 30 MCQs</p>
+                </div>
+            </div>
+            <button onclick="restartQuiz()" 
+                    class="bg-white/10 hover:bg-white/20 backdrop-blur-md px-6 py-3 rounded-3xl text-sm font-semibold flex items-center gap-2 transition-all active:scale-95">
+                🔄 Restart
+            </button>
+        </div>
+
+        <!-- Main Quiz Card -->
+        <div id="quiz-card" class="quiz-container bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <!-- Progress -->
+            <div class="h-2 bg-gray-100">
+                <div id="progress" class="progress-bar h-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-pink-500 w-1/30"></div>
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <!-- Header -->
+                <div class="flex justify-between items-center mb-6">
+                    <div id="question-counter" class="text-sm font-semibold text-gray-500">Question 1 of 30</div>
+                    <div class="text-xs font-mono bg-amber-100 text-amber-700 px-5 py-1.5 rounded-3xl flex items-center gap-1">
+                        <span>📌</span> 
+                        <span id="status">Unanswered</span>
+                    </div>
+                </div>
+
+                <!-- Question -->
+                <h2 id="question-text" 
+                    class="text-xl sm:text-2xl font-semibold text-gray-900 leading-tight mb-10 min-h-[88px]"></h2>
+
+                <!-- Options -->
+                <div id="options" class="space-y-3 sm:space-y-4 mb-10"></div>
+
+                <!-- Controls -->
+                <div class="flex items-center justify-between">
+                    <button onclick="previousQuestion()" 
+                            id="prev-btn"
+                            class="px-6 sm:px-8 py-3.5 text-sm font-medium text-gray-500 hover:text-gray-700 flex items-center gap-2 disabled:opacity-40 transition-all">
+                        ← Previous
+                    </button>
+                    
+                    <button onclick="nextQuestion()" 
+                            id="next-btn"
+                            class="px-8 sm:px-12 py-4 bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white font-semibold rounded-3xl flex items-center gap-3 shadow-xl shadow-violet-500/40 hover:shadow-2xl transition-all">
+                        <span id="next-text">Next Question</span>
+                        <span class="text-2xl">→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="hidden bg-white rounded-3xl shadow-2xl p-8 sm:p-10">
+            <div class="text-center mb-10">
+                <div id="trophy" class="text-7xl sm:text-8xl mb-4 transition-all">🏆</div>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Quiz Complete!</h2>
+                <p class="text-gray-500 mt-2">Data Analyst Performance Report</p>
+            </div>
+
+            <!-- Big Score -->
+            <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-3xl p-8 mb-8">
+                <div class="flex justify-center items-center gap-10 sm:gap-12">
+                    <div class="text-center">
+                        <div id="score" class="text-6xl sm:text-7xl font-bold text-gray-900">24/30</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-widest">YOUR SCORE</div>
+                    </div>
+                    <div class="h-20 w-px bg-gray-200"></div>
+                    <div class="text-center">
+                        <div id="percentage" class="text-6xl sm:text-7xl font-bold text-violet-600">80%</div>
+                        <div class="text-xs text-gray-400 mt-1 tracking-widest">OVERALL ACCURACY</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-8">
+                <div class="bg-emerald-50 rounded-3xl p-6 text-center border border-emerald-100">
+                    <div id="correct-count" class="text-4xl sm:text-5xl font-bold text-emerald-600">24</div>
+                    <div class="text-xs font-semibold text-emerald-700 mt-3 tracking-widest">CORRECT</div>
+                </div>
+                <div class="bg-rose-50 rounded-3xl p-6 text-center border border-rose-100">
+                    <div id="incorrect-count" class="text-4xl sm:text-5xl font-bold text-rose-600">3</div>
+                    <div class="text-xs font-semibold text-rose-700 mt-3 tracking-widest">INCORRECT</div>
+                </div>
+                <div class="bg-zinc-50 rounded-3xl p-6 text-center border border-zinc-100">
+                    <div id="skipped-count" class="text-4xl sm:text-5xl font-bold text-zinc-600">3</div>
+                    <div class="text-xs font-semibold text-zinc-700 mt-3 tracking-widest">SKIPPED</div>
+                </div>
+            </div>
+
+            <!-- Data Analyst Insights -->
+            <div id="insights" 
+                 class="bg-violet-50 border border-violet-100 rounded-3xl p-6 sm:p-7 text-sm leading-relaxed text-violet-950">
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-10">
+                <button onclick="restartQuiz()" 
+                        class="flex-1 bg-gray-900 hover:bg-black text-white font-semibold py-5 rounded-3xl transition-all active:scale-[0.97]">
+                    Play Again
+                </button>
+                <button onclick="shareResults()" 
+                        class="flex-1 border-2 border-violet-200 hover:border-violet-400 font-semibold py-5 rounded-3xl transition-all">
+                    Share My Report 📤
+                </button>
+            </div>
+
+            <div onclick="showAnswers()" 
+                 class="mt-6 text-center text-violet-600 hover:text-violet-700 cursor-pointer font-medium flex items-center justify-center gap-2">
+                Review All Answers ↓
+            </div>
+        </div>
+
+        <!-- Review Modal -->
+        <div id="review-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl w-full max-w-2xl max-h-[92vh] flex flex-col">
+                <div class="p-6 border-b flex items-center justify-between bg-white sticky top-0 z-10 rounded-t-3xl">
+                    <h3 class="font-semibold text-xl">Detailed Review • 30 Questions</h3>
+                    <button onclick="hideReview()" 
+                            class="w-10 h-10 flex items-center justify-center text-4xl leading-none text-gray-400 hover:text-gray-600 transition-colors">×</button>
+                </div>
+                <div id="review-content" class="flex-1 overflow-y-auto p-6 space-y-8"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ====================== 30 MCQs FROM UNIT 1 PDF ======================
+        const questions = [
+            {
+                question: "What is the best definition of Ethics?",
+                options: ["A set of laws enforced by government", "A set of moral principles and guidelines that govern a person's behavior", "Company profit-making strategies", "Only technical rules for IT systems"],
+                answer: 1
+            },
+            {
+                question: "Which statement correctly describes the relationship between Ethics and Law?",
+                options: ["Ethics and Law are always the same", "An action can be legal but unethical", "Ethics is always illegal", "Law is never related to ethics"],
+                answer: 1
+            },
+            {
+                question: "In the real-world example, what is the ethical action for the software developer who finds a critical security flaw?",
+                options: ["Release the product to meet deadlines", "Stay quiet as instructed by management", "Whistleblowing or refuse to release until fixed", "Quit the job immediately"],
+                answer: 2
+            },
+            {
+                question: "Ethics in the Business World is primarily about:",
+                options: ["Maximizing profit at any cost", "Applying ethical principles to business decisions", "Only customer advertising", "Only legal compliance"],
+                answer: 1
+            },
+            {
+                question: "Which of the following is a key area in business ethics relations?",
+                options: ["Relations with Employees", "Relations with Only Shareholders", "Relations with Government Only", "Relations with Media Only"],
+                answer: 0
+            },
+            {
+                question: "One major advantage of strong business ethics is:",
+                options: ["Increased short-term costs", "Customer Loyalty", "Competitive disadvantage", "Higher legal risks"],
+                answer: 1
+            },
+            {
+                question: "A potential disadvantage of strong business ethics is:",
+                options: ["Reduced reputation", "Short-term Costs", "Lower employee morale", "More customer loyalty"],
+                answer: 1
+            },
+            {
+                question: "Corporate Social Responsibility (CSR) is best described as:",
+                options: ["A self-regulating model that makes a company socially accountable", "Only profit-making activity", "Legal requirement only", "Marketing strategy"],
+                answer: 0
+            },
+            {
+                question: "According to Archie Carroll’s model, the foundational pillar of CSR is:",
+                options: ["Philanthropic Responsibility", "Economic Responsibility", "Ethical Responsibility", "Legal Responsibility"],
+                answer: 1
+            },
+            {
+                question: "The obligation to do what is right, just, and fair — even when not legally required — is called:",
+                options: ["Economic Responsibility", "Legal Responsibility", "Ethical Responsibility", "Philanthropic Responsibility"],
+                answer: 2
+            },
+            {
+                question: "Microsoft’s AI for Earth Program is an example of which CSR responsibilities?",
+                options: ["Only Economic", "Only Legal", "Philanthropic and Ethical", "Only Philanthropic"],
+                answer: 2
+            },
+            {
+                question: "Which of the following is a method to foster CSR and good business ethics?",
+                options: ["Ignoring ethical issues", "Creating a Code of Ethics/Conduct", "Cutting corners for profit", "Hiding failures from stakeholders"],
+                answer: 1
+            },
+            {
+                question: "A practical step an organization can take to improve business ethics is:",
+                options: ["Hire for Character", "Ignore ethics audits", "Punish whistleblowers", "Hide social impact failures"],
+                answer: 0
+            },
+            {
+                question: "To improve business ethics, organizations should:",
+                options: ["Punish whistleblowers", "Protect Whistleblowers", "Only focus on profit", "Avoid stakeholder engagement"],
+                answer: 1
+            },
+            {
+                question: "The first step in the ethical decision-making framework is:",
+                options: ["Evaluate alternatives", "Identify the Problem", "Make a decision", "Reflect on outcome"],
+                answer: 1
+            },
+            {
+                question: "The Utilitarian Approach in ethical decision making focuses on:",
+                options: ["Greatest good for the greatest number", "Only individual rights", "Only fairness", "Only virtue"],
+                answer: 0
+            },
+            {
+                question: "The Rights Approach asks which question?",
+                options: ["Which option is most profitable?", "Which option best respects the rights of all stakeholders?", "Which option is cheapest?", "Which option is fastest?"],
+                answer: 1
+            },
+            {
+                question: "Ethics in Information Technology (IT) specifically deals with:",
+                options: ["Only hardware maintenance", "Moral choices regarding creation, access, and use of technology", "Only internet speed", "Only software pricing"],
+                answer: 1
+            },
+            {
+                question: "Which is a key area of concern in IT Ethics?",
+                options: ["Only cost of software", "Privacy", "Only hardware size", "Only screen resolution"],
+                answer: 1
+            },
+            {
+                question: "In IT Ethics, 'Accuracy' refers to responsibility for:",
+                options: ["Authenticity and fidelity of information", "Only data storage", "Only internet access", "Only hardware maintenance"],
+                answer: 0
+            },
+            {
+                question: "A unique challenge with IT workers is that they:",
+                options: ["Have low-demand skills", "Are frequently entrusted with highly sensitive and confidential data", "Work only 9-5 hours", "Have no leverage"],
+                answer: 1
+            },
+            {
+                question: "A good strategy for managing IT worker relationships is:",
+                options: ["Poor communication", "Open Communication", "No work-life balance", "Unfair compensation"],
+                answer: 1
+            },
+            {
+                question: "Professionalism for IT workers includes:",
+                options: ["Only technical skills", "Competence, skill, conduct, attitude, and ethics", "Only certifications", "Ignoring ethics"],
+                answer: 1
+            },
+            {
+                question: "The ACM Code of Ethics emphasizes:",
+                options: ["Acting in the public interest and respecting privacy", "Only profit maximization", "Ignoring public safety", "Only personal gain"],
+                answer: 0
+            },
+            {
+                question: "Which is an example of a professional organization for IT workers?",
+                options: ["Only schools", "ACM (Association for Computing Machinery)", "Only government offices", "Only banks"],
+                answer: 1
+            },
+            {
+                question: "One benefit of joining professional organizations is:",
+                options: ["No networking opportunity", "Platform for networking and collaboration", "Stopping continuous education", "None of the above"],
+                answer: 1
+            },
+            {
+                question: "CISSP is an example of a:",
+                options: ["Hardware tool", "Certification in Security", "Licensing only for doctors", "Programming language"],
+                answer: 1
+            },
+            {
+                question: "Licensing in IT (e.g., Professional Engineer in Software Engineering) is:",
+                options: ["Completely voluntary everywhere", "Mandatory government permission in certain critical areas", "Only for non-IT fields", "Not relevant to IT"],
+                answer: 1
+            },
+            {
+                question: "The main goal of an Acceptable Use Policy (AUP) is to:",
+                options: ["Allow any use of IT resources", "Ensure responsible and ethical use of the organization’s IT resources", "Encourage personal gaming", "Ignore security training"],
+                answer: 1
+            },
+            {
+                question: "In Nepal, which organization is mentioned as a professional body for IT workers?",
+                options: ["Only IEEE", "Computer Association of Nepal (CAN Federation)", "Only Microsoft", "Only government ministries"],
+                answer: 1
+            }
+        ]
+        // =====================================================================
+
+        let currentQuestionIndex = 0
+        let selectedAnswers = new Array(questions.length).fill(null)
+
+        function renderQuestion() {
+            const q = questions[currentQuestionIndex]
+            
+            document.getElementById('progress').style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`
+            document.getElementById('question-counter').textContent = 
+                `Question ${currentQuestionIndex + 1} of ${questions.length}`
+            
+            document.getElementById('question-text').textContent = q.question
+            renderOptions()
+            updateNavigationButtons()
+        }
+
+        function renderOptions() {
+            const container = document.getElementById('options')
+            container.innerHTML = ''
+            
+            const q = questions[currentQuestionIndex]
+            const selected = selectedAnswers[currentQuestionIndex]
+            const isLocked = selected !== null
+            const correctIdx = q.answer
+            
+            q.options.forEach((option, idx) => {
+                const btn = document.createElement('button')
+                let btnClass = `option w-full text-left px-6 py-5 sm:py-6 rounded-3xl border-2 text-base sm:text-lg font-medium flex items-center gap-5 group`
+                
+                let extraHTML = ''
+                
+                if (isLocked) {
+                    btn.disabled = true
+                    
+                    if (idx === correctIdx) {
+                        btnClass += ' border-emerald-400 bg-emerald-50 text-emerald-900'
+                        extraHTML = `<span class="ml-auto text-3xl text-emerald-500">✓</span>`
+                    } 
+                    else if (idx === selected) {
+                        btnClass += ' border-rose-400 bg-rose-50 text-rose-900'
+                        extraHTML = `<span class="ml-auto text-3xl text-rose-500">✕</span>`
+                    } 
+                    else {
+                        btnClass += ' border-gray-200 bg-white/70 opacity-80'
+                    }
+                } else {
+                    btnClass += ' border-gray-200 hover:border-violet-300 hover:bg-violet-50'
+                    if (idx === selected) btnClass += ' border-violet-400 bg-violet-50'
+                }
+                
+                btn.className = btnClass
+                btn.innerHTML = `
+                    <span class="w-9 h-9 flex-shrink-0 rounded-2xl border flex items-center justify-center text-base font-bold">${String.fromCharCode(65 + idx)}</span>
+                    <span class="flex-1">${option}</span>
+                    ${extraHTML}
+                `
+                
+                if (!isLocked) {
+                    btn.onclick = () => selectOption(idx)
+                }
+                
+                container.appendChild(btn)
+            })
+            
+            document.getElementById('status').textContent = isLocked ? 'Answered' : 'Unanswered'
+            document.getElementById('status').parentElement.classList.toggle('bg-emerald-100', isLocked)
+            document.getElementById('status').parentElement.classList.toggle('text-emerald-700', isLocked)
+        }
+
+        function selectOption(index) {
+            if (selectedAnswers[currentQuestionIndex] !== null) return
+            selectedAnswers[currentQuestionIndex] = index
+            renderOptions()
+            updateNavigationButtons()
+        }
+
+        function updateNavigationButtons() {
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0
+            
+            const nextBtn = document.getElementById('next-btn')
+            nextBtn.innerHTML = currentQuestionIndex === questions.length - 1 
+                ? `Finish Quiz <span class="text-2xl">🏁</span>` 
+                : `Next Question <span class="text-2xl">→</span>`
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++
+                renderQuestion()
+            } else {
+                showResults()
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--
+                renderQuestion()
+            }
+        }
+
+        function calculateResults() {
+            let correct = 0, incorrect = 0, skipped = 0
+            selectedAnswers.forEach((selected, i) => {
+                if (selected === null) skipped++
+                else if (selected === questions[i].answer) correct++
+                else incorrect++
+            })
+            return { correct, incorrect, skipped, total: questions.length }
+        }
+
+        function showResults() {
+            const { correct, incorrect, skipped, total } = calculateResults()
+            const percentage = Math.round((correct / total) * 100)
+            const attempted = correct + incorrect
+            const accuracyAttempted = attempted > 0 ? Math.round((correct / attempted) * 100) : 0
+            
+            document.getElementById('quiz-card').classList.add('hidden')
+            document.getElementById('results-screen').classList.remove('hidden')
+            
+            document.getElementById('score').textContent = `${correct}/${total}`
+            document.getElementById('percentage').textContent = `${percentage}%`
+            document.getElementById('correct-count').textContent = correct
+            document.getElementById('incorrect-count').textContent = incorrect
+            document.getElementById('skipped-count').textContent = skipped
+            
+            const trophyEl = document.getElementById('trophy')
+            trophyEl.textContent = percentage >= 85 ? '🏆' : percentage >= 65 ? '🔥' : percentage >= 40 ? '👍' : '📚'
+            
+            let insightsHTML = `
+                You scored <strong>${correct}</strong> out of <strong>${total}</strong> (${percentage}% overall).<br><br>
+                ${attempted > 0 ? `Accuracy on attempted questions: <strong>${accuracyAttempted}%</strong>.<br><br>` : ''}
+                ${skipped > 0 
+                    ? `💡 You skipped <strong>${skipped}</strong> questions. Attempting them could have boosted your score significantly!` 
+                    : `🌟 Outstanding! You attempted every question.`}
+            `
+            document.getElementById('insights').innerHTML = insightsHTML
+        }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0
+            selectedAnswers = new Array(questions.length).fill(null)
+            document.getElementById('quiz-card').classList.remove('hidden')
+            document.getElementById('results-screen').classList.add('hidden')
+            document.getElementById('review-modal').classList.add('hidden')
+            renderQuestion()
+        }
+
+        function shareResults() {
+            const { correct, incorrect, skipped, total } = calculateResults()
+            const percentage = Math.round((correct / total) * 100)
+            const text = `🎯 Quizzy Pro Result (Unit 1 Ethics)\nI scored ${correct}/${total} (${percentage}%) — ${correct} correct, ${incorrect} wrong, ${skipped} skipped!\n\nBeat my score? Download the HTML file and play instantly!`
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.currentTarget
+                const orig = btn.textContent
+                btn.textContent = '✅ Report Copied!'
+                setTimeout(() => btn.textContent = orig, 2000)
+            })
+        }
+
+        function showAnswers() {
+            const modal = document.getElementById('review-modal')
+            const content = document.getElementById('review-content')
+            content.innerHTML = ''
+            
+            questions.forEach((q, i) => {
+                const selected = selectedAnswers[i]
+                const isCorrect = selected === q.answer
+                
+                let statusHTML = ''
+                if (selected === null) {
+                    statusHTML = `<div class="flex items-center gap-3 text-amber-600"><span class="text-3xl">⏭️</span><span class="font-semibold">Skipped</span></div>`
+                } else if (isCorrect) {
+                    statusHTML = `<div class="flex items-center gap-3 text-emerald-600"><span class="text-3xl">✅</span><span class="font-semibold">Correct</span></div>`
+                } else {
+                    statusHTML = `<div class="flex items-center gap-3 text-rose-600"><span class="text-3xl">❌</span><span class="font-semibold">Incorrect</span></div>`
+                }
+                
+                const div = document.createElement('div')
+                div.className = `border rounded-3xl p-7 ${selected === null ? 'border-amber-200 bg-amber-50' : isCorrect ? 'border-emerald-200 bg-emerald-50' : 'border-rose-200 bg-rose-50'}`
+                div.innerHTML = `
+                    ${statusHTML}
+                    <p class="font-medium mt-5 text-lg leading-tight">${q.question}</p>
+                    <div class="grid grid-cols-1 gap-3 mt-7">
+                        ${q.options.map((opt, idx) => {
+                            let optClass = 'px-6 py-4 rounded-2xl border text-base flex justify-between items-center'
+                            if (idx === q.answer) optClass += ' border-emerald-400 bg-emerald-100 text-emerald-800'
+                            else if (selected !== null && idx === selected) optClass += ' border-rose-400 bg-rose-100 text-rose-800 line-through'
+                            else optClass += ' border-gray-200 bg-white'
+                            return `<div class="${optClass}">
+                                        <span>${String.fromCharCode(65 + idx)}. ${opt}</span>
+                                        ${idx === q.answer ? '<span class="text-emerald-600 text-xl">✓</span>' : ''}
+                                    </div>`
+                        }).join('')}
+                    </div>
+                `
+                content.appendChild(div)
+            })
+            modal.classList.remove('hidden')
+        }
+
+        function hideReview() {
+            document.getElementById('review-modal').classList.add('hidden')
+        }
+
+        function handleKeyboard(e) {
+            if (document.getElementById('quiz-card').classList.contains('hidden')) return
+            
+            if (e.key === 'ArrowRight') nextQuestion()
+            if (e.key === 'ArrowLeft') previousQuestion()
+            
+            if (e.key >= '1' && e.key <= '4') {
+                const idx = parseInt(e.key) - 1
+                if (idx < questions[currentQuestionIndex].options.length && selectedAnswers[currentQuestionIndex] === null) {
+                    selectOption(idx)
+                }
+            }
+        }
+
+        function startQuiz() {
+            renderQuestion()
+            document.addEventListener('keydown', handleKeyboard)
+            console.log('%c✅ Quizzy Pro (30 MCQs) loaded successfully! Fully responsive on mobile, tablet & PC.', 'color:#8b5cf6; font-weight:700')
+        }
+
+        window.onload = startQuiz
+    </script>
+</body>
+</html>
