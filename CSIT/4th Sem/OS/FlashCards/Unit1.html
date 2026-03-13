@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flashzy Pro • Unit 1: Operating System Overview</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+body{font-family:'Poppins',system-ui,sans-serif}
+.perspective{perspective:1400px}
+.card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,.2,.2,1)}
+.card-inner.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;text-align:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:24px}
+.card-front{background:linear-gradient(135deg,#27272a,#18181b)}
+.card-back{background:linear-gradient(135deg,#064e3b,#18181b);transform:rotateY(180deg)}
+</style>
+</head>
+<body class="bg-zinc-950 text-white min-h-screen flex items-center justify-center">
+<div class="max-w-4xl w-full px-4 py-8">
+<!-- HEADER -->
+<div class="flex justify-between items-center mb-10">
+    <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-yellow-400 text-black rounded-2xl flex items-center justify-center text-3xl">🖥️</div>
+        <div>
+            <h1 class="text-3xl font-bold">Flashzy Pro</h1>
+            <p class="text-yellow-400">Unit 1: Operating System Overview</p>
+        </div>
+    </div>
+    <div class="flex items-center gap-6">
+        <div onclick="showReviewAllModal()" class="flex items-center gap-2 bg-zinc-900 px-5 py-2 rounded-3xl cursor-pointer">
+            <span class="text-xs uppercase text-zinc-400">Progress</span>
+            <span class="flex gap-4 text-sm">
+                <span>✅ <span id="known-count" class="font-bold">0</span></span>
+                <span>📌 <span id="review-count" class="font-bold">0</span></span>
+            </span>
+        </div>
+        <div class="flex items-center gap-3 bg-zinc-900 px-5 py-2 rounded-3xl">
+            <span class="text-xs text-zinc-400">SHUFFLE</span>
+            <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" id="shuffle-toggle" onchange="toggleShuffle()" class="sr-only peer">
+                <div class="w-11 h-6 bg-zinc-700 peer-focus:ring-4 peer-focus:ring-yellow-400 rounded-full peer peer-checked:bg-yellow-400"></div>
+            </label>
+        </div>
+        <button onclick="showResults()" class="bg-white text-black px-6 py-3 rounded-3xl font-semibold">📊 RESULTS</button>
+    </div>
+</div>
+<!-- CARD -->
+<div class="relative max-w-2xl mx-auto">
+    <div onclick="flipCard()" class="perspective h-[420px] cursor-pointer">
+        <div id="card-inner" class="card-inner border border-zinc-700 rounded-3xl">
+            <div class="card-face card-front">
+                <div class="text-yellow-400 text-3xl mb-6">📌</div>
+                <div id="front-text" class="text-3xl font-semibold max-w-md"></div>
+                <div class="absolute bottom-6 text-xs text-zinc-500 uppercase">Tap / Space to flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="text-emerald-400 text-sm uppercase mb-4">ANSWER</div>
+                <div id="back-text" class="text-xl text-emerald-100 max-w-md leading-relaxed"></div>
+                <div class="absolute bottom-6 text-xs text-emerald-400/80 uppercase">Operating System Overview • Unit 1</div>
+            </div>
+        </div>
+    </div>
+    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-zinc-900 text-yellow-400 text-xs px-5 py-1 rounded-full">
+        <span id="card-number">1</span>
+        <span class="text-zinc-600">/</span>
+        <span id="total-cards">32</span>
+    </div>
+</div>
+<!-- CONTROLS -->
+<div class="max-w-2xl mx-auto mt-10 flex justify-between items-center">
+    <button onclick="prevCard()" class="bg-zinc-900 px-6 py-3 rounded-3xl">← Prev</button>
+    <div class="flex gap-4">
+        <button onclick="markKnown();event.stopImmediatePropagation()" class="bg-emerald-500 px-6 py-3 rounded-3xl">✅ Known</button>
+        <button onclick="markReview();event.stopImmediatePropagation()" class="bg-amber-500 px-6 py-3 rounded-3xl">📌 Review</button>
+    </div>
+    <button onclick="nextCard()" class="bg-zinc-900 px-6 py-3 rounded-3xl">Next →</button>
+</div>
+<!-- Review Mode -->
+<div onclick="toggleReviewMode()" id="review-mode-btn" class="mx-auto mt-6 flex items-center gap-3 bg-zinc-900 hover:bg-zinc-800 px-8 py-3 rounded-3xl cursor-pointer text-sm font-medium">
+    <span id="review-mode-text">ALL CARDS</span>
+    <span class="text-amber-400">📌</span>
+</div>
+</div>
+
+<!-- RESULTS MODAL -->
+<div id="results-modal" onclick="if(event.target.id==='results-modal')hideResultsModal()" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+    <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 max-w-md w-full mx-4 rounded-3xl p-8">
+        <h2 class="text-3xl font-bold mb-6">Study Summary</h2>
+        <div class="grid grid-cols-3 gap-4 mb-8">
+            <div class="bg-zinc-800 p-6 rounded-3xl text-center"><div id="modal-total" class="text-5xl font-bold">32</div><div class="text-xs text-zinc-400">Total</div></div>
+            <div class="bg-emerald-900/30 border border-emerald-400 p-6 rounded-3xl text-center"><div id="modal-known" class="text-5xl font-bold text-emerald-400">0</div><div class="text-xs text-emerald-400">Known</div></div>
+            <div class="bg-amber-900/30 border border-amber-400 p-6 rounded-3xl text-center"><div id="modal-review" class="text-5xl font-bold text-amber-400">0</div><div class="text-xs text-amber-400">Review</div></div>
+        </div>
+        <div id="trophy" class="hidden text-center text-7xl mb-4">🏆</div>
+        <div id="motivational-text" class="italic text-center bg-zinc-800 p-6 rounded-3xl"></div>
+        <div class="flex gap-3 mt-8">
+            <button onclick="hideResultsModal();restartStudy()" class="flex-1 py-4 bg-zinc-800 rounded-3xl">RESTART</button>
+            <button onclick="shareProgress()" class="flex-1 py-4 bg-yellow-400 text-black rounded-3xl font-semibold">SHARE PROGRESS</button>
+        </div>
+    </div>
+</div>
+
+<!-- REVIEW ALL MODAL -->
+<div id="review-all-modal" onclick="if(event.target.id==='review-all-modal')hideReviewAllModal()" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+    <div onclick="event.stopImmediatePropagation()" class="bg-zinc-900 w-full max-w-lg mx-4 rounded-3xl overflow-hidden">
+        <div class="px-8 py-6 border-b flex justify-between"><h3 class="font-bold text-xl">All 32 Cards • Status</h3><button onclick="hideReviewAllModal()" class="text-3xl">×</button></div>
+        <div id="card-list" class="max-h-[420px] overflow-auto p-4 space-y-2"></div>
+        <div class="p-4"><button onclick="hideReviewAllModal()" class="w-full py-4 bg-zinc-800 rounded-3xl">CLOSE</button></div>
+    </div>
+</div>
+
+<script>
+const originalCards=[
+{front:"Definition of an Operating System",back:"Resource manager and control program that acts as intermediary between users/applications and hardware. Performs: Process Management, Memory Management, File System Management, Device Management."},
+{front:"Four Fundamental OS Functions",back:"1. Process Management 2. Memory Management 3. File System Management 4. Device Management."},
+{front:"Two Views of OS - User View",back:"Focuses on user experience. Personal PCs: GUI & responsiveness. Mobile: Touch + battery. Servers: Stability & uptime."},
+{front:"Two Views of OS - System View",back:"OS as Resource Allocator (CPU, memory, I/O) and Control Program (prevents errors, enforces security)."},
+{front:"Evolution of Operating Systems",back:"1940s-50s: No OS. 1950s-60s: Batch. 1960s-70s: Multiprogramming/Time-Sharing (UNIX). 1980s-90s: PC + GUI. 2000s+: Mobile/Distributed."},
+{front:"Types of OS - Batch Processing",back:"Jobs processed in groups without user interaction. Use: Payroll, bank transactions. Efficient for repetitive tasks but no real-time feedback."},
+{front:"Types of OS - Time-Sharing/Multitasking",back:"Shares CPU time among users/tasks. Quick switching (10-100ms slices). Examples: Linux, Windows, macOS. Enables interactive computing."},
+{front:"Types of OS - Real-Time (RTOS)",back:"Time-critical. Hard RTOS: Deadlines must be met (e.g., pacemakers). Soft RTOS: Occasional miss acceptable (e.g., video streaming)."},
+{front:"Types of OS - Distributed OS",back:"Manages networked computers as one system. Features: Resource sharing, fault tolerance. Examples: Google Borg, Hadoop."},
+{front:"Types of OS - Network OS",back:"Manages shared resources in client-server model (files, printers). Examples: Windows Server, Linux servers."},
+{front:"Types of OS - Mobile OS",back:"Optimized for touch, battery, app sandboxing. Examples: Android, iOS."},
+{front:"Time-Sharing vs Distributed OS",back:"Time-Sharing: Many users on 1 system, centralized. Distributed: Users on many systems (appear as one), decentralized, high fault tolerance."},
+{front:"System Calls Definition",back:"Programmatic requests from applications to OS kernel for privileged operations (file access, process creation). Requires user → kernel mode switch."},
+{front:"System Call Categories",back:"Process Control (fork, exit), File Management (open, read), Device Management (ioctl, write), IPC (pipe, shmget)."},
+{front:"System Call Handling",back:"1. User program triggers interrupt (e.g., int 0x80). 2. CPU switches to kernel mode. 3. Kernel executes request. 4. Returns result and switches back to user mode."},
+{front:"System Programs",back:"User-friendly utilities: File management (ls, cp), Process management (top, ps, kill), Networking (ping, ifconfig)."},
+{front:"Monolithic OS Structure",back:"Single large kernel in kernel mode with all services. Fast but hard to maintain and a bug can crash entire system. Example: Traditional Unix/Linux."},
+{front:"Microkernel Structure",back:"Minimal kernel (IPC, scheduling) + user-mode services. High stability/security but IPC overhead. Examples: MINIX, QNX, Mach."},
+{front:"Modular Structure (Modern Linux)",back:"Modular monolithic kernel + loadable kernel modules (LKMs). Combines monolithic speed with flexibility. Only needed modules loaded."},
+{front:"Layered OS Structure",back:"OS divided into layers (User Apps → UI → File → Process → Device → Kernel → Hardware). Easier debugging but performance overhead."},
+{front:"Client-Server OS Structure",back:"Clients request services from servers via IPC. Supports distributed systems. Separation of concerns but message-passing overhead."},
+{front:"OS Structure Comparison Summary",back:"Monolithic: Fast, Medium security. Microkernel: Secure, slower. Modular: Flexible. Layered: Modular but overhead. Client-Server: Networking-friendly."},
+{front:"The Shell",back:"Command-line interpreter between user and OS. Accepts commands, translates to system calls. Types: Bash (Linux), Zsh, PowerShell (Windows)."},
+{front:"Open Source Operating Systems Examples",back:"Linux (servers/desktops), FreeBSD (networking), Android (mobile). Key: Transparency, community-driven, no vendor lock-in."},
+{front:"Open Source OS Advantages",back:"Auditable code, rapid community patches, no vendor lock-in, customizable."},
+{front:"Microkernel vs Exokernel",back:"Microkernel: Minimal kernel + user services (IPC). Exokernel: No abstractions, apps build own OS layers. Exokernel: Max performance, complex development."},
+{front:"Shell & System Call Example",back:"User runs 'cat file.txt'. Shell parses → fork/exec → open/read/write system calls → kernel mode switch → hardware access → return result."},
+{front:"OS as Resource Allocator & Control Program",back:"Allocator: Manages CPU, memory, I/O. Control Program: Prevents errors, enforces security via process isolation."},
+{front:"Hard vs Soft Real-Time OS",back:"Hard RTOS: Deadlines critical (pacemakers). Soft RTOS: Occasional miss OK (video streaming)."},
+{front:"Kernel Mode vs User Mode",back:"Kernel Mode: Privileged instructions (OS core). User Mode: Applications. System calls switch modes."},
+{front:"OS Evolution Visualization",back:"No OS → Batch → Multiprogramming → Time-Sharing → Personal Computing → Mobile/Distributed."},
+{front:"System Call vs System Program",back:"System Call: Program requests to kernel. System Program: User utilities (ls, top) that use system calls."},
+{front:"Linux Kernel Type",back:"Modular monolithic kernel with Loadable Kernel Modules (LKMs) for flexibility and performance."}
+]
+let deck=[]
+let statuses=new Array(originalCards.length).fill("not-studied")
+let current=0
+let flipped=false
+let shuffle=false
+let studyMode="all"
+
+function shuffleArray(arr){const shuffled=[...arr];for(let i=shuffled.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]}return shuffled}
+function prepareDeck(){let indices=[...Array(originalCards.length).keys()];if(studyMode==="review") indices=indices.filter(i=>statuses[i]==="review");if(shuffle) indices=shuffleArray(indices);deck=indices;current=0;loadCard()}
+function loadCard(){let idx=deck[current];let card=originalCards[idx];document.getElementById("front-text").textContent=card.front;document.getElementById("back-text").innerHTML=card.back;document.getElementById("card-number").textContent=current+1;document.getElementById("total-cards").textContent=deck.length;document.getElementById("card-inner").classList.remove("flipped");flipped=false}
+function flipCard(){flipped=!flipped;document.getElementById("card-inner").classList.toggle("flipped")}
+function nextCard(){if(current<deck.length-1){current++;loadCard()}}
+function prevCard(){if(current>0){current--;loadCard()}}
+function markKnown(){statuses[deck[current]]="known";updateProgress();setTimeout(()=>{if(current<deck.length-1)nextCard()},300)}
+function markReview(){statuses[deck[current]]="review";updateProgress();setTimeout(()=>{if(current<deck.length-1)nextCard()},300)}
+function updateProgress(){let known=statuses.filter(s=>s==="known").length;let review=statuses.filter(s=>s==="review").length;document.getElementById("known-count").textContent=known;document.getElementById("review-count").textContent=review}
+function toggleShuffle(){shuffle=document.getElementById("shuffle-toggle").checked;prepareDeck()}
+function toggleReviewMode(){studyMode=studyMode==="all"?"review":"all";document.getElementById("review-mode-text").textContent=studyMode==="all"?"ALL CARDS":"REVIEW ONLY";prepareDeck()}
+function showResults(){let known=statuses.filter(s=>s==="known").length;let review=statuses.filter(s=>s==="review").length;let total=originalCards.length;let percent=Math.round(((known+review)/total)*100);document.getElementById("modal-total").textContent=total;document.getElementById("modal-known").textContent=known;document.getElementById("modal-review").textContent=review;document.getElementById("motivational-text").innerHTML=percent>80?"Outstanding performance! You mastered Unit 1 🏆":"Great work! Keep reviewing the marked cards.";document.getElementById("trophy").classList.toggle("hidden",percent<=80);document.getElementById("results-modal").classList.remove("hidden")}
+function hideResultsModal(){document.getElementById("results-modal").classList.add("hidden")}
+function shareProgress(){let known=statuses.filter(s=>s==="known").length;let review=statuses.filter(s=>s==="review").length;let total=originalCards.length;let percent=Math.round(((known+review)/total)*100);navigator.clipboard.writeText(`Flashzy Pro Unit 1 Operating System Overview: ${percent}% complete!\n✅ Known: ${known}\n📌 Review: ${review}\n\nReady for the next unit! #FlashzyPro`);alert("Progress copied to clipboard ✅")}
+function showReviewAllModal(){let html="";originalCards.forEach((c,i)=>{let badge=statuses[i]==="known"?`<span class="bg-emerald-500 text-white px-3 py-1 text-xs rounded-full">KNOWN</span>`:statuses[i]==="review"?`<span class="bg-amber-500 text-white px-3 py-1 text-xs rounded-full">REVIEW</span>`:`<span class="bg-zinc-700 text-zinc-400 px-3 py-1 text-xs rounded-full">NOT STUDIED</span>`;html+=`<div class="flex justify-between bg-zinc-800 p-4 rounded-2xl text-sm">${c.front}${badge}</div>`});document.getElementById("card-list").innerHTML=html;document.getElementById("review-all-modal").classList.remove("hidden")}
+function hideReviewAllModal(){document.getElementById("review-all-modal").classList.add("hidden")}
+function restartStudy(){hideResultsModal();statuses=new Array(originalCards.length).fill("not-studied");updateProgress();prepareDeck()}
+document.addEventListener("keydown",e=>{if(e.key==="ArrowRight") nextCard();if(e.key==="ArrowLeft") prevCard();if(e.key===" "){e.preventDefault();flipCard()}})
+prepareDeck()
+updateProgress()
+console.log("%c✅ Flashzy Pro - Unit 1 Operating System Overview loaded successfully with your working flip CSS 🚀","color:#fde047;font-family:monospace")
+</script>
+</body>
+</html>
